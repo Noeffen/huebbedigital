@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live-Tracking | NotAlone</title>
+  
+  <link rel="icon" type="image/png" href="/notalone/logo2.png">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      margin: 0; 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    #map { 
+      height: 100vh; 
+      width: 100%; 
+    }
+    
+    .info {
+      position: absolute;
+      top: 20px; 
+      left: 20px;
+      background: white; 
+      padding: 20px 24px;
+      border-radius: 16px;
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.08);
+      z-index: 999;
+      max-width: 320px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .info strong {
+      font-size: 16px;
+      font-weight: 700;
+      color: #171717;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .info-text {
+      font-size: 14px;
+      color: #737373;
+      line-height: 1.5;
+    }
+
+    .status-icon {
+      display: inline-block;
+      margin-right: 6px;
+    }
+  </style>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Firebase v9 compat -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+  <div class="info">
+    <strong><span class="status-icon">📍</span>Live-Standort</strong>
+    <div class="info-text">Wird automatisch aktualisiert…</div>
+  </div>
+  <div id="map"></div>
+
+  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-Wto3lsmcagSskPiilN7R2pqWyMzRPxo",
+      authDomain: "notalone-d5f2f.firebaseapp.com",
+      projectId: "notalone-d5f2f",
+      storageBucket: "notalone-d5f2f.appspot.com",
+      messagingSenderId: "738878134869",
+      appId: "1:738878134869:web:571d04f26ade1ef2b812dc",
+      measurementId: "G-QPZSHML62V"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Tracking-ID aus der URL
+    const params = new URLSearchParams(window.location.search);
+    const trackingId = params.get("trackingId");
+
+    if (!trackingId) {
+      alert("Tracking ID fehlt!");
+      throw new Error("Tracking ID not provided");
+    }
+
+    // Leaflet-Karte neutral starten
+    const map = L.map('map');
+    map.setView([20, 0], 2); // Weltkarte
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    let marker;
+    let hasCentered = false;
+    let presenceUnsub = null;
+    let signalsUnsub = null;
+
+    function setInfo(icon, title, text) {
+      const infoBox = document.querySelector('.info');
+      infoBox.innerHTML = `
+        <strong><span class="status-icon">${icon}</span>${title}</strong>
+        <div class="info-text">${text}</div>
+      `;
+    }
+
+    function updateMarker(lat, lng, {center = false} = {}) {
+      if (!marker) {
+        marker = L.marker([lat, lng]).addTo(map);
+      } else {
+        marker.setLatLng([lat, lng]);
+      }
+      if (center || !hasCentered) {
+        map.setView([lat, lng], 15);
+        hasCentered = true;
+      }
+    }
+
+    function removeMarker() {
+      if (marker) {
+        map.removeLayer(marker);
+        marker = null;
+      }
+      hasCentered = false;
+    }
+
+    // Presence live abonnieren
+    function subscribePresence(userId) {
+      if (presenceUnsub) { presenceUnsub(); presenceUnsub = null; }
+      if (signalsUnsub)  { signalsUnsub();  signalsUnsub  = null; }
+
+      const ref = db.collection("presence").doc(userId);
+      presenceUnsub = ref.onSnapshot((snap) => {
+        if (!snap.exists) {
+          setInfo('⏳', 'Warte auf Standort', 'Das Signal wurde noch nicht gestartet.');
+          removeMarker();
+          return;
+        }
+
+        const d = snap.data() || {};
+        const pub = d.publicUntil && (d.publicUntil.toDate ? d.publicUntil.toDate() : null);
+
+        // Wenn publicUntil fehlt oder abgelaufen -> beenden
+        if (!pub || pub < new Date()) {
+          setInfo('⛔️', 'Signal beendet', 'Das Signal ist nicht mehr aktiv oder abgelaufen.');
+          removeMarker();
+          return;
+        }
+
+        if (typeof d.lat !== "number" || typeof d.lng !== "number") {
+          setInfo('⏳', 'Warte auf Standort', 'Position wird geladen…');
+          return;
+        }
+
+        setInfo('📍', 'Live-Standort', 'Wird automatisch aktualisiert…');
+        updateMarker(d.lat, d.lng);
+      }, (err) => {
+        console.error("Presence-Fehler:", err);
+        setInfo('⛔️', 'Kein Zugriff', 'Signal wurde möglicherweise beendet.');
+        removeMarker();
+      });
+    }
+
+    // Fallback: Signals per trackingId
+    function subscribeSignalsByTrackingId(trackingId) {
+      if (signalsUnsub) { signalsUnsub(); signalsUnsub = null; }
+      signalsUnsub = db.collection("signals")
+        .where("trackingId", "==", trackingId)
+        .onSnapshot(snapshot => {
+          const doc = snapshot.docs[0];
+          if (!doc) {
+            setInfo('⛔️', 'Kein Signal', 'Kein aktives Signal gefunden.');
+            removeMarker();
+            return;
+          }
+          const data = doc.data();
+
+          const createdAt =
+            typeof data.timestamp?.toDate === 'function'
+              ? data.timestamp.toDate()
+              : data.timestamp?.seconds
+                ? new Date(data.timestamp.seconds * 1000)
+                : null;
+
+          const cancelled = data.isManuallyCancelled === true;
+          const expired = createdAt ? (Date.now() - createdAt.getTime() > 10 * 60 * 1000) : false;
+
+          const coords = data.coordinatesList;
+          const last = Array.isArray(coords) && coords.length ? coords[coords.length - 1] : null;
+
+          if (cancelled || expired || !last) {
+            setInfo('⛔️', 'Signal beendet', 'Das Signal ist nicht mehr aktiv.');
+            removeMarker();
+            return;
+          }
+
+          setInfo('📍', 'Live-Standort', 'Wird automatisch aktualisiert…');
+          updateMarker(last.latitude, last.longitude);
+        }, (err) => {
+          console.error("Signals-Fehler:", err);
+          setInfo('⚠️', 'Fehler', 'Fehler beim Laden des Signals.');
+        });
+    }
+
+    // Start: Mapping trackers/{trackingId} → userId, dann presence/{userId}
+    (async function start() {
+      try {
+        // 1) Mapping lesen
+        const mappingSnap = await db.collection("trackers").doc(trackingId).get();
+        const userId = mappingSnap.exists ? mappingSnap.data().userId : null;
+
+        if (userId) {
+          subscribePresence(userId);
+        } else {
+          console.warn("Kein Mapping gefunden. Fallback auf signals.");
+          subscribeSignalsByTrackingId(trackingId);
+        }
+      } catch (e) {
+        console.error("Fehler beim Start:", e);
+        setInfo('⚠️', 'Fehler', 'Fehler beim Initialisieren.');
+      }
+    })();
+  </script>
+</body>
+</html>
