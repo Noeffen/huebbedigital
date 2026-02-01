@@ -255,7 +255,7 @@
     /* Features Grid */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 32px;
     }
 
@@ -279,17 +279,7 @@
     }
 
     .feature-icon {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--gray-50), white);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 12px;
-      font-size: 28px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      display: none;
     }
 
     .feature-card h3 {
@@ -297,6 +287,7 @@
       font-weight: 700;
       margin-bottom: 12px;
       letter-spacing: -0.01em;
+      color: var(--gray-900);
     }
 
     .feature-card p {
@@ -541,37 +532,31 @@
 
         <div class="features-grid">
           <div class="feature-card">
-            <span class="feature-icon">🆘</span>
             <h3>Signal senden</h3>
             <p>Ein Tipp startet das Warnsignal. Hinweise erscheinen anonym in Karte & Liste.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">👥</span>
             <h3>Private Gruppen</h3>
             <p>Sende Signale nur an deine Crew – Nachbarschaft, Verein, WG oder Team.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">🗺️</span>
             <h3>Umkreis-Sichtbarkeit</h3>
             <p>Optional im Radius 250–1000m sichtbar. Position aktualisiert sich während des Signals.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">🎙️</span>
             <h3>Sprachmemo</h3>
             <p>Kontext in Sekunden – automatisch nach 24h gelöscht.</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">📨</span>
             <h3>ICE-Mail</h3>
             <p>Notfallkontakte werden auf Wunsch automatisch informiert (inkl. Live-Link).</p>
           </div>
 
           <div class="feature-card">
-            <span class="feature-icon">👀</span>
             <h3>Reaktionen</h3>
             <p>"Gesehen", "In der Nähe", "Hole Hilfe" – anonym mit Live-Zähler.</p>
           </div>
