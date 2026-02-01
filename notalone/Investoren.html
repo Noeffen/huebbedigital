@@ -1,1 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>NotAlone – Investoren-Information</title>
+  <meta name="description" content="NotAlone – Investoren: Vision, Markt, USP, Traktion, Go-to-Market, Geschäftsmodell und Kapitalverwendung der Community-Sicherheits-App." />
 
+  <link rel="icon" type="image/png" href="/notalone/logo2.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #E5E5E5;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-900: #171717;
+      --blue-500: #3B82F6;
+      --blue-600: #2563EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+      color: var(--gray-600);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 140px 0 100px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue-600);
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 68px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 21px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    /* Section */
+    section {
+      padding: 100px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .section-intro {
+      font-size: 19px;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin-bottom: 64px;
+      line-height: 1.7;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      font-size: 16px;
+      color: var(--gray-600);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      line-height: 1.6;
+    }
+
+    .card li:last-child {
+      border-bottom: none;
+    }
+
+    /* KPI Boxes */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .kpi {
+      background: white;
+      border: 2px dashed rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .kpi-label {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue-600);
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .kpi-desc {
+      font-size: 15px;
+      color: var(--gray-600);
+    }
+
+    /* Highlight Box */
+    .highlight {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+      border-left: 4px solid var(--blue-500);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 48px 0;
+    }
+
+    .highlight h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .highlight ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .highlight li {
+      padding: 12px 0;
+      font-size: 17px;
+      color: var(--gray-600);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 64px 0;
+      text-align: center;
+      background: white;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--gray-900);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .nav { height: 70px; }
+      .hero { padding: 100px 0 60px; }
+      h1 { font-size: 42px; }
+      section { padding: 60px 0; }
+      h2 { font-size: 36px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/notalone/" class="brand">
+          <img src="/notalone/logo2.png" alt="NotAlone" class="logo" />
+          <span>NotAlone</span>
+        </a>
+        <div class="nav-links">
+          <a href="/notalone/" class="btn btn-secondary">← Zurück</a>
+          <a href="mailto:christian@huebbedigital.com?subject=NotAlone Investment" class="btn btn-primary">Kontakt aufnehmen</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" style="border-top: none;">
+      <div class="container">
+        <span class="hero-label">Privacy-First · Community Safety</span>
+        <h1>Investoren-Information</h1>
+        <p class="hero-subtitle">
+          Stille Warnsignale für Alltag & Outdoor: Community hilft Community – anonym, 
+          datensparsam, skalierbar. iOS App Store live, Android in Arbeit.
+        </p>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section>
+      <div class="container">
+        <h2>Investment-Highlights</h2>
+        
+        <div class="cards-grid">
+          <div class="card">
+            <h3>Klarer Use-Case</h3>
+            <p>Warnen statt chatten: Signal, Audio, Reaktionen – ohne Ablenkung.</p>
+          </div>
+
+          <div class="card">
+            <h3>Netzwerkeffekt</h3>
+            <p>Mehr Nutzer:innen → dichteres Netz → höherer Nutzen pro Signal.</p>
+          </div>
+
+          <div class="card">
+            <h3>Modularer GTM</h3>
+            <p>Cluster-Rollouts (Campus/Quartiere/Vereine) + Institutionen.</p>
+          </div>
+
+          <div class="card">
+            <h3>Datenethik</h3>
+            <p>Ohne Werbung/Tracking. Vertrauen als Differenzierungsmerkmal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Now -->
+    <section style="background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);">
+      <div class="container">
+        <div class="highlight">
+          <h2>Warum jetzt?</h2>
+          <ul>
+            <li><strong>Grundbedürfnis Sicherheit</strong> – Nutzen in Alltag & Ausnahmesituationen</li>
+            <li><strong>Netzwerkeffekt</strong> – je dichter die Community, desto höher der Wert</li>
+            <li><strong>Feinsteuerung</strong> – privat in Gruppen oder offen im Umkreis (250–1.000 m)</li>
+            <li><strong>International skalierbar</strong> – neutrale UX, keine lokalen Hürden</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Solution -->
+    <section>
+      <div class="container">
+        <h2>Problem → Lösung</h2>
+        
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+          <div class="card">
+            <h3>Das Problem</h3>
+            <ul>
+              <li>In kritischen Momenten fehlen diskrete, schnelle Signale</li>
+              <li>Chats/Netzwerke sind zu langsam oder erzeugen Panik</li>
+              <li>Apps mit Dauer-Tracking sind invasiv & akkuintensiv</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Unsere Lösung</h3>
+            <ul>
+              <li>Ein Tap startet ein stilles Signal (optional mit Live-Standort)</li>
+              <li>Umkreis-Sichtbarkeit & Gruppen → relevante Reichweite</li>
+              <li>Audio für Kontext + Reaktionen (gesehen/nahe/helfe)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market -->
+    <section style="background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);">
+      <div class="container">
+        <h2>Markt</h2>
+        
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">TAM</div>
+            <div class="kpi-value">Consumer Safety & Utility</div>
+            <div class="kpi-desc">Global, >1 Mrd. Smartphones</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">SAM</div>
+            <div class="kpi-value">DACH + EU</div>
+            <div class="kpi-desc">Mehrsprachig skalierbar</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">SOM</div>
+            <div class="kpi-value">Urban & Campus</div>
+            <div class="kpi-desc">Nachbarschaften, Hochschulen, ÖPNV</div>
+          </div>
+        </div>
+
+        <p class="section-intro" style="margin-top: 48px; text-align: center;">
+          Start in DACH, anschließende EU/EN-Rollouts. Fokus: organisches Wachstum in Clustern.
+        </p>
+      </div>
+    </section>
+
+    <!-- Product & USP -->
+    <section>
+      <div class="container">
+        <h2>Produkt & USP</h2>
+        
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+          <div class="card">
+            <h3>Wesenskern</h3>
+            <ul>
+              <li>Stilles Signal per Tap – anonym oder mit Live-Standort</li>
+              <li>Umkreis-Sichtbarkeit (250–1.000 m) & Gruppen-Modus</li>
+              <li>Sprachmemo & Reaktionen (gesehen/nahe/helfe)</li>
+              <li>PDF-Export (Zeit, Route, Koordinaten) als Nachweis</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Alleinstellungsmerkmale</h3>
+            <ul>
+              <li>Privacy-first, keine Werbung, kein Tracking</li>
+              <li>Fein justierbare Pushs (alle/mit Standort/keine)</li>
+              <li>Fair-Use, Gruppen-Moderation, Missbrauchsschutz</li>
+              <li>Serverless-Architektur → Kosten/Skalierungsvorteil</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Traction -->
+    <section style="background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);">
+      <div class="container">
+        <h2>Traktion & Status</h2>
+        
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">iOS</div>
+            <div class="kpi-value">App Store live</div>
+            <div class="kpi-desc">Signal · Audio · Reaktionen · PDF</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">Infra</div>
+            <div class="kpi-value">Firebase Gen-2</div>
+            <div class="kpi-desc">Functions · Firestore · Storage</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">Datenschutz</div>
+            <div class="kpi-value">Privacy-by-Design</div>
+            <div class="kpi-desc">Keine Ads, kein Tracking</div>
+          </div>
+        </div>
+
+        <p class="section-intro" style="margin-top: 48px; text-align: center;">
+          Rollout in Nachbarschaften, Hochschulen, Vereinen, Pflege/Soziales & Outdoor.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section>
+      <div class="container" style="text-align: center;">
+        <h2>Interesse an einem Investment?</h2>
+        <p class="section-intro" style="margin: 24px auto 40px;">
+          Ich freue mich über ein erstes Gespräch. Lass uns über Vision, Roadmap und 
+          die nächsten Schritte sprechen.
+        </p>
+        <a href="mailto:christian@huebbedigital.com?subject=NotAlone Investment Anfrage" class="btn btn-primary" style="padding: 18px 36px; font-size: 17px;">
+          Gespräch vereinbaren →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Christian Hübbe</p>
+      <p>
+        <a href="/imprint.html">Impressum</a> · 
+        <a href="/privacy.html">Datenschutz</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
