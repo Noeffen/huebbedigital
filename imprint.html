@@ -2,110 +2,251 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Impressum – Huebbe Digital</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  
+  <meta name="description" content="Impressum und rechtliche Informationen" />
+
+  <link rel="icon" type="image/png" href="/logo.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --primary:#667eea;
-      --bg:#0b1020;
-      --text:#e9ecf2;
-      --muted:#a9b0c3;
-      --card:rgba(255,255,255,.08);
-      --border:rgba(255,255,255,.12);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    *{ box-sizing:border-box }
-    body{
-      font-family:Inter,sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.7;
-      margin:0;
-      padding:20px;
+
+    :root {
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-900: #171717;
+      --blue-500: #3B82F6;
+      --blue-600: #2563EB;
     }
-    .container{
-      max-width:800px;
-      margin:0 auto;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:40px;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    h1{ font-size:32px; margin:0 0 32px }
-    h2{ font-size:20px; margin:32px 0 16px; color:var(--primary) }
-    p{ margin:0 0 16px; color:var(--muted) }
-    a{ color:var(--primary); text-decoration:none }
-    a:hover{ text-decoration:underline }
-    .back{ display:inline-block; margin-bottom:24px; color:var(--muted); font-size:14px }
-    
-    @media (max-width:768px){
-      .container{ padding:24px }
-      h1{ font-size:24px }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--gray-600);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Content */
+    main {
+      padding: 100px 0;
+    }
+
+    .content-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 24px;
+      padding: 64px;
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-top: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+
+    a {
+      color: var(--blue-600);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--blue-500);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 64px 0;
+      text-align: center;
+      background: white;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--gray-600);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--gray-900);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .nav { height: 70px; }
+      main { padding: 60px 0; }
+      .content-card { padding: 32px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 24px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="/" class="back">← Zurück zur Startseite</a>
-    
-    <h1>Impressum</h1>
-    
-    <h2>Angaben gemäß § 5 TMG</h2>
-    <p>
-      <strong>Christian Hübbe</strong><br>
-      Kurt-Schumacher-Straße 76<br>
-      67663 Kaiserslautern<br>
-      Deutschland
-    </p>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="brand">Huebbe Digital</a>
+        <a href="/" class="btn">← Zurück</a>
+      </nav>
+    </div>
+  </header>
 
-    <h2>Kontakt</h2>
-    <p>
-      Email: <a href="mailto:christian@huebbedigital.com">christian@huebbedigital.com</a>
-    </p>
+  <main>
+    <div class="container">
+      <div class="content-card">
+        <h1>Impressum</h1>
 
-    <h2>Umsatzsteuer-ID</h2>
-    <p>Keine Angabe erforderlich (Kleinunternehmer gemäß § 19 UStG).</p>
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <p>
+          Christian Hübbe<br>
+          Einzelunternehmer<br>
+          Mozartstraße 20<br>
+          61203 Reichelsheim<br>
+          Deutschland
+        </p>
 
-    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-    <p>Christian Hübbe, Anschrift wie oben</p>
+        <h2>Kontakt</h2>
+        <p>
+          E-Mail: <a href="mailto:christian@huebbedigital.com">christian@huebbedigital.com</a>
+        </p>
 
-    <h2>Apps und Projekte</h2>
-    <p>
-      <strong>FairwayService</strong> – Golf-Club Management App (iOS & Android)<br>
-      <strong>NotAlone</strong> – Sicherheits-App (iOS & Android)
-    </p>
+        <h2>Umsatzsteuer-ID</h2>
+        <p>
+          Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+          [Wird bei Bedarf ergänzt]
+        </p>
 
-    <h2>Haftung für Inhalte</h2>
-    <p>
-      Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-      Nach §§ 8 bis 10 TMG bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen
-      oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-    </p>
-    <p>
-      Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
-      Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden
-      von entsprechenden Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.
-    </p>
+        <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+        <p>
+          Christian Hübbe<br>
+          Mozartstraße 20<br>
+          61203 Reichelsheim
+        </p>
 
-    <h2>Haftung für Links</h2>
-    <p>
-      Mein Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte
-      auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
-    </p>
+        <h2>Haftungsausschluss</h2>
+        
+        <p><strong>Haftung für Inhalte</strong></p>
+        <p>
+          Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, 
+          Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. 
+          Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten 
+          nach den allgemeinen Gesetzen verantwortlich.
+        </p>
 
-    <h2>Urheberrecht</h2>
-    <p>
-      Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
-      Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
-      außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-      Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
-    </p>
+        <p><strong>Haftung für Links</strong></p>
+        <p>
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen 
+          Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. 
+          Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber 
+          der Seiten verantwortlich.
+        </p>
 
-    <p style="margin-top:40px; padding-top:24px; border-top:1px solid var(--border); font-size:14px">
-      Stand: Januar 2026
-    </p>
-  </div>
+        <p><strong>Urheberrecht</strong></p>
+        <p>
+          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen 
+          dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art 
+          der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen 
+          Zustimmung des jeweiligen Autors bzw. Erstellers.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Christian Hübbe</p>
+      <p>
+        <a href="/imprint.html">Impressum</a> · 
+        <a href="/privacy.html">Datenschutz</a>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
