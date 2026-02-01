@@ -1,1 +1,420 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>NotAlone – Projekt unterstützen</title>
+  <meta name="description" content="NotAlone ist kostenlos und werbefrei. Wenn dir die App hilft, kannst du das Projekt freiwillig unterstützen – für Server, Datenbank und Weiterentwicklung." />
 
+  <link rel="icon" type="image/png" href="/notalone/logo2.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #E5E5E5;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-900: #171717;
+      --blue-500: #3B82F6;
+      --blue-600: #2563EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+      color: var(--gray-600);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 140px 0 100px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 68px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 21px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      max-width: 750px;
+      margin: 0 auto 48px;
+    }
+
+    /* Donation Buttons */
+    .donate-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .donate-btn {
+      padding: 14px 28px;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .donate-btn:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .donate-btn.primary {
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    .donate-btn.primary:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+    }
+
+    /* Section */
+    section {
+      padding: 100px 0;
+    }
+
+    h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .section-intro {
+      font-size: 19px;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto 64px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    /* FAQ */
+    details {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    summary {
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p {
+      margin-top: 12px;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 64px 0;
+      text-align: center;
+      background: white;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--gray-900);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .nav { height: 70px; }
+      .hero { padding: 100px 0 60px; }
+      h1 { font-size: 42px; }
+      section { padding: 60px 0; }
+      h2 { font-size: 36px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/notalone.html" class="brand">
+          <img src="/notalone/logo2.png" alt="NotAlone" class="logo" />
+          <span>NotAlone</span>
+        </a>
+        <div class="nav-links">
+          <a href="/notalone.html" class="btn btn-secondary">← Zurück</a>
+          <a href="https://apps.apple.com/de/app/notalone-gemeinsam-sicher/id6751607235" class="btn btn-primary" target="_blank">App Store</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Hilf mit, dass NotAlone online bleibt</h1>
+        <p class="hero-subtitle">
+          NotAlone entwickle ich in meiner Freizeit – kostenlos, ohne Werbung.
+          Deine Unterstützung deckt Server, Push & Karten-API und ermöglicht neue Funktionen.
+        </p>
+
+        <div class="donate-buttons">
+          <a href="https://paypal.me/chuebbe/5" target="_blank" class="donate-btn">5 €</a>
+          <a href="https://paypal.me/chuebbe/10" target="_blank" class="donate-btn">10 €</a>
+          <a href="https://paypal.me/chuebbe/20" target="_blank" class="donate-btn">20 €</a>
+          <a href="https://paypal.me/chuebbe" target="_blank" class="donate-btn primary">Eigenen Betrag wählen</a>
+        </div>
+
+        <p style="color: var(--gray-500); font-size: 15px;">
+          Freiwillig & ohne Gegenleistung. Keine Spendenquittung.
+        </p>
+      </div>
+    </section>
+
+    <!-- Wofür -->
+    <section>
+      <div class="container">
+        <h2>Wofür dein Beitrag sorgt</h2>
+        
+        <div class="cards-grid">
+          <div class="card">
+            <h3>Betrieb</h3>
+            <p>Server & Datenbank (laufende Kosten), Push-Benachrichtigungen, Karten-API, Monitoring.</p>
+          </div>
+
+          <div class="card">
+            <h3>Weiterentwicklung</h3>
+            <p>Stabilität, Bugfixes, neue Features – umgesetzt in meiner freien Zeit.</p>
+          </div>
+        </div>
+
+        <p class="section-intro" style="margin-top: 48px;">
+          100 % der Unterstützung fließt in Betrieb & Entwicklung. Keine Werbung. Kein Weiterverkauf von Daten.
+        </p>
+      </div>
+    </section>
+
+    <!-- Weitere Hilfe -->
+    <section style="background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);">
+      <div class="container">
+        <h2>Auch so hilfst du weiter</h2>
+        
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="card">
+            <h3>Bewerten</h3>
+            <p>Bewertungen erhöhen die Sichtbarkeit im App Store.</p>
+            <a href="https://apps.apple.com/de/app/notalone-gemeinsam-sicher/id6751607235" target="_blank" class="btn btn-primary" style="display: inline-block; margin-top: 16px;">App bewerten</a>
+          </div>
+
+          <div class="card">
+            <h3>Weiterempfehlen</h3>
+            <p>Erzähl Freund:innen, Nachbarschaft oder deinem Verein von NotAlone.</p>
+          </div>
+
+          <div class="card">
+            <h3>Feedback geben</h3>
+            <p>Ideen oder Bugs? Schreib mir direkt – ich melde mich.</p>
+            <a href="mailto:Support@notalone-app.de?subject=Feedback%20NotAlone" class="btn btn-secondary" style="display: inline-block; margin-top: 16px;">Mail senden</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="container">
+        <h2>Kurz-FAQ</h2>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+          <details>
+            <summary>Bleibt die App kostenlos?</summary>
+            <p>Ja. Unterstützung ist freiwillig; alle Funktionen bleiben ohne Paywall nutzbar.</p>
+          </details>
+
+          <details>
+            <summary>Gibt es eine Spendenquittung?</summary>
+            <p>Nein. Es ist eine freiwillige Unterstützung ohne Gegenleistung (keine Spende im steuerrechtlichen Sinne).</p>
+          </details>
+
+          <details>
+            <summary>Wofür wird das Geld genutzt?</summary>
+            <p>Für Betrieb (Server, Datenbank, Push, Karten-API) und Weiterentwicklung in meiner Freizeit.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Christian Hübbe</p>
+      <p>
+        <a href="/imprint.html">Impressum</a> · 
+        <a href="/privacy.html">Datenschutz</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
