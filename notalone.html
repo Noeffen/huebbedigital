@@ -1,1 +1,641 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>NotAlone – Safety & Community App</title>
+  <meta name="description" content="Stille Warnsignale für Nachbarschaft und Gruppen. Mit Sprachmemos, Reaktionen und ICE-Benachrichtigungen. Privacy-focused." />
+
+  <link rel="icon" type="image/png" href="/notalone/logo2.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-itunes-app" content="app-id=6751607235">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #E5E5E5;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-900: #171717;
+      --blue-500: #3B82F6;
+      --blue-600: #2563EB;
+      --red-500: #EF4444;
+      --red-600: #DC2626;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--gray-900);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+      color: var(--gray-600);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+
+    .hero-icon {
+      font-size: 80px;
+      margin-bottom: 24px;
+      display: inline-block;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 68px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--red-500), var(--red-600));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      max-width: 750px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .badge {
+      padding: 12px 20px;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Section */
+    section {
+      padding: 100px 0;
+    }
+
+    h2 {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-intro {
+      font-size: 19px;
+      color: var(--gray-600);
+      max-width: 700px;
+      margin: 0 auto 64px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(239, 68, 68, 0.2);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 24px 64px rgba(239, 68, 68, 0.12);
+      transform: translateY(-6px);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    /* Use Cases */
+    .use-cases {
+      background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);
+    }
+
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .persona {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    .persona:hover {
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 24px 64px rgba(0, 0, 0, 0.08);
+      transform: translateY(-6px);
+    }
+
+    .persona img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .persona-content {
+      padding: 32px;
+    }
+
+    .persona h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .persona p {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Privacy Callout */
+    .privacy-callout {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 24px;
+      padding: 56px;
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.04),
+        0 16px 64px rgba(0, 0, 0, 0.06);
+    }
+
+    .privacy-callout h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .privacy-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .privacy-item {
+      display: flex;
+      align-items: start;
+      gap: 16px;
+      font-size: 17px;
+      color: var(--gray-600);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .privacy-item:last-child {
+      border-bottom: none;
+    }
+
+    .privacy-item::before {
+      content: '✓';
+      color: #059669;
+      font-weight: bold;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    .faq {
+      background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);
+    }
+
+    details {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    details:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    summary {
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      letter-spacing: -0.01em;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p {
+      margin-top: 16px;
+      color: var(--gray-600);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 64px 0;
+      text-align: center;
+      background: white;
+    }
+
+    footer p {
+      font-size: 15px;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--gray-900);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .nav { flex-wrap: wrap; height: auto; padding: 16px 0; }
+      .nav-cta { width: 100%; justify-content: center; margin-top: 12px; }
+      .hero { padding: 80px 0 60px; }
+      h1 { font-size: 42px; }
+      section { padding: 60px 0; }
+      h2 { font-size: 36px; }
+      .features-grid, .personas-grid { grid-template-columns: 1fr; }
+      .privacy-callout { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="brand">
+          <img src="/notalone/logo2.png" alt="NotAlone" class="logo" width="32" height="32" />
+          <span>NotAlone</span>
+        </a>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="/" class="btn btn-secondary">← Portfolio</a>
+          <a href="https://apps.apple.com/de/app/notalone-gemeinsam-sicher/id6751607235" class="btn btn-primary" target="_blank">App Store</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-icon">🆘</div>
+        <h1>Warnen, wenn's <span class="gradient-text">zählt</span></h1>
+        <p class="hero-subtitle">
+          Stille Warnsignale für Nachbarschaft und private Gruppen. Mit Sprachmemos, 
+          Reaktionen und ICE-Benachrichtigungen. Datensparsam und ohne Werbung.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge">👥 Private Gruppen</span>
+          <span class="badge">🗺️ Umkreis 250–1000m</span>
+          <span class="badge">🎙️ Sprachmemo</span>
+          <span class="badge">📨 ICE-Mail</span>
+          <span class="badge">🔒 Privacy-First</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="container">
+        <h2>Key Features</h2>
+        <p class="section-intro">
+          Stilles Warnsignal – offen im Umkreis oder zielgenau in Gruppen
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🆘</span>
+            <h3>Signal senden</h3>
+            <p>Ein Tipp startet das Warnsignal. Hinweise erscheinen anonym in Karte & Liste.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">👥</span>
+            <h3>Private Gruppen</h3>
+            <p>Sende Signale nur an deine Crew – Nachbarschaft, Verein, WG oder Team.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">🗺️</span>
+            <h3>Umkreis-Sichtbarkeit</h3>
+            <p>Optional im Radius 250–1000m sichtbar. Position aktualisiert sich während des Signals.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">🎙️</span>
+            <h3>Sprachmemo</h3>
+            <p>Kontext in Sekunden – automatisch nach 24h gelöscht.</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">📨</span>
+            <h3>ICE-Mail</h3>
+            <p>Notfallkontakte werden auf Wunsch automatisch informiert (inkl. Live-Link).</p>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">👀</span>
+            <h3>Reaktionen</h3>
+            <p>"Gesehen", "In der Nähe", "Hole Hilfe" – anonym mit Live-Zähler.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases" class="use-cases">
+      <div class="container">
+        <h2>Use Cases</h2>
+        <p class="section-intro">
+          Warne deine Mitmenschen oder sende ein Signal, wenn Unterstützung benötigt wird
+        </p>
+
+        <div class="personas-grid">
+          <div class="persona">
+            <img src="/notalone/img/personas/outdoor.jpg" alt="Wanderer" loading="lazy" />
+            <div class="persona-content">
+              <h3>Wanderer & Outdoor</h3>
+              <p>Sturz, Wildschwein, Gewitterfront? Schnell anonym warnen – Gruppe oder Umkreis.</p>
+            </div>
+          </div>
+
+          <div class="persona">
+            <img src="/notalone/img/personas/neighborhood.jpg" alt="Nachbarschaft" loading="lazy" />
+            <div class="persona-content">
+              <h3>Nachbarschaft</h3>
+              <p>Glätte, Stromausfall, verdächtige Situation – zielgenau an die Hausgemeinschaft.</p>
+            </div>
+          </div>
+
+          <div class="persona">
+            <img src="/notalone/img/personas/commute.jpg" alt="Pendler" loading="lazy" />
+            <div class="persona-content">
+              <h3>Pendler & ÖPNV</h3>
+              <p>Unfall, Sperrung, unangenehme Situation – schnell ein Zeichen geben.</p>
+            </div>
+          </div>
+
+          <div class="persona">
+            <img src="/notalone/img/personas/family.jpg" alt="Familie" loading="lazy" />
+            <div class="persona-content">
+              <h3>Familien & Freunde</h3>
+              <p>Gruppe erstellen und "Immer anzeigen" aktivieren – Signale auch über Distanz sehen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <section>
+      <div class="container">
+        <h2>Privacy-First</h2>
+        <div class="privacy-callout">
+          <h3>Datenschutz? Ganz klar.</h3>
+          <div class="privacy-grid">
+            <div class="privacy-item">Anonym – keine Klarnamen, nur ICE-Kontakte erhalten E-Mail</div>
+            <div class="privacy-item">Datensparsam – Standort nur während aktiver Signale</div>
+            <div class="privacy-item">Kein Tracking – keine Werbung, kein Analytics</div>
+            <div class="privacy-item">Firebase Backend – EU-Rechenzentren, verschlüsselt</div>
+            <div class="privacy-item">Volle Kontrolle – Account & Daten jederzeit löschbar</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+        <p class="section-intro">Häufig gestellte Fragen</p>
+
+        <details>
+          <summary>Kostet die App etwas?</summary>
+          <p>Zum Start kostenlos. Später Freemium/Einmalzahlung/Abo möglich – ohne Werbung.</p>
+        </details>
+
+        <details>
+          <summary>Sehen andere meinen Namen?</summary>
+          <p>Nein, NotAlone funktioniert anonym. Nur deine ICE-Kontakte erhalten eine E-Mail. Bei Gruppensignalen sehen Mitglieder deinen Usernamen.</p>
+        </details>
+
+        <details>
+          <summary>Kann ich Gruppensignale aus der Ferne sehen?</summary>
+          <p>Ja! Aktiviere "Immer anzeigen" in den Gruppeneinstellungen. Dann siehst du Signale weltweit – beide Seiten müssen diese Option aktiviert haben.</p>
+        </details>
+
+        <details>
+          <summary>Ohne Standort teilen?</summary>
+          <p>Ja. Dein Signal ist sichtbar, ohne exakte Position. Die Umkreis-Sichtbarkeit ist optional.</p>
+        </details>
+
+        <details>
+          <summary>Was passiert mit meinem Signal wenn ich es beende?</summary>
+          <p>Das Signal wird sofort aus der aktiven Datenbank gelöscht. Eine Kopie verbleibt in deinem persönlichen Verlauf, den du jederzeit löschen kannst.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Huebbe Digital · Christian Hübbe</p>
+      <p>
+        <a href="/imprint.html">Impressum</a> · 
+        <a href="/privacy.html">Datenschutz</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
