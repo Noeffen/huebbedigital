@@ -123,10 +123,25 @@
     }
 
     .hero-icon {
-      font-size: 80px;
-      margin-bottom: 24px;
-      display: inline-block;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 32px;
+      background: linear-gradient(135deg, #16A34A, #15803D);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 4px 16px rgba(22, 163, 74, 0.25),
+        0 12px 48px rgba(22, 163, 74, 0.15);
+    }
+
+    .hero-icon svg {
+      width: 44px;
+      height: 44px;
+      stroke: white;
+      stroke-width: 2.5;
+      fill: none;
     }
 
     h1 {
@@ -215,9 +230,17 @@
     }
 
     .feature-icon {
-      font-size: 40px;
+      width: 56px;
+      height: 56px;
       margin-bottom: 20px;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--gray-50), white);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+      font-size: 28px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     .feature-card h3 {
@@ -382,7 +405,12 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <div class="hero-icon">🏌️</div>
+        <div class="hero-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 15C4 15 5 14 8 14C11 14 13 16 16 16C19 16 20 15 20 15V3C20 3 19 4 16 4C13 4 11 2 8 2C5 2 4 3 4 3V15Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 22V15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <h1><span class="gradient-text">FairwayService</span></h1>
         <p class="hero-subtitle">
           Die moderne Management-Plattform für Golfclubs. Von mobilen Bestellungen 
