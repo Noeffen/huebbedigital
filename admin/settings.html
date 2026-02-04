@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Einstellungen - FairwayService Admin</title>
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container header-content">
+      <a href="dashboard.html" class="logo">Fairway<span class="logo-green">Service</span></a>
+      <div class="user-info">
+        <span class="user-name" id="userEmail"></span>
+        <button class="btn-logout" id="logoutBtn">Abmelden</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="nav-tabs">
+      <button class="nav-tab" onclick="location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-tab" onclick="location.href='orders.html'">Bestellungen</button>
+      <button class="nav-tab" onclick="location.href='products.html'">Produkte</button>
+      <button class="nav-tab" onclick="location.href='issues.html'">Meldungen</button>
+      <button class="nav-tab active" onclick="location.href='settings.html'">Einstellungen</button>
+    </nav>
+  </div>
+
+  <main class="container">
+    <!-- Gastro Settings -->
+    <div class="card">
+      <h3 class="card-title">Gastro</h3>
+      <div class="form-group">
+        <label class="form-checkbox">
+          <input type="checkbox" id="gastroOpen">
+          <span>Gastro geöffnet</span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="form-checkbox">
+          <input type="checkbox" id="gastroDelivery">
+          <span>Lieferung zum Platz aktiviert</span>
+        </label>
+      </div>
+      <button class="btn btn-primary" id="saveGastro">Gastro-Einstellungen speichern</button>
+    </div>
+
+    <!-- Shop Settings -->
+    <div class="card">
+      <h3 class="card-title">Shop</h3>
+      <div class="form-group">
+        <label class="form-checkbox">
+          <input type="checkbox" id="shopOpen">
+          <span>Shop geöffnet</span>
+        </label>
+      </div>
+      <button class="btn btn-primary" id="saveShop">Shop-Einstellungen speichern</button>
+    </div>
+
+    <!-- QR Code -->
+    <div class="card">
+      <h3 class="card-title">QR-Code Eingang</h3>
+      <div class="form-group">
+        <label class="form-label">QR-Code Secret</label>
+        <input type="text" id="qrSecret" class="form-input" readonly>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Token Gültigkeit (Stunden)</label>
+        <input type="number" id="tokenHours" class="form-input" value="6" min="1" max="24">
+      </div>
+      <button class="btn btn-primary" id="savePresence">QR-Einstellungen speichern</button>
+      <button class="btn btn-secondary" id="regenerateQR" style="margin-left: 12px;">Neuen QR-Code generieren</button>
+    </div>
+
+    <!-- Admin Password -->
+    <div class="card">
+      <h3 class="card-title">Admin-Passwort</h3>
+      <div class="form-group">
+        <label class="form-label">Neues Admin-Passwort (für mobile App)</label>
+        <input type="text" id="adminPassword" class="form-input" placeholder="admin123">
+      </div>
+      <button class="btn btn-primary" id="saveAdminPw">Admin-Passwort speichern</button>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+    import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+    const app = initializeApp({
+      apiKey: "AIzaSyDwC4OcBSH7qJHOGqx_Siz_zGLH0Pev88c",
+      authDomain: "fairwayservice-golf.firebaseapp.com",
+      projectId: "fairwayservice-golf",
+      storageBucket: "fairwayservice-golf.firebasestorage.app",
+      messagingSenderId: "297814448831",
+      appId: "1:297814448831:web:b8c2f5c42bb86f7f95ac81"
+    });
+
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const clubId = localStorage.getItem('adminClubId');
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user || !clubId) window.location.href = 'index.html';
+      else {
+        document.getElementById('userEmail').textContent = user.email;
+        loadSettings();
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      localStorage.clear();
+      window.location.href = 'index.html';
+    });
+
+    async function loadSettings() {
+      try {
+        // Gastro
+        const gastroDoc = await getDoc(doc(db, `clubs/${clubId}/settings`, 'gastro'));
+        if (gastroDoc.exists()) {
+          const data = gastroDoc.data();
+          document.getElementById('gastroOpen').checked = data.isOpen || false;
+          document.getElementById('gastroDelivery').checked = data.deliveryEnabled || false;
+        }
+
+        // Shop
+        const shopDoc = await getDoc(doc(db, `clubs/${clubId}/settings`, 'shop'));
+        if (shopDoc.exists()) {
+          document.getElementById('shopOpen').checked = shopDoc.data().isOpen || false;
+        }
+
+        // Presence
+        const presenceDoc = await getDoc(doc(db, `clubs/${clubId}/settings`, 'presence'));
+        if (presenceDoc.exists()) {
+          const data = presenceDoc.data();
+          document.getElementById('qrSecret').value = data.qrSecret || '';
+          document.getElementById('tokenHours').value = data.tokenValidHours || 6;
+        }
+
+        // Admin
+        const adminDoc = await getDoc(doc(db, `clubs/${clubId}/settings`, 'admin'));
+        if (adminDoc.exists()) {
+          document.getElementById('adminPassword').value = adminDoc.data().password || '';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    document.getElementById('saveGastro').addEventListener('click', async () => {
+      try {
+        await setDoc(doc(db, `clubs/${clubId}/settings`, 'gastro'), {
+          isOpen: document.getElementById('gastroOpen').checked,
+          deliveryEnabled: document.getElementById('gastroDelivery').checked
+        }, { merge: true });
+        alert('Gastro-Einstellungen gespeichert');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Fehler beim Speichern');
+      }
+    });
+
+    document.getElementById('saveShop').addEventListener('click', async () => {
+      try {
+        await setDoc(doc(db, `clubs/${clubId}/settings`, 'shop'), {
+          isOpen: document.getElementById('shopOpen').checked
+        }, { merge: true });
+        alert('Shop-Einstellungen gespeichert');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Fehler beim Speichern');
+      }
+    });
+
+    document.getElementById('savePresence').addEventListener('click', async () => {
+      try {
+        await setDoc(doc(db, `clubs/${clubId}/settings`, 'presence'), {
+          qrSecret: document.getElementById('qrSecret').value,
+          tokenValidHours: parseInt(document.getElementById('tokenHours').value)
+        }, { merge: true });
+        alert('QR-Einstellungen gespeichert');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Fehler beim Speichern');
+      }
+    });
+
+    document.getElementById('regenerateQR').addEventListener('click', () => {
+      const newSecret = generateSecret();
+      document.getElementById('qrSecret').value = newSecret;
+    });
+
+    document.getElementById('saveAdminPw').addEventListener('click', async () => {
+      try {
+        await setDoc(doc(db, `clubs/${clubId}/settings`, 'admin'), {
+          password: document.getElementById('adminPassword').value
+        }, { merge: true });
+        alert('Admin-Passwort gespeichert');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Fehler beim Speichern');
+      }
+    });
+
+    function generateSecret() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let secret = '';
+      for (let i = 0; i < 16; i++) {
+        secret += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return secret;
+    }
+  </script>
+</body>
+</html>

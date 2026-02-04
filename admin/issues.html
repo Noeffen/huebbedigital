@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meldungen - FairwayService Admin</title>
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container header-content">
+      <a href="dashboard.html" class="logo">Fairway<span class="logo-green">Service</span></a>
+      <div class="user-info">
+        <span class="user-name" id="userEmail"></span>
+        <button class="btn-logout" id="logoutBtn">Abmelden</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="nav-tabs">
+      <button class="nav-tab" onclick="location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-tab" onclick="location.href='orders.html'">Bestellungen</button>
+      <button class="nav-tab" onclick="location.href='products.html'">Produkte</button>
+      <button class="nav-tab active" onclick="location.href='issues.html'">Meldungen</button>
+      <button class="nav-tab" onclick="location.href='settings.html'">Einstellungen</button>
+    </nav>
+  </div>
+
+  <main class="container">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Problem-Meldungen</h3>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Beschreibung</th>
+              <th>Loch</th>
+              <th>Melder</th>
+              <th>Status</th>
+              <th>Zeit</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody id="issuesBody">
+            <tr><td colspan="6" style="text-align: center; padding: 40px; color: var(--gray-500);">Lade Meldungen...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+    import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+    import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+    const app = initializeApp({
+      apiKey: "AIzaSyDwC4OcBSH7qJHOGqx_Siz_zGLH0Pev88c",
+      authDomain: "fairwayservice-golf.firebaseapp.com",
+      projectId: "fairwayservice-golf",
+      storageBucket: "fairwayservice-golf.firebasestorage.app",
+      messagingSenderId: "297814448831",
+      appId: "1:297814448831:web:b8c2f5c42bb86f7f95ac81"
+    });
+
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const clubId = localStorage.getItem('adminClubId');
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user || !clubId) window.location.href = 'index.html';
+      else {
+        document.getElementById('userEmail').textContent = user.email;
+        loadIssues();
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      localStorage.clear();
+      window.location.href = 'index.html';
+    });
+
+    function loadIssues() {
+      onSnapshot(
+        query(collection(db, `clubs/${clubId}/issues`), orderBy('createdAt', 'desc')),
+        (snapshot) => {
+          const tbody = document.getElementById('issuesBody');
+
+          if (snapshot.empty) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: var(--gray-500);">Keine Meldungen</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = snapshot.docs.map(doc => {
+            const issue = doc.data();
+            const time = issue.createdAt?.toDate().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            const statusBadge = getStatusBadge(issue.status);
+
+            return `
+              <tr>
+                <td>${issue.description || '—'}</td>
+                <td>${issue.holeNumber || '—'}</td>
+                <td>${issue.userName || 'Anonym'}</td>
+                <td>${statusBadge}</td>
+                <td>${time || '—'}</td>
+                <td>
+                  <select class="form-select" style="padding: 6px; font-size: 13px;" onchange="updateStatus('${doc.id}', this.value)">
+                    <option value="open" ${issue.status === 'open' ? 'selected' : ''}>Offen</option>
+                    <option value="in_progress" ${issue.status === 'in_progress' ? 'selected' : ''}>In Bearbeitung</option>
+                    <option value="resolved" ${issue.status === 'resolved' ? 'selected' : ''}>Erledigt</option>
+                  </select>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      );
+    }
+
+    window.updateStatus = async function(issueId, newStatus) {
+      try {
+        await updateDoc(doc(db, `clubs/${clubId}/issues`, issueId), { status: newStatus });
+        console.log('Status updated');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Fehler beim Aktualisieren');
+      }
+    };
+
+    function getStatusBadge(status) {
+      const badges = {
+        'open': '<span class="badge badge-warning">Offen</span>',
+        'in_progress': '<span class="badge badge-info">In Bearbeitung</span>',
+        'resolved': '<span class="badge badge-success">Erledigt</span>'
+      };
+      return badges[status] || status;
+    }
+  </script>
+</body>
+</html>
