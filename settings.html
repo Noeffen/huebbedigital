@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Einstellungen - FairwayService Admin</title>
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container header-content">
+      <a href="dashboard.html" class="logo">Fairway<span class="logo-green">Service</span></a>
+      <div class="user-info"><span id="userEmail"></span><button class="btn-logout" id="logoutBtn">Abmelden</button></div>
+    </div>
+  </header>
+  <div class="container">
+    <nav class="nav-tabs">
+      <button class="nav-tab" onclick="location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-tab" onclick="location.href='orders.html'">Bestellungen</button>
+      <button class="nav-tab" onclick="location.href='products.html'">Produkte</button>
+      <button class="nav-tab" onclick="location.href='issues.html'">Meldungen</button>
+      <button class="nav-tab active">Einstellungen</button>
+    </nav>
+  </div>
+  <main class="container">
+    <!-- Kontakt -->
+    <div class="card">
+      <h3 class="card-title">Kontaktinformationen</h3>
+      <div class="form-group"><label class="form-label">Adresse</label><input type="text" id="address" class="form-input"></div>
+      <div class="form-group"><label class="form-label">Telefon</label><input type="text" id="phone" class="form-input"></div>
+      <div class="form-group"><label class="form-label">E-Mail</label><input type="email" id="email" class="form-input"></div>
+      <div class="form-group"><label class="form-label">Website</label><input type="url" id="website" class="form-input"></div>
+      <button class="btn btn-primary" id="saveContact">Kontakt speichern</button>
+    </div>
+
+    <!-- Club Infos -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Club-Mitteilungen</h3>
+        <button class="btn btn-primary btn-sm" id="addClubNotice">+ Mitteilung</button>
+      </div>
+      <table><thead><tr><th>Text</th><th>Typ</th><th>Aktiv</th><th>Aktionen</th></tr></thead><tbody id="clubNotices"><tr><td colspan="4" style="text-align:center;padding:20px;">Lade...</td></tr></tbody></table>
+    </div>
+
+    <!-- Platz Infos -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Platz-Mitteilungen</h3>
+        <button class="btn btn-primary btn-sm" id="addPlatzNotice">+ Mitteilung</button>
+      </div>
+      <table><thead><tr><th>Text</th><th>Löcher</th><th>Typ</th><th>Aktiv</th><th>Aktionen</th></tr></thead><tbody id="platzNotices"><tr><td colspan="5" style="text-align:center;padding:20px;">Lade...</td></tr></tbody></table>
+    </div>
+
+    <!-- Gastro -->
+    <div class="card">
+      <h3>Gastro</h3>
+      <div class="form-group"><label class="form-checkbox"><input type="checkbox" id="gastroOpen"><span>Gastro geöffnet</span></label></div>
+      <div class="form-group"><label class="form-checkbox"><input type="checkbox" id="gastroDelivery"><span>Lieferung zum Platz</span></label></div>
+      <button class="btn btn-primary" id="saveGastro">Gastro speichern</button>
+    </div>
+
+    <!-- Shop -->
+    <div class="card">
+      <h3>Shop</h3>
+      <div class="form-group"><label class="form-checkbox"><input type="checkbox" id="shopOpen"><span>Shop geöffnet</span></label></div>
+      <button class="btn btn-primary" id="saveShop">Shop speichern</button>
+    </div>
+  </main>
+
+  <!-- Modal für Mitteilungen -->
+  <div id="noticeModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-header"><h3 id="modalTitle">Mitteilung erstellen</h3></div>
+      <form id="noticeForm">
+        <input type="hidden" id="noticeId">
+        <input type="hidden" id="noticeType">
+        <div class="form-group"><label>Text</label><textarea id="noticeText" class="form-input" rows="3" required></textarea></div>
+        <div class="form-group"><label>Schweregrad</label><select id="noticeSeverity" class="form-select" required><option value="info">Info (Blau)</option><option value="warn">Warnung (Orange)</option><option value="danger">Gefahr (Rot)</option></select></div>
+        <div id="holesGroup" class="form-group" style="display:none;"><label>Löcher (kommagetrennt, z.B. 1,3,5)</label><input type="text" id="noticeHoles" class="form-input" placeholder="1,3,5"></div>
+        <div class="form-group"><label class="form-checkbox"><input type="checkbox" id="noticeActive" checked><span>Aktiv</span></label></div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal()">Abbrechen</button><button type="submit" class="btn btn-primary">Speichern</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({apiKey:"AIzaSyCDEWPkL9wEQ7C_as-GM74d0u8KbLYm47w",authDomain:"fairwayservice-768e9.firebaseapp.com",projectId:"fairwayservice-768e9",storageBucket:"fairwayservice-768e9.firebasestorage.app",messagingSenderId:"621650445863",appId:"1:621650445863:web:303dde082c00db6a867002"});
+    const auth=firebase.auth(),db=firebase.firestore(),clubId=localStorage.getItem('adminClubId');
+    
+    auth.onAuthStateChanged(u=>{if(!u||!clubId)location.href='index.html';else{document.getElementById('userEmail').textContent=u.email;loadAll();}});
+    document.getElementById('logoutBtn').onclick=async()=>{await auth.signOut();localStorage.clear();location.href='index.html';};
+
+    async function loadAll(){
+      // Kontakt
+      try{const contact=await db.collection('clubs').doc(clubId).collection('settings').doc('contact').get();if(contact.exists){const d=contact.data();document.getElementById('address').value=d.address||'';document.getElementById('phone').value=d.phone||'';document.getElementById('email').value=d.email||'';document.getElementById('website').value=d.website||'';}}catch(e){console.error(e);}
+      
+      // Gastro
+      try{const gastro=await db.collection('clubs').doc(clubId).collection('settings').doc('gastro').get();if(gastro.exists){document.getElementById('gastroOpen').checked=gastro.data().isOpen||false;document.getElementById('gastroDelivery').checked=gastro.data().deliveryEnabled||false;}}catch(e){}
+      
+      // Shop
+      try{const shop=await db.collection('clubs').doc(clubId).collection('settings').doc('shop').get();if(shop.exists)document.getElementById('shopOpen').checked=shop.data().isOpen||false;}catch(e){}
+      
+      // Notices
+      loadNotices();
+    }
+
+    function loadNotices(){
+      db.collection('clubs').doc(clubId).collection('course_info').onSnapshot(s=>{
+        const club=[],platz=[];
+        s.docs.forEach(d=>{const data={id:d.id,...d.data()};if(data.type==='platz'||(!data.type&&data.holes&&data.holes.length>0))platz.push(data);else if(data.type==='club'||!data.holes||data.holes.length===0)club.push(data);});
+        
+        const clubTbody=document.getElementById('clubNotices');
+        clubTbody.innerHTML=club.length?club.map(n=>{const badges={info:'<span class="badge badge-info">Info</span>',warn:'<span class="badge badge-warning">Warnung</span>',danger:'<span class="badge badge-danger">Gefahr</span>'};return `<tr><td>${n.text}</td><td>${badges[n.severity]||n.severity}</td><td>${n.active?'<span class="badge badge-success">Ja</span>':'<span class="badge badge-danger">Nein</span>'}</td><td><button class="btn btn-secondary btn-sm" onclick="editNotice('${n.id}','club')">Bearbeiten</button> <button class="btn btn-danger btn-sm" onclick="deleteNotice('${n.id}')">Löschen</button></td></tr>`;}).join(''):'<tr><td colspan="4" style="text-align:center;padding:20px;">Keine Mitteilungen</td></tr>';
+        
+        const platzTbody=document.getElementById('platzNotices');
+        platzTbody.innerHTML=platz.length?platz.map(n=>{const badges={info:'<span class="badge badge-info">Info</span>',warn:'<span class="badge badge-warning">Warnung</span>',danger:'<span class="badge badge-danger">Gefahr</span>'};const holes=(n.holes||[]).join(', ')||'Alle';return `<tr><td>${n.text}</td><td>${holes}</td><td>${badges[n.severity]||n.severity}</td><td>${n.active?'<span class="badge badge-success">Ja</span>':'<span class="badge badge-danger">Nein</span>'}</td><td><button class="btn btn-secondary btn-sm" onclick="editNotice('${n.id}','platz')">Bearbeiten</button> <button class="btn btn-danger btn-sm" onclick="deleteNotice('${n.id}')">Löschen</button></td></tr>`;}).join(''):'<tr><td colspan="5" style="text-align:center;padding:20px;">Keine Mitteilungen</td></tr>';
+      });
+    }
+
+    document.getElementById('saveContact').onclick=async()=>{try{await db.collection('clubs').doc(clubId).collection('settings').doc('contact').set({address:document.getElementById('address').value,phone:document.getElementById('phone').value,email:document.getElementById('email').value,website:document.getElementById('website').value},{merge:true});alert('Gespeichert');}catch(e){alert('Fehler');}};
+    
+    document.getElementById('saveGastro').onclick=async()=>{try{await db.collection('clubs').doc(clubId).collection('settings').doc('gastro').set({isOpen:document.getElementById('gastroOpen').checked,deliveryEnabled:document.getElementById('gastroDelivery').checked},{merge:true});alert('Gespeichert');}catch(e){alert('Fehler');}};
+    
+    document.getElementById('saveShop').onclick=async()=>{try{await db.collection('clubs').doc(clubId).collection('settings').doc('shop').set({isOpen:document.getElementById('shopOpen').checked},{merge:true});alert('Gespeichert');}catch(e){alert('Fehler');}};
+
+    document.getElementById('addClubNotice').onclick=()=>{document.getElementById('noticeForm').reset();document.getElementById('noticeId').value='';document.getElementById('noticeType').value='club';document.getElementById('holesGroup').style.display='none';document.getElementById('modalTitle').textContent='Club-Mitteilung erstellen';document.getElementById('noticeModal').classList.add('active');};
+    
+    document.getElementById('addPlatzNotice').onclick=()=>{document.getElementById('noticeForm').reset();document.getElementById('noticeId').value='';document.getElementById('noticeType').value='platz';document.getElementById('holesGroup').style.display='block';document.getElementById('modalTitle').textContent='Platz-Mitteilung erstellen';document.getElementById('noticeModal').classList.add('active');};
+
+    document.getElementById('noticeForm').onsubmit=async(e)=>{e.preventDefault();const type=document.getElementById('noticeType').value;const data={text:document.getElementById('noticeText').value,severity:document.getElementById('noticeSeverity').value,active:document.getElementById('noticeActive').checked,type:type};if(type==='platz'){const holesStr=document.getElementById('noticeHoles').value;data.holes=holesStr?holesStr.split(',').map(h=>parseInt(h.trim())).filter(h=>!isNaN(h)):[];}const id=document.getElementById('noticeId').value;try{if(id){await db.collection('clubs').doc(clubId).collection('course_info').doc(id).update(data);}else{await db.collection('clubs').doc(clubId).collection('course_info').add(data);}closeModal();}catch(e){console.error(e);alert('Fehler');}};
+
+    window.editNotice=async function(id,type){try{const doc=await db.collection('clubs').doc(clubId).collection('course_info').doc(id).get();if(!doc.exists)return;const data=doc.data();document.getElementById('noticeId').value=id;document.getElementById('noticeType').value=type;document.getElementById('noticeText').value=data.text||'';document.getElementById('noticeSeverity').value=data.severity||'info';document.getElementById('noticeActive').checked=data.active||false;if(type==='platz'){document.getElementById('holesGroup').style.display='block';document.getElementById('noticeHoles').value=(data.holes||[]).join(',');}else{document.getElementById('holesGroup').style.display='none';}document.getElementById('modalTitle').textContent=type==='club'?'Club-Mitteilung bearbeiten':'Platz-Mitteilung bearbeiten';document.getElementById('noticeModal').classList.add('active');}catch(e){console.error(e);}};
+
+    window.deleteNotice=async function(id){if(!confirm('Wirklich löschen?'))return;try{await db.collection('clubs').doc(clubId).collection('course_info').doc(id).delete();}catch(e){alert('Fehler');}};
+
+    window.closeModal=()=>document.getElementById('noticeModal').classList.remove('active');
+  </script>
+</body>
+</html>

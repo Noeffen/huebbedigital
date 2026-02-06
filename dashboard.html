@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - FairwayService Admin</title>
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container header-content">
+      <a href="dashboard.html" class="logo">Fairway<span class="logo-green">Service</span></a>
+      <div class="user-info">
+        <span class="user-name" id="userEmail"></span>
+        <button class="btn-logout" id="logoutBtn">Abmelden</button>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <nav class="nav-tabs">
+      <button class="nav-tab active">Dashboard</button>
+      <button class="nav-tab" onclick="location.href='orders.html'">Bestellungen</button>
+      <button class="nav-tab" onclick="location.href='products.html'">Produkte</button>
+      <button class="nav-tab" onclick="location.href='issues.html'">Meldungen</button>
+      <button class="nav-tab" onclick="location.href='settings.html'">Einstellungen</button>
+    </nav>
+  </div>
+  <main class="container">
+    <div class="card">
+      <h2 id="clubName">Dashboard</h2>
+      <div class="stats-grid" style="margin-top: 20px;">
+        <div class="stat-card"><div class="stat-icon stat-green">🍔</div><div class="stat-label">Gastro heute</div><div class="stat-value" id="gastroCount">-</div></div>
+        <div class="stat-card"><div class="stat-icon stat-blue">🛒</div><div class="stat-label">Shop heute</div><div class="stat-value" id="shopCount">-</div></div>
+        <div class="stat-card"><div class="stat-icon stat-orange">⚠️</div><div class="stat-label">Meldungen</div><div class="stat-value" id="issuesCount">-</div></div>
+        <div class="stat-card"><div class="stat-icon stat-red">⏰</div><div class="stat-label">Aktiv</div><div class="stat-value" id="activeCount">-</div></div>
+      </div>
+    </div>
+  </main>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({apiKey:"AIzaSyCDEWPkL9wEQ7C_as-GM74d0u8KbLYm47w",authDomain:"fairwayservice-768e9.firebaseapp.com",projectId:"fairwayservice-768e9",storageBucket:"fairwayservice-768e9.firebasestorage.app",messagingSenderId:"621650445863",appId:"1:621650445863:web:303dde082c00db6a867002"});
+    const auth=firebase.auth(),db=firebase.firestore(),clubId=localStorage.getItem('adminClubId');
+    auth.onAuthStateChanged(u=>{if(!u||!clubId)location.href='index.html';else{document.getElementById('userEmail').textContent=u.email;load();}});
+    document.getElementById('logoutBtn').onclick=async()=>{await auth.signOut();localStorage.clear();location.href='index.html';};
+    async function load(){try{const c=await db.collection('clubs').doc(clubId).get();if(c.exists)document.getElementById('clubName').textContent=c.data().name;const t=new Date();t.setHours(0,0,0,0);db.collection('clubs').doc(clubId).collection('orders').where('type','==','gastro').where('createdAt','>=',t).onSnapshot(s=>document.getElementById('gastroCount').textContent=s.size);db.collection('clubs').doc(clubId).collection('orders').where('type','==','shop').where('createdAt','>=',t).onSnapshot(s=>document.getElementById('shopCount').textContent=s.size);db.collection('clubs').doc(clubId).collection('orders').where('status','in',['pending','preparing']).onSnapshot(s=>document.getElementById('activeCount').textContent=s.size);db.collection('clubs').doc(clubId).collection('issues').where('status','!=','resolved').onSnapshot(s=>document.getElementById('issuesCount').textContent=s.size);}catch(e){console.error(e);alert('Fehler');}}
+  </script>
+</body>
+</html>

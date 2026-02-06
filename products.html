@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkte - FairwayService Admin</title>
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container header-content">
+      <a href="dashboard.html" class="logo">Fairway<span class="logo-green">Service</span></a>
+      <div class="user-info"><span id="userEmail"></span><button class="btn-logout" id="logoutBtn">Abmelden</button></div>
+    </div>
+  </header>
+  <div class="container">
+    <nav class="nav-tabs">
+      <button class="nav-tab" onclick="location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-tab" onclick="location.href='orders.html'">Bestellungen</button>
+      <button class="nav-tab active">Produkte</button>
+      <button class="nav-tab" onclick="location.href='issues.html'">Meldungen</button>
+      <button class="nav-tab" onclick="location.href='settings.html'">Einstellungen</button>
+    </nav>
+  </div>
+  <main class="container">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Produkte verwalten</h3>
+        <button class="btn btn-primary btn-sm" id="addBtn">+ Produkt</button>
+      </div>
+      <div style="margin:20px 0;display:flex;gap:12px;">
+        <button class="btn btn-secondary btn-sm" id="showGastro">🍔 Gastro</button>
+        <button class="btn btn-secondary btn-sm" id="showShop">🛒 Shop</button>
+      </div>
+      <table><thead><tr><th>Name</th><th>Kategorie</th><th>Preis</th><th>Verfügbar</th><th>Aktionen</th></tr></thead><tbody id="tbody"><tr><td colspan="5" style="text-align:center;padding:40px;">Lade...</td></tr></tbody></table>
+    </div>
+  </main>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-header"><h3 id="modalTitle">Produkt hinzufügen</h3></div>
+      <form id="form">
+        <input type="hidden" id="productId">
+        <div class="form-group"><label>Typ</label><select id="type" class="form-select" required><option value="gastro">Gastro</option><option value="shop">Shop</option></select></div>
+        <div class="form-group"><label>Name</label><input type="text" id="name" class="form-input" required></div>
+        <div class="form-group"><label>Kategorie</label><input type="text" id="category" class="form-input" required></div>
+        <div class="form-group"><label>Preis (€)</label><input type="number" id="price" class="form-input" step="0.01" required></div>
+        <div class="form-group"><label class="form-checkbox"><input type="checkbox" id="active" checked><span>Verfügbar</span></label></div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal()">Abbrechen</button><button type="submit" class="btn btn-primary">Speichern</button></div>
+      </form>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({apiKey:"AIzaSyCDEWPkL9wEQ7C_as-GM74d0u8KbLYm47w",authDomain:"fairwayservice-768e9.firebaseapp.com",projectId:"fairwayservice-768e9",storageBucket:"fairwayservice-768e9.firebasestorage.app",messagingSenderId:"621650445863",appId:"1:621650445863:web:303dde082c00db6a867002"});
+    const auth=firebase.auth(),db=firebase.firestore(),clubId=localStorage.getItem('adminClubId');
+    let currentType='gastro',allProducts=[];
+    auth.onAuthStateChanged(u=>{if(!u||!clubId)location.href='index.html';else{document.getElementById('userEmail').textContent=u.email;loadProducts();}});
+    document.getElementById('logoutBtn').onclick=async()=>{await auth.signOut();localStorage.clear();location.href='index.html';};
+    document.getElementById('showGastro').onclick=()=>{currentType='gastro';render();};
+    document.getElementById('showShop').onclick=()=>{currentType='shop';render();};
+    document.getElementById('addBtn').onclick=()=>{document.getElementById('form').reset();document.getElementById('productId').value='';document.getElementById('modalTitle').textContent='Produkt hinzufügen';document.getElementById('modal').classList.add('active');};
+    document.getElementById('form').onsubmit=async(e)=>{e.preventDefault();const data={name:document.getElementById('name').value,category:document.getElementById('category').value,price:parseFloat(document.getElementById('price').value),active:document.getElementById('active').checked,type:document.getElementById('type').value};const id=document.getElementById('productId').value;try{const collection=data.type==='gastro'?'gastro_products':'shop_products';if(id){await db.collection('clubs').doc(clubId).collection(collection).doc(id).update(data);}else{await db.collection('clubs').doc(clubId).collection(collection).add(data);}closeModal();}catch(e){console.error(e);alert('Fehler');}};
+    function loadProducts(){db.collection('clubs').doc(clubId).collection('gastro_products').onSnapshot(s=>{allProducts=s.docs.map(d=>({id:d.id,type:'gastro',...d.data()}));db.collection('clubs').doc(clubId).collection('shop_products').onSnapshot(s2=>{allProducts=[...allProducts,...s2.docs.map(d=>({id:d.id,type:'shop',...d.data()}))];render();});});}
+    function render(){const filtered=allProducts.filter(p=>p.type===currentType);const tbody=document.getElementById('tbody');if(!filtered.length){tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:40px;">Keine Produkte</td></tr>';return;}tbody.innerHTML=filtered.map(p=>`<tr><td>${p.name}</td><td>${p.category||'-'}</td><td>€${(p.price||0).toFixed(2)}</td><td>${p.active?'<span class="badge badge-success">Ja</span>':'<span class="badge badge-danger">Nein</span>'}</td><td><button class="btn btn-secondary btn-sm" onclick="edit('${p.id}','${p.type}')">Bearbeiten</button> <button class="btn btn-danger btn-sm" onclick="del('${p.id}','${p.type}')">Löschen</button></td></tr>`).join('');}
+    window.edit=function(id,type){const product=allProducts.find(p=>p.id===id&&p.type===type);if(!product)return;document.getElementById('productId').value=id;document.getElementById('type').value=product.type;document.getElementById('name').value=product.name;document.getElementById('category').value=product.category||'';document.getElementById('price').value=product.price||0;document.getElementById('active').checked=product.active;document.getElementById('modalTitle').textContent='Produkt bearbeiten';document.getElementById('modal').classList.add('active');};
+    window.del=async function(id,type){if(!confirm('Löschen?'))return;try{const collection=type==='gastro'?'gastro_products':'shop_products';await db.collection('clubs').doc(clubId).collection(collection).doc(id).delete();}catch(e){console.error(e);alert('Fehler');}};
+    window.closeModal=()=>document.getElementById('modal').classList.remove('active');
+  </script>
+</body>
+</html>
