@@ -75,7 +75,7 @@
           <tr>
             <th>Typ</th>
             <th>Kunde</th>
-            <th>Loch</th>
+            <th>Lieferung</th>
             <th>Produkte</th>
             <th>Betrag</th>
             <th>Status</th>
@@ -156,15 +156,16 @@
 
       tbody.innerHTML=filtered.map(o=>{
         const type=o.type==='gastro'?'🍔 Gastro':'🛒 Shop';
-        const items=(o.items||[]).map(i=>`${i.name} (${i.qty||i.quantity}x)`).join(', ')||'-';
+        const items=(o.items||[]).map(i=>`• ${i.name} (${i.qty||i.quantity}x)`).join('<br>')||'-';
         const time=o.createdAt?.toDate().toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})||'-';
-        const hole=o.deliveryMethod==='delivery'&&o.hole?`<strong>🏌️ Loch ${o.hole}</strong>`:'<span style="color:#9ca3af;">-</span>';
+        const hole=o.hole?`<span class="badge badge-info" style="font-size:13px;">🚗 Loch ${o.hole}</span>`:'<span style="color:#9ca3af;">Abholung</span>';
+        const note=o.note?`<div style="margin-top:4px;font-size:12px;color:#6b7280;font-style:italic;">"${o.note}"</div>`:'';
         
         return `<tr>
           <td>${type}</td>
           <td>${o.userName||'Gast'}</td>
           <td>${hole}</td>
-          <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${items}">${items}</td>
+          <td style="max-width:300px;line-height:1.6;">${items}${note}</td>
           <td><strong>€${(o.total||0).toFixed(2)}</strong></td>
           <td>${badges[o.status]||o.status}</td>
           <td style="white-space:nowrap;">${time}</td>
