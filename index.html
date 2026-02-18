@@ -218,7 +218,7 @@ margin-bottom: 64px;
 line-height: 1.7;
 }
 
-/* Project Cards - NO ICONS */
+/* Project Cards */
 .portfolio-grid {
 display: grid;
 gap: 48px;
@@ -228,7 +228,6 @@ gap: 48px;
 background: white;
 border: 1px solid rgba(0, 0, 0, 0.06);
 border-radius: 24px;
-padding: 56px;
 position: relative;
 overflow: hidden;
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -262,6 +261,37 @@ transform: translateY(-8px);
 
 .project:hover::before {
 opacity: 1;
+}
+
+/* Project Banner Image */
+.project-banner {
+width: 100%;
+height: 240px;
+overflow: hidden;
+position: relative;
+}
+
+.project-banner img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project:hover .project-banner img {
+transform: scale(1.03);
+}
+
+.project-banner-fairway {
+background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+}
+
+.project-banner-notalone {
+background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+}
+
+.project-body {
+padding: 48px 56px 56px;
 }
 
 .project-meta {
@@ -305,7 +335,7 @@ gap: 10px;
 }
 
 .feature::before {
-content: '→';
+content: '\2192';
 color: var(--blue-500);
 font-weight: 600;
 font-size: 18px;
@@ -333,6 +363,22 @@ border: 1px solid rgba(5, 150, 105, 0.2);
 background: linear-gradient(135deg, #FEF3C7, #FDE68A);
 color: #D97706;
 border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+/* Green gradient for FairwayService title */
+.gradient-text-green {
+background: linear-gradient(135deg, #16A34A, #15803D);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+/* Red gradient for NotAlone title */
+.gradient-text-red {
+background: linear-gradient(135deg, #EF4444, #DC2626);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 /* About */
@@ -376,7 +422,7 @@ line-height: 1.6;
 }
 
 .about-content li::before {
-content: '✓';
+content: '\2713';
 position: absolute;
 left: 0;
 color: var(--blue-500);
@@ -454,7 +500,8 @@ h1 { font-size: 44px; }
 .hero-subtitle { font-size: 19px; }
 section { padding: 80px 0; }
 h2 { font-size: 36px; }
-.project { padding: 40px; }
+.project-banner { height: 180px; }
+.project-body { padding: 32px 40px 40px; }
 .project h3 { font-size: 26px; }
 .project-features { grid-template-columns: 1fr; }
 .about-content { padding: 40px; }
@@ -462,6 +509,8 @@ h2 { font-size: 36px; }
 
 @media (max-width: 480px) {
 nav ul { display: none; }
+.project-banner { height: 160px; }
+.project-body { padding: 24px; }
 }
 </style>
 </head>
@@ -512,9 +561,12 @@ Projekte, die von der ersten Idee bis zum erfolgreichen Launch begleitet wurden.
 <div class="portfolio-grid">
 <!-- FairwayService -->
 <a href="/fairwayservice.html" class="project">
+<div class="project-banner project-banner-fairway">
+<img src="/fairwayservice/hero-banner.jpg" alt="FairwayService App Vorschau" />
+</div>
+<div class="project-body">
 <p class="project-meta">Golf Club Management · iOS & Android</p>
-            <h3>FairwayService</h3>
-            <h3><span style="color: var(--gray-900);">Fairway</span><span class="gradient-text">Service</span></h3>
+<h3><span style="color: var(--gray-900);">Fairway</span><span class="gradient-text-green">Service</span></h3>
 <p class="project-desc">
 Eine umfassende Management-Plattform für Golfclubs. Von mobilen Bestellungen 
 über Echtzeit-Updates bis hin zu einem vollständigen Admin-Dashboard – 
@@ -531,13 +583,17 @@ alles optimiert für den täglichen Clubbetrieb.
 </div>
 
 <span class="project-status status-dev">In Development</span>
+</div>
 </a>
 
 <!-- NotAlone -->
 <a href="/notalone/" class="project">
+<div class="project-banner project-banner-notalone">
+<img src="/notalone/hero-banner.jpg" alt="NotAlone App Vorschau" />
+</div>
+<div class="project-body">
 <p class="project-meta">Safety & Community · iOS & Android</p>
-            <h3>NotAlone</h3>
-            <h3><span style="color: var(--gray-900);">Not</span><span class="gradient-text">Alone</span></h3>
+<h3><span style="color: var(--gray-900);">Not</span><span class="gradient-text-red">Alone</span></h3>
 <p class="project-desc">
 Eine Privacy-First Sicherheits-App für stille Warnsignale in der Nachbarschaft 
 und privaten Gruppen. Mit Sprachmemos, Reaktionen und ICE-Benachrichtigungen – 
@@ -552,6 +608,7 @@ datensparsam und ohne Werbung.
 </div>
 
 <span class="project-status status-live">Live on App Store</span>
+</div>
 </a>
 </div>
 </div>
