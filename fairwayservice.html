@@ -26,8 +26,9 @@
       --gray-500: #737373;
       --gray-600: #525252;
       --gray-900: #171717;
-      --green-500: #16A34A;
-      --green-600: #15803D;
+      --blue-500: #3B82F6;
+      --blue-600: #2563EB;
+      --purple-600: #7C3AED;
     }
 
     html { scroll-behavior: smooth; }
@@ -67,11 +68,20 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
       font-size: 18px;
       font-weight: 700;
-      color: var(--gray-900);
       text-decoration: none;
+    }
+
+    .brand-text {
+      color: var(--gray-900);
+    }
+
+    .brand-gradient {
+      background: linear-gradient(135deg, var(--blue-500), var(--purple-600));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .nav-cta {
@@ -100,14 +110,14 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--green-500), var(--green-600));
+      background: linear-gradient(135deg, var(--blue-500), var(--purple-600));
       color: white;
       border: none;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
     }
 
     .btn-primary:hover {
-      box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
       transform: translateY(-2px);
     }
 
@@ -120,12 +130,12 @@
       width: 100%;
       height: 400px;
       margin-bottom: 64px;
-      background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+      background: linear-gradient(135deg, #3B82F6 0%, #7C3AED 100%);
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 
-        0 8px 32px rgba(22, 163, 74, 0.2),
-        0 24px 64px rgba(22, 163, 74, 0.15);
+        0 8px 32px rgba(59, 130, 246, 0.2),
+        0 24px 64px rgba(124, 60, 237, 0.15);
       position: relative;
     }
 
@@ -157,7 +167,7 @@
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, var(--green-500), var(--green-600));
+      background: linear-gradient(135deg, var(--blue-500), var(--purple-600));
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -183,6 +193,27 @@
       font-size: 14px;
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(217, 119, 6, 0.15);
+    }
+
+    /* NEW: fallback styling for existing project-status class (nothing removed) */
+    .project-status.status-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(124, 58, 237, 0.12));
+      color: var(--blue-600);
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.10);
+    }
+    .project-status.status-live::before{
+      content: '●';
+      font-size: 12px;
+      line-height: 1;
+      color: var(--blue-500);
     }
 
     /* Section */
@@ -226,10 +257,10 @@
     }
 
     .feature-card:hover {
-      border-color: rgba(22, 163, 74, 0.2);
+      border-color: rgba(59, 130, 246, 0.2);
       box-shadow: 
         0 4px 16px rgba(0, 0, 0, 0.06),
-        0 24px 64px rgba(22, 163, 74, 0.12);
+        0 24px 64px rgba(59, 130, 246, 0.12);
       transform: translateY(-6px);
     }
 
@@ -246,7 +277,7 @@
       margin: 0;
     }
 
-    /* NEW: Value/ROI */
+    /* NEW: Value/ROI section (keeps existing layout language) */
     .value-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -265,10 +296,10 @@
     }
 
     .value-card:hover {
-      border-color: rgba(22, 163, 74, 0.2);
+      border-color: rgba(59, 130, 246, 0.2);
       box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.06),
-        0 24px 64px rgba(22, 163, 74, 0.12);
+        0 24px 64px rgba(59, 130, 246, 0.12);
       transform: translateY(-6px);
     }
 
@@ -336,10 +367,10 @@
     }
 
     .faq details[open] {
-      border-color: rgba(22, 163, 74, 0.2);
+      border-color: rgba(59, 130, 246, 0.2);
       box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.05),
-        0 24px 64px rgba(22, 163, 74, 0.10);
+        0 24px 64px rgba(59, 130, 246, 0.10);
     }
 
     .faq summary {
@@ -359,7 +390,7 @@
     .faq summary::after {
       content: '+';
       font-size: 20px;
-      color: var(--green-500);
+      color: var(--blue-500);
       font-weight: 800;
       line-height: 1;
     }
@@ -395,7 +426,7 @@
     }
 
     .price-amount {
-      background: linear-gradient(135deg, var(--green-500), var(--green-600));
+      background: linear-gradient(135deg, var(--blue-500), var(--purple-600));
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -429,7 +460,7 @@
 
     .pricing-card li::before {
       content: '✓';
-      color: var(--green-500);
+      color: var(--blue-500);
       font-weight: bold;
       font-size: 20px;
     }
@@ -446,7 +477,7 @@
       align-items: center;
       gap: 12px;
       padding: 18px 40px;
-      background: linear-gradient(135deg, var(--green-500), var(--green-600));
+      background: linear-gradient(135deg, var(--blue-500), var(--purple-600));
       color: white;
       text-decoration: none;
       border-radius: 12px;
@@ -454,16 +485,16 @@
       font-weight: 700;
       margin-top: 24px;
       box-shadow: 
-        0 4px 16px rgba(22, 163, 74, 0.25),
-        0 8px 32px rgba(22, 163, 74, 0.15);
+        0 4px 16px rgba(59, 130, 246, 0.25),
+        0 8px 32px rgba(124, 60, 237, 0.15);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .cta-button:hover {
       transform: translateY(-3px);
       box-shadow: 
-        0 8px 24px rgba(22, 163, 74, 0.35),
-        0 16px 48px rgba(22, 163, 74, 0.25);
+        0 8px 24px rgba(59, 130, 246, 0.35),
+        0 16px 48px rgba(124, 60, 237, 0.25);
     }
 
     /* Footer */
@@ -513,7 +544,7 @@
     <div class="container">
       <nav class="nav">
         <a href="/fairwayservice.html" class="brand">
-          <span>FairwayService</span>
+          <span class="brand-text">Fairway</span><span class="brand-gradient">Service</span>
         </a>
         <div class="nav-cta">
           <a href="/" class="btn btn-secondary">← Portfolio</a>
@@ -534,15 +565,14 @@
 
         <!-- Content -->
         <div class="hero-content">
-          <h1><span class="gradient-text">FairwayService</span></h1>
+          <h1><span style="color: var(--gray-900);">Fairway</span><span class="gradient-text">Service</span></h1>
           <p class="hero-subtitle">
             Die moderne Management-Plattform für Golfclubs. Von mobilen Bestellungen 
             über Echtzeit-Updates bis zum vollständigen Admin-Dashboard.
           </p>
 
-          <!-- Optional: du hattest status-badge im CSS, aber im HTML eine andere Klasse.
-               Ich lösche nichts, ich ergänze nur eine passende Badge im gleichen Stil. -->
-          <span class="status-badge">Live im App Store</span>
+          <!-- Kept: your original element. Now it will be styled nicely via CSS above. -->
+          <span class="project-status status-live">Live on App Store</span>
         </div>
       </div>
     </section>
@@ -592,67 +622,68 @@
     <!-- NEW: Mehrwert & ROI -->
     <section style="background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);">
       <div class="container">
-        <h2>Warum FairwayService?</h2>
+        <h2>Mehrwert & ROI</h2>
         <p class="section-intro">
-          Der messbare Mehrwert für Golfclubs: mehr Umsatz, bessere Abläufe und eine moderne Außendarstellung – ohne zusätzlichen Personalaufwand.
+          FairwayService ist nicht nur „eine App“ – sondern ein Service-Upgrade für den Club: mehr Umsatz, bessere Abläufe
+          und mehr Sichtbarkeit bei Golfern in der Umgebung.
         </p>
 
         <div class="value-grid">
           <div class="value-card">
             <h3>Mehr Umsatz auf dem Platz</h3>
             <p>
-              Mitglieder bestellen Gastro & Shop direkt während der Runde. Das erhöht Spontankäufe, reduziert Wege ins Clubhaus
-              und sorgt für planbarere Abläufe. Schon wenige zusätzliche Bestellungen pro Tag können die monatlichen Kosten der App decken.
+              Mobile Bestellungen erhöhen Spontankäufe in Gastro & Shop – direkt während der Runde. 
+              Das reduziert Wege ins Clubhaus und sorgt für einen messbaren Umsatzhebel ohne zusätzliche Infrastruktur.
             </p>
           </div>
 
           <div class="value-card">
-            <h3>Starkes Marketing – auch ohne Website</h3>
+            <h3>Sichtbarkeit & Marketing</h3>
             <p>
-              Ihr Club ist in einer App sichtbar, in der Golfer teilnehmende Anlagen in der Nähe oder per Radius finden. 
-              Club- und Platzinfos, Kontakt und Services sind sofort verfügbar – auch wenn der Club keine moderne Website hat.
+              Golfer entdecken teilnehmende Clubs in der Nähe oder per Radius-Filter. Ihr Clubprofil bündelt Infos, Kontakt und Services –
+              ideal für Gastspieler und für Clubs ohne moderne Website.
             </p>
           </div>
 
           <div class="value-card">
-            <h3>Besserer Service & höhere Bindung</h3>
+            <h3>Besserer Service = höhere Bindung</h3>
             <p>
-              Aktuelle Clubinfos per Push, klare Abläufe und ein modernes Nutzungserlebnis erhöhen Zufriedenheit und Professionalität – 
-              für Mitglieder, Gäste und Turnierteilnehmer.
+              Aktuelle Clubinfos per Push, klare Prozesse und ein modernes Erlebnis steigern Zufriedenheit – bei Mitgliedern, Gästen
+              und Turnierteilnehmern. Das wirkt sich positiv auf Bewertungen und Weiterempfehlungen aus.
             </p>
           </div>
 
           <div class="value-card">
-            <h3>Effizientere Platzpflege</h3>
+            <h3>Effiziente Platzmeldungen</h3>
             <p>
-              Platz- und Schadensmeldungen kommen strukturiert an – optional mit Foto und Standort. Das reduziert Zurufe,
-              beschleunigt die Reaktion und verbessert langfristig Platzqualität und Sicherheit.
+              Schäden und Probleme werden strukturiert gemeldet (optional mit Foto und Standort). Das reduziert Missverständnisse,
+              beschleunigt Reaktionen und verbessert Platzqualität und Sicherheit.
             </p>
           </div>
 
           <div class="value-card">
-            <h3>Zentrale Plattform statt Insellösungen</h3>
+            <h3>Eine Plattform statt Insellösungen</h3>
             <p>
-              Schluss mit Zetteln, Aushängen oder unübersichtlichen Chats: Bestellungen, Infos und Meldungen laufen an einem Ort zusammen.
-              Das spart Zeit – und schafft Transparenz im Betrieb.
+              Bestellungen, Meldungen und Kommunikation laufen zentral zusammen. Weniger Zettel, weniger Zurufe, weniger Chaos –
+              dafür Transparenz für Management und Team.
             </p>
           </div>
 
           <div class="value-card">
             <h3>Niedriges Risiko, schneller Start</h3>
             <p>
-              Monatlich kündbar, transparente Preise und ein klarer Setup-Prozess. Clubs können FairwayService ohne große Hürden testen
+              Transparentes Pricing und monatliche Kündbarkeit senken die Einstiegshürde. Clubs können FairwayService testen
               und behalten es, sobald der Mehrwert im Alltag sichtbar wird.
             </p>
           </div>
         </div>
 
         <div class="value-note">
-          <h3>ROI (einfach gedacht)</h3>
+          <h3>ROI (praktisch gedacht)</h3>
           <p>
-            Wenn durch mobile Bestellungen nur <strong>1–2 zusätzliche Bestellungen pro Tag</strong> entstehen oder die Prozesse im Club
-            spürbar Zeit sparen, amortisiert sich FairwayService in vielen Clubs bereits im ersten Monat.
-            <strong>Der größte Hebel:</strong> Service direkt auf dem Platz + bessere Sichtbarkeit bei Golfern in der Umgebung.
+            Viele Clubs erreichen Break-even bereits durch <strong>wenige zusätzliche Bestellungen pro Woche</strong> oder durch 
+            eingesparte Zeit in der Organisation. Der größte Hebel entsteht, wenn Service <strong>direkt auf dem Platz</strong>
+            verfügbar ist und der Club zusätzlich <strong>in der App gefunden</strong> wird.
           </p>
         </div>
       </div>
@@ -663,46 +694,46 @@
       <div class="container">
         <h2>FAQ</h2>
         <p class="section-intro">
-          Häufige Fragen von Clubs – kurz und transparent beantwortet.
+          Häufige Fragen – kurz, transparent und ohne Fachchinesisch.
         </p>
 
         <div class="faq">
           <details>
-            <summary>Für wen ist FairwayService gedacht?</summary>
+            <summary>Wie werden neue Clubs in der App sichtbar?</summary>
             <p>
-              Für Golfclubs und -anlagen, die Service, Kommunikation und Zusatzumsatz modernisieren möchten – besonders dort,
-              wo Bestellungen und Infos während der Runde relevant sind (Gastro, Pro-Shop, Turniere, Gäste).
+              Teilnehmende Clubs erscheinen im Club-Finder und können von Golfern in der Nähe oder per Radius-Filter entdeckt werden.
+              Das Clubprofil zeigt alle wichtigen Informationen, Kontaktdaten und – je nach Setup – Shop/Gastro-Funktionen.
             </p>
           </details>
 
           <details>
-            <summary>Welche Vorteile habe ich als Club ohne moderne Website?</summary>
+            <summary>Was bringt FairwayService Clubs ohne moderne Website?</summary>
             <p>
-              FairwayService macht Ihren Club in der App auffindbar (Umkreis- & Radius-Filter) und stellt die wichtigsten Club- und Platzinfos
-              zentral bereit – inklusive Kontakt und Services. Damit sind Sie digital präsent, ohne eine neue Website bauen zu müssen.
+              Genau dafür ist es besonders stark: Golfer greifen in einer App auf Club- und Platzinfos zu, ohne dass der Club eine
+              aufwendige Website pflegen muss. Gleichzeitig sind Bestellungen und Kontakt direkt erreichbar.
             </p>
           </details>
 
           <details>
-            <summary>Wie unterstützen mobile Bestellungen den Clubbetrieb?</summary>
+            <summary>Wie entsteht der ROI konkret?</summary>
             <p>
-              Bestellungen werden strukturiert übermittelt und können an Abholung oder Lieferung zur Bahn gekoppelt werden. 
-              Das reduziert Laufwege, erhöht Spontankäufe und entlastet das Personal – besonders an Wochenenden und Turniertagen.
+              Durch mehr Umsatz (Gastro/Shop) via mobile Bestellungen, weniger organisatorischen Aufwand (Push statt Aushang/Telefon)
+              und bessere Platzqualität durch strukturierte Meldungen. Oft reicht schon ein kleiner Mehrumsatz pro Woche, um die Gebühr zu decken.
             </p>
           </details>
 
           <details>
-            <summary>Wie funktionieren Platz- und Schadensmeldungen?</summary>
+            <summary>Ist FairwayService auch für Gastspieler sinnvoll?</summary>
             <p>
-              Mitglieder melden Probleme direkt in der App – optional mit Foto und Standort. Im Admin-Dashboard sind alle Meldungen zentral sichtbar,
-              wodurch Greenkeeping und Management schneller reagieren können.
+              Ja. Gastspieler finden den Club schneller, sehen relevante Informationen und können Services wie Shop/Gastro nutzen.
+              Das verbessert den ersten Eindruck und erhöht die Chance auf Wiederbesuche.
             </p>
           </details>
 
           <details>
-            <summary>Gibt es Vertragsbindung oder versteckte Kosten?</summary>
+            <summary>Gibt es eine Vertragsbindung?</summary>
             <p>
-              Nein. Transparentes Pricing, monatlich kündbar und klar kommunizierte Setup-Gebühr für Einrichtung & Onboarding.
+              Nein – FairwayService ist monatlich kündbar. Die einmalige Setup-Gebühr deckt Einrichtung & Onboarding ab.
             </p>
           </details>
         </div>
@@ -746,7 +777,7 @@
             </p>
           </div>
 
-          <a href="mailto:christian@huebbedigital.com?subject=FairwayService Demo" class="cta-button">
+          <a href="mailto:contact@huebbedigital.com?subject=FairwayService Demo" class="cta-button">
             <span>Demo anfragen</span>
             <span>→</span>
           </a>
@@ -757,7 +788,7 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 Christian Hübbe</p>
+      <p>© 2026 HuebbeDigital</p>
       <p>
         <a href="/imprint.html">Impressum</a> · 
         <a href="/privacy.html">Datenschutz</a>
