@@ -246,6 +246,133 @@
       margin: 0;
     }
 
+    /* NEW: Value/ROI */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .value-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    .value-card:hover {
+      border-color: rgba(22, 163, 74, 0.2);
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 24px 64px rgba(22, 163, 74, 0.12);
+      transform: translateY(-6px);
+    }
+
+    .value-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .value-card p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    .value-note {
+      margin: 48px auto 0;
+      max-width: 900px;
+      background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      padding: 28px 32px;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 12px 48px rgba(0, 0, 0, 0.05);
+    }
+
+    .value-note h3 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .value-note p {
+      color: var(--gray-600);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .value-note strong {
+      color: var(--gray-900);
+      font-weight: 700;
+    }
+
+    /* NEW: FAQ */
+    .faq {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq details {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 18px 18px;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.03),
+        0 12px 48px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .faq details[open] {
+      border-color: rgba(22, 163, 74, 0.2);
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        0 24px 64px rgba(22, 163, 74, 0.10);
+    }
+
+    .faq summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 700;
+      color: var(--gray-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 16px;
+    }
+
+    .faq summary::-webkit-details-marker { display: none; }
+
+    .faq summary::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--green-500);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .faq details[open] summary::after { content: '–'; }
+
+    .faq p {
+      margin-top: 10px;
+      color: var(--gray-600);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
     /* Pricing */
     .pricing-card {
       max-width: 600px;
@@ -375,6 +502,9 @@
       .features-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 40px; }
       .price { font-size: 56px; }
+
+      /* NEW */
+      .value-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -409,7 +539,10 @@
             Die moderne Management-Plattform für Golfclubs. Von mobilen Bestellungen 
             über Echtzeit-Updates bis zum vollständigen Admin-Dashboard.
           </p>
-<span class="project-status status-live">Live on App Store</span>
+
+          <!-- Optional: du hattest status-badge im CSS, aber im HTML eine andere Klasse.
+               Ich lösche nichts, ich ergänze nur eine passende Badge im gleichen Stil. -->
+          <span class="status-badge">Live im App Store</span>
         </div>
       </div>
     </section>
@@ -452,6 +585,126 @@
             <h3>QR-Code System</h3>
             <p>Sichere Authentifizierung am Club-Eingang via QR-Code mit temporären Zugangstokens.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Mehrwert & ROI -->
+    <section style="background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);">
+      <div class="container">
+        <h2>Warum FairwayService?</h2>
+        <p class="section-intro">
+          Der messbare Mehrwert für Golfclubs: mehr Umsatz, bessere Abläufe und eine moderne Außendarstellung – ohne zusätzlichen Personalaufwand.
+        </p>
+
+        <div class="value-grid">
+          <div class="value-card">
+            <h3>Mehr Umsatz auf dem Platz</h3>
+            <p>
+              Mitglieder bestellen Gastro & Shop direkt während der Runde. Das erhöht Spontankäufe, reduziert Wege ins Clubhaus
+              und sorgt für planbarere Abläufe. Schon wenige zusätzliche Bestellungen pro Tag können die monatlichen Kosten der App decken.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Starkes Marketing – auch ohne Website</h3>
+            <p>
+              Ihr Club ist in einer App sichtbar, in der Golfer teilnehmende Anlagen in der Nähe oder per Radius finden. 
+              Club- und Platzinfos, Kontakt und Services sind sofort verfügbar – auch wenn der Club keine moderne Website hat.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Besserer Service & höhere Bindung</h3>
+            <p>
+              Aktuelle Clubinfos per Push, klare Abläufe und ein modernes Nutzungserlebnis erhöhen Zufriedenheit und Professionalität – 
+              für Mitglieder, Gäste und Turnierteilnehmer.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Effizientere Platzpflege</h3>
+            <p>
+              Platz- und Schadensmeldungen kommen strukturiert an – optional mit Foto und Standort. Das reduziert Zurufe,
+              beschleunigt die Reaktion und verbessert langfristig Platzqualität und Sicherheit.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Zentrale Plattform statt Insellösungen</h3>
+            <p>
+              Schluss mit Zetteln, Aushängen oder unübersichtlichen Chats: Bestellungen, Infos und Meldungen laufen an einem Ort zusammen.
+              Das spart Zeit – und schafft Transparenz im Betrieb.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Niedriges Risiko, schneller Start</h3>
+            <p>
+              Monatlich kündbar, transparente Preise und ein klarer Setup-Prozess. Clubs können FairwayService ohne große Hürden testen
+              und behalten es, sobald der Mehrwert im Alltag sichtbar wird.
+            </p>
+          </div>
+        </div>
+
+        <div class="value-note">
+          <h3>ROI (einfach gedacht)</h3>
+          <p>
+            Wenn durch mobile Bestellungen nur <strong>1–2 zusätzliche Bestellungen pro Tag</strong> entstehen oder die Prozesse im Club
+            spürbar Zeit sparen, amortisiert sich FairwayService in vielen Clubs bereits im ersten Monat.
+            <strong>Der größte Hebel:</strong> Service direkt auf dem Platz + bessere Sichtbarkeit bei Golfern in der Umgebung.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: FAQ -->
+    <section>
+      <div class="container">
+        <h2>FAQ</h2>
+        <p class="section-intro">
+          Häufige Fragen von Clubs – kurz und transparent beantwortet.
+        </p>
+
+        <div class="faq">
+          <details>
+            <summary>Für wen ist FairwayService gedacht?</summary>
+            <p>
+              Für Golfclubs und -anlagen, die Service, Kommunikation und Zusatzumsatz modernisieren möchten – besonders dort,
+              wo Bestellungen und Infos während der Runde relevant sind (Gastro, Pro-Shop, Turniere, Gäste).
+            </p>
+          </details>
+
+          <details>
+            <summary>Welche Vorteile habe ich als Club ohne moderne Website?</summary>
+            <p>
+              FairwayService macht Ihren Club in der App auffindbar (Umkreis- & Radius-Filter) und stellt die wichtigsten Club- und Platzinfos
+              zentral bereit – inklusive Kontakt und Services. Damit sind Sie digital präsent, ohne eine neue Website bauen zu müssen.
+            </p>
+          </details>
+
+          <details>
+            <summary>Wie unterstützen mobile Bestellungen den Clubbetrieb?</summary>
+            <p>
+              Bestellungen werden strukturiert übermittelt und können an Abholung oder Lieferung zur Bahn gekoppelt werden. 
+              Das reduziert Laufwege, erhöht Spontankäufe und entlastet das Personal – besonders an Wochenenden und Turniertagen.
+            </p>
+          </details>
+
+          <details>
+            <summary>Wie funktionieren Platz- und Schadensmeldungen?</summary>
+            <p>
+              Mitglieder melden Probleme direkt in der App – optional mit Foto und Standort. Im Admin-Dashboard sind alle Meldungen zentral sichtbar,
+              wodurch Greenkeeping und Management schneller reagieren können.
+            </p>
+          </details>
+
+          <details>
+            <summary>Gibt es Vertragsbindung oder versteckte Kosten?</summary>
+            <p>
+              Nein. Transparentes Pricing, monatlich kündbar und klar kommunizierte Setup-Gebühr für Einrichtung & Onboarding.
+            </p>
+          </details>
         </div>
       </div>
     </section>
