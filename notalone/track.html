@@ -93,6 +93,11 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // NEU: Tracking-Prevention-Fix
+    db.settings({
+      experimentalForceLongPolling: true,
+    });
+
     // Tracking-ID aus der URL
     const params = new URLSearchParams(window.location.search);
     const trackingId = params.get("trackingId");
@@ -104,7 +109,7 @@
 
     // Leaflet-Karte neutral starten
     const map = L.map('map');
-    map.setView([20, 0], 2); // Weltkarte
+    map.setView([20, 0], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
@@ -143,7 +148,6 @@
       hasCentered = false;
     }
 
-    // Presence live abonnieren
     function subscribePresence(userId) {
       if (presenceUnsub) { presenceUnsub(); presenceUnsub = null; }
       if (signalsUnsub)  { signalsUnsub();  signalsUnsub  = null; }
@@ -159,7 +163,6 @@
         const d = snap.data() || {};
         const pub = d.publicUntil && (d.publicUntil.toDate ? d.publicUntil.toDate() : null);
 
-        // Wenn publicUntil fehlt oder abgelaufen -> beenden
         if (!pub || pub < new Date()) {
           setInfo('⛔️', 'Signal beendet', 'Das Signal ist nicht mehr aktiv oder abgelaufen.');
           removeMarker();
@@ -180,7 +183,6 @@
       });
     }
 
-    // Fallback: Signals per trackingId
     function subscribeSignalsByTrackingId(trackingId) {
       if (signalsUnsub) { signalsUnsub(); signalsUnsub = null; }
       signalsUnsub = db.collection("signals")
@@ -221,10 +223,8 @@
         });
     }
 
-    // Start: Mapping trackers/{trackingId} → userId, dann presence/{userId}
     (async function start() {
       try {
-        // 1) Mapping lesen
         const mappingSnap = await db.collection("trackers").doc(trackingId).get();
         const userId = mappingSnap.exists ? mappingSnap.data().userId : null;
 
