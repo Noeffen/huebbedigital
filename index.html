@@ -4,21 +4,17 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>HuebbeDigital – Digital Product Designer & Developer</title>
-<meta name="description" content="Entwicklung außergewöhnlicher Apps für iOS & Android. Spezialisiert auf User Experience, native Performance und durchdachtes Design." />
-
+<meta name="description" content="Entwicklung außergewöhnlicher Apps für iOS & Android sowie moderner Websites. Spezialisiert auf User Experience, native Performance und durchdachtes Design." />
 <link rel="icon" type="image/png" href="/logo.png">
 <meta name="theme-color" content="#ffffff">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
-
 :root {
 --gray-50: #FAFAFA;
 --gray-100: #F5F5F5;
@@ -33,11 +29,9 @@ box-sizing: border-box;
 --purple-500: #8B5CF6;
 --purple-600: #7C3AED;
 }
-
 html {
 scroll-behavior: smooth;
 }
-
 body {
 font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
@@ -46,13 +40,11 @@ line-height: 1.6;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-
 .container {
 max-width: 1200px;
 margin: 0 auto;
 padding: 0 32px;
 }
-
 /* Header */
 header {
 position: sticky;
@@ -64,14 +56,12 @@ backdrop-filter: blur(20px) saturate(180%);
 border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
-
 .nav {
 display: flex;
 align-items: center;
 justify-content: space-between;
 height: 80px;
 }
-
 .brand {
 font-size: 18px;
 font-weight: 700;
@@ -79,28 +69,23 @@ text-decoration: none;
 letter-spacing: -0.02em;
 transition: transform 0.2s ease;
 }
-
 .brand-text {
 color: var(--gray-900);
 }
-
 .brand-gradient {
 background: linear-gradient(135deg, var(--blue-500) 0%, var(--purple-600) 100%);
 -webkit-background-clip: text;
 background-clip: text;
 -webkit-text-fill-color: transparent;
 }
-
 .brand:hover {
 transform: translateY(-1px);
 }
-
 nav ul {
 display: flex;
 gap: 40px;
 list-style: none;
 }
-
 nav a {
 color: var(--gray-600);
 text-decoration: none;
@@ -109,7 +94,6 @@ font-weight: 500;
 transition: color 0.2s ease;
 position: relative;
 }
-
 nav a::after {
 content: '';
 position: absolute;
@@ -120,20 +104,16 @@ height: 2px;
 background: linear-gradient(90deg, var(--blue-500), var(--purple-500));
 transition: width 0.3s ease;
 }
-
 nav a:hover {
 color: var(--gray-900);
 }
-
 nav a:hover::after {
 width: 100%;
 }
-
 /* Hero */
 .hero {
 padding: 140px 0 120px;
 }
-
 .hero-label {
 display: inline-block;
 padding: 8px 16px;
@@ -146,7 +126,6 @@ color: var(--blue-600);
 margin-bottom: 32px;
 backdrop-filter: blur(10px);
 }
-
 h1 {
 font-size: clamp(52px, 7vw, 80px);
 font-weight: 800;
@@ -156,14 +135,12 @@ color: var(--gray-900);
 margin-bottom: 32px;
 max-width: 900px;
 }
-
 .gradient-text {
 background: linear-gradient(135deg, var(--blue-500) 0%, var(--purple-600) 100%);
 -webkit-background-clip: text;
 background-clip: text;
 -webkit-text-fill-color: transparent;
 }
-
 .hero-subtitle {
 font-size: 22px;
 line-height: 1.7;
@@ -172,13 +149,11 @@ max-width: 680px;
 margin-bottom: 48px;
 font-weight: 400;
 }
-
 .hero-tags {
 display: flex;
 flex-wrap: wrap;
 gap: 12px;
 }
-
 .tag {
 padding: 12px 20px;
 background: white;
@@ -190,18 +165,15 @@ color: var(--gray-700);
 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .tag:hover {
 border-color: rgba(59, 130, 246, 0.3);
 box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
 transform: translateY(-2px);
 }
-
 /* Section */
 section {
 padding: 120px 0;
 }
-
 h2 {
 font-size: 48px;
 font-weight: 800;
@@ -209,7 +181,6 @@ letter-spacing: -0.03em;
 color: var(--gray-900);
 margin-bottom: 20px;
 }
-
 .section-intro {
 font-size: 20px;
 color: var(--gray-600);
@@ -217,13 +188,11 @@ max-width: 650px;
 margin-bottom: 64px;
 line-height: 1.7;
 }
-
 /* Project Cards */
 .portfolio-grid {
 display: grid;
 gap: 48px;
 }
-
 .project {
 background: white;
 border: 1px solid rgba(0, 0, 0, 0.06);
@@ -234,11 +203,10 @@ transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 text-decoration: none;
 color: inherit;
 display: block;
-box-shadow: 
+box-shadow:
 0 2px 8px rgba(0, 0, 0, 0.04),
 0 12px 48px rgba(0, 0, 0, 0.05);
 }
-
 .project::before {
 content: '';
 position: absolute;
@@ -250,19 +218,16 @@ background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transp
 opacity: 0;
 transition: opacity 0.3s ease;
 }
-
 .project:hover {
 border-color: rgba(59, 130, 246, 0.2);
-box-shadow: 
+box-shadow:
 0 4px 16px rgba(0, 0, 0, 0.06),
 0 24px 64px rgba(59, 130, 246, 0.12);
 transform: translateY(-8px);
 }
-
 .project:hover::before {
 opacity: 1;
 }
-
 /* Project Banner Image */
 .project-banner {
 width: 100%;
@@ -270,30 +235,27 @@ height: 240px;
 overflow: hidden;
 position: relative;
 }
-
 .project-banner img {
 width: 100%;
 height: 100%;
 object-fit: cover;
 transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .project:hover .project-banner img {
 transform: scale(1.03);
 }
-
 .project-banner-fairway {
 background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
 }
-
 .project-banner-notalone {
 background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
 }
-
+.project-banner-spenglerei {
+background: linear-gradient(135deg, #78716C 0%, #57534E 100%);
+}
 .project-body {
 padding: 48px 56px 56px;
 }
-
 .project-meta {
 font-size: 14px;
 color: var(--gray-500);
@@ -302,21 +264,18 @@ text-transform: uppercase;
 letter-spacing: 0.1em;
 margin-bottom: 16px;
 }
-
 .project h3 {
 font-size: 32px;
 font-weight: 700;
 letter-spacing: -0.02em;
 margin-bottom: 16px;
 }
-
 .project-desc {
 font-size: 18px;
 line-height: 1.75;
 color: var(--gray-600);
 margin-bottom: 36px;
 }
-
 .project-features {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -324,7 +283,6 @@ gap: 16px;
 padding-top: 36px;
 border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
-
 .feature {
 font-size: 15px;
 color: var(--gray-600);
@@ -333,14 +291,12 @@ display: flex;
 align-items: center;
 gap: 10px;
 }
-
 .feature::before {
 content: '\2192';
 color: var(--blue-500);
 font-weight: 600;
 font-size: 18px;
 }
-
 .project-status {
 display: inline-flex;
 align-items: center;
@@ -352,19 +308,16 @@ font-weight: 600;
 margin-top: 28px;
 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-
 .status-live {
 background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
 color: #059669;
 border: 1px solid rgba(5, 150, 105, 0.2);
 }
-
 .status-dev {
 background: linear-gradient(135deg, #FEF3C7, #FDE68A);
 color: #D97706;
 border: 1px solid rgba(217, 119, 6, 0.2);
 }
-
 /* Green gradient for FairwayService title */
 .gradient-text-green {
 background: linear-gradient(135deg, #16A34A, #15803D);
@@ -372,7 +325,6 @@ background: linear-gradient(135deg, #16A34A, #15803D);
 background-clip: text;
 -webkit-text-fill-color: transparent;
 }
-
 /* Red gradient for NotAlone title */
 .gradient-text-red {
 background: linear-gradient(135deg, #EF4444, #DC2626);
@@ -380,7 +332,13 @@ background: linear-gradient(135deg, #EF4444, #DC2626);
 background-clip: text;
 -webkit-text-fill-color: transparent;
 }
-
+/* Stone gradient for Spenglerei Wood title */
+.gradient-text-stone {
+background: linear-gradient(135deg, #78716C, #57534E);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+}
 /* About */
 .about-content {
 max-width: 820px;
@@ -388,31 +346,27 @@ background: white;
 border: 1px solid rgba(0, 0, 0, 0.06);
 border-radius: 24px;
 padding: 64px;
-box-shadow: 
+box-shadow:
 0 2px 8px rgba(0, 0, 0, 0.04),
 0 12px 48px rgba(0, 0, 0, 0.05);
 }
-
 .about-content h3 {
 font-size: 28px;
 font-weight: 700;
 letter-spacing: -0.02em;
 margin-bottom: 24px;
 }
-
 .about-intro {
 font-size: 18px;
 line-height: 1.8;
 color: var(--gray-600);
 margin-bottom: 40px;
 }
-
 .about-content ul {
 list-style: none;
 display: grid;
 gap: 20px;
 }
-
 .about-content li {
 font-size: 17px;
 color: var(--gray-600);
@@ -420,7 +374,6 @@ padding-left: 32px;
 position: relative;
 line-height: 1.6;
 }
-
 .about-content li::before {
 content: '\2713';
 position: absolute;
@@ -429,18 +382,15 @@ color: var(--blue-500);
 font-weight: bold;
 font-size: 18px;
 }
-
 /* Contact */
 .contact {
 background: linear-gradient(180deg, white 0%, var(--gray-50) 100%);
 }
-
 .contact-content {
 max-width: 700px;
 margin: 0 auto;
 text-align: center;
 }
-
 .cta-button {
 display: inline-flex;
 align-items: center;
@@ -453,19 +403,17 @@ border-radius: 12px;
 font-size: 17px;
 font-weight: 700;
 margin-top: 40px;
-box-shadow: 
+box-shadow:
 0 4px 16px rgba(59, 130, 246, 0.25),
 0 8px 32px rgba(139, 92, 246, 0.15);
 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .cta-button:hover {
 transform: translateY(-3px);
-box-shadow: 
+box-shadow:
 0 8px 24px rgba(59, 130, 246, 0.35),
 0 16px 48px rgba(139, 92, 246, 0.25);
 }
-
 /* Footer */
 footer {
 border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -473,23 +421,19 @@ padding: 64px 0;
 text-align: center;
 background: white;
 }
-
 footer p {
 font-size: 15px;
 color: var(--gray-500);
 margin-bottom: 12px;
 }
-
 footer a {
 color: var(--gray-600);
 text-decoration: none;
 transition: color 0.2s ease;
 }
-
 footer a:hover {
 color: var(--gray-900);
 }
-
 /* Responsive */
 @media (max-width: 768px) {
 .container { padding: 0 24px; }
@@ -506,7 +450,6 @@ h2 { font-size: 36px; }
 .project-features { grid-template-columns: 1fr; }
 .about-content { padding: 40px; }
 }
-
 @media (max-width: 480px) {
 nav ul { display: none; }
 .project-banner { height: 160px; }
@@ -530,26 +473,25 @@ nav ul { display: none; }
 </nav>
 </div>
 </header>
-
 <main>
 <!-- Hero -->
 <section class="hero">
 <div class="container">
 <span class="hero-label">Digital Product Designer & Developer</span>
-<h1>Building <span class="gradient-text">exceptional</span> products for iOS & Android</h1>
+<h1>Building <span class="gradient-text">exceptional</span> digital products</h1>
 <p class="hero-subtitle">
-Ich entwickle außergewöhnliche Apps mit Fokus auf User Experience, 
+Ich entwickle außergewöhnliche Apps und Websites mit Fokus auf User Experience,
 native Performance und durchdachtes Design – von der ersten Idee bis zum Launch.
 </p>
 <div class="hero-tags">
 <span class="tag">iOS & Android</span>
+<span class="tag">Web Development</span>
 <span class="tag">Native Performance</span>
 <span class="tag">Product Design</span>
 <span class="tag">Privacy-First</span>
 </div>
 </div>
 </section>
-
 <!-- Work -->
 <section id="work">
 <div class="container">
@@ -557,7 +499,6 @@ native Performance und durchdachtes Design – von der ersten Idee bis zum Launc
 <p class="section-intro">
 Projekte, die von der ersten Idee bis zum erfolgreichen Launch begleitet wurden.
 </p>
-
 <div class="portfolio-grid">
 <!-- FairwayService -->
 <a href="/fairwayservice.html" class="project">
@@ -568,11 +509,10 @@ Projekte, die von der ersten Idee bis zum erfolgreichen Launch begleitet wurden.
 <p class="project-meta">Golf Club Management · iOS & Android</p>
 <h3><span style="color: var(--gray-900);">Fairway</span><span class="gradient-text-green">Service</span></h3>
 <p class="project-desc">
-Eine umfassende Management-Plattform für Golfclubs. Von mobilen Bestellungen 
-über Echtzeit-Updates bis hin zu einem vollständigen Admin-Dashboard – 
+Eine umfassende Management-Plattform für Golfclubs. Von mobilen Bestellungen
+über Echtzeit-Updates bis hin zu einem vollständigen Admin-Dashboard –
 alles optimiert für den täglichen Clubbetrieb.
 </p>
-
 <div class="project-features">
 <div class="feature">Mobile Bestellungen</div>
 <div class="feature">Live Updates</div>
@@ -581,11 +521,9 @@ alles optimiert für den täglichen Clubbetrieb.
 <div class="feature">Push Notifications</div>
 <div class="feature">QR-Code System</div>
 </div>
-
 <span class="project-status status-live">Live on App Store</span>
 </div>
 </a>
-
 <!-- NotAlone -->
 <a href="/notalone/" class="project">
 <div class="project-banner project-banner-notalone">
@@ -595,41 +533,59 @@ alles optimiert für den täglichen Clubbetrieb.
 <p class="project-meta">Safety & Community · iOS & Android</p>
 <h3><span style="color: var(--gray-900);">Not</span><span class="gradient-text-red">Alone</span></h3>
 <p class="project-desc">
-Eine Privacy-First Sicherheits-App für stille Warnsignale in der Nachbarschaft 
-und privaten Gruppen. Mit Sprachmemos, Reaktionen und ICE-Benachrichtigungen – 
+Eine Privacy-First Sicherheits-App für stille Warnsignale in der Nachbarschaft
+und privaten Gruppen. Mit Sprachmemos, Reaktionen und ICE-Benachrichtigungen –
 datensparsam und ohne Werbung.
 </p>
-
 <div class="project-features">
 <div class="feature">Proximity Alerts</div>
 <div class="feature">Private Groups</div>
 <div class="feature">Voice Memos</div>
 <div class="feature">Emergency Contacts</div>
 </div>
-
 <span class="project-status status-live">Live on App Store</span>
+</div>
+</a>
+<!-- Spenglerei Wood -->
+<a href="https://noeffen.github.io/Spenglerei-Wood/index.html" target="_blank" rel="noopener" class="project">
+<div class="project-banner project-banner-spenglerei">
+<img src="/spenglerei-wood/hero-banner.jpg" alt="Spenglerei Wood Website Vorschau" />
+</div>
+<div class="project-body">
+<p class="project-meta">Handwerk & Gewerbe · Website</p>
+<h3><span style="color: var(--gray-900);">Spenglerei </span><span class="gradient-text-stone">Wood</span></h3>
+<p class="project-desc">
+Eine moderne Unternehmenswebsite für einen Spenglereibetrieb – mit klarer
+Leistungsübersicht, Teamseite und Kontaktformular. Optimiert für mobile
+Endgeräte und lokale Auffindbarkeit.
+</p>
+<div class="project-features">
+<div class="feature">Responsive Design</div>
+<div class="feature">Leistungsübersicht</div>
+<div class="feature">Kontaktformular</div>
+<div class="feature">Mobile-First</div>
+</div>
+<span class="project-status status-live">Live Website</span>
 </div>
 </a>
 </div>
 </div>
 </section>
-
 <!-- About -->
 <section id="about">
 <div class="container">
 <h2>About</h2>
-
 <div class="about-content">
 <h3>Hi, ich bin Christian</h3>
 <p class="about-intro">
-Ich entwickle digitale Produkte, die Menschen gerne nutzen. Mit über 8 Jahren 
-Erfahrung in der Unternehmensberatung und 3 Jahren Erfahrung in der App-Entwicklung begleite ich Projekte von der ersten Idee über 
-Design und Development bis zum erfolgreichen Launch. Für mich ist jede Idee eine Chance, etwas neues zu bauen. 
-Die Entwicklung von Apps ist für mich ein Hobby, das Spaß macht, den Menschen etwas gibt und Lösungen für Probleme finden, auf die bisher niemand kam.
+Ich entwickle digitale Produkte, die Menschen gerne nutzen. Mit über 8 Jahren
+Erfahrung in der Unternehmensberatung und 3 Jahren Erfahrung in der App- und Webentwicklung begleite ich Projekte von der ersten Idee über
+Design und Development bis zum erfolgreichen Launch. Für mich ist jede Idee eine Chance, etwas neues zu bauen.
+Die Entwicklung von Apps und Websites ist für mich ein Hobby, das Spaß macht, den Menschen etwas gibt und Lösungen für Probleme findet, auf die bisher niemand kam.
 </p>
-
 <ul>
 <li>Native iOS & Android Development (Swift, Kotlin)</li>
+<li>Website Development (HTML, CSS, JavaScript)</li>
 <li>Backend Infrastructure mit Firebase & Cloud Functions</li>
 <li>UI/UX Design & Prototyping</li>
 <li>Von Konzept bis Launch – alles aus einer Hand</li>
@@ -637,14 +593,13 @@ Die Entwicklung von Apps ist für mich ein Hobby, das Spaß macht, den Menschen 
 </div>
 </div>
 </section>
-
 <!-- Contact -->
 <section id="contact" class="contact">
 <div class="container">
 <div class="contact-content">
 <h2>Let's work together</h2>
 <p class="section-intro" style="margin: 0 auto;">
-Hast du ein Projekt im Kopf? Lass uns darüber sprechen, 
+Hast du ein Projekt im Kopf? Lass uns darüber sprechen,
 wie ich dir helfen kann.
 </p>
 <a href="mailto:contact@huebbedigital.com" class="cta-button">
@@ -655,12 +610,11 @@ wie ich dir helfen kann.
 </div>
 </section>
 </main>
-
 <footer>
 <div class="container">
 <p>© 2026 HuebbeDigital</p>
 <p>
-<a href="/imprint.html">Impressum</a> · 
+<a href="/imprint.html">Impressum</a> ·
 <a href="/privacy.html">Datenschutz</a>
 </p>
 </div>
