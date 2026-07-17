@@ -542,6 +542,467 @@ nav ul { display: none; }
 .project-banner { height: 160px; }
 .project-body { padding: 24px; }
 }
+
+/* ── WORK SECTION ─────────────────────────────────────────────── */
+.work-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.work-header h2 { margin-bottom: 0; }
+
+.project-filter {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.filter-btn:hover {
+  border-color: var(--blue-500);
+  color: var(--blue-600);
+}
+
+.filter-btn.active {
+  background: var(--gray-900);
+  border-color: var(--gray-900);
+  color: white;
+}
+
+/* ── PROJECT LIST ──────────────────────────────────────────────── */
+.projects-list {
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.project-item {
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  transition: opacity 0.2s ease;
+}
+
+.project-item.hidden {
+  display: none;
+}
+
+.project-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px 12px 1fr auto auto 40px;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s ease;
+  border-radius: 0;
+}
+
+.project-row:hover {
+  background: rgba(0,0,0,0.018);
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: 0 -12px;
+  width: calc(100% + 24px);
+}
+
+.project-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-400);
+  letter-spacing: 0.02em;
+}
+
+.project-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.project-row-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.project-row-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.project-badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.project-badge.web {
+  background: rgba(59,130,246,0.08);
+  color: var(--blue-600);
+  border: 1px solid rgba(59,130,246,0.2);
+}
+
+.project-badge.app {
+  background: rgba(139,92,246,0.08);
+  color: var(--purple-600);
+  border: 1px solid rgba(139,92,246,0.2);
+}
+
+.project-row-platform {
+  font-size: 14px;
+  color: var(--gray-400);
+  white-space: nowrap;
+}
+
+.project-row-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #059669;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  flex-shrink: 0;
+}
+
+.project-chevron {
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-row[aria-expanded="true"] .project-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── EXPAND ────────────────────────────────────────────────────── */
+.project-expand {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-item.open .project-expand {
+  max-height: 280px;
+}
+
+.project-expand-inner {
+  padding: 4px 0 28px 72px;
+}
+
+.project-expand-desc {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+.project-expand-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ptag {
+  padding: 5px 12px;
+  background: var(--gray-100);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-900);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1.5px solid var(--gray-300);
+  padding-bottom: 1px;
+  transition: all 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--blue-600);
+  border-color: var(--blue-500);
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .project-row {
+    grid-template-columns: 32px 10px 1fr auto 32px;
+    gap: 12px;
+  }
+  .project-row-platform { display: none; }
+  .project-expand-inner { padding-left: 54px; }
+  .work-header { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .project-row { grid-template-columns: 1fr auto 28px; gap: 10px; }
+  .project-num, .project-dot { display: none; }
+  .project-expand-inner { padding-left: 0; }
+}
+
+
+/* ── WORK HEADER ──────────────────────────────────────────── */
+.work-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.work-header h2 { margin-bottom: 0; }
+
+/* ── FILTER ───────────────────────────────────────────────── */
+.project-filter { display: flex; gap: 8px; }
+
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.filter-btn:hover { border-color: var(--blue-500); color: var(--blue-600); }
+.filter-btn.active { background: var(--gray-900); border-color: var(--gray-900); color: white; }
+
+/* ── PORTFOLIO GRID ───────────────────────────────────────── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ── CARD ─────────────────────────────────────────────────── */
+.pcard {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.pcard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07), 0 20px 56px rgba(0,0,0,0.09);
+  transform: translateY(-4px);
+}
+.pcard.hidden { display: none; }
+
+/* ── BANNER ───────────────────────────────────────────────── */
+.pcard-banner {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+.pcard-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.pcard:hover .pcard-banner img { transform: scale(1.04); }
+
+.pcard-burghof  { background: linear-gradient(135deg, #111111 0%, #2a2a2a 50%, #d4af37 100%); }
+.pcard-fairway  { background: linear-gradient(135deg, #14532D 0%, #16A34A 100%); }
+.pcard-notalone { background: linear-gradient(135deg, #7F1D1D 0%, #EF4444 100%); }
+.pcard-spenglerei { background: linear-gradient(135deg, #292524 0%, #78716C 100%); }
+
+.pcard-status-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+/* ── CARD BODY ────────────────────────────────────────────── */
+.pcard-body { padding: 0; }
+
+.pcard-toggle {
+  width: 100%;
+  padding: 20px 24px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pcard-toggle:hover { background: rgba(0,0,0,0.015); }
+
+.pcard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pcard-title-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pcard-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gray-900);
+  margin: 0;
+}
+.pbadge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.pbadge-web {
+  background: rgba(59,130,246,0.08);
+  color: var(--blue-600);
+  border: 1px solid rgba(59,130,246,0.18);
+}
+.pbadge-app {
+  background: rgba(139,92,246,0.08);
+  color: var(--purple-600);
+  border: 1px solid rgba(139,92,246,0.18);
+}
+.pcard-chevron {
+  color: var(--gray-400);
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.pcard.open .pcard-chevron { transform: rotate(180deg); }
+
+.pcard-meta {
+  font-size: 13px;
+  color: var(--gray-400);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ── EXPAND ───────────────────────────────────────────────── */
+.pcard-expand {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.pcard.open .pcard-expand { max-height: 260px; }
+
+.pcard-expand-inner {
+  padding: 0 24px 24px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 18px;
+}
+.pcard-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  margin-bottom: 16px;
+}
+.pcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.ptag {
+  padding: 4px 11px;
+  background: var(--gray-100);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+.pcard-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-900);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--gray-300);
+  padding-bottom: 1px;
+  transition: all 0.2s ease;
+}
+.pcard-link:hover { color: var(--blue-600); border-color: var(--blue-500); }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .work-header { flex-direction: column; align-items: flex-start; }
+  .pcard-banner { height: 180px; }
+}
+
 </style>
 </head>
 <body>
@@ -586,107 +1047,154 @@ Projekte entstehen exklusiv und individuell, auf Anfrage.
 <!-- Work -->
 <section id="work">
 <div class="container">
-<h2>Selected Work</h2>
-<p class="section-intro">
-Projekte, die von der ersten Idee bis zum erfolgreichen Launch begleitet wurden.
-</p>
+
+<div class="work-header">
+  <h2>Selected Work</h2>
+  <div class="project-filter">
+    <button class="filter-btn active" data-filter="all">Alle</button>
+    <button class="filter-btn" data-filter="web">Websites</button>
+    <button class="filter-btn" data-filter="app">Apps</button>
+  </div>
+</div>
+
 <div class="portfolio-grid">
 
-<!-- Burghof -->
-<a href="https://burghof-odenwald.de" target="_blank" rel="noopener" class="project">
-<div class="project-banner project-banner-burghof"></div>
-<div class="project-body">
-<p class="project-meta">Hotel & Eventlocation · Website & SEO · Odenwald</p>
-<h3><span style="color: var(--gray-900);">Burg</span><span class="gradient-text-gold">hof</span></h3>
-<p class="project-desc">
-Vollständige Website für das Burghof Hotel und Eventlocation in Brombachtal –
-inklusive SEO-Optimierung mit Schema.org, lokalem Keyword-Targeting und
-Unterseiten für alle 44 Zimmer, Seminarräume und Eventangebote.
-</p>
-<div class="project-features">
-<div class="feature">Website-Entwicklung</div>
-<div class="feature">SEO-Optimierung</div>
-<div class="feature">Schema.org</div>
-<div class="feature">16 Seiten</div>
-<div class="feature">Lokales SEO</div>
-<div class="feature">Sitemap & robots.txt</div>
-</div>
-<span class="project-status status-live">Live Website</span>
-</div>
-</a>
+  <!-- Burghof -->
+  <div class="pcard" data-category="web">
+    <div class="pcard-banner pcard-burghof">
+      <span class="pcard-status-badge">Live Website</span>
+    </div>
+    <div class="pcard-body">
+      <button class="pcard-toggle" aria-expanded="false">
+        <div class="pcard-top">
+          <div class="pcard-title-block">
+            <h3 class="pcard-title"><span>Burg</span><span class="pcard-title-accent" style="color:#d4af37;">hof</span></h3>
+            <span class="pbadge pbadge-web">Website</span>
+          </div>
+          <span class="pcard-chevron">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <p class="pcard-meta">Website & SEO · Hotel & Eventlocation · Odenwald</p>
+      </button>
+      <div class="pcard-expand">
+        <div class="pcard-expand-inner">
+          <p class="pcard-desc">Vollständige Website für das Burghof Hotel in Brombachtal – 16 Seiten, Schema.org, lokales SEO-Targeting und Unterseiten für alle 44 Zimmer, Seminarräume und Eventangebote.</p>
+          <div class="pcard-tags">
+            <span class="ptag">Website-Entwicklung</span>
+            <span class="ptag">SEO-Optimierung</span>
+            <span class="ptag">Schema.org</span>
+            <span class="ptag">Lokales SEO</span>
+          </div>
+          <a href="https://burghof-odenwald.de" target="_blank" rel="noopener" class="pcard-link">Zum Projekt <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- FairwayService -->
-<a href="/fairwayservice.html" class="project">
-<div class="project-banner project-banner-fairway">
-<img src="/fairwayservice/hero-banner.jpg" alt="FairwayService App – Golf Club Management iOS Android" />
-</div>
-<div class="project-body">
-<p class="project-meta">Golf Club Management · iOS & Android</p>
-<h3><span style="color: var(--gray-900);">Fairway</span><span class="gradient-text-green">Service</span></h3>
-<p class="project-desc">
-Eine umfassende Management-Plattform für Golfclubs. Von mobilen Bestellungen
-über Echtzeit-Updates bis hin zu einem vollständigen Admin-Dashboard –
-alles optimiert für den täglichen Clubbetrieb.
-</p>
-<div class="project-features">
-<div class="feature">Mobile Bestellungen</div>
-<div class="feature">Live Updates</div>
-<div class="feature">Problem-Meldungen</div>
-<div class="feature">Admin Dashboard</div>
-<div class="feature">Push Notifications</div>
-<div class="feature">QR-Code System</div>
-</div>
-<span class="project-status status-live">Live on App Store</span>
-</div>
-</a>
+  <!-- FairwayService -->
+  <div class="pcard" data-category="app">
+    <div class="pcard-banner pcard-fairway">
+      <img src="/fairwayservice/hero-banner.jpg" alt="FairwayService App – Golf Club Management" loading="lazy">
+      <span class="pcard-status-badge">Live on App Store</span>
+    </div>
+    <div class="pcard-body">
+      <button class="pcard-toggle" aria-expanded="false">
+        <div class="pcard-top">
+          <div class="pcard-title-block">
+            <h3 class="pcard-title"><span>Fairway</span><span class="pcard-title-accent" style="color:#16A34A;">Service</span></h3>
+            <span class="pbadge pbadge-app">App</span>
+          </div>
+          <span class="pcard-chevron">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <p class="pcard-meta">iOS & Android · Golf Club Management</p>
+      </button>
+      <div class="pcard-expand">
+        <div class="pcard-expand-inner">
+          <p class="pcard-desc">Management-Plattform für Golfclubs – mobile Bestellungen, Echtzeit-Updates, Problem-Meldungen und vollständiges Admin-Dashboard für den täglichen Clubbetrieb.</p>
+          <div class="pcard-tags">
+            <span class="ptag">iOS & Android</span>
+            <span class="ptag">Admin Dashboard</span>
+            <span class="ptag">Push Notifications</span>
+            <span class="ptag">QR-Code</span>
+          </div>
+          <a href="/fairwayservice.html" class="pcard-link">Zum Projekt <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- NotAlone -->
-<a href="/notalone/" class="project">
-<div class="project-banner project-banner-notalone">
-<img src="/notalone/hero-banner.jpg" alt="NotAlone Safety App – iOS Android" />
-</div>
-<div class="project-body">
-<p class="project-meta">Safety & Community · iOS & Android</p>
-<h3><span style="color: var(--gray-900);">Not</span><span class="gradient-text-red">Alone</span></h3>
-<p class="project-desc">
-Eine Privacy-First Sicherheits-App für stille Warnsignale in der Nachbarschaft
-und privaten Gruppen. Mit Sprachmemos, Reaktionen und ICE-Benachrichtigungen –
-datensparsam und ohne Werbung.
-</p>
-<div class="project-features">
-<div class="feature">Proximity Alerts</div>
-<div class="feature">Private Groups</div>
-<div class="feature">Voice Memos</div>
-<div class="feature">Emergency Contacts</div>
-</div>
-<span class="project-status status-live">Live on App Store</span>
-</div>
-</a>
+  <!-- NotAlone -->
+  <div class="pcard" data-category="app">
+    <div class="pcard-banner pcard-notalone">
+      <img src="/notalone/hero-banner.jpg" alt="NotAlone Safety App" loading="lazy">
+      <span class="pcard-status-badge">Live on App Store</span>
+    </div>
+    <div class="pcard-body">
+      <button class="pcard-toggle" aria-expanded="false">
+        <div class="pcard-top">
+          <div class="pcard-title-block">
+            <h3 class="pcard-title"><span>Not</span><span class="pcard-title-accent" style="color:#EF4444;">Alone</span></h3>
+            <span class="pbadge pbadge-app">App</span>
+          </div>
+          <span class="pcard-chevron">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <p class="pcard-meta">iOS & Android · Safety & Community</p>
+      </button>
+      <div class="pcard-expand">
+        <div class="pcard-expand-inner">
+          <p class="pcard-desc">Privacy-First Sicherheits-App für stille Warnsignale in der Nachbarschaft und privaten Gruppen. Sprachmemos, Reaktionen und ICE-Benachrichtigungen – ohne Werbung.</p>
+          <div class="pcard-tags">
+            <span class="ptag">Privacy-First</span>
+            <span class="ptag">Proximity Alerts</span>
+            <span class="ptag">Voice Memos</span>
+            <span class="ptag">Private Groups</span>
+          </div>
+          <a href="/notalone/" class="pcard-link">Zum Projekt <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- Spenglerei Wood -->
-<a href="https://noeffen.github.io/Spenglerei-Wood/index.html" target="_blank" rel="noopener" class="project">
-<div class="project-banner project-banner-spenglerei">
-<img src="/spenglerei-wood/hero-banner.jpg?v=1" alt="Spenglerei Wood – Handwerker Website Odenwald" />
-</div>
-<div class="project-body">
-<p class="project-meta">Handwerk & Gewerbe · Website</p>
-<h3><span style="color: var(--gray-900);">Spenglerei </span><span class="gradient-text-stone">Wood</span></h3>
-<p class="project-desc">
-Eine moderne Unternehmenswebsite für einen Spenglereibetrieb – mit klarer
-Leistungsübersicht, Teamseite und Kontaktformular. Optimiert für mobile
-Endgeräte und lokale Auffindbarkeit im Odenwald.
-</p>
-<div class="project-features">
-<div class="feature">Responsive Design</div>
-<div class="feature">Leistungsübersicht</div>
-<div class="feature">Kontaktformular</div>
-<div class="feature">Lokales SEO</div>
-</div>
-<span class="project-status status-live">Live Website</span>
-</div>
-</a>
+  <!-- Spenglerei Wood -->
+  <div class="pcard" data-category="web">
+    <div class="pcard-banner pcard-spenglerei">
+      <img src="/spenglerei-wood/hero-banner.jpg?v=1" alt="Spenglerei Wood Website" loading="lazy">
+      <span class="pcard-status-badge">Live Website</span>
+    </div>
+    <div class="pcard-body">
+      <button class="pcard-toggle" aria-expanded="false">
+        <div class="pcard-top">
+          <div class="pcard-title-block">
+            <h3 class="pcard-title"><span>Spenglerei</span> <span class="pcard-title-accent" style="color:#78716C;">Wood</span></h3>
+            <span class="pbadge pbadge-web">Website</span>
+          </div>
+          <span class="pcard-chevron">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <p class="pcard-meta">Website · Handwerk & Gewerbe · Odenwald</p>
+      </button>
+      <div class="pcard-expand">
+        <div class="pcard-expand-inner">
+          <p class="pcard-desc">Moderne Unternehmenswebsite für einen Spenglereibetrieb – Leistungsübersicht, Teamseite und Kontaktformular. Mobile-First und lokal auffindbar im Odenwald.</p>
+          <div class="pcard-tags">
+            <span class="ptag">Responsive Design</span>
+            <span class="ptag">Kontaktformular</span>
+            <span class="ptag">Lokales SEO</span>
+            <span class="ptag">Mobile-First</span>
+          </div>
+          <a href="https://noeffen.github.io/Spenglerei-Wood/index.html" target="_blank" rel="noopener" class="pcard-link">Zum Projekt <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
+</div><!-- /portfolio-grid -->
 </div>
 </section>
 
@@ -741,5 +1249,35 @@ Ich nehme Projekte exklusiv und auf Anfrage an – schreiben Sie mir.
 </p>
 </div>
 </footer>
+
+<script>
+// Card expand/collapse
+document.querySelectorAll('.pcard-toggle').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var card = this.closest('.pcard');
+    var isOpen = card.classList.contains('open');
+    card.classList.toggle('open', !isOpen);
+    this.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var filter = this.dataset.filter;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    document.querySelectorAll('.pcard').forEach(function(card) {
+      var show = filter === 'all' || card.dataset.category === filter;
+      card.classList.toggle('hidden', !show);
+      if (!show) {
+        card.classList.remove('open');
+        card.querySelector('.pcard-toggle').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+});
+</script>
+
 </body>
 </html>
