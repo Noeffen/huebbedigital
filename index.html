@@ -536,6 +536,7 @@ h2 { font-size: 36px; }
 .project h3 { font-size: 26px; }
 .project-features { grid-template-columns: 1fr; }
 .about-content { padding: 40px; }
+.about-content img { width: 140px !important; height: 140px !important; }
 }
 @media (max-width: 480px) {
 nav ul { display: none; }
@@ -1199,28 +1200,29 @@ Projekte entstehen exklusiv und individuell, auf Anfrage.
 </section>
 
 <!-- About -->
-<section id="about">
-<div class="container">
-<h2>About</h2>
-<div class="about-content">
-<h3>Hi, ich bin Christian – aus dem Odenwald</h3>
-<p class="about-intro">
-Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen, die online besser gefunden werden wollen.
-Mit Sitz im Odenwald arbeite ich für Kunden im Rhein-Main-Gebiet und deutschlandweit – exklusiv,
-individuell und auf Anfrage. Jedes Projekt begleite ich von der ersten Idee über Design und
-Development bis zum Launch. Keine Massenware, kein Baukastensystem.
-</p>
-<ul>
-<li>Website-Entwicklung – individuell, schnell und ohne Templates</li>
-<li>SEO-Optimierung – technisch und inhaltlich, mit Schema.org und lokalem Targeting</li>
-<li>Native iOS & Android Development (Swift, Kotlin)</li>
-<li>Backend Infrastructure mit Firebase & Cloud Functions</li>
-<li>UI/UX Design & Prototyping</li>
-<li>Von Konzept bis Launch – alles aus einer Hand</li>
-</ul>
+<div class="about-content" style="display:flex; gap:44px; align-items:flex-start; flex-wrap:wrap;">
+  <img src="/golf.jpg" alt="Christian Huebbe auf dem Golfplatz" 
+       style="width:200px; height:200px; object-fit:cover; border-radius:16px; flex-shrink:0; box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+  <div style="flex:1; min-width:280px;">
+    <h3>Hi, ich bin Christian – aus dem Odenwald</h3>
+    <p class="about-intro">
+      Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen, die online besser gefunden werden wollen.
+      Mit Sitz im Odenwald arbeite ich für Kunden im Rhein-Main-Gebiet und deutschlandweit – exklusiv,
+      individuell und auf Anfrage. Jedes Projekt begleite ich von der ersten Idee über Design und
+      Development bis zum Launch. Keine Massenware, kein Baukastensystem. Privat findet man mich am liebsten
+      auf dem Golfplatz oder auf dem Motorrad – beides ist für mich der perfekte Ausgleich zur Arbeit am Bildschirm.
+    </p>
+    <ul>
+      <li>Website-Entwicklung – individuell, schnell und ohne Templates</li>
+      <li>SEO-Optimierung – technisch und inhaltlich, mit Schema.org und lokalem Targeting</li>
+      <li>Native iOS & Android Development (Swift, Kotlin)</li>
+      <li>Backend Infrastructure mit Firebase & Cloud Functions</li>
+      <li>UI/UX Design & Prototyping</li>
+      <li>Von Konzept bis Launch – alles aus einer Hand</li>
+    </ul>
+  </div>
 </div>
-</div>
-</section>
+
 
 <!-- Contact -->
 <section id="contact" class="contact">
