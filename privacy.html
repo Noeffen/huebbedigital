@@ -56,8 +56,13 @@
     <ul>
       <li>Die Website <strong>huebbedigital.com</strong> und alle Unterseiten</li>
       <li>Die mobile App <strong>FairwayService</strong> (iOS & Android)</li>
-      <li>Die mobile App <strong>NotAlone</strong> (iOS & Android)</li>
+      <li>Die mobile App <strong>NotAlone</strong> (iOS & Android) – <strong>eingestellt, siehe Hinweis unten</strong></li>
     </ul>
+
+    <div class="highlight">
+      <strong>Hinweis: NotAlone wurde eingestellt</strong>
+      <p>Die App <strong>NotAlone</strong> ist seit August 2026 nicht mehr im Google Play Store und App Store verfügbar und wurde vollständig aus den jeweiligen Konsolen gelöscht. Alle im Rahmen von NotAlone erhobenen personenbezogenen Daten (Benutzerkonten, Signale, Standortdaten, Sprachmemos, Notfallkontakte, Gruppenmitgliedschaften und zugehörige Push-Token) wurden unwiderruflich aus unserem Backend gelöscht. Es findet keine weitere Datenverarbeitung im Zusammenhang mit NotAlone mehr statt. Die Angaben zu NotAlone in dieser Datenschutzerklärung werden ausschließlich aus Transparenzgründen dokumentiert, um nachzuvollziehen, welche Daten während der Betriebszeit der App verarbeitet wurden.</p>
+    </div>
 
     <h2>3. Allgemeine Informationen zur Datenverarbeitung</h2>
     
@@ -188,15 +193,10 @@
       <li>Push-Token für Benachrichtigungen</li>
     </ul>
 
-    <h4>NotAlone speichert:</h4>
-    <ul>
-      <li>Benutzerprofil (anonymisierte Nutzer-ID)</li>
-      <li>Signale (Text, Standortdaten, Zeitstempel, Sichtbarkeit)</li>
-      <li>Gruppenmitgliedschaften</li>
-      <li>Notfallkontakte (E-Mail-Adressen, verschlüsselt)</li>
-      <li>Push-Token</li>
-      <li>Präferenzen (Radius, Benachrichtigungen)</li>
-    </ul>
+    <div class="highlight">
+      <strong>NotAlone (eingestellt):</strong>
+      <p>Bis zur Einstellung der App im August 2026 speicherte NotAlone Benutzerprofile (anonymisierte Nutzer-ID), Signale (Text, Standortdaten, Zeitstempel, Sichtbarkeit), Gruppenmitgliedschaften, Notfallkontakte (verschlüsselt), Push-Token sowie Präferenzen. Sämtliche dieser Daten wurden zum Zeitpunkt der Einstellung vollständig und unwiderruflich aus der Datenbank gelöscht. Es werden keine NotAlone-Daten mehr verarbeitet oder gespeichert.</p>
+    </div>
 
     <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO</p>
     <p><strong>Speicherort:</strong> EU (europe-west3)</p>
@@ -210,17 +210,14 @@
       <li>Profilbilder (optional)</li>
     </ul>
 
-    <h4>NotAlone:</h4>
-    <ul>
-      <li>Sprachmemos (Audio-Aufnahmen)</li>
-      <li>Temporäre PDF-Dateien</li>
-    </ul>
+    <div class="highlight">
+      <strong>NotAlone (eingestellt):</strong>
+      <p>Bis zur Einstellung speicherte NotAlone Sprachmemos (Audio-Aufnahmen) und temporäre PDF-Dateien. Diese Inhalte wurden gemäß der ursprünglichen Löschfristen automatisch entfernt bzw. spätestens bei Einstellung der App vollständig gelöscht.</p>
+    </div>
 
-    <p><strong>Speicherdauer:</strong></p>
+    <p><strong>Speicherdauer (FairwayService):</strong></p>
     <ul>
       <li>Problem-Fotos: 90 Tage nach Erledigung</li>
-      <li>Sprachmemos: 10 Tage automatische Löschung</li>
-      <li>PDF-Exporte: Sofortige Löschung nach Download</li>
     </ul>
 
     <h3>6.4 Cloud Functions</h3>
@@ -238,14 +235,14 @@
     <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
     <p><strong>Widerruf:</strong> Jederzeit in den App-Einstellungen möglich</p>
 
-    <h2>7. Standortdaten (NotAlone)</h2>
-    
+    <h2>7. Standortdaten (ehemals NotAlone)</h2>
+
     <div class="highlight">
-      <strong>Besonders sensible Daten</strong>
-      <p>Standortdaten gehören zu den besonders schützenswerten Daten. Wir verarbeiten diese nur mit Ihrer ausdrücklichen Einwilligung.</p>
+      <strong>App eingestellt – Abschnitt nur zu Dokumentationszwecken</strong>
+      <p>Die App NotAlone, für die Standortdaten verarbeitet wurden, ist seit August 2026 eingestellt. Es werden aktuell <strong>keine Standortdaten mehr verarbeitet</strong>. Der folgende Abschnitt beschreibt ausschließlich, welche Standortdaten während der Betriebszeit der App verarbeitet wurden, und dient der Transparenz.</p>
     </div>
 
-    <h3>7.1 Arten von Standortdaten</h3>
+    <h3>7.1 Arten von Standortdaten (historisch)</h3>
     
     <h4>Präziser Standort:</h4>
     <ul>
@@ -261,52 +258,43 @@
       <li>Verwendung: Nicht-präzise Signale</li>
     </ul>
 
-    <h3>7.2 Verwendungszwecke</h3>
+    <h3>7.2 Ehemalige Verwendungszwecke</h3>
     <ul>
-      <li><strong>Signal-Versand:</strong> Standort wird bei Erstellung erfasst</li>
-      <li><strong>Umkreis-Benachrichtigungen:</strong> Andere Nutzer im Umkreis werden benachrichtigt (optional)</li>
+      <li><strong>Signal-Versand:</strong> Standort wurde bei Erstellung erfasst</li>
+      <li><strong>Umkreis-Benachrichtigungen:</strong> Andere Nutzer im Umkreis wurden benachrichtigt (optional)</li>
       <li><strong>Live-Tracking:</strong> Kontinuierliche Standortübertragung für Tracking-Links</li>
     </ul>
 
-    <h3>7.3 Standort-Einstellungen</h3>
-    <p>Sie können wählen:</p>
-    <ul>
-      <li><strong>"Niemals":</strong> Keine Standortdaten</li>
-      <li><strong>"Während der Nutzung":</strong> Nur bei aktiver App</li>
-      <li><strong>"Immer":</strong> Auch im Hintergrund (nur für Live-Tracking)</li>
-    </ul>
-
-    <p><strong>Sichtbarkeitsoptionen:</strong></p>
-    <ul>
-      <li><strong>Öffentlich:</strong> Alle im Radius sehen Signal</li>
-      <li><strong>Nur Gruppen:</strong> Nur Gruppenmitglieder</li>
-      <li><strong>Nur Notfallkontakte:</strong> Niemand sieht Signal (nur E-Mail)</li>
-    </ul>
-
-    <h3>7.4 Speicherdauer</h3>
+    <h3>7.3 Ehemalige Speicherdauer</h3>
     <ul>
       <li>Signale: Maximal 10 Minuten (automatisch gelöscht)</li>
       <li>Live-Tracking: Nur während aktiver Session</li>
-      <li>Standort-Historie: Wird NICHT gespeichert</li>
+      <li>Standort-Historie: Wurde NICHT gespeichert</li>
     </ul>
 
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
-    <p><strong>Widerruf:</strong> Jederzeit in iOS/Android-Einstellungen</p>
+    <p><strong>Rechtsgrundlage (historisch):</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</p>
+    <p><strong>Status:</strong> Alle Standortdaten wurden bei Einstellung der App vollständig gelöscht. Es findet keine weitere Verarbeitung statt.</p>
 
-    <h2>8. E-Mail-Versand (Brevo)</h2>
-    <p>Für Notfall-E-Mails (NotAlone) nutzen wir <strong>Brevo</strong> (Brevo SAS, 7 rue de Madrid, 75008 Paris, Frankreich).</p>
+    <h2>8. E-Mail-Versand (Brevo) – nicht mehr im Einsatz</h2>
 
-    <p><strong>Verarbeitete Daten:</strong></p>
+    <div class="highlight">
+      <strong>Dienst nicht mehr in Verwendung</strong>
+      <p>Brevo wurde ausschließlich für Notfall-E-Mails innerhalb von NotAlone genutzt. Seit Einstellung der App im August 2026 nutzen wir Brevo nicht mehr, und es werden keine Daten mehr an Brevo übermittelt. Die folgenden Angaben beschreiben die frühere Nutzung zu Dokumentationszwecken.</p>
+    </div>
+
+    <p>Für Notfall-E-Mails (NotAlone) nutzten wir <strong>Brevo</strong> (Brevo SAS, 7 rue de Madrid, 75008 Paris, Frankreich).</p>
+
+    <p><strong>Ehemals verarbeitete Daten:</strong></p>
     <ul>
       <li>E-Mail-Adresse des Empfängers (Notfallkontakt)</li>
       <li>Nachrichteninhalt (Signaltext, Tracking-Link)</li>
       <li>Versandzeitpunkt</li>
     </ul>
 
-    <p><strong>Zweck:</strong> Versand von Notfall-Benachrichtigungen</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO</p>
+    <p><strong>Ehemaliger Zweck:</strong> Versand von Notfall-Benachrichtigungen</p>
+    <p><strong>Rechtsgrundlage (historisch):</strong> Art. 6 Abs. 1 lit. b DSGVO</p>
     <p><strong>Speicherort:</strong> EU (Frankreich)</p>
-    <p><strong>Speicherdauer:</strong> 7 Tage (Versandprotokoll)</p>
+    <p><strong>Ehemalige Speicherdauer:</strong> 7 Tage (Versandprotokoll) – Protokolle sind inzwischen abgelaufen und gelöscht</p>
 
     <h2>9. Ihre Rechte als betroffene Person</h2>
 
@@ -320,10 +308,10 @@
     <p>Sie können Ihren Account direkt in der App löschen:</p>
     <ul>
       <li><strong>FairwayService:</strong> Einstellungen → Account löschen</li>
-      <li><strong>NotAlone:</strong> Einstellungen → Account löschen</li>
     </ul>
+    <p><strong>NotAlone:</strong> Die App ist seit August 2026 eingestellt. Alle Nutzerkonten und zugehörigen Daten wurden bereits vollständig gelöscht, eine gesonderte Löschanfrage ist daher nicht mehr erforderlich. Falls Sie dennoch Fragen zu ehemals gespeicherten Daten haben, kontaktieren Sie uns gerne unter <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a>.</p>
     
-    <p>Bei Account-Löschung werden <strong>unwiderruflich gelöscht</strong>:</p>
+    <p>Bei Account-Löschung (FairwayService) werden <strong>unwiderruflich gelöscht</strong>:</p>
     <ul>
       <li>Ihr Benutzerkonto und Authentifizierungsdaten</li>
       <li>Alle persönlichen Daten in der Datenbank</li>
@@ -409,8 +397,8 @@
           <td>USA (Standardvertragsklauseln)</td>
         </tr>
         <tr>
-          <td>Brevo SAS</td>
-          <td>E-Mail-Versand</td>
+          <td>Brevo SAS <em>(nicht mehr im Einsatz)</em></td>
+          <td>E-Mail-Versand (ehemals, für NotAlone)</td>
           <td>EU (Frankreich)</td>
         </tr>
         <tr>
