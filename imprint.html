@@ -38,7 +38,12 @@
       border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 80px; }
-    .brand { font-size: 18px; font-weight: 700; color: var(--gray-900); text-decoration: none; }
+    .brand { font-size: 18px; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
+    .brand-text { color: var(--gray-900); }
+    .brand-gradient {
+      background: linear-gradient(135deg, var(--blue-500) 0%, #7C3AED 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
     .btn {
       padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
       text-decoration: none; color: var(--gray-600); border: 1px solid rgba(0,0,0,0.08);
@@ -70,7 +75,9 @@
   <header>
     <div class="container">
       <nav class="nav">
-        <a href="/" class="brand">Huebbe Digital</a>
+        <a href="/" class="brand">
+          <span class="brand-text">Huebbe</span><span class="brand-gradient">Digital</span>
+        </a>
         <a href="/" class="btn">&larr; Zurück</a>
       </nav>
     </div>
