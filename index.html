@@ -148,6 +148,47 @@ box-sizing: border-box;
 html {
 scroll-behavior: smooth;
 }
+
+/* Hintergrund-Orbs */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle at center, rgba(59,130,246,0.13) 0%, transparent 70%);
+  top: -200px; left: -200px;
+}
+
+.orb-2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle at center, rgba(124,58,237,0.10) 0%, transparent 70%);
+  top: 30%; right: -180px;
+}
+
+.orb-3 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle at center, rgba(59,130,246,0.08) 0%, transparent 70%);
+  bottom: 5%; left: 5%;
+}
+
+.orb-4 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle at center, rgba(124,58,237,0.07) 0%, transparent 70%);
+  top: 60%; left: 40%;
+}
+
+body > *:not(.bg-scene) { position: relative; z-index: 1; }
 body {
 font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
@@ -797,6 +838,14 @@ nav ul { display: none; }
 </style>
 </head>
 <body>
+
+<!-- Dezenter Hintergrund -->
+<div class="bg-scene" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
 <header>
 <div class="container">
 <nav class="nav">
@@ -1164,6 +1213,29 @@ document.querySelectorAll('.filter-btn').forEach(function(btn) {
     banner.classList.remove('visible');
   });
 })();
+
+// Parallax Orbs
+(function() {
+  var orb1 = document.querySelector('.orb-1');
+  var orb2 = document.querySelector('.orb-2');
+  var orb3 = document.querySelector('.orb-3');
+  var orb4 = document.querySelector('.orb-4');
+  var ticking = false;
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        var y = window.scrollY;
+        orb1.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+        orb2.style.transform = 'translateY(' + (y * -0.09) + 'px)';
+        orb3.style.transform = 'translateY(' + (y * 0.07) + 'px)';
+        orb4.style.transform = 'translateY(' + (y * -0.05) + 'px)';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}());
 
 // Contact toggle
 var contactOpen = false;
