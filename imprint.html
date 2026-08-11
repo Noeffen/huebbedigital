@@ -32,9 +32,21 @@
     footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem;opacity:.3;}
     footer a{color:inherit;text-decoration:none;margin-left:1.5rem;}
     @media(max-width:600px){nav{padding:1.2rem 1.5rem;}main{padding:3rem 1.5rem;}footer{flex-direction:column;gap:.8rem;}.content{padding:1.5rem;}}
+  
+    /* Custom cursor */
+    .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
+    .cursor.hover { width: 12px; height: 12px; }
+    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
+    .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
+    @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
   </style>
 </head>
 <body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="spotlight" id="spotlight"></div>
+
 <canvas id="scene"></canvas>
 <nav>
   <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
@@ -117,6 +129,24 @@ function draw(){
 }
 function loop(){draw();requestAnimationFrame(loop);}
 loop();
+
+// Custom cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),spot=document.getElementById('spotlight');
+if(cur){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+    spot.style.left=mx+'px';spot.style.top=my+'px';
+  });
+  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  animRing();
+  document.querySelectorAll('a,button,.check-card,.pill,.badge').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover');});
+    el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover');});
+  });
+}
+
 </script>
 </body>
 </html>
