@@ -120,7 +120,7 @@
 
     /* FORM */
     .form-wrap{max-width:680px;margin:0 auto;}
-    .form-box{background:rgba(255,255,255,.04);border:1px solid rgba(128,128,128,.2);border-radius:20px;padding:2.5rem;margin-top:3rem;}
+    .form-box{background:rgba(17,17,17,.92);backdrop-filter:blur(12px);border:1px solid rgba(128,128,128,.2);border-radius:20px;padding:2.5rem;margin-top:3rem;}
     .form-box h3{margin-bottom:.5rem;}
     .form-sub{font-size:.9rem;opacity:.5;line-height:1.7;margin-bottom:2rem;}
     .field{margin-bottom:1.2rem;}
@@ -359,16 +359,17 @@ function getProgress(){
     if(sy>=ts&&sy<te){
       const t=clamp((sy-ts)/(te-ts),0,1);
       const bg=mixHex(c.dataset.bg,n.dataset.bg,t);
-      return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(sections.length-1),isDark:hexToRgb(bg)[0]<128};
+      const brightness=lerp(getBrightness(c.dataset.bg),getBrightness(n.dataset.bg),t);
+      return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(sections.length-1),brightness};
     }
   }
   for(let i=sections.length-1;i>=0;i--){
     if(sy>=sections[i].offsetTop-wh*.4){
       const bg=sections[i].dataset.bg;
-      return{bg,col:sections[i].dataset.color,t:i/(sections.length-1),isDark:hexToRgb(bg)[0]<128};
+      return{bg,col:sections[i].dataset.color,t:i/(sections.length-1),brightness:getBrightness(bg)};
     }
   }
-  return{bg:'#111111',col:'#ffffff',t:0,isDark:true};
+  return{bg:'#111111',col:'#ffffff',t:0,brightness:0};
 }
 
 // Dot data points (static positions on rings)
@@ -381,12 +382,17 @@ for(let ring=0;ring<4;ring++){
 }
 
 let tick=0;
+function getBrightness(hex){ const[r,g,b]=hexToRgb(hex); return(r+g+b)/(255*3); }
 function draw(){
   const W=canvas.width,H=canvas.height,prog=getProgress();
   ctx.fillStyle=prog.bg; ctx.fillRect(0,0,W,H);
-  const cx=W*.5,cy=H*.5,isDark=prog.isDark;
-  const vis=isDark?.55:.08;
-  const baseR=Math.min(W,H)*.32;
+  // Position: top-right → bottom-left based on scroll
+  const scrollT=prog.t;
+  const cx=lerp(W*0.78, W*0.22, scrollT);
+  const cy=lerp(H*0.28, H*0.72, scrollT);
+  const brightness=prog.brightness||0;
+  const vis=lerp(0.55,0.08,brightness);
+  const baseR=Math.min(W,H)*.20;
   const sweep=tick*.018; // sweep arm speed
 
   // Concentric rings
@@ -400,7 +406,7 @@ function draw(){
     g.addColorStop(0,`rgba(59,130,246,${alpha})`);
     g.addColorStop(1,`rgba(124,58,237,${alpha})`);
     ctx.strokeStyle=g;
-    ctx.lineWidth=isDark?1.2:.6;
+    ctx.lineWidth=lerp(1.2,.6,brightness);
     ctx.stroke();
   });
 
@@ -427,10 +433,10 @@ function draw(){
   ctx.moveTo(0,0);
   ctx.lineTo(baseR,0);
   const sg=ctx.createLinearGradient(0,0,baseR,0);
-  sg.addColorStop(0,`rgba(59,130,246,${isDark?.6:.12})`);
+  sg.addColorStop(0,`rgba(59,130,246,${lerp(.6,.12,brightness)})`);
   sg.addColorStop(1,`rgba(124,58,237,0)`);
   ctx.strokeStyle=sg;
-  ctx.lineWidth=isDark?1.5:.8;
+  ctx.lineWidth=lerp(1.5,.8,brightness);
   ctx.stroke();
   // Sweep glow trail (arc)
   ctx.beginPath();
@@ -439,7 +445,7 @@ function draw(){
   ctx.closePath();
   const trailGrad=ctx.createLinearGradient(-baseR*.3,-baseR*.3,baseR,0);
   trailGrad.addColorStop(0,'rgba(59,130,246,0)');
-  trailGrad.addColorStop(1,`rgba(59,130,246,${isDark?.08:.02})`);
+  trailGrad.addColorStop(1,`rgba(59,130,246,${lerp(.08,.02,brightness)})`);
   ctx.fillStyle=trailGrad;
   ctx.fill();
   ctx.restore();
@@ -453,8 +459,8 @@ function draw(){
     // Check if near sweep arm
     const normAngle=((d.angle-sweep)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
     const nearSweep=normAngle<.4;
-    const dotAlpha=isDark?(nearSweep?.9:.3):(nearSweep?.15:.05);
-    const dotR=isDark?(nearSweep?3.5:2):(nearSweep?2:1.2);
+    const dotAlpha=nearSweep?lerp(.9,.15,brightness):lerp(.3,.05,brightness);
+    const dotR=nearSweep?lerp(3.5,2,brightness):lerp(2,1.2,brightness);
     ctx.beginPath();
     ctx.arc(x,y,dotR,0,Math.PI*2);
     const dg=ctx.createRadialGradient(x,y,0,x,y,dotR*2);
@@ -463,7 +469,7 @@ function draw(){
     ctx.fillStyle=dg;
     ctx.fill();
     // Glow when near sweep
-    if(nearSweep&&isDark){
+    if(nearSweep&&brightness<.3){
       ctx.beginPath();
       ctx.arc(x,y,8,0,Math.PI*2);
       const gg=ctx.createRadialGradient(x,y,0,x,y,8);
@@ -478,7 +484,7 @@ function draw(){
   ctx.beginPath();
   ctx.arc(cx,cy,3,0,Math.PI*2);
   const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,20);
-  cg.addColorStop(0,`rgba(99,102,241,${isDark?.7:.15})`);
+  cg.addColorStop(0,`rgba(99,102,241,${lerp(.7,.15,brightness)})`);
   cg.addColorStop(1,'rgba(99,102,241,0)');
   ctx.fillStyle=cg;
   ctx.fill();
