@@ -303,7 +303,7 @@
         <div class="divider reveal"></div>
         <span class="kicker reveal d1">Über mich</span>
         <h2 class="reveal d2">Christian Hübbe –<br><span class="grad-text">aus dem Odenwald.</span></h2>
-        <p class="lead reveal d3">Ich bin kein klassischer Webdesigner. Vor HuebbeDigital war ich 9 Jahre lang Unternehmensberater – mit einem MBA in Digitaler Transformation.</p>
+        <p class="lead reveal d3">Ich bin kein klassischer Webdesigner. Ich bin seit 9 Jahren Unternehmensberater – mit einem MBA in Digitaler Transformation.</p>
         <p class="body-text reveal d4">Das bedeutet: Ich verstehe nicht nur wie eine Website aussehen soll, sondern was sie für Ihr Unternehmen leisten muss. Ich begleite Projekte auf allen Ebenen – von der strategischen Positionierung bis zur technischen Umsetzung. Persönlich, ohne Baukastensystem, mit Fokus auf Performance und schnelle Ladezeiten – auf Anfrage.</p>
         <div class="creds reveal d4">
           <div class="cred"><div class="cred-dot"></div><span>9 Jahre Unternehmensberater</span></div>
@@ -337,8 +337,8 @@
 
       <!-- Burghof -->
       <div class="pcard">
-        <div class="pcard-img"><div class="pcard-img-placeholder grad-text">BH</div></div>
-        <div class="pcard-body">
+        <div class="pcard-body" style="padding-top:2rem;">
+          <div style="font-size:0.65rem;font-weight:800;letter-spacing:.2em;color:#3B82F6;margin-bottom:1.2rem;">01</div>
           <div class="pcard-meta">Website · Hotel & Events · Odenwald</div>
           <div class="pcard-title"><span>Burghof</span> Brombachtal</div>
           <p class="pcard-desc">Vollständige Website für Hotel & Eventlocation – 24 Seiten, Restaurant-Reservierung, Teamseite, Radfahren, Wandern, Golf und Unterseiten für alle 44 Zimmer und 7 Eventlocations.</p>
@@ -354,8 +354,8 @@
 
       <!-- FairwayService -->
       <div class="pcard">
-        <div class="pcard-img"><div class="pcard-img-placeholder grad-text">FS</div></div>
-        <div class="pcard-body">
+        <div class="pcard-body" style="padding-top:2rem;">
+          <div style="font-size:0.65rem;font-weight:800;letter-spacing:.2em;color:#3B82F6;margin-bottom:1.2rem;">02</div>
           <div class="pcard-meta">App · Golf · iOS & Android</div>
           <div class="pcard-title"><span>FairwayService</span> App</div>
           <p class="pcard-desc">Native Golf Club Management App für iOS und Android. Buchungssystem, Mitgliederverwaltung, Score-Tracking und Push-Benachrichtigungen. Backend mit Firebase.</p>
@@ -370,8 +370,8 @@
 
       <!-- Spenglerei Wood -->
       <div class="pcard">
-        <div class="pcard-img"><div class="pcard-img-placeholder grad-text">SW</div></div>
-        <div class="pcard-body">
+        <div class="pcard-body" style="padding-top:2rem;">
+          <div style="font-size:0.65rem;font-weight:800;letter-spacing:.2em;color:#3B82F6;margin-bottom:1.2rem;">03</div>
           <div class="pcard-meta">Website · Handwerk & Gewerbe · Aschaffenburg / Spessart</div>
           <div class="pcard-title"><span>Spenglerei</span> Wood</div>
           <p class="pcard-desc">Moderne Unternehmenswebsite für Spenglereibetrieb aus Johannesberg bei Aschaffenburg – Leistungsübersicht, Teamseite, Kontaktformular. Mobile-First und lokal auffindbar im Spessart.</p>
@@ -483,6 +483,7 @@ function mixHex(h1,h2,t){
   const[r1,g1,b1]=hexToRgb(h1),[r2,g2,b2]=hexToRgb(h2);
   return`rgb(${Math.round(lerp(r1,r2,t))},${Math.round(lerp(g1,g2,t))},${Math.round(lerp(b1,b2,t))})`;
 }
+function getBrightness(hex){ const[r,g,b]=hexToRgb(hex); return(r+g+b)/(255*3); }
 function getProgress(){
   const sy=window.scrollY,wh=window.innerHeight;
   for(let i=0;i<sections.length-1;i++){
@@ -491,23 +492,26 @@ function getProgress(){
     if(sy>=ts&&sy<te){
       const t=clamp((sy-ts)/(te-ts),0,1);
       const bg=mixHex(c.dataset.bg,n.dataset.bg,t);
-      return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(sections.length-1),isDark:hexToRgb(bg)[0]<128};
+      const brightness=lerp(getBrightness(c.dataset.bg),getBrightness(n.dataset.bg),t);
+      return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(sections.length-1),brightness};
     }
   }
   for(let i=sections.length-1;i>=0;i--){
     if(sy>=sections[i].offsetTop-wh*.4){
       const bg=sections[i].dataset.bg;
-      return{bg,col:sections[i].dataset.color,t:i/(sections.length-1),isDark:hexToRgb(bg)[0]<128};
+      return{bg,col:sections[i].dataset.color,t:i/(sections.length-1),brightness:getBrightness(bg)};
     }
   }
-  return{bg:'#111111',col:'#ffffff',t:0,isDark:true};
+  return{bg:'#111111',col:'#ffffff',t:0,brightness:0};
 }
 let tick=0;
 function draw(){
   const W=canvas.width,H=canvas.height,prog=getProgress();
   ctx.fillStyle=prog.bg; ctx.fillRect(0,0,W,H);
-  const cx=W*.5,cy=H*.5,scroll=prog.t,isDark=prog.isDark;
-  const baseR=Math.min(W,H)*.36,vis=isDark?.6:.1;
+  const cx=W*.5,cy=H*.5,scroll=prog.t;
+  const brightness=prog.brightness;
+  const vis=lerp(0.58,0.09,brightness);
+  const baseR=Math.min(W,H)*.36;
   const rot=scroll*Math.PI*3.5+tick*.0012,sides=6;
   function poly(r,angle,a,lw){
     ctx.beginPath();
@@ -534,20 +538,21 @@ function draw(){
     g.addColorStop(1,`rgba(124,58,237,${a})`);
     ctx.strokeStyle=g; ctx.lineWidth=.6; ctx.stroke();
   }
-  poly(baseR,rot,vis*.9,isDark?1.4:.8);
-  poly(baseR*.78,-rot*.65,vis*1.1,isDark?1.1:.6);
-  poly(baseR*.55,rot*1.25,vis*1.3,isDark?.9:.5);
-  poly(baseR*.33,-rot*1.7,vis*1.6,isDark?.7:.4);
-  poly(baseR*.15,rot*2.2,vis*2.,isDark?.5:.3);
+  const lw=lerp(1.4,0.8,brightness);
+  poly(baseR,rot,vis*.9,lw);
+  poly(baseR*.78,-rot*.65,vis*1.1,lerp(1.1,.6,brightness));
+  poly(baseR*.55,rot*1.25,vis*1.3,lerp(.9,.5,brightness));
+  poly(baseR*.33,-rot*1.7,vis*1.6,lerp(.7,.4,brightness));
+  poly(baseR*.15,rot*2.2,vis*2.,lerp(.5,.3,brightness));
   spokes(baseR,baseR*.78,rot,-rot*.65,vis*.55);
   spokes(baseR*.78,baseR*.55,-rot*.65,rot*1.25,vis*.4);
   spokes(baseR*.55,baseR*.33,rot*1.25,-rot*1.7,vis*.3);
   const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,baseR*.2);
-  cg.addColorStop(0,`rgba(99,102,241,${isDark?.4:.06})`);
+  cg.addColorStop(0,`rgba(99,102,241,${lerp(.4,.06,brightness)})`);
   cg.addColorStop(1,'rgba(99,102,241,0)');
   ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,baseR*.2,0,Math.PI*2); ctx.fill();
   const og=ctx.createRadialGradient(cx,cy,baseR*.5,cx,cy,baseR*1.6);
-  og.addColorStop(0,`rgba(59,130,246,${isDark?.07:.015})`);
+  og.addColorStop(0,`rgba(59,130,246,${lerp(.07,.015,brightness)})`);
   og.addColorStop(1,'rgba(0,0,0,0)');
   ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
   document.body.style.color=prog.col;
