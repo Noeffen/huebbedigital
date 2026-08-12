@@ -1,489 +1,626 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kostenlose Website-Analyse – HuebbeDigital | SEO & KI-Check</title>
-  <meta name="description" content="Kostenlose Website-Analyse mit KI: SEO, Ladezeit, Schema.org, Open Graph und mehr. Persönlich von HuebbeDigital aus dem Odenwald – unverbindlich und ohne Kosten." />
+  <meta name="description" content="Kostenlose Website-Analyse: SEO, KI-Sichtbarkeit, Schema.org, Open Graph, Ladezeit und mehr. 9 Prüfpunkte, persönlich analysiert, innerhalb 48h – kostenlos und unverbindlich.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://huebbedigital.com/ki-analyse.html">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#111111">
+
+  <!-- GA Consent Mode v2 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
+    gtag('config','G-P2MKZ1RDYQ');
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://huebbedigital.com/ki-analyse.html">
   <meta property="og:title" content="Kostenlose Website-Analyse – HuebbeDigital">
-  <meta property="og:description" content="SEO, KI-Sichtbarkeit, Schema.org, Ladezeit – persönlich analysiert, kostenlos und unverbindlich.">
+  <meta property="og:description" content="SEO, KI-Sichtbarkeit, Schema.org, Ladezeit – 9 Prüfpunkte, persönlich analysiert, kostenlos und unverbindlich.">
   <meta property="og:site_name" content="HuebbeDigital">
   <meta property="og:locale" content="de_DE">
+  <meta property="og:image" content="https://huebbedigital.com/favicon-512.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Google Analytics mit Consent Mode v2 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied'
-    });
-    gtag('config', 'G-P2MKZ1RDYQ');
-  </script>
-
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
+    "@context":"https://schema.org",
+    "@graph":[
       {
-        "@type": "Service",
-        "@id": "https://huebbedigital.com/ki-analyse.html#service",
-        "name": "Kostenlose Website-Analyse",
-        "description": "Kostenlose SEO- und KI-Analyse für Websites – technische Prüfung, Schema.org, Open Graph, Ladezeit und lokales SEO. Persönlich von HuebbeDigital aus dem Odenwald.",
-        "url": "https://huebbedigital.com/ki-analyse.html",
-        "provider": {
-          "@type": "ProfessionalService",
-          "@id": "https://huebbedigital.com/#business",
-          "name": "HuebbeDigital",
-          "url": "https://huebbedigital.com",
-          "email": "contact@huebbedigital.com",
-          "areaServed": [
-            { "@type": "AdministrativeArea", "name": "Odenwaldkreis" },
-            { "@type": "AdministrativeArea", "name": "Rhein-Main-Gebiet" },
-            { "@type": "Country", "name": "Deutschland" }
-          ]
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock",
-          "description": "Kostenlose und unverbindliche Website-Analyse – SEO, KI-Sichtbarkeit, Schema.org, Open Graph und mehr."
-        },
-        "serviceType": "Website-Analyse"
+        "@type":"Service",
+        "@id":"https://huebbedigital.com/ki-analyse.html#service",
+        "name":"Kostenlose Website-Analyse",
+        "description":"Kostenlose SEO- und KI-Analyse für Websites – 9 Prüfpunkte: Schema.org, Open Graph, Ladezeit und lokales SEO. Persönlich von HuebbeDigital aus dem Odenwald.",
+        "url":"https://huebbedigital.com/ki-analyse.html",
+        "provider":{"@id":"https://huebbedigital.com/#business"},
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Kostenlos und unverbindlich"}
       },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://huebbedigital.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Kostenlose Website-Analyse", "item": "https://huebbedigital.com/ki-analyse.html" }
-        ]
-      }
+      {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Start","item":"https://huebbedigital.com/"},
+        {"@type":"ListItem","position":2,"name":"Kostenlose Website-Analyse","item":"https://huebbedigital.com/ki-analyse.html"}
+      ]}
     ]
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --gray-50: #FAFAFA; --gray-100: #F5F5F5; --gray-200: #E5E5E5;
-      --gray-400: #A3A3A3; --gray-500: #737373; --gray-600: #525252; --gray-900: #171717;
-      --blue-500: #3B82F6; --blue-600: #2563EB; --purple-600: #7C3AED; --purple-500: #8B5CF6;
-      --green-500: #22C55E;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #FAFAFA; color: var(--gray-900);
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-    .container-sm { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#111111;color:#fff;overflow-x:hidden;}
+    #three-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    nav,section,footer{position:relative;z-index:1;}
 
-    /* HEADER */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 80px; }
-    .brand { font-size: 18px; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
-    .brand-black { color: var(--gray-900); }
-    .brand-grad {
-      background: linear-gradient(135deg, var(--blue-500) 0%, var(--purple-600) 100%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .btn-back {
-      padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
-      text-decoration: none; color: var(--gray-600); border: 1px solid rgba(0,0,0,0.08);
-      background: white; transition: all 0.2s ease;
-    }
-    .btn-back:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    /* COOKIE */
+    .cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:white;border-top:1px solid rgba(0,0,0,.08);box-shadow:0 -8px 32px rgba(0,0,0,.08);padding:20px 24px;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);}
+    .cookie-banner.visible{transform:translateY(0);}
+    .cookie-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+    .cookie-text{flex:1;min-width:240px;font-size:13px;line-height:1.6;color:#525252;}
+    .cookie-text a{color:#3B82F6;font-weight:600;text-decoration:underline;}
+    .cookie-actions{display:flex;gap:10px;flex-shrink:0;}
+    .cbtn{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:inherit;white-space:nowrap;}
+    .cbtn-d{background:white;color:#525252;border:1px solid rgba(0,0,0,.15);}
+    .cbtn-a{background:#111;color:white;}
 
-    /* HERO */
-    .hero { padding: 100px 0 80px; text-align: center; }
-    
-    .hero h1 {
-      font-size: clamp(40px, 6vw, 68px); font-weight: 800;
-      letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 28px;
-    }
-    .grad {
-      background: linear-gradient(135deg, var(--blue-500) 0%, var(--purple-600) 100%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-sub {
-      font-size: 20px; color: var(--gray-600); max-width: 600px;
-      margin: 0 auto 20px; line-height: 1.7; font-weight: 400;
-    }
-    .hero-note { font-size: 14px; color: var(--gray-400); font-weight: 500; }
-    .hero-note strong { color: var(--gray-600); }
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+    .brand{font-size:1rem;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:inherit;}
+    .brand-grad{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav-back{font-size:.85rem;font-weight:500;color:inherit;text-decoration:none;opacity:.4;}
+    .nav-back:hover{opacity:.8;}
 
-    /* VS BANNER */
-    .vs-section { padding: 0 0 64px; }
-    .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; }
-    .vs-card {
-      background: white; border: 1px solid rgba(0,0,0,0.07); border-radius: 20px; padding: 28px 32px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .vs-card.ours { border-color: rgba(59,130,246,0.25); box-shadow: 0 4px 24px rgba(59,130,246,0.1); }
-    .vs-label { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-    .vs-label.competitor { color: var(--gray-400); }
-    .vs-label.us { color: var(--blue-600); }
-    .vs-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-    .vs-price { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
-    .vs-price.strike { text-decoration: line-through; color: var(--gray-400); font-size: 28px; }
-    .vs-price.free { color: var(--blue-600); }
-    .vs-items { list-style: none; }
-    .vs-items li { font-size: 14px; color: var(--gray-600); padding: 5px 0; display: flex; align-items: center; gap: 8px; }
-    .vs-items li::before { content: ""; color: var(--green-500); font-weight: 700; flex-shrink: 0; }
-    .vs-divider { text-align: center; font-size: 20px; font-weight: 800; color: var(--gray-300); }
+    /* SECTIONS */
+    section{min-height:100vh;display:flex;align-items:center;padding:9rem 3rem;position:relative;}
+    section[data-bg="#111111"]::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 70% at 50% 50%,rgba(17,17,17,.88) 30%,rgba(17,17,17,.4) 70%,transparent 100%);pointer-events:none;z-index:0;}
+    section[data-bg="#FAFAFA"]::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 70% at 50% 50%,rgba(250,250,250,.9) 30%,rgba(250,250,250,.45) 70%,transparent 100%);pointer-events:none;z-index:0;}
+    section .container{position:relative;z-index:2;}
+    .container{max-width:1100px;margin:0 auto;width:100%;}
 
-    /* WHAT WE CHECK */
-    .checks-section { padding: 0 0 80px; }
-    .section-label {
-      font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--blue-600); margin-bottom: 12px; display: block;
-    }
-    .checks-section h2 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 48px; }
-    .checks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .check-card {
-      background: white; border: 1px solid rgba(0,0,0,0.07); border-radius: 16px; padding: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .check-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(59,130,246,0.1); }
-    .check-icon {
-      width: 36px; height: 36px; border-radius: 8px; margin-bottom: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; letter-spacing: 0.02em;
-      color: var(--blue-600); background: rgba(59,130,246,0.08);
-    }
-    .check-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .check-card p { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.3s}.d4{transition-delay:.44s}
 
-    /* FORM SECTION */
-    .form-section { padding: 0 0 100px; }
-    .form-card {
-      background: white; border: 1px solid rgba(0,0,0,0.07); border-radius: 28px; padding: 56px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 24px 64px rgba(59,130,246,0.07);
-    }
-    .form-card h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
-    .form-card .form-sub { font-size: 17px; color: var(--gray-600); margin-bottom: 36px; line-height: 1.6; }
+    /* TYPOGRAPHY */
+    .kicker{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;display:block;margin-bottom:1.2rem;}
+    .eyebrow{font-size:.8rem;font-weight:400;opacity:.4;letter-spacing:.05em;display:block;margin-bottom:.9rem;}
+    h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:1.6rem;}
+    h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin-bottom:1.2rem;}
+    h3{font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.8rem;}
+    .grad-text{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .lead{font-size:1.1rem;line-height:1.85;opacity:.6;max-width:600px;margin-bottom:.8rem;}
+    .body-text{font-size:.92rem;line-height:1.82;opacity:.45;max-width:600px;}
+    .divider{width:40px;height:2px;background:linear-gradient(90deg,#3B82F6,#7C3AED);margin-bottom:1.8rem;border-radius:2px;}
 
-    .field { margin-bottom: 20px; }
-    .field label { display: block; font-size: 14px; font-weight: 600; color: var(--gray-700, #404040); margin-bottom: 8px; }
-    .field input, .field select, .field textarea {
-      width: 100%; padding: 14px 16px; border: 1px solid var(--gray-200);
-      border-radius: 12px; font-size: 15px; font-family: inherit; color: var(--gray-900);
-      background: var(--gray-50); transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none; appearance: none;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus {
-      border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
-      background: white;
-    }
-    .field textarea { resize: vertical; min-height: 100px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    /* BADGES */
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem;}
+    .badge{padding:.4rem .9rem;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid rgba(128,128,128,.25);color:inherit;opacity:.6;}
+    .badge.accent{background:linear-gradient(135deg,#3B82F6,#7C3AED);color:white;border:none;opacity:1;}
 
-    .submit-btn {
-      width: 100%; padding: 18px; border: none; border-radius: 14px; cursor: pointer;
-      font-family: inherit; font-size: 17px; font-weight: 700;
-      background: linear-gradient(135deg, var(--blue-500), var(--purple-600));
-      color: white; margin-top: 8px;
-      box-shadow: 0 4px 16px rgba(59,130,246,0.3), 0 8px 32px rgba(124,58,237,0.2);
-      transition: all 0.3s ease;
-    }
-    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.4); }
-    .submit-btn:active { transform: translateY(0); }
-    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    /* CHECK CARDS */
+    .checks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;}
+    .check-card{border-radius:14px;padding:1.6rem;border:1px solid rgba(128,128,128,.15);transition:transform .25s,border-color .25s;background:rgba(255,255,255,.02);}
+    .check-card:hover{transform:translateY(-4px);border-color:rgba(59,130,246,.35);}
+    .check-num{font-size:.68rem;font-weight:800;letter-spacing:.15em;color:#3B82F6;display:block;margin-bottom:.7rem;}
+    .check-card h4{font-size:1rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em;}
+    .check-card p{font-size:.85rem;line-height:1.65;opacity:.5;}
 
-    .form-note {
-      text-align: center; font-size: 13px; color: var(--gray-400);
-      margin-top: 16px; line-height: 1.6;
-    }
+    /* LIGHT check cards */
+    .s-light .check-card{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.08);}
+    .s-light .check-card:hover{border-color:rgba(59,130,246,.4);}
 
-    /* SUCCESS */
-    .success-state {
-      display: none; text-align: center; padding: 40px 0;
-    }
-    .success-icon {
-      width: 72px; height: 72px; border-radius: 50%; background: #DCFCE7;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 32px; margin: 0 auto 24px;
-    }
-    .success-state h3 { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
-    .success-state p { font-size: 16px; color: var(--gray-600); max-width: 420px; margin: 0 auto; line-height: 1.7; }
+    /* FORM */
+    .form-wrap{max-width:680px;margin:0 auto;}
+    .form-box{background:rgba(17,17,17,.92);backdrop-filter:blur(12px);border:1px solid rgba(128,128,128,.2);border-radius:20px;padding:2.5rem;margin-top:3rem;}
+    .form-box h3{margin-bottom:.5rem;}
+    .form-sub{font-size:.9rem;opacity:.5;line-height:1.7;margin-bottom:2rem;}
+    .field{margin-bottom:1.2rem;}
+    .field label{display:block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.4;margin-bottom:.45rem;}
+    .field input,.field textarea,.field select{width:100%;padding:.85rem 1rem;border:1px solid rgba(128,128,128,.25);border-radius:10px;background:rgba(255,255,255,.05);color:inherit;font-family:inherit;font-size:.92rem;transition:border-color .2s;}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#3B82F6;}
+    .field textarea{resize:vertical;min-height:100px;}
+    .field select option{background:#1a1a1a;}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .submit-btn{width:100%;padding:1rem;border:none;border-radius:12px;background:linear-gradient(135deg,#3B82F6,#7C3AED);color:white;font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.5rem;transition:opacity .2s;}
+    .submit-btn:hover{opacity:.85;}
+    .form-note{font-size:.75rem;opacity:.35;margin-top:1rem;text-align:center;line-height:1.6;}
+    .form-success{display:none;padding:1.5rem;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:12px;margin-top:1rem;text-align:center;}
+    .form-success strong{display:block;font-size:1.1rem;margin-bottom:.4rem;}
+    .form-success p{font-size:.88rem;opacity:.6;}
 
     /* FOOTER */
-    footer { border-top: 1px solid rgba(0,0,0,0.06); padding: 48px 0; text-align: center; background: white; }
-    footer p { font-size: 14px; color: var(--gray-500); margin-bottom: 10px; }
-    footer a { color: var(--gray-600); text-decoration: none; }
-    footer a:hover { color: var(--gray-900); }
+    footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(128,128,128,.1);font-size:.82rem;opacity:.35;}
+    footer a{color:inherit;text-decoration:none;margin-left:1.5rem;}
 
-    @media (max-width: 900px) {
-      .checks-grid { grid-template-columns: repeat(2, 1fr); }
-      .vs-grid { grid-template-columns: 1fr; }
-      .vs-divider { display: none; }
+    /* SCROLL HINT */
+    .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.18;animation:bob 2.5s ease-in-out infinite;}
+    .scroll-hint span{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;}
+    .scroll-line{width:1px;height:38px;background:currentColor;}
+    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+    @media(max-width:900px){
+      .checks-grid{grid-template-columns:1fr 1fr;}
+      .field-row{grid-template-columns:1fr;}
+      section{padding:7rem 1.5rem;}
+      nav{padding:1.2rem 1.5rem;}
+      footer{flex-direction:column;gap:1rem;text-align:center;}
     }
-    @media (max-width: 600px) {
-      .hero { padding: 64px 0 48px; }
-      .checks-grid { grid-template-columns: 1fr; }
-      .form-card { padding: 32px 24px; }
-      .field-row { grid-template-columns: 1fr; }
-      .form-card h2 { font-size: 28px; }
+    @media(max-width:600px){.checks-grid{grid-template-columns:1fr;}}
+  
+    /* Custom cursor */
+    .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
+    .cursor.hover { width: 12px; height: 12px; }
+    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
+    .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
+    @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
+  
+    /* ── MOBILE OVERFLOW FIX ── */
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    * { max-width: 100%; }
+    #three-canvas { max-width: 100vw !important; }
+
+    @media(max-width:768px){
+      section { padding: 7rem 1.2rem 4rem; }
+      nav { padding: 1rem 1.2rem; }
+      h1 { font-size: clamp(2.2rem,9vw,3.5rem); }
+      h2 { font-size: clamp(1.8rem,7vw,2.8rem); }
+      .lead { font-size: .95rem; max-width: 100%; }
+      .body-text { font-size: .88rem; max-width: 100%; }
+      .split { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      .form-grid { grid-template-columns: 1fr !important; }
+      .stats { grid-template-columns: repeat(3,1fr); gap: .5rem; overflow: hidden; }
+      .stat-val { font-size: 1.5rem; }
+      .pills { gap: .3rem; }
+      .pill { font-size: .7rem; padding: .3rem .7rem; }
+      .project-grid { grid-template-columns: 1fr !important; }
+      .checks-grid { grid-template-columns: 1fr !important; }
+      .pcard { padding: 1.2rem; }
+      .nav-right .nav-link { display: none; }
+      footer { flex-direction: column; gap: .6rem; text-align: center; }
+      footer a { margin-left: 0; margin-right: .8rem; }
+      section[data-bg="#111111"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(17,17,17,.92) 40%,rgba(17,17,17,.5) 75%,transparent 100%); }
+      section[data-bg="#FAFAFA"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(250,250,250,.95) 40%,rgba(250,250,250,.6) 75%,transparent 100%); }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <nav class="nav">
-        <a href="/" class="brand">
-          <span class="brand-black">Huebbe</span><span class="brand-grad">Digital</span>
-        </a>
-        <a href="/" class="btn-back">← Zurück</a>
-      </nav>
+<!-- Cookie -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <p class="cookie-text">Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.</p>
+    <div class="cookie-actions">
+      <button class="cbtn cbtn-d" id="cookieDecline">Ablehnen</button>
+      <button class="cbtn cbtn-a" id="cookieAccept">Akzeptieren</button>
     </div>
-  </header>
+  </div>
+</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container-sm">
-      <div style="margin-bottom:20px;">
-        <span style="font-size:22px;font-weight:800;letter-spacing:-0.02em;">
-          <span style="color:#171717;">Huebbe</span><span style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Digital</span>
-        </span>
-        <span style="display:block;margin-top:6px;font-size:12px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#2563EB;">Kostenlose Website-Analyse</span>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="spotlight" id="spotlight"></div>
+
+<canvas id="three-canvas"></canvas>
+
+<nav>
+  <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
+  <a href="/" class="nav-back">← Zurück zur Startseite</a>
+</nav>
+
+<!-- 1 DARK HERO -->
+<section data-bg="#111111" data-color="#ffffff">
+  <div class="container">
+    <span class="eyebrow reveal">Kostenlos · Persönlich · Innerhalb 48 Stunden</span>
+    <h1 class="reveal d1">Website-Analyse<br><span class="grad-text">kostenlos.</span></h1>
+    <p class="lead reveal d2">9 Prüfpunkte – von Google-Sichtbarkeit über KI-Sichtbarkeit bis DSGVO. Ich analysiere Ihre Website mit professionellen Tools und schicke Ihnen einen verständlichen Bericht. Kein Anruf, keine Verpflichtung.</p>
+    <div class="badges reveal d3">
+      <span class="badge accent">Kostenlos & unverbindlich</span>
+      <span class="badge">SEO-Analyse</span>
+      <span class="badge">KI-Sichtbarkeit</span>
+      <span class="badge">Schema.org</span>
+      <span class="badge">Performance</span>
+      <span class="badge">DSGVO-Check</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- 2 LIGHT 9 PRÜFPUNKTE -->
+<section data-bg="#FAFAFA" data-color="#111111" class="s-light">
+  <div class="container">
+    <div class="divider reveal"></div>
+    <span class="kicker reveal d1">Was wird geprüft</span>
+    <h2 class="reveal d2">9 Prüfpunkte –<br><span class="grad-text">kein Detail ausgelassen.</span></h2>
+    <p class="lead reveal d3">Jede Analyse deckt technische und inhaltliche Schwachstellen auf. Sie erhalten einen klaren Bericht mit konkreten Handlungsempfehlungen.</p>
+
+    <div class="checks-grid reveal d4">
+      <div class="check-card">
+        <span class="check-num">01</span>
+        <h4>Google-Sichtbarkeit</h4>
+        <p>Title-Tag, Meta-Description, H1, Canonical – alles was Google für das Ranking braucht.</p>
       </div>
-      <h1>Deine Website.<br><span class="grad">Kostenlos analysiert.</span></h1>
-      <p class="hero-sub">
-        SEO, KI-Sichtbarkeit, Ladezeit, Schema.org und mehr –
-        persönlich geprüft und verständlich erklärt. Ohne Kosten, ohne Verpflichtung.
-      </p>
-      <p class="hero-note">Antwort innerhalb von <strong>48 Stunden</strong> · Kein Erstgespräch nötig</p>
-    </div>
-  </section>
-
-  <!-- VS SMARTLINE -->
-  <section class="vs-section">
-    <div class="container-sm">
-      <div class="vs-grid">
-        <div class="vs-card">
-          <div class="vs-label competitor">Marktüblicher Preis</div>
-          <div class="vs-name">Website-Analyse</div>
-          <div class="vs-price strike">bis zu 100 €</div>
-          <ul class="vs-items">
-            <li>Technische SEO-Prüfung</li>
-            <li>Handlungsempfehlungen</li>
-            <li>Schriftlicher Bericht</li>
-          </ul>
-        </div>
-        <div class="vs-divider">vs</div>
-        <div class="vs-card ours">
-          <div class="vs-label us">HuebbeDigital</div>
-          <div class="vs-name">KI-Website-Analyse</div>
-          <div class="vs-price free">0 €</div>
-          <ul class="vs-items">
-            <li>Technische SEO-Prüfung</li>
-            <li>KI-Sichtbarkeit (ChatGPT & Co.)</li>
-            <li>Schema.org & Open Graph</li>
-            <li>Konkrete Handlungsempfehlungen</li>
-            <li>Persönlicher Ansprechpartner</li>
-          </ul>
-        </div>
+      <div class="check-card">
+        <span class="check-num">02</span>
+        <h4>KI-Sichtbarkeit</h4>
+        <p>Ist Ihre Website so aufgebaut, dass KI-Systeme sie verstehen und empfehlen können?</p>
       </div>
-    </div>
-  </section>
-
-  <!-- WHAT WE CHECK -->
-  <section class="checks-section">
-    <div class="container">
-      <span class="section-label">Was geprüft wird</span>
-      <h2>Was geprüft wird</h2>
-      <div class="checks-grid">
-        <div class="check-card">
-          <div class="check-icon">01</div>
-          <h4>Google-Sichtbarkeit</h4>
-          <p>Title-Tag, Meta-Description, H1, Canonical – alles was Google für das Ranking braucht.</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">02</div>
-          <h4>KI-Sichtbarkeit</h4>
-          <p>Ist deine Website so aufgebaut, dass KI-Systeme sie verstehen und empfehlen können? Was fehlt technisch dafür?</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">03</div>
-          <h4>Schema.org</h4>
-          <p>Strukturierte Daten für Google – Hotel, Restaurant, LocalBusiness, FAQPage und mehr.</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">04</div>
-          <h4>Open Graph & Teilen</h4>
-          <p>Sieht dein Link beim Teilen via WhatsApp oder Instagram gut aus – oder nur ein blauer Link?</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">05</div>
-          <h4>Ladezeit & Performance</h4>
-          <p>Wie schnell lädt die Seite? Google bestraft langsame Websites im Ranking.</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">06</div>
-          <h4>Lokales SEO</h4>
-          <p>Ortsbezug in Titeln, H1s und Meta-Descriptions – entscheidend für regionale Suchanfragen.</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">07</div>
-          <h4>Impressum & Datenschutz</h4>
-          <p>§ 5 DDG statt TMG? Datenschutzerklärung aktuell? Wir checken die rechtlichen Basics.</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">08</div>
-          <h4>Barrierefreiheit</h4>
-          <p>Alt-Texte, Skip-Links, BFSG-Konformität – seit Juni 2025 gesetzlich relevant.</p>
-        </div>
-        <div class="check-card">
-          <div class="check-icon">09</div>
-          <h4>Sitemap & Indexierung</h4>
-          <p>Hat Google überhaupt Zugang zu allen Seiten? Sitemap vorhanden und korrekt?</p>
-        </div>
+      <div class="check-card">
+        <span class="check-num">03</span>
+        <h4>Schema.org</h4>
+        <p>Strukturierte Daten für Google – Hotel, Restaurant, LocalBusiness, FAQPage und mehr.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-num">04</span>
+        <h4>Open Graph & Teilen</h4>
+        <p>Sieht Ihr Link beim Teilen via WhatsApp oder Instagram gut aus – oder nur ein blauer Link?</p>
+      </div>
+      <div class="check-card">
+        <span class="check-num">05</span>
+        <h4>Ladezeit & Performance</h4>
+        <p>Wie schnell lädt die Seite? Google bestraft langsame Websites im Ranking. Bilder, Code, Hosting.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-num">06</span>
+        <h4>Lokales SEO</h4>
+        <p>Ortsbezug in Titeln, H1s und Meta-Descriptions – entscheidend für regionale Suchanfragen.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-num">07</span>
+        <h4>Impressum & Datenschutz</h4>
+        <p>§ 5 DDG statt TMG? Datenschutzerklärung aktuell? Cookie-Banner korrekt? DSGVO-Basics.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-num">08</span>
+        <h4>Barrierefreiheit</h4>
+        <p>Alt-Texte, Skip-Links, BFSG-Konformität – seit Juni 2025 gesetzlich relevant.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-num">09</span>
+        <h4>Sitemap & Indexierung</h4>
+        <p>Hat Google überhaupt Zugang zu allen Seiten? Sitemap vorhanden und korrekt eingereicht?</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FORM -->
-  <section class="form-section">
-    <div class="container-sm">
-      <div class="form-card">
+<!-- 3 DARK FORM -->
+<section data-bg="#111111" data-color="#ffffff">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="divider reveal"></div>
+      <span class="kicker reveal d1">Jetzt anfragen</span>
+      <h2 class="reveal d2">Ihre kostenlose<br><span class="grad-text">Analyse anfordern.</span></h2>
+      <p class="lead reveal d3">Tragen Sie Ihre Website-URL ein – ich analysiere sie mit professionellen Tools und schicke Ihnen innerhalb von 48 Stunden einen verständlichen Bericht.</p>
 
+      <div class="form-box reveal d4" id="formBox">
         <div id="formContent">
-          <h2>Jetzt kostenlos anfragen</h2>
-          <p class="form-sub">
-            Trag deine Website-URL ein – ich analysiere sie persönlich und schick dir
-            innerhalb von 48 Stunden einen verständlichen Bericht. Kein Anruf, keine Verpflichtung.
-          </p>
-
-          <form id="analyseForm" action="https://api.web3forms.com/submit" method="POST">
+          <form id="analyseForm">
             <input type="hidden" name="access_key" value="656fbe2b-995b-4933-bcee-13d7a7fcd15b">
             <input type="hidden" name="subject" value="Neue KI-Analyse Anfrage – HuebbeDigital">
             <input type="hidden" name="redirect" value="false">
             <input type="hidden" name="from_name" value="HuebbeDigital Analyse-Tool">
 
             <div class="field">
-              <label for="url">Website-URL *</label>
-              <input type="url" id="url" name="website_url" placeholder="https://deine-website.de" required>
+              <label>Website-URL *</label>
+              <input type="url" name="website_url" placeholder="https://ihre-website.de" required>
             </div>
-
             <div class="field-row">
               <div class="field">
-                <label for="name">Dein Name *</label>
-                <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+                <label>Ihr Name *</label>
+                <input type="text" name="name" placeholder="Max Mustermann" required>
               </div>
               <div class="field">
-                <label for="email">E-Mail-Adresse *</label>
-                <input type="email" id="email" name="email" placeholder="max@mustermann.de" required>
+                <label>E-Mail *</label>
+                <input type="email" name="email" placeholder="max@mustermann.de" required>
               </div>
             </div>
-
             <div class="field">
-              <label for="branche">Branche / Art des Unternehmens</label>
-              <select id="branche" name="branche">
-                <option value="">Bitte wählen (optional)</option>
-                <option value="Hotel / Gastronomie">Hotel / Gastronomie</option>
-                <option value="Handwerk">Handwerk</option>
-                <option value="Einzelhandel">Einzelhandel</option>
-                <option value="Praxis / Gesundheit">Praxis / Gesundheit</option>
-                <option value="Dienstleistung">Dienstleistung</option>
-                <option value="Verein / Non-Profit">Verein / Non-Profit</option>
-                <option value="Sonstiges">Sonstiges</option>
+              <label>Branche (optional)</label>
+              <select name="branche">
+                <option value="">Bitte wählen</option>
+                <option>Hotel / Gastronomie</option>
+                <option>Handwerk</option>
+                <option>Einzelhandel</option>
+                <option>Praxis / Gesundheit</option>
+                <option>Dienstleistung</option>
+                <option>Verein / Non-Profit</option>
+                <option>Sonstiges</option>
               </select>
             </div>
-
             <div class="field">
-              <label for="hinweis">Was beschäftigt dich gerade? (optional)</label>
-              <textarea id="hinweis" name="hinweis" placeholder="z.B. Wir werden bei Google nicht gefunden, obwohl wir schon lang dabei sind..."></textarea>
+              <label>Was beschäftigt Sie? (optional)</label>
+              <textarea name="message" placeholder="z.B. Wir werden bei Google kaum gefunden..." rows="3"></textarea>
             </div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">
-              Kostenlose Analyse anfordern →
-            </button>
-            <p class="form-note">
-              Kein Spam, keine Werbung. Nur deine Analyse – und dann melde ich mich persönlich.
-              <br>Einwilligung zur Datenschutzerklärung mit Absenden.
-            </p>
+            <button type="submit" class="submit-btn">Kostenlose Analyse anfordern →</button>
+            <p class="form-note">Kostenlos & unverbindlich · Keine Weitergabe Ihrer Daten · Antwort innerhalb 48h</p>
           </form>
         </div>
-
-        <div class="success-state" id="successState">
-          <div class="success-icon"></div>
-          <h3>Anfrage eingegangen!</h3>
-          <p>Ich melde mich innerhalb von 48 Stunden mit deiner persönlichen Analyse. Schau auch ins Spam-Fach – manchmal landet die erste Mail dort.</p>
+        <div class="form-success" id="formSuccess">
+          <strong>Vielen Dank!</strong>
+          <p>Ich habe Ihre Anfrage erhalten und analysiere Ihre Website persönlich. Sie erhalten innerhalb von 48 Stunden Ihren Bericht.</p>
         </div>
-
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 HuebbeDigital – Webdesign & App-Entwicklung aus dem Odenwald</p>
-      <p>
-        <a href="/imprint.html">Impressum</a> ·
-        <a href="/privacy.html">Datenschutz</a>
-      </p>
-    </div>
-  </footer>
+<footer>
+  <span>© 2026 HuebbeDigital · Christian Hübbe</span>
+  <div>
+    <a href="/imprint.html">Impressum</a>
+    <a href="/privacy.html">Datenschutz</a>
+  </div>
+</footer>
 
-  <script>
-  document.getElementById('analyseForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    var btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.textContent = 'Wird gesendet…';
+<script>
+// COOKIE
+(function(){
+  var KEY='hd_cookie_consent';
+  var banner=document.getElementById('cookieBanner');
+  var stored=localStorage.getItem(KEY);
+  function updateConsent(g){
+    if(typeof gtag!=='function') return;
+    gtag('consent','update',{'analytics_storage':g?'granted':'denied','ad_storage':g?'granted':'denied','ad_user_data':g?'granted':'denied','ad_personalization':g?'granted':'denied'});
+  }
+  if(stored==='granted') updateConsent(true);
+  else if(stored!=='denied') setTimeout(()=>banner.classList.add('visible'),600);
+  document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(KEY,'granted');updateConsent(true);banner.classList.remove('visible');});
+  document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(KEY,'denied');updateConsent(false);banner.classList.remove('visible');});
+})();
 
-    try {
-      var formData = new FormData(this);
-      var response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-      var data = await response.json();
-      if (data.success) {
-        document.getElementById('formContent').style.display = 'none';
-        document.getElementById('successState').style.display = 'block';
-      } else {
-        btn.disabled = false;
-        btn.textContent = 'Kostenlose Analyse anfordern →';
-        alert('Etwas ist schiefgelaufen. Bitte schreib mir direkt: contact@huebbedigital.com');
-      }
-    } catch (err) {
-      btn.disabled = false;
-      btn.textContent = 'Kostenlose Analyse anfordern →';
-      alert('Verbindungsfehler. Bitte schreib mir direkt: contact@huebbedigital.com');
+// ── THREE.JS GLOBE RADAR ──
+const canvas3d=document.getElementById('three-canvas');
+const renderer=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setClearColor(0x111111,1);
+const rScene=new THREE.Scene();
+const rCamera=new THREE.PerspectiveCamera(50,window.innerWidth/window.innerHeight,0.1,100);
+rCamera.position.set(0,0,6);
+window.addEventListener('resize',()=>{rCamera.aspect=window.innerWidth/window.innerHeight;rCamera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
+
+// BG + scroll
+const rSects=Array.from(document.querySelectorAll('section[data-bg]'));
+function hexToRgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function lerp(a,b,t){return a+(b-a)*t;}
+function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
+function mixHex(h1,h2,t){const[r1,g1,b1]=hexToRgb(h1),[r2,g2,b2]=hexToRgb(h2);return`rgb(${Math.round(lerp(r1,r2,t))},${Math.round(lerp(g1,g2,t))},${Math.round(lerp(b1,b2,t))})`;}
+function getBrightness(hex){const[r,g,b]=hexToRgb(hex);return(r+g+b)/(255*3);}
+function getProgress(){
+  const sy=window.scrollY,wh=window.innerHeight;
+  for(let i=0;i<rSects.length-1;i++){
+    const c=rSects[i],n=rSects[i+1];
+    const ts=n.offsetTop-wh*.65,te=n.offsetTop+wh*.1;
+    if(sy>=ts&&sy<te){const t=clamp((sy-ts)/(te-ts),0,1);const bg=mixHex(c.dataset.bg,n.dataset.bg,t);return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(rSects.length-1),brightness:lerp(getBrightness(c.dataset.bg),getBrightness(n.dataset.bg),t)};}
+  }
+  for(let i=rSects.length-1;i>=0;i--){if(sy>=rSects[i].offsetTop-wh*.4){const bg=rSects[i].dataset.bg;return{bg,col:rSects[i].dataset.color,t:i/(rSects.length-1),brightness:getBrightness(bg)};}}
+  return{bg:'#111111',col:'#ffffff',t:0,brightness:0};
+}
+
+const B3=new THREE.Color(0x3B82F6), P3=new THREE.Color(0x7C3AED);
+function lc(a,b,t){return new THREE.Color().lerpColors(a,b,t);}
+
+// Globe group
+const globeGroup=new THREE.Group();
+rScene.add(globeGroup);
+
+const R=0.85; // globe radius
+const SEG=64;
+
+// ── LATITUDE LINES (horizontal rings) ──
+const LAT=12;
+for(let i=1;i<LAT;i++){
+  const phi=Math.PI*i/LAT;
+  const y=R*Math.cos(phi);
+  const r=R*Math.sin(phi);
+  if(r<.01) continue;
+  const pts=[], cols=[];
+  for(let j=0;j<=SEG;j++){
+    const theta=(j/SEG)*Math.PI*2;
+    pts.push(r*Math.cos(theta),y,r*Math.sin(theta));
+    const c=lc(B3,P3,i/LAT);
+    cols.push(c.r,c.g,c.b);
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
+  geo.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));
+  const bright=i===LAT/2; // equator brighter
+  globeGroup.add(new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:bright?.7:.3})));
+}
+
+// ── LONGITUDE LINES (vertical arcs) ──
+const LON=16;
+for(let i=0;i<LON;i++){
+  const theta=(i/LON)*Math.PI*2;
+  const pts=[], cols=[];
+  for(let j=0;j<=SEG;j++){
+    const phi=(j/SEG)*Math.PI;
+    pts.push(R*Math.sin(phi)*Math.cos(theta), R*Math.cos(phi), R*Math.sin(phi)*Math.sin(theta));
+    const c=lc(B3,P3,j/SEG);
+    cols.push(c.r,c.g,c.b);
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
+  geo.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));
+  const bright=i%4===0;
+  globeGroup.add(new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:bright?.55:.2})));
+}
+
+// ── RADAR SWEEP (flat ring rotating around Y axis) ──
+const sweepGroup=new THREE.Group();
+globeGroup.add(sweepGroup);
+
+// Sweep line from center to edge
+const sweepGeo=new THREE.BufferGeometry();
+sweepGeo.setAttribute('position',new THREE.Float32BufferAttribute([0,0,0, R,0,0],3));
+sweepGeo.setAttribute('color',new THREE.Float32BufferAttribute([.22,.51,.96, .48,.23,.92],3));
+sweepGroup.add(new THREE.LineSegments(sweepGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9})));
+
+// Sweep trail (arc fading behind)
+const TRAIL=32;
+const trailPts=[], trailCols=[];
+for(let i=0;i<=TRAIL;i++){
+  const a=-(i/TRAIL)*Math.PI*.5;
+  const r=R*Math.cos(0); // flat plane
+  trailPts.push(Math.cos(a)*R,0,Math.sin(a)*R);
+  const fade=1-i/TRAIL;
+  trailCols.push(.22*fade,.51*fade,.96*fade);
+}
+const trailGeo=new THREE.BufferGeometry();
+trailGeo.setAttribute('position',new THREE.Float32BufferAttribute(trailPts,3));
+trailGeo.setAttribute('color',new THREE.Float32BufferAttribute(trailCols,3));
+sweepGroup.add(new THREE.Line(trailGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.4})));
+
+// ── RADAR DOTS (cities/data points on globe surface) ──
+const dots=[];
+const DOT_POSITIONS=[
+  [0.9,0.3],[0.2,0.7],[-0.6,0.4],[0.5,-0.5],[-0.3,-0.6],[0.8,-0.2],
+  [-0.8,0.6],[0.1,-0.3],[0.6,0.8],[-0.5,0.1],[0.3,0.5],[-0.2,0.8],
+];
+DOT_POSITIONS.forEach(([u,v])=>{
+  const phi=Math.acos(v);
+  const theta=u*Math.PI;
+  const x=R*Math.sin(phi)*Math.cos(theta);
+  const y=R*Math.cos(phi);
+  const z=R*Math.sin(phi)*Math.sin(theta);
+
+  // Dot sphere
+  const geo=new THREE.SphereGeometry(.05,8,8);
+  const mat=new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.5});
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.position.set(x,y,z);
+  globeGroup.add(mesh);
+
+  // Ping ring (expands when hit by sweep)
+  const ringGeo=new THREE.BufferGeometry();
+  const rPts=[];
+  for(let i=0;i<=32;i++){const a=(i/32)*Math.PI*2;rPts.push(Math.cos(a)*.12,Math.sin(a)*.12,0);}
+  ringGeo.setAttribute('position',new THREE.Float32BufferAttribute(rPts,3));
+  const ringMat=new THREE.LineBasicMaterial({color:0x3B82F6,transparent:true,opacity:0});
+  const ring=new THREE.Line(ringGeo,ringMat);
+  ring.position.set(x,y,z);
+  ring.lookAt(0,0,0);
+  globeGroup.add(ring);
+
+  // Longitude angle of this dot (for sweep detection)
+  const lon=Math.atan2(z,x);
+  dots.push({mesh,mat,ring,ringMat,lon,pingT:Math.random()});
+});
+
+// ── GLOW ──
+globeGroup.add(new THREE.Mesh(
+  new THREE.SphereGeometry(R*1.08,16,16),
+  new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.03,side:THREE.BackSide})
+));
+
+// Mouse
+let tgRX=.2, tgRY=0;
+document.addEventListener('mousemove',e=>{
+  tgRX=.2+((e.clientY/window.innerHeight)-.5)*.5;
+  tgRY=((e.clientX/window.innerWidth)-.5)*.6;
+});
+
+let rTick=0;
+function radarLoop(){
+  requestAnimationFrame(radarLoop);
+  rTick+=0.008;
+
+  const prog=getProgress();
+  renderer.setClearColor(new THREE.Color(prog.bg),1);
+  document.body.style.color=prog.col;
+  const brightness=prog.brightness||0;
+  const vis=lerp(.9,.15,brightness);
+
+  // Scroll position
+  const t=prog.t;
+  globeGroup.position.x=lerp(2.8,-2.8,t);
+  globeGroup.position.y=lerp(.8,-.8,t);
+
+  // Globe slow Y rotation
+  globeGroup.rotation.y=rTick*.3;
+  globeGroup.rotation.x+=(tgRX-globeGroup.rotation.x)*.05;
+
+  // Sweep rotation (faster than globe)
+  sweepGroup.rotation.y=rTick*1.8;
+  const sweepAngle=rTick*1.8;
+
+  // Update dot pings
+  dots.forEach(d=>{
+    // Get dot's current world longitude relative to sweep
+    const dotWorldLon=d.lon+globeGroup.rotation.y;
+    const relAngle=((sweepAngle-dotWorldLon)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+
+    if(relAngle<.25){
+      // Sweep just hit this dot — trigger ping
+      d.pingT=0;
+      d.mat.opacity=vis;
     }
+
+    // Animate ping
+    d.pingT+=0.04;
+    const pingAlpha=Math.max(0,1-d.pingT*1.2)*vis*.8;
+    const pingScale=1+d.pingT*2;
+    d.ringMat.opacity=pingAlpha;
+    d.ring.scale.setScalar(pingScale);
+    d.mat.opacity=Math.max(.15,vis*(1-clamp(d.pingT*.5,0,1)));
   });
-  </script>
+
+  renderer.render(rScene,rCamera);
+}
+radarLoop();
+
+// REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// FORM
+document.getElementById('analyseForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.submit-btn');
+  btn.textContent='Wird gesendet...';btn.disabled=true;
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});
+    if(res.ok){
+      document.getElementById('formContent').style.display='none';
+      document.getElementById('formSuccess').style.display='block';
+    } else {btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
+  }catch(err){btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
+});
+
+// Custom cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),spot=document.getElementById('spotlight');
+if(cur){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+    spot.style.left=mx+'px';spot.style.top=my+'px';
+  });
+  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  animRing();
+  document.querySelectorAll('a,button,.check-card,.pill,.badge').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover');});
+    el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover');});
+  });
+}
+
+</script>
 
 </body>
 </html>
