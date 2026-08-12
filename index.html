@@ -86,7 +86,6 @@
     .nav-cta:hover { opacity: .85 !important; }
 
     /* SECTIONS */
-<<<<<<< HEAD
     section { min-height: 100vh; display: flex; align-items: center; padding: 9rem 3rem; position: relative; }
     /* Subtle radial vignette so diamond stays in periphery */
     section[data-bg="#111111"]::before {
@@ -238,113 +237,6 @@
       section[data-bg="#111111"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(17,17,17,.92) 40%,rgba(17,17,17,.5) 75%,transparent 100%); }
       section[data-bg="#FAFAFA"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(250,250,250,.95) 40%,rgba(250,250,250,.6) 75%,transparent 100%); }
     }
-=======
-    section { min-height: 100vh; display: flex; align-items: center; padding: 9rem 3rem; }
-    .container { max-width: 1100px; margin: 0 auto; width: 100%; }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.06s}.d2{transition-delay:.14s}.d3{transition-delay:.24s}.d4{transition-delay:.36s}.d5{transition-delay:.5s}
-
-    /* HERO WORD REVEAL */
-    .word { display: inline-block; overflow: hidden; vertical-align: bottom; }
-    .word-inner { display: inline-block; transform: translateY(110%); transition: transform .8s cubic-bezier(.16,1,.3,1); }
-    .word-inner.show { transform: translateY(0); }
-    .word { margin-right: .22em; }
-
-    /* TYPOGRAPHY */
-    .kicker { font-size: .68rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 1.2rem; }
-    .eyebrow { font-size: .78rem; font-weight: 400; opacity: .35; letter-spacing: .08em; display: block; margin-bottom: 1.2rem; }
-    h1 { font-size: clamp(3.5rem,7.5vw,6.5rem); font-weight: 900; letter-spacing: -.05em; line-height: .97; margin-bottom: 2rem; }
-    h2 { font-size: clamp(2.4rem,5vw,4.2rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.02; margin-bottom: 1.2rem; }
-    .grad-text { background: linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .lead { font-size: 1.08rem; line-height: 1.85; opacity: .55; max-width: 520px; margin-bottom: .8rem; font-weight: 350; }
-    .body-text { font-size: .9rem; line-height: 1.85; opacity: .4; max-width: 520px; font-weight: 350; }
-    .divider { width: 32px; height: 1.5px; background: linear-gradient(90deg,var(--blue),var(--purple)); margin-bottom: 1.8rem; border-radius: 2px; }
-
-    /* PILLS */
-    .pills { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 2rem; }
-    .pill { padding: .38rem .85rem; border-radius: 999px; font-size: .75rem; font-weight: 600; border: 1px solid rgba(128,128,128,.2); color: inherit; opacity: .55; transition: opacity .2s, border-color .2s; }
-    .pill:hover { opacity: 1; border-color: var(--blue); }
-    .pill.accent { background: linear-gradient(135deg,var(--blue),var(--purple)); color: white; border: none; opacity: 1; }
-
-    /* SPLIT */
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start; }
-
-    /* STATS */
-    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(128,128,128,.12); }
-    .stat-val { font-size: 2.2rem; font-weight: 900; letter-spacing: -.05em; line-height: 1; margin-bottom: .25rem; }
-    .stat-lbl { font-size: .7rem; font-weight: 500; opacity: .35; letter-spacing: .05em; }
-
-    /* CREDS */
-    .creds { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.8rem; }
-    .cred { display: flex; align-items: flex-start; gap: .7rem; font-size: .86rem; opacity: .5; line-height: 1.55; font-weight: 350; }
-    .cred-dot { width: 4px; height: 4px; border-radius: 50%; background: linear-gradient(135deg,var(--blue),var(--purple)); margin-top: .52rem; flex-shrink: 0; }
-
-    /* PROJECT CARDS */
-    .project-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 4rem; border: 1px solid rgba(128,128,128,.12); border-radius: 20px; overflow: hidden; }
-    .pcard { padding: 2rem; transition: background .3s; position: relative; }
-    .pcard::after { content: ''; position: absolute; right: 0; top: 10%; bottom: 10%; width: 1px; background: rgba(128,128,128,.1); }
-    .pcard:last-child::after { display: none; }
-    .pcard:hover { background: rgba(128,128,128,.04); }
-    .pnum { font-size: .62rem; font-weight: 800; letter-spacing: .18em; color: var(--blue); display: block; margin-bottom: 1.2rem; }
-    .pmeta { font-size: .68rem; font-weight: 600; opacity: .3; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .5rem; }
-    .ptitle { font-size: 1.15rem; font-weight: 800; letter-spacing: -.03em; margin-bottom: .6rem; line-height: 1.2; }
-    .pdesc { font-size: .82rem; line-height: 1.7; opacity: .45; margin-bottom: 1.2rem; font-weight: 350; }
-    .ptags { display: flex; flex-wrap: wrap; gap: .3rem; }
-    .ptag { font-size: .65rem; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; border: 1px solid rgba(128,128,128,.18); opacity: .5; }
-    .plink { display: inline-block; margin-top: 1.2rem; font-size: .78rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .7; transition: opacity .2s; }
-    .plink:hover { opacity: 1; }
-
-    /* FORM */
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .fg { margin-bottom: 1rem; }
-    .fg label { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .35; margin-bottom: .4rem; }
-    .fg input, .fg textarea, .fg select { width: 100%; padding: .85rem 1rem; border: 1px solid rgba(128,128,128,.2); border-radius: 10px; background: rgba(255,255,255,.04); color: inherit; font-family: inherit; font-size: .9rem; transition: border-color .2s; }
-    .fg input:focus, .fg textarea:focus, .fg select:focus { outline: none; border-color: var(--blue); }
-    .fg textarea { resize: vertical; min-height: 110px; }
-    .fg select option { background: #111; }
-    .sbtn { width: 100%; padding: 1rem; border: none; border-radius: 12px; background: linear-gradient(135deg,var(--blue),var(--purple)); color: white; font-family: inherit; font-size: .95rem; font-weight: 700; cursor: pointer; transition: opacity .2s; margin-top: .3rem; }
-    .sbtn:hover { opacity: .85; }
-    .fsuccess { display: none; padding: 1.2rem 1.5rem; background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.2); border-radius: 10px; margin-top: 1rem; font-size: .9rem; opacity: .8; }
-
-    /* CTA LINK */
-    .cta-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: 2rem; font-size: .88rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .8; }
-    .cta-link:hover { opacity: 1; }
-
-    /* SCROLL HINT */
-    .scroll-hint { position: fixed; bottom: 3.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .6rem; z-index: 50; transition: opacity .5s; }
-    .scroll-hint span { font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; opacity: .3; }
-    .scroll-mouse { width: 22px; height: 34px; border: 1.5px solid rgba(255,255,255,.2); border-radius: 11px; display: flex; justify-content: center; padding-top: 5px; }
-    .scroll-wheel { width: 3px; height: 7px; background: linear-gradient(to bottom,#3B82F6,#7C3AED); border-radius: 99px; animation: scrollWheel 1.8s ease-in-out infinite; }
-    .scroll-chevrons { display: flex; flex-direction: column; gap: 2px; align-items: center; }
-    .scroll-chevron { width: 8px; height: 8px; border-right: 1.5px solid rgba(255,255,255,.2); border-bottom: 1.5px solid rgba(255,255,255,.2); transform: rotate(45deg); animation: fadeChev 1.8s ease-in-out infinite; }
-    .scroll-chevron:nth-child(2){animation-delay:.2s;opacity:.5}
-    .scroll-chevron:nth-child(3){animation-delay:.4s;opacity:.25}
-    @keyframes scrollWheel{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
-    @keyframes fadeChev{0%,100%{opacity:.6}50%{opacity:.15}}
-    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)} }
-
-    /* FOOTER */
-    footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(128,128,128,.08); font-size: .78rem; opacity: .28; }
-    footer a { color: inherit; text-decoration: none; margin-left: 1.5rem; }
-
-    @media(max-width:900px){
-      .split{grid-template-columns:1fr;gap:3rem}
-      .project-grid{grid-template-columns:1fr}
-      .pcard::after{display:none}
-      .form-grid{grid-template-columns:1fr}
-      .stats{grid-template-columns:repeat(3,1fr)}
-      section{padding:7rem 1.5rem}
-      nav{padding:1.2rem 1.5rem}
-      .nav-right .nav-link{display:none}
-      footer{flex-direction:column;gap:.8rem}
-      body{cursor:auto}
-      .cursor,.cursor-ring{display:none}
-    }
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
   </style>
 </head>
 <body>
@@ -463,8 +355,6 @@
           <div class="stat"><div class="stat-val grad-text" data-suffix="+">2</div><div class="stat-lbl">Plattformen</div></div>
         </div>
         <p class="body-text reveal d4" style="margin-top:2.5rem;">Mit Sitz im Odenwald arbeite ich für Kunden im Rhein-Main-Gebiet und deutschlandweit. 45 Minuten von Frankfurt.</p>
-<<<<<<< HEAD
-=======
       </div>
     </div>
   </div>
@@ -538,89 +428,12 @@
           <button type="submit" class="sbtn">Anfrage absenden →</button>
           <div class="fsuccess" id="formSuccess">Vielen Dank! Ich melde mich persönlich bei Ihnen.</div>
         </form>
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
-      </div>
-    </div>
-  </div>
-</section>
-
-<<<<<<< HEAD
-<!-- 4 LIGHT PROJEKTE -->
-<section data-bg="#FAFAFA" data-color="#111111" id="projekte">
-  <div class="container">
-    <div class="divider reveal"></div>
-    <span class="kicker reveal d1">Ausgewählte Projekte</span>
-    <h2 class="reveal d2">Referenzen &amp; <span class="grad-text">Ergebnisse.</span></h2>
-    <p class="lead reveal d3">Jedes Projekt wird individuell entwickelt – mit Fokus auf Design, Performance und Auffindbarkeit.</p>
-    <div class="project-grid reveal d4">
-      <div class="pcard">
-        <span class="pnum">01</span>
-        <div class="pmeta">Website · Hotel & Events · Odenwald</div>
-        <div class="ptitle">Burghof Brombachtal</div>
-        <p class="pdesc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
-        <div class="ptags"><span class="ptag">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag">Reservierungssystem</span><span class="ptag">Lokales SEO</span></div>
-        <a href="https://burghof-odenwald.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
-      </div>
-      <div class="pcard">
-        <span class="pnum">02</span>
-        <div class="pmeta">App · Golf · iOS & Android</div>
-        <div class="ptitle">FairwayService App</div>
-        <p class="pdesc">Native Golf Club Management App für iOS und Android. Buchungssystem, Mitgliederverwaltung, Score-Tracking und Push-Benachrichtigungen. Backend mit Firebase.</p>
-        <div class="ptags"><span class="ptag">Swift</span><span class="ptag">Kotlin</span><span class="ptag">Firebase</span><span class="ptag">iOS & Android</span></div>
-      </div>
-      <div class="pcard">
-        <span class="pnum">03</span>
-        <div class="pmeta">Website · Handwerk · Aschaffenburg / Spessart</div>
-        <div class="ptitle">Spenglerei Wood</div>
-        <p class="pdesc">Unternehmenswebsite für Spenglereibetrieb aus Johannesberg. Leistungen, Team, Kontaktformular, Analytics mit Consent Mode v2, vollständig DSGVO-konform.</p>
-        <div class="ptags"><span class="ptag">Mobile-First</span><span class="ptag">DSGVO-konform</span><span class="ptag">Analytics</span><span class="ptag">Lokales SEO</span></div>
-        <a href="https://spenglerei-wood.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 DARK KONTAKT -->
-<section data-bg="#111111" data-color="#ffffff" id="contact">
-  <div class="container">
-    <div class="split">
-      <div>
-        <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Projekt anfragen</span>
-        <h2 class="reveal d2">Bereit für die<br><span class="grad-text">nächste Stufe?</span></h2>
-        <p class="lead reveal d3">Ich nehme Projekte exklusiv und auf Anfrage an. Erzählen Sie mir kurz worum es geht.</p>
-        <p class="body-text reveal d4">Ob neue Website, SEO-Analyse, App-Entwicklung oder komplette digitale Neuaufstellung – der erste Schritt ist ein kurzes Gespräch.</p>
-      </div>
-      <div class="reveal d2">
-        <form id="contactForm">
-          <input type="hidden" name="access_key" value="656fbe2b-995b-4933-bcee-13d7a7fcd15b">
-          <input type="hidden" name="subject" value="Neue Anfrage – HuebbeDigital">
-          <div class="form-grid">
-            <div class="fg"><label>Name *</label><input type="text" name="name" required placeholder="Max Mustermann"></div>
-            <div class="fg"><label>E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de"></div>
-          </div>
-          <div class="fg"><label>Worum geht es?</label>
-            <select name="anliegen">
-              <option value="">-- Bitte wählen --</option>
-              <option>Neue Website</option>
-              <option>SEO-Analyse</option>
-              <option>App-Entwicklung</option>
-              <option>Bestehendes Projekt verbessern</option>
-              <option>Sonstiges</option>
-            </select>
-          </div>
-          <div class="fg"><label>Nachricht *</label><textarea name="message" required placeholder="Erzählen Sie mir kurz von Ihrem Projekt..."></textarea></div>
-          <button type="submit" class="sbtn">Anfrage absenden →</button>
-          <div class="fsuccess" id="formSuccess">Vielen Dank! Ich melde mich persönlich bei Ihnen.</div>
-        </form>
       </div>
     </div>
   </div>
 </section>
 
 
-=======
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
 <footer>
   <span>© 2026 HuebbeDigital · Christian Hübbe</span>
   <div><a href="/imprint.html">Impressum</a><a href="/privacy.html">Datenschutz</a></div>
@@ -732,21 +545,12 @@ threeScene.add(crystal);
 // ── DIAMOND GEOMETRY ──
 const N=6;
 // Key heights & radii (diamond proportions)
-<<<<<<< HEAD
 const R_GIRDLE = 1.8;   // widest point
 const R_TABLE  = 0.75;  // flat top face
 const Y_TABLE  = 1.3;   // table height
 const Y_STAR   = 0.95;  // star facet level (between table and girdle)
 const Y_GIRDLE = 0.0;   // equator
 const Y_CULET  =-2.0;   // bottom point (deeper = pointier)
-=======
-const R_GIRDLE = 2.0;   // widest point
-const R_TABLE  = 0.85;  // flat top face
-const Y_TABLE  = 1.35;  // table height
-const Y_STAR   = 1.0;   // star facet level (between table and girdle)
-const Y_GIRDLE = 0.0;   // equator
-const Y_CULET  =-2.2;   // bottom point (deeper = pointier)
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
 
 // Helper: ring of N points
 function hexV(y, r, rot=0){
@@ -832,16 +636,7 @@ const tpl1=new THREE.PointLight(0x3B82F6,3,10);tpl1.position.set(3,3,3);threeSce
 const tpl2=new THREE.PointLight(0x7C3AED,2,10);tpl2.position.set(-3,-3,2);threeScene.add(tpl2);
 
 // Crystal opacity based on scroll / brightness
-<<<<<<< HEAD
 // opacity handled in threeLoop directly
-=======
-function updateCrystalOpacity(brightness){
-  const opacity=lerp(1,.15,brightness);
-  crystal.traverse(obj=>{
-    if(obj.material){obj.material.opacity=obj.material.opacity>0?Math.min(obj.material.opacity*1,opacity)*1.2:0;}
-  });
-}
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
 
 // Mouse
 let tgCrysX=0, tgCrysY=0;
@@ -858,7 +653,6 @@ function threeLoop(){
   // Update bg color
   renderer.setClearColor(new THREE.Color(prog.bg),1);
   document.body.style.color=prog.col;
-<<<<<<< HEAD
 
   // Crystal always visible — store base opacities once, recalculate each frame
   const brightness=prog.brightness||0;
@@ -885,8 +679,6 @@ function threeLoop(){
   crystal.position.x = lerp(0, 2.2, Math.pow(scrollT, 2));
   crystal.position.y = lerp(0, -0.5, scrollT);
 
-=======
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
   // Crystal rotation
   crystal.rotation.y=threeTick*.5;
   crystal.rotation.x=-.25+Math.sin(threeTick*.2)*.15;
@@ -956,5 +748,6 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   }catch(err){btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
 });
 </script>
+
 </body>
 </html>

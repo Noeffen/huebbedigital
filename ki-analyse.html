@@ -55,20 +55,13 @@
   }
   </script>
 
-<<<<<<< HEAD
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-=======
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#111111;color:#fff;overflow-x:hidden;}
-<<<<<<< HEAD
     #three-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
-=======
-    #scene{position:fixed;inset:0;z-index:0;pointer-events:none;}
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
     nav,section,footer{position:relative;z-index:1;}
 
     /* COOKIE */
@@ -90,14 +83,10 @@
     .nav-back:hover{opacity:.8;}
 
     /* SECTIONS */
-<<<<<<< HEAD
     section{min-height:100vh;display:flex;align-items:center;padding:9rem 3rem;position:relative;}
     section[data-bg="#111111"]::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 70% at 50% 50%,rgba(17,17,17,.88) 30%,rgba(17,17,17,.4) 70%,transparent 100%);pointer-events:none;z-index:0;}
     section[data-bg="#FAFAFA"]::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 70% at 50% 50%,rgba(250,250,250,.9) 30%,rgba(250,250,250,.45) 70%,transparent 100%);pointer-events:none;z-index:0;}
     section .container{position:relative;z-index:2;}
-=======
-    section{min-height:100vh;display:flex;align-items:center;padding:9rem 3rem;}
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
     .container{max-width:1100px;margin:0 auto;width:100%;}
 
     /* REVEAL */
@@ -168,7 +157,6 @@
       section{padding:7rem 1.5rem;}
       nav{padding:1.2rem 1.5rem;}
       footer{flex-direction:column;gap:1rem;text-align:center;}
-<<<<<<< HEAD
     }
     @media(max-width:600px){.checks-grid{grid-template-columns:1fr;}}
   
@@ -206,18 +194,7 @@
       footer a { margin-left: 0; margin-right: .8rem; }
       section[data-bg="#111111"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(17,17,17,.92) 40%,rgba(17,17,17,.5) 75%,transparent 100%); }
       section[data-bg="#FAFAFA"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(250,250,250,.95) 40%,rgba(250,250,250,.6) 75%,transparent 100%); }
-=======
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
     }
-    @media(max-width:600px){.checks-grid{grid-template-columns:1fr;}}
-  
-    /* Custom cursor */
-    .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
-    .cursor.hover { width: 12px; height: 12px; }
-    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
-    .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
-    @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
   </style>
 </head>
 <body>
@@ -237,11 +214,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="spotlight" id="spotlight"></div>
 
-<<<<<<< HEAD
 <canvas id="three-canvas"></canvas>
-=======
-<canvas id="scene"></canvas>
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
 
 <nav>
   <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
@@ -409,7 +382,6 @@
   document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(KEY,'denied');updateConsent(false);banner.classList.remove('visible');});
 })();
 
-<<<<<<< HEAD
 // ── THREE.JS GLOBE RADAR ──
 const canvas3d=document.getElementById('three-canvas');
 const renderer=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true});
@@ -596,147 +568,6 @@ function radarLoop(){
       // Sweep just hit this dot — trigger ping
       d.pingT=0;
       d.mat.opacity=vis;
-=======
-// CANVAS RADAR
-const canvas=document.getElementById('scene');
-const ctx=canvas.getContext('2d');
-const sections=Array.from(document.querySelectorAll('section[data-bg]'));
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-resize(); window.addEventListener('resize',resize);
-function hexToRgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
-function lerp(a,b,t){return a+(b-a)*t;}
-function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
-function mixHex(h1,h2,t){
-  const[r1,g1,b1]=hexToRgb(h1),[r2,g2,b2]=hexToRgb(h2);
-  return`rgb(${Math.round(lerp(r1,r2,t))},${Math.round(lerp(g1,g2,t))},${Math.round(lerp(b1,b2,t))})`;
-}
-function getProgress(){
-  const sy=window.scrollY,wh=window.innerHeight;
-  for(let i=0;i<sections.length-1;i++){
-    const c=sections[i],n=sections[i+1];
-    const ts=n.offsetTop-wh*.65,te=n.offsetTop+wh*.1;
-    if(sy>=ts&&sy<te){
-      const t=clamp((sy-ts)/(te-ts),0,1);
-      const bg=mixHex(c.dataset.bg,n.dataset.bg,t);
-      const brightness=lerp(getBrightness(c.dataset.bg),getBrightness(n.dataset.bg),t);
-      return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(sections.length-1),brightness};
-    }
-  }
-  for(let i=sections.length-1;i>=0;i--){
-    if(sy>=sections[i].offsetTop-wh*.4){
-      const bg=sections[i].dataset.bg;
-      return{bg,col:sections[i].dataset.color,t:i/(sections.length-1),brightness:getBrightness(bg)};
-    }
-  }
-  return{bg:'#111111',col:'#ffffff',t:0,brightness:0};
-}
-
-// Dot data points (static positions on rings)
-const dots=[];
-for(let ring=0;ring<4;ring++){
-  const count=[3,5,7,4][ring];
-  for(let i=0;i<count;i++){
-    dots.push({ring,angle:Math.random()*Math.PI*2,pulse:Math.random()*Math.PI*2});
-  }
-}
-
-let tick=0;
-function getBrightness(hex){ const[r,g,b]=hexToRgb(hex); return(r+g+b)/(255*3); }
-function draw(){
-  const W=canvas.width,H=canvas.height,prog=getProgress();
-  ctx.fillStyle=prog.bg; ctx.fillRect(0,0,W,H);
-  // Position: top-right → bottom-left based on scroll
-  const scrollT=prog.t;
-  const cx=lerp(W*0.78, W*0.22, scrollT);
-  const cy=lerp(H*0.28, H*0.72, scrollT);
-  const brightness=prog.brightness||0;
-  const vis=lerp(0.55,0.08,brightness);
-  const baseR=Math.min(W,H)*.20;
-  const sweep=tick*.018; // sweep arm speed
-
-  // Concentric rings
-  const rings=[1,.72,.48,.27];
-  rings.forEach((scale,i)=>{
-    const r=baseR*scale;
-    ctx.beginPath();
-    ctx.arc(cx,cy,r,0,Math.PI*2);
-    const alpha=vis*(1-i*.15);
-    const g=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
-    g.addColorStop(0,`rgba(59,130,246,${alpha})`);
-    g.addColorStop(1,`rgba(124,58,237,${alpha})`);
-    ctx.strokeStyle=g;
-    ctx.lineWidth=lerp(1.2,.6,brightness);
-    ctx.stroke();
-  });
-
-  // Cross hairs
-  [0,Math.PI*.5,Math.PI,Math.PI*1.5].forEach(angle=>{
-    ctx.beginPath();
-    ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+Math.cos(angle)*baseR*1.0, cy+Math.sin(angle)*baseR*1.0);
-    const g=ctx.createLinearGradient(cx,cy,cx+Math.cos(angle)*baseR,cy+Math.sin(angle)*baseR);
-    g.addColorStop(0,`rgba(59,130,246,${vis*.3})`);
-    g.addColorStop(1,`rgba(124,58,237,0)`);
-    ctx.strokeStyle=g;
-    ctx.lineWidth=.5;
-    ctx.stroke();
-  });
-
-  // Sweep arm
-  ctx.save();
-  ctx.translate(cx,cy);
-  ctx.rotate(sweep);
-  const sweepGrad=ctx.createConicalGradient ? null : null;
-  // Sweep line
-  ctx.beginPath();
-  ctx.moveTo(0,0);
-  ctx.lineTo(baseR,0);
-  const sg=ctx.createLinearGradient(0,0,baseR,0);
-  sg.addColorStop(0,`rgba(59,130,246,${lerp(.6,.12,brightness)})`);
-  sg.addColorStop(1,`rgba(124,58,237,0)`);
-  ctx.strokeStyle=sg;
-  ctx.lineWidth=lerp(1.5,.8,brightness);
-  ctx.stroke();
-  // Sweep glow trail (arc)
-  ctx.beginPath();
-  ctx.moveTo(0,0);
-  ctx.arc(0,0,baseR,-Math.PI*.25,0);
-  ctx.closePath();
-  const trailGrad=ctx.createLinearGradient(-baseR*.3,-baseR*.3,baseR,0);
-  trailGrad.addColorStop(0,'rgba(59,130,246,0)');
-  trailGrad.addColorStop(1,`rgba(59,130,246,${lerp(.08,.02,brightness)})`);
-  ctx.fillStyle=trailGrad;
-  ctx.fill();
-  ctx.restore();
-
-  // Data dots
-  dots.forEach(d=>{
-    const r=baseR*rings[d.ring];
-    const pulsed=r+Math.sin(tick*.04+d.pulse)*3;
-    const x=cx+Math.cos(d.angle)*pulsed;
-    const y=cy+Math.sin(d.angle)*pulsed;
-    // Check if near sweep arm
-    const normAngle=((d.angle-sweep)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
-    const nearSweep=normAngle<.4;
-    const dotAlpha=nearSweep?lerp(.9,.15,brightness):lerp(.3,.05,brightness);
-    const dotR=nearSweep?lerp(3.5,2,brightness):lerp(2,1.2,brightness);
-    ctx.beginPath();
-    ctx.arc(x,y,dotR,0,Math.PI*2);
-    const dg=ctx.createRadialGradient(x,y,0,x,y,dotR*2);
-    dg.addColorStop(0,`rgba(59,130,246,${dotAlpha})`);
-    dg.addColorStop(1,`rgba(124,58,237,0)`);
-    ctx.fillStyle=dg;
-    ctx.fill();
-    // Glow when near sweep
-    if(nearSweep&&brightness<.3){
-      ctx.beginPath();
-      ctx.arc(x,y,8,0,Math.PI*2);
-      const gg=ctx.createRadialGradient(x,y,0,x,y,8);
-      gg.addColorStop(0,`rgba(59,130,246,.15)`);
-      gg.addColorStop(1,'rgba(59,130,246,0)');
-      ctx.fillStyle=gg;
-      ctx.fill();
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
     }
 
     // Animate ping
@@ -748,25 +579,9 @@ function draw(){
     d.mat.opacity=Math.max(.15,vis*(1-clamp(d.pingT*.5,0,1)));
   });
 
-<<<<<<< HEAD
   renderer.render(rScene,rCamera);
 }
 radarLoop();
-=======
-  // Center dot
-  ctx.beginPath();
-  ctx.arc(cx,cy,3,0,Math.PI*2);
-  const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,20);
-  cg.addColorStop(0,`rgba(99,102,241,${lerp(.7,.15,brightness)})`);
-  cg.addColorStop(1,'rgba(99,102,241,0)');
-  ctx.fillStyle=cg;
-  ctx.fill();
-
-  document.body.style.color=prog.col;
-}
-function loop(){tick++;draw();requestAnimationFrame(loop);}
-loop();
->>>>>>> 75caa9035f138ed12d7b24a4ad0ba6d16b9a305c
 
 // REVEAL
 const obs=new IntersectionObserver(entries=>{
