@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Für Lara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f0f;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stars {
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at top, #1a1a2e 0%, #0f0f0f 70%);
+      overflow: hidden;
+    }
+    .star {
+      position: absolute; border-radius: 50%; background: white;
+      animation: twinkle var(--d) ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%,100%{opacity:.15}50%{opacity:.7}
+    }
+
+    .card {
+      position: relative; z-index: 1;
+      max-width: 560px; width: 90%;
+      margin: 3rem auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #f8f8f8, #d4af37);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .message {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .message strong { color: white; font-weight: 500; }
+
+    .picker-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .day-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.2rem 0.5rem;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(.16,1,.3,1);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .day-btn:hover {
+      background: rgba(212,175,55,0.08);
+      border-color: rgba(212,175,55,0.35);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .day-btn.selected {
+      background: rgba(212,175,55,0.1);
+      border-color: #d4af37;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .confirm-btn {
+      width: 100%;
+      padding: 0.95rem 2rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #d4af37, #b8941f);
+      color: #1a1a1a;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: none;
+      letter-spacing: 0.02em;
+    }
+    .confirm-btn.visible { display: block; }
+    .confirm-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.25); }
+
+    .success {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.8rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+    }
+    .success.show { display: block; }
+    .success p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.75);
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="card">
+
+  <h1>Noch ein paar Tage, Lara.</h1>
+
+  <p class="message">
+    Ich schreibe dir das schon bevor du heimfliegst, weil ich weiß dass man nach so einem Urlaub erst mal ankommen muss - und das vollkommen zu Recht.<br><br>
+    Kein Druck, keine Erwartung. Ich will nur nicht einer mehr sein der sich meldet wenn du schon müde bist und überwältigt von allem.<br><br>
+    Ich weiß dass du Jetlag haben wirst, erschöpft bist und der letzte Abend den du brauchst einer mit Plan und Programm ist.<br><br>
+    Deswegen: nichts davon. Nur du, ich, eine Couch und ein Film den wir sowieso beide nicht zu Ende schauen.<br><br>
+    Falls dir das an einem der folgenden Tage passt - ich würde mich freuen.
+  </p>
+
+  <span class="picker-label">Wähle einen Tag</span>
+
+  <div class="days">
+    <button class="day-btn" onclick="selectDay(this, 'Freitag')">Freitag</button>
+    <button class="day-btn" onclick="selectDay(this, 'Samstag')">Samstag</button>
+    <button class="day-btn" onclick="selectDay(this, 'Sonntag')">Sonntag</button>
+  </div>
+
+  <button class="confirm-btn" id="confirmBtn" onclick="confirmDay()">Ich sage zu</button>
+
+  <div class="success" id="success">
+    <p id="successText"></p>
+  </div>
+
+</div>
+
+<script>
+// Subtile Sterne
+const starsEl = document.getElementById('stars');
+for(let i = 0; i < 60; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 2 + 0.5;
+  s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*5}s;animation-delay:${Math.random()*5}s;`;
+  starsEl.appendChild(s);
+}
+
+let selected = null;
+
+function selectDay(btn, day) {
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selected = day;
+  document.getElementById('confirmBtn').classList.add('visible');
+}
+
+async function confirmDay() {
+  if(!selected) return;
+  const messages = {
+    'Freitag': 'Freitag. Gut. Ich freue mich.',
+    'Samstag': 'Samstag. Perfekt. Ich freue mich.',
+    'Sonntag': 'Sonntag. Schön. Ich freue mich.'
+  };
+
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: '656fbe2b-995b-4933-bcee-13d7a7fcd15b',
+        subject: 'Lara hat geantwortet',
+        message: 'Sie kommt ' + selected + '.\n\n' + new Date().toLocaleString('de-DE'),
+        from_name: 'Lara'
+      })
+    });
+  } catch(e) {}
+
+  document.getElementById('confirmBtn').style.display = 'none';
+  document.querySelectorAll('.day-btn').forEach(b => b.disabled = true);
+  const el = document.getElementById('success');
+  document.getElementById('successText').textContent = messages[selected];
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+
+</body>
+</html>
