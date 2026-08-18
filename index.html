@@ -258,6 +258,17 @@
   
     /* Hide default cursor everywhere */
     *, *::before, *::after { cursor: none !important; }
+  
+    @media(max-width:768px){
+      /* Simpler animations on mobile */
+      .reveal { transition-duration: 0.5s !important; transition-delay: 0s !important; }
+      .d1,.d2,.d3,.d4,.d5 { transition-delay: 0s !important; }
+      /* Reduce motion for battery */
+      @media(prefers-reduced-motion: reduce){
+        .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+        .word-inner { transition: none !important; transform: none !important; }
+      }
+    }
   </style>
 </head>
 <body>
@@ -514,7 +525,8 @@ updateNav();
 // ── THREE.JS 3D CRYSTAL ──
 const canvas3d=document.getElementById('three-canvas');
 const renderer=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true,alpha:true});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+const isMob=window.innerWidth<768;
+renderer.setPixelRatio(isMob?1:Math.min(window.devicePixelRatio,2));
 renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setClearColor(0x111111,1);
 renderer.setClearAlpha(1);

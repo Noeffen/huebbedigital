@@ -63,7 +63,7 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#111111;color:#fff;overflow-x:hidden;}
-    #three-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    #three-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform;transform:translateZ(0);}
     nav,section,footer{position:relative;z-index:1;}
 
     /* COOKIE */
@@ -216,6 +216,17 @@
   
     /* Hide default cursor everywhere */
     *, *::before, *::after { cursor: none !important; }
+  
+    @media(max-width:768px){
+      /* Simpler animations on mobile */
+      .reveal { transition-duration: 0.5s !important; transition-delay: 0s !important; }
+      .d1,.d2,.d3,.d4,.d5 { transition-delay: 0s !important; }
+      /* Reduce motion for battery */
+      @media(prefers-reduced-motion: reduce){
+        .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+        .word-inner { transition: none !important; transform: none !important; }
+      }
+    }
   </style>
 </head>
 <body>
@@ -408,7 +419,8 @@
 // ── THREE.JS GLOBE RADAR ──
 const canvas3d=document.getElementById('three-canvas');
 const renderer=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+const isMob=window.innerWidth<768;
+renderer.setPixelRatio(isMob?1:Math.min(window.devicePixelRatio,2));
 renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setClearColor(0x111111,1);
 const rScene=new THREE.Scene();
@@ -607,7 +619,16 @@ function radarLoop(){
 
   renderer.render(rScene,rCamera);
 }
-radarLoop();
+let lastRFrame=0;
+const RFPS=window.innerWidth<768?30:60;
+const RINTERVAL=1000/RFPS;
+function radarTick(ts){
+  requestAnimationFrame(radarTick);
+  if(ts-lastRFrame<RINTERVAL) return;
+  lastRFrame=ts;
+  radarLoop();
+}
+requestAnimationFrame(radarTick);
 
 // REVEAL
 const obs=new IntersectionObserver(entries=>{
