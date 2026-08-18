@@ -50,9 +50,27 @@
     .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
     .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
     @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
+  
+    /* Hide default scrollbar */
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Elegant progress bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #3B82F6, #7C3AED);
+      z-index: 9999;
+      transition: width 0.1s linear;
+      border-radius: 0 999px 999px 0;
+    }
   </style>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="spotlight" id="spotlight"></div>
@@ -231,6 +249,18 @@ if(cur){
   });
 }
 
+</script>
+<script>
+// Scroll progress bar
+(function(){
+  var bar = document.getElementById('scrollProgress');
+  if(!bar) return;
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = pct + '%';
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
