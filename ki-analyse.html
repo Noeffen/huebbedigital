@@ -207,9 +207,9 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      height: 2px;
+      height: 3px;
       background: linear-gradient(90deg, #3B82F6, #7C3AED);
-      z-index: 9999;
+      z-index: 99999;
       transform-origin: left;
       transform: scaleX(0);
       border-radius: 0 999px 999px 0;
@@ -620,12 +620,12 @@ function radarLoop(){
 
   renderer.render(rScene,rCamera);
 }
-let lastRFrame=0;
+let lastRFrame=-999;
 const RFPS=window.innerWidth<768?30:60;
 const RINTERVAL=1000/RFPS;
 function radarTick(ts){
   requestAnimationFrame(radarTick);
-  if(!lastRFrame || ts-lastRFrame<RINTERVAL) { lastRFrame=ts; return; }
+  if(ts-lastRFrame<RINTERVAL) return;
   lastRFrame=ts;
   radarLoop();
 }
