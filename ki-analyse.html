@@ -574,7 +574,6 @@ document.addEventListener('mousemove',e=>{
 
 let rTick=0;
 function radarLoop(){
-  requestAnimationFrame(radarLoop);
   rTick+=0.008;
 
   const prog=getProgress();
@@ -626,7 +625,7 @@ const RFPS=window.innerWidth<768?30:60;
 const RINTERVAL=1000/RFPS;
 function radarTick(ts){
   requestAnimationFrame(radarTick);
-  if(ts-lastRFrame<RINTERVAL) return;
+  if(!lastRFrame || ts-lastRFrame<RINTERVAL) { lastRFrame=ts; return; }
   lastRFrame=ts;
   radarLoop();
 }
@@ -676,11 +675,13 @@ if(cur){
 (function(){
   var bar = document.getElementById('scrollProgress');
   if(!bar) return;
-  window.addEventListener('scroll', function(){
+  function updateBar(){
     var h = document.documentElement;
-    var pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-    bar.style.width = pct + '%';
-  }, { passive: true });
+    var pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight);
+    bar.style.transform = 'scaleX(' + pct + ')';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
 })();
 </script>
 </body>
