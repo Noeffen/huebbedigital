@@ -3,203 +3,234 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Datenschutzerklärung – Huebbe Digital</title>
-  <meta name="robots" content="noindex, follow">
-
-  <!-- Favicon -->
+  <title>Datenschutzerklärung – HuebbeDigital</title>
+  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
-  <meta name="theme-color" content="#111111">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.7; color: #333; background: #fafafa; padding: 20px;
-    }
-    .container { max-width: 900px; margin: 0 auto; background: white; padding: 60px; border-radius: 8px; }
-    h1 { font-size: 42px; margin-bottom: 16px; }
-    h2 { font-size: 32px; margin: 48px 0 24px; border-bottom: 2px solid #3B82F6; padding-bottom: 8px; }
-    h3 { font-size: 24px; margin: 32px 0 16px; color: #3B82F6; }
-    h4 { font-size: 18px; margin: 24px 0 12px; font-weight: 600; }
-    p { margin-bottom: 16px; }
-    ul, ol { margin: 16px 0 24px 24px; }
-    li { margin-bottom: 8px; }
-    .highlight { background: #eff6ff; border-left: 4px solid #3B82F6; padding: 20px; margin: 24px 0; }
-    .highlight strong { display: block; margin-bottom: 8px; color: #1e40af; }
-    table { width: 100%; border-collapse: collapse; margin: 24px 0; }
-    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-    th { background: #f3f4f6; font-weight: 600; }
-    a { color: #3B82F6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .back-link { display: inline-block; margin-bottom: 32px; font-size: 14px; color: #525252; }
-    @media (max-width: 600px) { .container { padding: 24px; } h1 { font-size: 28px; } h2 { font-size: 22px; } }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#111;color:#fff;min-height:100vh;overflow-x:hidden;}
+    #scene{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    nav,main,footer{position:relative;z-index:1;}
+    nav{padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+    .brand{font-size:1rem;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:inherit;}
+    .brand-grad{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav-back{font-size:.85rem;font-weight:500;color:inherit;text-decoration:none;opacity:.4;}
+    .nav-back:hover{opacity:.8;}
+    main{max-width:760px;margin:0 auto;padding:4rem 3rem 6rem;}
+    .page-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;display:block;margin-bottom:1rem;}
+    h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:3rem;}
+    .grad-text{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .content{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:2.5rem 3rem;backdrop-filter:blur(8px);}
+    h2{font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#3B82F6;margin:2rem 0 .6rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);}
+    h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+    h3{font-size:.88rem;font-weight:700;opacity:.7;margin:1.2rem 0 .4rem;letter-spacing:.03em;}
+    p{font-size:.92rem;line-height:1.8;opacity:.6;margin-bottom:.5rem;}
+    ul{margin:.5rem 0 .5rem 1.2rem;}
+    ul li{font-size:.92rem;line-height:1.8;opacity:.6;margin-bottom:.2rem;}
+    a{color:#3B82F6;text-decoration:none;}
+    a:hover{opacity:.7;}
+    code{font-family:monospace;font-size:.82rem;background:rgba(59,130,246,.1);padding:.1rem .4rem;border-radius:4px;color:#93c5fd;}
+    .highlight{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;}
+    .highlight strong{display:block;font-size:.85rem;color:#93c5fd;margin-bottom:.3rem;}
+    .highlight p{margin:0;font-size:.85rem;}
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem;}
+    th{text-align:left;font-weight:700;opacity:.4;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem .8rem;border-bottom:1px solid rgba(255,255,255,.1);}
+    td{padding:.6rem .8rem;border-bottom:1px solid rgba(255,255,255,.06);opacity:.6;line-height:1.6;vertical-align:top;}
+    footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem;opacity:.3;}
+    footer a{color:inherit;text-decoration:none;margin-left:1.5rem;}
+    @media(max-width:600px){nav{padding:1.2rem 1.5rem;}main{padding:3rem 1.5rem;}footer{flex-direction:column;gap:.8rem;}.content{padding:1.5rem;}}
+  
+    /* Custom cursor */
+    .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
+    .cursor.hover { width: 12px; height: 12px; }
+    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
+    .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
+    @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-      <a href="/" style="font-size:18px; font-weight:700; text-decoration:none; letter-spacing:-0.02em;">
-        <span style="color:#171717;">Huebbe</span><span style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Digital</span>
-      </a>
-      <a href="/" style="padding:10px 20px; border-radius:10px; font-size:14px; font-weight:600; text-decoration:none; color:#525252; border:1px solid rgba(0,0,0,0.08); background:white; box-shadow:0 2px 4px rgba(0,0,0,0.04);">← Zurück</a>
-    </div>
-    <h1>Datenschutzerklärung</h1>
-    <p><strong>Stand: August 2026</strong></p>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="spotlight" id="spotlight"></div>
 
-    <div class="highlight">
-      <strong>Ihre Privatsphäre ist uns wichtig</strong>
-      <p>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst und behandeln diese vertraulich sowie entsprechend der gesetzlichen Datenschutzvorschriften und dieser Datenschutzerklärung.</p>
-    </div>
+<canvas id="scene"></canvas>
+<nav>
+  <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
+  <a href="/" class="nav-back">← Zurück</a>
+</nav>
+<main>
+  <span class="page-label">Rechtliches</span>
+  <h1>Daten<span class="grad-text">schutz.</span></h1>
+  <div class="content">
 
-    <h2>1. Verantwortlicher</h2>
-    <p>Verantwortlich für die Datenverarbeitung auf dieser Website und in unseren Apps ist:</p>
-    <p>
-      <strong>Christian Hübbe</strong><br>
-      c/o flexdienst – #11298<br>
-      Kurt-Schumacher-Straße 76<br>
-      67663 Kaiserslautern<br>
-      Deutschland
-    </p>
-    <p>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a></p>
-
-    <h2>2. Geltungsbereich</h2>
+    <h2>Geltungsbereich</h2>
     <p>Diese Datenschutzerklärung gilt für:</p>
     <ul>
       <li>Die Website <strong>huebbedigital.com</strong> und alle Unterseiten</li>
-      <li>Die mobile App <strong>FairwayService</strong> (iOS &amp; Android)</li>
-      <li>Die mobile App <strong>NotAlone</strong> (iOS &amp; Android) – <strong>eingestellt, siehe Hinweis unten</strong></li>
+      <li>Die mobile App <strong>FairwayService</strong> (iOS & Android)</li>
+      <li>Die mobile App <strong>NotAlone</strong> (iOS & Android) – eingestellt, siehe Hinweis unten</li>
     </ul>
 
-    <div class="highlight">
-      <strong>Hinweis: NotAlone wurde eingestellt</strong>
+    <div class="highlight" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06);">
+      <strong style="color:#fca5a5;">Hinweis: NotAlone wurde eingestellt</strong>
       <p>Die App <strong>NotAlone</strong> ist seit August 2026 nicht mehr im Google Play Store und App Store verfügbar und wurde vollständig aus den jeweiligen Konsolen gelöscht. Alle im Rahmen von NotAlone erhobenen personenbezogenen Daten wurden unwiderruflich aus unserem Backend gelöscht. Es findet keine weitere Datenverarbeitung im Zusammenhang mit NotAlone mehr statt.</p>
     </div>
 
-    <h2>3. Allgemeine Informationen zur Datenverarbeitung</h2>
+    <h2>1. Verantwortlicher</h2>
+    <p>HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald<br>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a></p>
 
-    <h3>3.1 Umfang der Verarbeitung personenbezogener Daten</h3>
-    <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website und App sowie unserer Inhalte und Leistungen erforderlich ist.</p>
+    <h2>2. Ihre Rechte</h2>
+    <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO).</p>
+    <p><strong>Aufsichtsbehörde:</strong> Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz, Hintere Bleiche 34, 55116 Mainz · <a href="mailto:poststelle@datenschutz.rlp.de">poststelle@datenschutz.rlp.de</a></p>
 
-    <h3>3.2 Rechtsgrundlage für die Verarbeitung</h3>
-    <p>Soweit wir eine Einwilligung einholen, dient <strong>Art. 6 Abs. 1 lit. a DSGVO</strong> als Rechtsgrundlage. Bei Vertragserfüllung <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>. Bei berechtigtem Interesse <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>.</p>
+    <h2>3. Allgemeines zur Datenverarbeitung</h2>
+    <p>Wir verarbeiten personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website und unserer Leistungen erforderlich ist.</p>
+    <h3>Rechtsgrundlagen</h3>
+    <p>Einwilligung: Art. 6 Abs. 1 lit. a DSGVO · Vertragserfüllung: Art. 6 Abs. 1 lit. b DSGVO · Berechtigtes Interesse: Art. 6 Abs. 1 lit. f DSGVO</p>
 
-    <h3>3.3 Datenlöschung und Speicherdauer</h3>
-    <p>Die personenbezogenen Daten werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt.</p>
-
-    <h2>4. Bereitstellung der Website</h2>
-
-    <h3>4.1 Hosting</h3>
+    <h2>4. Hosting (GitHub Pages)</h2>
     <p>Unsere Website wird über <strong>GitHub Pages</strong> gehostet (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
-    <p><strong>Verarbeitete Daten:</strong> IP-Adresse, Datum und Uhrzeit, Browserinformationen, angeforderte Seiten</p>
-    <p><strong>Zweck:</strong> Technische Bereitstellung der Website</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO &middot; <strong>Speicherdauer:</strong> Maximal 7 Tage</p>
-
-    <h3>4.2 SSL/TLS-Verschlüsselung</h3>
-    <p>Diese Website nutzt SSL/TLS-Verschlüsselung für sichere Datenübertragung.</p>
-
-    <h3>4.3 Cookies</h3>
-    <p>Unsere Website selbst setzt keine technisch notwendigen Cookies. Beim Besuch wird ein Cookie-Banner eingeblendet, über den Sie der Nutzung von Analyse-Cookies (Google Analytics) zustimmen können. Ihre Einstellung wird lokal im Browser gespeichert (<code>localStorage</code>).</p>
+    <p><strong>Daten:</strong> IP-Adresse, Datum/Uhrzeit, Browserinformationen, angeforderte Seiten · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO · <strong>Speicherdauer:</strong> Max. 7 Tage</p>
 
     <h2>5. Google Analytics</h2>
-
     <div class="highlight">
       <strong>Nur mit Ihrer Einwilligung</strong>
-      <p>Google Analytics wird erst aktiv, nachdem Sie im Cookie-Banner ausdrücklich zugestimmt haben. Ohne Einwilligung werden keine Cookies gesetzt und keine Daten an Google übertragen.</p>
+      <p>Google Analytics wird erst aktiv, nachdem Sie im Cookie-Banner zugestimmt haben. Ohne Einwilligung keine Cookies, keine Datenübertragung.</p>
     </div>
-
-    <p>Diese Website nutzt Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland).</p>
-
-    <h3>5.1 Verarbeitete Daten</h3>
+    <p>Google Analytics 4 · Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
+    <h3>Verarbeitete Daten</h3>
     <ul>
       <li>Pseudonymisierte IP-Adresse</li>
       <li>Aufgerufene Seiten und Verweildauer</li>
       <li>Geräte-, Browser- und Betriebssystem-Informationen</li>
       <li>Ungefährer Standort (Stadt-/Regionsebene)</li>
-      <li>Referrer-URL</li>
     </ul>
-
-    <h3>5.2 Eingesetzte Cookies</h3>
+    <h3>Cookies</h3>
     <table>
-      <thead><tr><th>Cookie</th><th>Zweck</th><th>Speicherdauer</th></tr></thead>
+      <thead><tr><th>Cookie</th><th>Zweck</th><th>Dauer</th></tr></thead>
       <tbody>
-        <tr><td><code>_ga</code></td><td>Unterscheidung von Website-Besuchern</td><td>ca. 2 Jahre</td></tr>
+        <tr><td><code>_ga</code></td><td>Unterscheidung von Besuchern</td><td>ca. 2 Jahre</td></tr>
         <tr><td><code>_ga_*</code></td><td>Sitzungsstatus (GA4)</td><td>ca. 2 Jahre</td></tr>
       </tbody>
     </table>
-
-    <h3>5.3 Einwilligungsmodus (Consent Mode)</h3>
-    <p>Wir setzen Google Consent Mode ein. Ohne Einwilligung ist die Datenerhebung deaktiviert (<code>denied</code>). Erst nach Zustimmung wird sie freigeschaltet (<code>granted</code>).</p>
-
-    <h3>5.4 Widerruf</h3>
-    <p>Sie können die Einwilligung widerrufen, indem Sie die Website-Daten für <strong>huebbedigital.com</strong> in den Browser-Einstellungen löschen.</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO &middot; <strong>Weitere Infos:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a></p>
+    <h3>Consent Mode v2</h3>
+    <p>Wir setzen Google Consent Mode ein. Ohne Einwilligung ist die Datenerhebung deaktiviert. Widerruf jederzeit durch Löschen der Website-Daten in den Browser-Einstellungen.</p>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung Google</a></p>
 
     <h2>6. Kontaktformular (Web3Forms)</h2>
+    <p>Kontaktanfragen werden über <strong>Web3Forms</strong> verarbeitet und per E-Mail weitergeleitet.</p>
+    <p><strong>Daten:</strong> Name, E-Mail, Nachricht, ggf. Website-URL und Branche · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Nur für die Dauer der Bearbeitung</p>
+    <p><a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
 
-    <p>Auf dieser Website sind Kontaktformulare eingebunden, über die Sie eine Projektanfrage oder eine Website-Analyse anfordern können. Die Formulardaten werden über den Dienst <strong>Web3Forms</strong> (Web3Forms, webformservice.io) verarbeitet und per E-Mail an uns weitergeleitet.</p>
-
-    <p><strong>Verarbeitete Daten:</strong> Name, E-Mail-Adresse, Projektart, Nachrichteninhalt sowie ggf. Website-URL und Branche (bei der Analyse-Anfrage).</p>
-    <p><strong>Zweck:</strong> Bearbeitung von Kontakt- und Projektanfragen sowie Anfragen zur kostenlosen Website-Analyse.</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung von Anfragen).</p>
-    <p><strong>Speicherdauer:</strong> Die Daten werden nach Web3Forms an unsere E-Mail-Adresse weitergeleitet und dort nur so lange gespeichert, wie es für die Bearbeitung der Anfrage erforderlich ist.</p>
-    <p><strong>Weitergabe:</strong> Web3Forms leitet die Formulardaten ausschließlich an die hinterlegte E-Mail-Adresse weiter. Es findet keine darüber hinausgehende Nutzung statt.</p>
-    <p>Weitere Informationen: <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
-
-    <h2>7. Firebase-Dienste (Google LLC)</h2>
+    <h2>7. Firebase-Dienste (FairwayService & NotAlone Apps)</h2>
     <div class="highlight">
       <strong>EU-Rechenzentren</strong>
-      <p>Alle Firebase-Daten werden in der <strong>Europäischen Union (europe-west3)</strong> gespeichert.</p>
+      <p>Alle Firebase-Daten werden in der <strong>EU (europe-west3)</strong> gespeichert.</p>
     </div>
+    <h3>Firebase Authentication</h3>
+    <p>Daten: E-Mail, verschlüsseltes Passwort, Nutzer-ID · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO · Speicherdauer: Bis zur Account-Löschung</p>
+    <h3>Cloud Firestore & Storage – FairwayService</h3>
+    <p>FairwayService speichert: Benutzerprofil, Bestellungen, Problem-Meldungen, Fotos (90 Tage nach Erledigung), Profilbilder (optional).</p>
+    <h3>Cloud Firestore & Storage – NotAlone (eingestellt)</h3>
+    <p>NotAlone speicherte: Benutzerprofil, Nachrichten und Gesprächsverläufe, Profilbilder, Matching-Präferenzen. <strong>Alle Daten wurden im August 2026 unwiderruflich gelöscht.</strong> Es findet keine weitere Datenverarbeitung statt.</p>
+    <h3>Firebase Cloud Messaging</h3>
+    <p>Daten: Device-Token, Benachrichtigungsinhalt · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO · Widerruf: In den jeweiligen App-Einstellungen</p>
 
-    <h3>6.1 Firebase Authentication</h3>
-    <p>Verarbeitete Daten: E-Mail-Adresse, verschlüsseltes Passwort, Nutzer-ID, Zeitstempel der Registrierung.<br>
-    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO &middot; <strong>Speicherdauer:</strong> Bis zur Account-Löschung</p>
-
-    <h3>6.2 Cloud Firestore</h3>
-    <p><strong>FairwayService speichert:</strong> Benutzerprofil, Bestellungen, Problem-Meldungen, QR-Code-Tokens (30 Min.), Push-Token.</p>
-
-    <h3>6.3 Cloud Storage</h3>
-    <p><strong>FairwayService:</strong> Fotos von Problem-Meldungen (90 Tage nach Erledigung), Profilbilder (optional).</p>
-
-    <h3>6.4 Firebase Cloud Messaging</h3>
-    <p>Verarbeitete Daten: Device-Token, Benachrichtigungsinhalt.<br>
-    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO &middot; <strong>Widerruf:</strong> Jederzeit in den App-Einstellungen</p>
-
-    <h2>8. Ihre Rechte als betroffene Person</h2>
-    <ul>
-      <li><strong>Auskunft</strong> (Art. 15 DSGVO)</li>
-      <li><strong>Berichtigung</strong> (Art. 16 DSGVO)</li>
-      <li><strong>Löschung</strong> (Art. 17 DSGVO) – in der FairwayService App: Einstellungen → Account löschen</li>
-      <li><strong>Einschränkung</strong> (Art. 18 DSGVO)</li>
-      <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
-      <li><strong>Widerspruch</strong> (Art. 21 DSGVO)</li>
-    </ul>
-
-    <p><strong>Zuständige Aufsichtsbehörde:</strong><br>
-    Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz<br>
-    Hintere Bleiche 34, 55116 Mainz &middot; <a href="mailto:poststelle@datenschutz.rlp.de">poststelle@datenschutz.rlp.de</a></p>
-
-    <h2>9. Weitergabe an Dritte</h2>
+    <h2>8. Weitergabe an Dritte</h2>
     <table>
       <thead><tr><th>Dienstleister</th><th>Zweck</th><th>Standort</th></tr></thead>
       <tbody>
-        <tr><td>Google LLC (Firebase)</td><td>App-Backend, Datenbank</td><td>EU (europe-west3)</td></tr>
-        <tr><td>Google LLC (Analytics)</td><td>Webanalyse (nur mit Einwilligung)</td><td>USA (Standardvertragsklauseln)</td></tr>
-        <tr><td>Web3Forms</td><td>Kontaktformular-Verarbeitung</td><td>USA (Datenweiterleitung per E-Mail)</td></tr>
-        <tr><td>GitHub, Inc.</td><td>Website-Hosting</td><td>USA (Standardvertragsklauseln)</td></tr>
+        <tr><td>Google LLC (Firebase)</td><td>App-Backend FairwayService · NotAlone eingestellt (Daten gelöscht 08/2026)</td><td>EU (europe-west3)</td></tr>
+        <tr><td>Google LLC (Analytics)</td><td>Webanalyse (nur mit Einwilligung)</td><td>USA (SCC)</td></tr>
+        <tr><td>Web3Forms</td><td>Kontaktformular</td><td>USA (E-Mail-Weiterleitung)</td></tr>
+        <tr><td>GitHub, Inc.</td><td>Website-Hosting</td><td>USA (SCC)</td></tr>
       </tbody>
     </table>
 
+    <h2>9. SSL/TLS & Cookies</h2>
+    <p>Diese Website nutzt SSL/TLS-Verschlüsselung. Eigene technische Cookies werden nicht gesetzt. Die Cookie-Einstellung wird lokal im Browser gespeichert (<code>localStorage</code>).</p>
+
     <h2>10. Kontakt zum Datenschutz</h2>
-    <p>
-      <strong>E-Mail:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>
-      <strong>Postanschrift:</strong> Kurt-Schumacher-Straße 76, 67663 Kaiserslautern
-    </p>
-    <p>Wir antworten innerhalb eines Monats. &middot; <strong>Stand: August 2026</strong></p>
+    <p><strong>E-Mail:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>
+    <strong>Post:</strong> Am See 1, 64739 Höchst im Odenwald</p>
+    <p>Wir antworten innerhalb eines Monats. · <strong>Stand: August 2026</strong></p>
+
   </div>
+</main>
+<footer>
+  <span>© 2026 HuebbeDigital</span>
+  <div>
+    <a href="/imprint.html">Impressum</a>
+    <a href="/privacy.html">Datenschutz</a>
+  </div>
+</footer>
+<script>
+const canvas=document.getElementById('scene');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
+
+const lines=[];
+const COUNT=18;
+for(let i=0;i<COUNT;i++){
+  lines.push({
+    x: Math.random()*window.innerWidth*1.5 - window.innerWidth*.25,
+    speed: 0.12 + Math.random()*.1,
+    opacity: 0.08 + Math.random()*.10,
+    width: .4 + Math.random()*.6
+  });
+}
+
+let tick=0;
+function draw(){
+  const W=canvas.width,H=canvas.height;
+  ctx.fillStyle='#111111';
+  ctx.fillRect(0,0,W,H);
+  const glow=ctx.createRadialGradient(W*.2,H*.8,0,W*.2,H*.8,W*.5);
+  glow.addColorStop(0,'rgba(124,58,237,0.05)');
+  glow.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=glow;
+  ctx.fillRect(0,0,W,H);
+  lines.forEach(l=>{
+    const x=((l.x + tick*l.speed) % (W*1.5)) - W*.25;
+    ctx.beginPath();
+    ctx.moveTo(x,0);
+    ctx.lineTo(x+H,H);
+    const grad=ctx.createLinearGradient(x,0,x+H,H);
+    grad.addColorStop(0,'rgba(59,130,246,0)');
+    grad.addColorStop(0.3,`rgba(59,130,246,${l.opacity})`);
+    grad.addColorStop(0.7,`rgba(124,58,237,${l.opacity})`);
+    grad.addColorStop(1,'rgba(124,58,237,0)');
+    ctx.strokeStyle=grad;
+    ctx.lineWidth=l.width;
+    ctx.stroke();
+  });
+  tick++;
+}
+function loop(){draw();requestAnimationFrame(loop);}
+loop();
+
+// Custom cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),spot=document.getElementById('spotlight');
+if(cur){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+    spot.style.left=mx+'px';spot.style.top=my+'px';
+  });
+  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  animRing();
+  document.querySelectorAll('a,button,.check-card,.pill,.badge').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover');});
+    el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover');});
+  });
+}
+
+</script>
 </body>
 </html>

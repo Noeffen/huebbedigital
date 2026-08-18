@@ -1,159 +1,152 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Impressum – Huebbe Digital</title>
-  <meta name="description" content="Impressum und rechtliche Informationen" />
-  <meta name="robots" content="noindex, follow">
-
-  <!-- Favicon -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impressum – HuebbeDigital</title>
+  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
-  <meta name="theme-color" content="#111111">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --gray-50: #FAFAFA; --gray-100: #F5F5F5; --gray-500: #737373;
-      --gray-600: #525252; --gray-900: #171717;
-      --blue-500: #3B82F6; --blue-600: #2563EB;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
-      color: var(--gray-900); line-height: 1.6; -webkit-font-smoothing: antialiased;
-    }
-    .container { max-width: 800px; margin: 0 auto; padding: 0 32px; }
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 80px; }
-    .brand { font-size: 18px; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
-    .brand-text { color: var(--gray-900); }
-    .brand-gradient {
-      background: linear-gradient(135deg, var(--blue-500) 0%, #7C3AED 100%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .btn {
-      padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
-      text-decoration: none; color: var(--gray-600); border: 1px solid rgba(0,0,0,0.08);
-      background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.04); transition: all 0.3s ease;
-    }
-    .btn:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    main { padding: 100px 0; }
-    .content-card {
-      background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 24px; padding: 64px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 12px 48px rgba(0,0,0,0.05);
-    }
-    h1 { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 40px; }
-    h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-top: 48px; margin-bottom: 20px; }
-    p { font-size: 17px; line-height: 1.7; color: var(--gray-600); margin-bottom: 16px; }
-    a { color: var(--blue-600); text-decoration: none; transition: color 0.2s ease; }
-    a:hover { color: var(--blue-500); }
-    footer { border-top: 1px solid rgba(0,0,0,0.06); padding: 64px 0; text-align: center; background: white; }
-    footer p { font-size: 14px; color: var(--gray-500); margin-bottom: 12px; }
-    footer a { color: var(--gray-600); text-decoration: none; }
-    footer a:hover { color: var(--gray-900); }
-    @media (max-width: 768px) {
-      .container { padding: 0 20px; } .nav { height: 70px; }
-      main { padding: 60px 0; } .content-card { padding: 32px; }
-      h1 { font-size: 36px; } h2 { font-size: 24px; }
-    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#111;color:#fff;min-height:100vh;overflow-x:hidden;}
+    #scene{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    nav,main,footer{position:relative;z-index:1;}
+    nav{padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+    .brand{font-size:1rem;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:inherit;}
+    .brand-grad{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav-back{font-size:.85rem;font-weight:500;color:inherit;text-decoration:none;opacity:.4;}
+    .nav-back:hover{opacity:.8;}
+    main{max-width:760px;margin:0 auto;padding:4rem 3rem 6rem;}
+    .page-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;display:block;margin-bottom:1rem;}
+    h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:3rem;}
+    .grad-text{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .content{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:2.5rem 3rem;backdrop-filter:blur(8px);}
+    h2{font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#3B82F6;margin:2rem 0 .6rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);}
+    h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+    p{font-size:.95rem;line-height:1.8;opacity:.65;margin-bottom:.5rem;}
+    a{color:#3B82F6;text-decoration:none;}
+    a:hover{opacity:.7;}
+    footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem;opacity:.3;}
+    footer a{color:inherit;text-decoration:none;margin-left:1.5rem;}
+    @media(max-width:600px){nav{padding:1.2rem 1.5rem;}main{padding:3rem 1.5rem;}footer{flex-direction:column;gap:.8rem;}.content{padding:1.5rem;}}
+  
+    /* Custom cursor */
+    .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
+    .cursor.hover { width: 12px; height: 12px; }
+    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
+    .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
+    @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <nav class="nav">
-        <a href="/" class="brand">
-          <span class="brand-text">Huebbe</span><span class="brand-gradient">Digital</span>
-        </a>
-        <a href="/" class="btn">&larr; Zurück</a>
-      </nav>
-    </div>
-  </header>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="spotlight" id="spotlight"></div>
 
-  <main>
-    <div class="container">
-      <div class="content-card">
-        <h1>Impressum</h1>
+<canvas id="scene"></canvas>
+<nav>
+  <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
+  <a href="/" class="nav-back">← Zurück</a>
+</nav>
+<main>
+  <span class="page-label">Rechtliches</span>
+  <h1>Impres<span class="grad-text">sum.</span></h1>
+  <div class="content">
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>HuebbeDigital<br>Christian Hübbe<br>Am See 1<br>64739 Höchst im Odenwald<br>Deutschland</p>
+    <h2>Kontakt</h2>
+    <p>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a></p>
+    <h2>Umsatzsteuer-ID</h2>
+    <p>Steuernummer: wird nachgereicht (Gewerbe neu angemeldet)<br>Umsatzsteuer-ID: [wird nach Zuteilung durch das Finanzamt ergänzt]</p>
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>Christian Hübbe<br>Am See 1<br>64739 Höchst im Odenwald</p>
+    <h2>Haftung für Inhalte</h2>
+    <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors.</p>
+  </div>
+</main>
+<footer>
+  <span>© 2026 HuebbeDigital</span>
+  <div>
+    <a href="/imprint.html">Impressum</a>
+    <a href="/privacy.html">Datenschutz</a>
+  </div>
+</footer>
+<script>
+const canvas=document.getElementById('scene');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
 
-        <h2>Angaben gemäß § 5 DDG</h2>
-        <p>
-          Christian Hübbe<br>
-          Einzelunternehmer<br>
-          c/o flexdienst – #11298<br>
-          Kurt-Schumacher-Straße 76<br>
-          67663 Kaiserslautern<br>
-          Deutschland
-        </p>
+// Drifting diagonal lines
+const lines=[];
+const COUNT=18;
+for(let i=0;i<COUNT;i++){
+  lines.push({
+    x: Math.random()*window.innerWidth*1.5 - window.innerWidth*.25,
+    speed: 0.12 + Math.random()*.1,
+    opacity: 0.08 + Math.random()*.10,
+    width: .4 + Math.random()*.6
+  });
+}
 
-        <h2>Kontakt</h2>
-        <p>
-          E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a>
-        </p>
+let tick=0;
+function draw(){
+  const W=canvas.width,H=canvas.height;
+  ctx.fillStyle='#111111';
+  ctx.fillRect(0,0,W,H);
 
-        <h2>Umsatzsteuer-ID</h2>
-        <p>
-          Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
-          [Wird bei Bedarf ergänzt]
-        </p>
+  // Subtle glow top-right
+  const glow=ctx.createRadialGradient(W*.75,H*.15,0,W*.75,H*.15,W*.5);
+  glow.addColorStop(0,'rgba(59,130,246,0.05)');
+  glow.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=glow;
+  ctx.fillRect(0,0,W,H);
 
-        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-        <p>
-          Christian Hübbe<br>
-          c/o flexdienst – #11298<br>
-          Kurt-Schumacher-Straße 76<br>
-          67663 Kaiserslautern
-        </p>
+  // Drifting lines (diagonal, top-left to bottom-right)
+  lines.forEach((l,i)=>{
+    const x=((l.x + tick*l.speed) % (W*1.5)) - W*.25;
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x + H, H);
+    const grad=ctx.createLinearGradient(x,0,x+H,H);
+    grad.addColorStop(0,'rgba(59,130,246,0)');
+    grad.addColorStop(0.3,`rgba(59,130,246,${l.opacity})`);
+    grad.addColorStop(0.7,`rgba(124,58,237,${l.opacity})`);
+    grad.addColorStop(1,'rgba(124,58,237,0)');
+    ctx.strokeStyle=grad;
+    ctx.lineWidth=l.width;
+    ctx.stroke();
+  });
+  tick++;
+}
+function loop(){draw();requestAnimationFrame(loop);}
+loop();
 
-        <h2>Haftungsausschluss</h2>
+// Custom cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),spot=document.getElementById('spotlight');
+if(cur){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+    spot.style.left=mx+'px';spot.style.top=my+'px';
+  });
+  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  animRing();
+  document.querySelectorAll('a,button,.check-card,.pill,.badge').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover');});
+    el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover');});
+  });
+}
 
-        <p><strong>Haftung für Inhalte</strong></p>
-        <p>
-          Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
-          Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
-          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten
-          nach den allgemeinen Gesetzen verantwortlich.
-        </p>
-
-        <p><strong>Haftung für Links</strong></p>
-        <p>
-          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
-          Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
-          Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber
-          der Seiten verantwortlich.
-        </p>
-
-        <p><strong>Urheberrecht</strong></p>
-        <p>
-          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen
-          dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art
-          der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen
-          Zustimmung des jeweiligen Autors bzw. Erstellers.
-        </p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 HuebbeDigital</p>
-      <p>
-        <a href="/imprint.html">Impressum</a> &middot;
-        <a href="/privacy.html">Datenschutz</a>
-      </p>
-    </div>
-  </footer>
+</script>
 </body>
 </html>
