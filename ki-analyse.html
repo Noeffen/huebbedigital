@@ -206,12 +206,14 @@
     .scroll-progress {
       position: fixed;
       top: 0; left: 0;
-      width: 0%;
+      width: 100%;
       height: 2px;
       background: linear-gradient(90deg, #3B82F6, #7C3AED);
       z-index: 9999;
-      transition: width 0.1s linear;
+      transform-origin: left;
+      transform: scaleX(0);
       border-radius: 0 999px 999px 0;
+      will-change: transform;
     }
   
     /* Hide default cursor everywhere */
