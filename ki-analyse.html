@@ -418,7 +418,8 @@ function lc(a,b,t){return new THREE.Color().lerpColors(a,b,t);}
 const globeGroup=new THREE.Group();
 rScene.add(globeGroup);
 
-const R=0.85; // globe radius
+const isMobile=window.innerWidth<768;
+const R=isMobile?0.5:0.85; // globe radius
 const SEG=64;
 
 // ── LATITUDE LINES (horizontal rings) ──
@@ -439,7 +440,7 @@ for(let i=1;i<LAT;i++){
   geo.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
   geo.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));
   const bright=i===LAT/2; // equator brighter
-  globeGroup.add(new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:bright?.7:.3})));
+  globeGroup.add(new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:1.0})));
 }
 
 // ── LONGITUDE LINES (vertical arcs) ──
@@ -457,7 +458,7 @@ for(let i=0;i<LON;i++){
   geo.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
   geo.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));
   const bright=i%4===0;
-  globeGroup.add(new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:bright?.55:.2})));
+  globeGroup.add(new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0.85})));
 }
 
 // ── RADAR SWEEP (flat ring rotating around Y axis) ──
@@ -524,7 +525,7 @@ DOT_POSITIONS.forEach(([u,v])=>{
 // ── GLOW ──
 globeGroup.add(new THREE.Mesh(
   new THREE.SphereGeometry(R*1.08,16,16),
-  new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.03,side:THREE.BackSide})
+  new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.08,side:THREE.BackSide})
 ));
 
 // Mouse
@@ -543,12 +544,14 @@ function radarLoop(){
   renderer.setClearColor(new THREE.Color(prog.bg),1);
   document.body.style.color=prog.col;
   const brightness=prog.brightness||0;
-  const vis=lerp(.9,.15,brightness);
+  const vis=lerp(1.0,.65,brightness);
 
   // Scroll position
   const t=prog.t;
-  globeGroup.position.x=lerp(2.8,-2.8,t);
-  globeGroup.position.y=lerp(.8,-.8,t);
+  const mob=window.innerWidth<768;
+  globeGroup.position.x=lerp(mob?.9:2.8, mob?-.9:-2.8, t);
+  globeGroup.position.y=lerp(mob?.3:.8, mob?-.3:-.8, t);
+  globeGroup.scale.setScalar(mob?0.6:1.0);
 
   // Globe slow Y rotation
   globeGroup.rotation.y=rTick*.3;
