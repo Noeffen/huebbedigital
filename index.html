@@ -1,804 +1,172 @@
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Webdesign & SEO Odenwald – HuebbeDigital | Apps & Websites</title>
-  <meta name="description" content="Webdesign, SEO-Optimierung und App-Entwicklung aus dem Odenwald. Individuelle Websites und Apps für Unternehmen im Rhein-Main-Gebiet – auf Anfrage. HuebbeDigital.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://huebbedigital.com/">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ"></script>
-  <script>
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date());
-    gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
-    gtag('config','G-P2MKZ1RDYQ');
-  </script>
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://huebbedigital.com/">
-  <meta property="og:title" content="Webdesign & SEO Odenwald – HuebbeDigital">
-  <meta property="og:description" content="Webdesign, SEO-Optimierung und App-Entwicklung aus dem Odenwald. Exklusive Projekte – auf Anfrage.">
-  <meta property="og:site_name" content="HuebbeDigital">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:image" content="https://huebbedigital.com/favicon-512.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://huebbedigital.com/favicon-512.png">
-
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[
-    {"@type":["LocalBusiness","ProfessionalService"],"@id":"https://huebbedigital.com/#business","name":"HuebbeDigital","url":"https://huebbedigital.com","email":"contact@huebbedigital.com","description":"9 Jahre Unternehmensberater, MBA in Digitaler Transformation. Webdesign, SEO-Optimierung und App-Entwicklung aus dem Odenwald.","areaServed":["Odenwaldkreis","Rhein-Main-Gebiet","Hessen","Deutschland"],"serviceType":["Webdesign","SEO-Optimierung","iOS-Entwicklung","Android-Entwicklung","Performance-Optimierung"],"address":{"@type":"PostalAddress","addressRegion":"Hessen","addressCountry":"DE"}},
-    {"@type":"Person","@id":"https://huebbedigital.com/#person","name":"Christian Hübbe","jobTitle":"Webdesigner & App-Entwickler","url":"https://huebbedigital.com","email":"contact@huebbedigital.com","hasCredential":{"@type":"EducationalOccupationalCredential","name":"MBA Digitale Transformation"},"worksFor":{"@id":"https://huebbedigital.com/#business"}},
-    {"@type":"WebSite","@id":"https://huebbedigital.com/#website","name":"HuebbeDigital","url":"https://huebbedigital.com"}
-  ]}
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root { --blue: #3B82F6; --purple: #7C3AED; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: auto; }
-    body { font-display: swap; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #111; color: #fff; overflow-x: hidden; cursor: none; }
-
-    /* Custom cursor */
-    .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .1s, width .3s, height .3s, background .3s; mix-blend-mode: difference; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
-    .cursor.hover { width: 12px; height: 12px; }
-    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
-
-    /* Mouse spotlight */
-    .spotlight { position: fixed; width: 600px; height: 600px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.06) 0%, rgba(124,58,237,.03) 40%, transparent 70%); transition: opacity .5s; }
-
-    #three-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-    nav, section, footer, .spotlight { position: relative; }
-    nav, section, footer { z-index: 2; }
-
-    /* COOKIE */
-    .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: rgba(17,17,17,.95); backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,.08); padding: 20px 24px; transform: translateY(100%); transition: transform .4s cubic-bezier(.4,0,.2,1); }
-    .cookie-banner.visible { transform: translateY(0); }
-    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .cookie-text { flex: 1; min-width: 240px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,.5); }
-    .cookie-text a { color: var(--blue); }
-    .cookie-actions { display: flex; gap: 10px; }
-    .cbtn { padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; font-family: inherit; }
-    .cbtn-d { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
-    .cbtn-a { background: linear-gradient(135deg,var(--blue),var(--purple)); color: white; }
-
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 3rem; display: flex; justify-content: space-between; align-items: center; transition: background .4s; }
-    nav.frosted { background: rgba(17,17,17,.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,.06); }
-    nav.frosted-light { background: rgba(250,250,250,.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,.06); }
-    .brand { font-size: 1rem; font-weight: 800; letter-spacing: -.02em; text-decoration: none; color: inherit; }
-    .brand-grad { background: linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .nav-right { display: flex; align-items: center; gap: 2rem; }
-    .nav-link { font-size: .82rem; font-weight: 500; color: inherit; text-decoration: none; opacity: .4; transition: opacity .2s; }
-    .nav-link:hover { opacity: 1; }
-    .nav-cta { font-size: .8rem; font-weight: 700; color: white !important; opacity: 1 !important; text-decoration: none; padding: .5rem 1.1rem; border-radius: 999px; background: linear-gradient(135deg,var(--blue),var(--purple)); transition: opacity .2s; }
-    .nav-cta:hover { opacity: .85 !important; }
-
-    /* SECTIONS */
-    section { min-height: 100vh; display: flex; align-items: center; padding: 9rem 3rem; position: relative; }
-    /* Subtle radial vignette so diamond stays in periphery */
-    section[data-bg="#111111"]::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 70% at 30% 50%, rgba(17,17,17,0.85) 30%, rgba(17,17,17,0.4) 70%, transparent 100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    section[data-bg="#FAFAFA"]::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 70% at 30% 50%, rgba(250,250,250,0.88) 30%, rgba(250,250,250,0.4) 70%, transparent 100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    section .container { position: relative; z-index: 2; }
-    .container { max-width: 1100px; margin: 0 auto; width: 100%; }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.06s}.d2{transition-delay:.14s}.d3{transition-delay:.24s}.d4{transition-delay:.36s}.d5{transition-delay:.5s}
-
-    /* HERO WORD REVEAL */
-    .word { display: inline-block; overflow: hidden; vertical-align: bottom; }
-    .word-inner { display: inline-block; transform: translateY(110%); transition: transform .8s cubic-bezier(.16,1,.3,1); }
-    .word-inner.show { transform: translateY(0); }
-    .word { margin-right: .22em; }
-
-    /* TYPOGRAPHY */
-    .kicker { font-size: .68rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 1.2rem; }
-    .eyebrow { font-size: .78rem; font-weight: 400; opacity: .35; letter-spacing: .08em; display: block; margin-bottom: 1.2rem; }
-    h1 { font-size: clamp(3.5rem,7.5vw,6.5rem); font-weight: 900; letter-spacing: -.05em; line-height: .97; margin-bottom: 2rem; }
-    h2 { font-size: clamp(2.4rem,5vw,4.2rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.02; margin-bottom: 1.2rem; }
-    .grad-text { background: linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .lead { font-size: 1.08rem; line-height: 1.85; opacity: .55; max-width: 520px; margin-bottom: .8rem; font-weight: 350; }
-    .body-text { font-size: .9rem; line-height: 1.85; opacity: .4; max-width: 520px; font-weight: 350; }
-    .divider { width: 32px; height: 1.5px; background: linear-gradient(90deg,var(--blue),var(--purple)); margin-bottom: 1.8rem; border-radius: 2px; }
-
-    /* PILLS */
-    .pills { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 2rem; }
-    .pill { padding: .38rem .85rem; border-radius: 999px; font-size: .75rem; font-weight: 600; border: 1px solid rgba(128,128,128,.2); color: inherit; opacity: .55; transition: opacity .2s, border-color .2s; }
-    .pill:hover { opacity: 1; border-color: var(--blue); }
-    .pill.accent { background: linear-gradient(135deg,var(--blue),var(--purple)); color: white; border: none; opacity: 1; }
-
-    /* SPLIT */
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start; }
-
-    /* STATS */
-    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(128,128,128,.12); }
-    .stat-val { font-size: 2.2rem; font-weight: 900; letter-spacing: -.05em; line-height: 1; margin-bottom: .25rem; }
-    .stat-lbl { font-size: .7rem; font-weight: 500; opacity: .35; letter-spacing: .05em; }
-
-    /* CREDS */
-    .creds { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.8rem; }
-    .cred { display: flex; align-items: flex-start; gap: .7rem; font-size: .86rem; opacity: .5; line-height: 1.55; font-weight: 350; }
-    .cred-dot { width: 4px; height: 4px; border-radius: 50%; background: linear-gradient(135deg,var(--blue),var(--purple)); margin-top: .52rem; flex-shrink: 0; }
-
-    /* PROJECT CARDS */
-    .project-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 4rem; border: 1px solid rgba(128,128,128,.12); border-radius: 20px; overflow: hidden; }
-    .pcard { padding: 2rem; transition: background .3s; position: relative; }
-    .pcard::after { content: ''; position: absolute; right: 0; top: 10%; bottom: 10%; width: 1px; background: rgba(128,128,128,.1); }
-    .pcard:last-child::after { display: none; }
-    .pcard:hover { background: rgba(128,128,128,.04); }
-    .pnum { font-size: .62rem; font-weight: 800; letter-spacing: .18em; color: var(--blue); display: block; margin-bottom: 1.2rem; }
-    .pmeta { font-size: .68rem; font-weight: 600; opacity: .45; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .5rem; }
-    .ptitle { font-size: 1.15rem; font-weight: 800; letter-spacing: -.03em; margin-bottom: .6rem; line-height: 1.2; }
-    .pdesc { font-size: .82rem; line-height: 1.7; opacity: .7; margin-bottom: 1.2rem; font-weight: 350; }
-    .ptags { display: flex; flex-wrap: wrap; gap: .3rem; }
-    .ptag { font-size: .65rem; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; border: 1px solid rgba(128,128,128,.18); opacity: .5; }
-    .plink { display: inline-block; margin-top: 1.2rem; font-size: .78rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .7; transition: opacity .2s; }
-    .plink:hover { opacity: 1; }
-
-    /* FORM */
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .fg { margin-bottom: 1rem; }
-    .fg label { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .35; margin-bottom: .4rem; }
-    .fg input, .fg textarea, .fg select { width: 100%; padding: .85rem 1rem; border: 1px solid rgba(128,128,128,.2); border-radius: 10px; background: rgba(255,255,255,.04); color: inherit; font-family: inherit; font-size: .9rem; transition: border-color .2s; }
-    .fg input:focus, .fg textarea:focus, .fg select:focus { outline: none; border-color: var(--blue); }
-    .fg textarea { resize: vertical; min-height: 110px; }
-    .fg select option { background: #111; }
-    .sbtn { width: 100%; padding: 1rem; border: none; border-radius: 12px; background: linear-gradient(135deg,var(--blue),var(--purple)); color: white; font-family: inherit; font-size: .95rem; font-weight: 700; cursor: pointer; transition: opacity .2s; margin-top: .3rem; }
-    .sbtn:hover { opacity: .85; }
-    .fsuccess { display: none; padding: 1.2rem 1.5rem; background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.2); border-radius: 10px; margin-top: 1rem; font-size: .9rem; opacity: .8; }
-
-    /* CTA LINK */
-    .cta-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: 2rem; font-size: .88rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .8; }
-    .cta-link:hover { opacity: 1; }
-
-    /* SCROLL HINT */
-    .scroll-hint { position: fixed; bottom: 3.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .6rem; z-index: 50; transition: opacity .5s; }
-    .scroll-hint span { font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; opacity: .3; }
-    .scroll-mouse { width: 22px; height: 34px; border: 1.5px solid rgba(255,255,255,.2); border-radius: 11px; display: flex; justify-content: center; padding-top: 5px; }
-    .scroll-wheel { width: 3px; height: 7px; background: linear-gradient(to bottom,#3B82F6,#7C3AED); border-radius: 99px; animation: scrollWheel 1.8s ease-in-out infinite; }
-    .scroll-chevrons { display: flex; flex-direction: column; gap: 2px; align-items: center; }
-    .scroll-chevron { width: 8px; height: 8px; border-right: 1.5px solid rgba(255,255,255,.2); border-bottom: 1.5px solid rgba(255,255,255,.2); transform: rotate(45deg); animation: fadeChev 1.8s ease-in-out infinite; }
-    .scroll-chevron:nth-child(2){animation-delay:.2s;opacity:.5}
-    .scroll-chevron:nth-child(3){animation-delay:.4s;opacity:.25}
-    @keyframes scrollWheel{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
-    @keyframes fadeChev{0%,100%{opacity:.6}50%{opacity:.15}}
-    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)} }
-
-    /* FOOTER */
-    footer { padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(128,128,128,.08); font-size: .78rem; opacity: .28; }
-    footer a { color: inherit; text-decoration: none; margin-left: 1.5rem; }
-
-    @media(max-width:900px){
-      .split{grid-template-columns:1fr;gap:3rem}
-      .project-grid{grid-template-columns:1fr}
-      .pcard::after{display:none}
-      .form-grid{grid-template-columns:1fr}
-      .stats{grid-template-columns:repeat(3,1fr)}
-      section{padding:7rem 1.5rem}
-      nav{padding:1.2rem 1.5rem}
-      .nav-right .nav-link{display:none}
-      footer{flex-direction:column;gap:.8rem}
-      body{cursor:auto}
-      .cursor,.cursor-ring{display:none}
-    }
-  
-    /* ── MOBILE OVERFLOW FIX ── */
-    html, body { overflow-x: hidden; max-width: 100vw; }
-    * { max-width: 100%; }
-    #three-canvas { max-width: 100vw !important; }
-
-    @media(max-width:768px){
-      section { padding: 7rem 1.2rem 4rem; }
-      nav { padding: 1rem 1.2rem; }
-      h1 { font-size: clamp(2.2rem,9vw,3.5rem); }
-      h2 { font-size: clamp(1.8rem,7vw,2.8rem); }
-      .lead { font-size: .95rem; max-width: 100%; }
-      .body-text { font-size: .88rem; max-width: 100%; }
-      .split { grid-template-columns: 1fr !important; gap: 2rem !important; }
-      .form-grid { grid-template-columns: 1fr !important; }
-      .stats { grid-template-columns: repeat(3,1fr); gap: .5rem; overflow: hidden; }
-      .stat-val { font-size: 1.5rem; }
-      .pills { gap: .3rem; }
-      .pill { font-size: .7rem; padding: .3rem .7rem; }
-      .project-grid { grid-template-columns: 1fr !important; }
-      .checks-grid { grid-template-columns: 1fr !important; }
-      .pcard { padding: 1.2rem; }
-      .nav-right .nav-link { display: none; }
-      footer { flex-direction: column; gap: .6rem; text-align: center; }
-      footer a { margin-left: 0; margin-right: .8rem; }
-      section[data-bg="#111111"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(17,17,17,.92) 40%,rgba(17,17,17,.5) 75%,transparent 100%); }
-      section[data-bg="#FAFAFA"]::before { background: radial-gradient(ellipse 90% 70% at 50% 50%,rgba(250,250,250,.95) 40%,rgba(250,250,250,.6) 75%,transparent 100%); }
-    }
-  
-    /* Hide default scrollbar */
-    html { scrollbar-width: none; -ms-overflow-style: none; }
-    html::-webkit-scrollbar { display: none; }
-
-    /* Elegant progress bar */
-    .scroll-progress {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #3B82F6, #7C3AED);
-      z-index: 99999;
-      transform-origin: left;
-      transform: scaleX(0);
-      border-radius: 0 999px 999px 0;
-      will-change: transform;
-    }
-  
-    /* Hide default cursor everywhere */
-    *, *::before, *::after { cursor: none !important; }
-  
-    @media(max-width:768px){
-      /* Simpler animations on mobile */
-      .reveal { transition-duration: 0.5s !important; transition-delay: 0s !important; }
-      .d1,.d2,.d3,.d4,.d5 { transition-delay: 0s !important; }
-      /* Reduce motion for battery */
-      @media(prefers-reduced-motion: reduce){
-        .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
-        .word-inner { transition: none !important; transform: none !important; }
-      }
-    }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Description" content="Webdesign, SEO-Optimierung und App-Entwicklung aus dem Odenwald. Individuelle Websites und Apps für Unternehmen im Rhein-Main-Gebiet – auf Anfrage. HuebbeDigital.">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    body {background-color: #0e0e0e}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 15.0px}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.5); -webkit-text-stroke: rgba(255, 255, 255, 0.5)}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 13.0px 'Helvetica Neue'; color: #ffffff; color: rgba(255, 255, 255, 0.7); -webkit-text-stroke: rgba(255, 255, 255, 0.7); background-color: #ffffff; background-color: rgba(255, 255, 255, 0.078)}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 13.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.6px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.4px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p9 {margin: 0.0px 0.0px 9.6px 0.0px; font: 13.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 21.6px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 8.2px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 8.2px 'Helvetica Neue'; color: #2f69f3; -webkit-text-stroke: #2f69f3}
+    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.8px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.6px 'Helvetica Neue'; color: #2f69f3; -webkit-text-stroke: #2f69f3}
+    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 26.4px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 8.4px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p19 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.3px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 12.0px}
+    p.p20 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.3px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p21 {margin: 0.0px 0.0px 0.0px 0.0px; font: 7.4px 'Helvetica Neue'; color: #2f69f3; -webkit-text-stroke: #2f69f3}
+    p.p22 {margin: 0.0px 0.0px 0.0px 0.0px; font: 8.2px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p23 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.8px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p24 {margin: 0.0px 0.0px 14.4px 0.0px; font: 9.8px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p25 {margin: 0.0px 0.0px 0.0px 0.0px; font: 7.8px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    p.p26 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.4px 'Helvetica Neue'; color: #2f69f3; -webkit-text-stroke: #2f69f3}
+    p.p27 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.8px Times; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #0e0e0e}
+    p.p28 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.8px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #ffffff; background-color: rgba(255, 255, 255, 0.039)}
+    p.p29 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.8px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 12.0px}
+    p.p30 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.4px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
+    span.s1 {font-kerning: none}
+    span.s2 {font-kerning: none; background-color: rgba(14, 14, 14, 0.95)}
+    span.s3 {text-decoration: underline ; font-kerning: none; color: #2f69f3; -webkit-text-stroke: 0px #2f69f3}
+    span.s4 {font: 9.6px 'Helvetica Neue'; font-kerning: none}
+    span.s5 {font: 10.6px 'Helvetica Neue'; font-kerning: none; color: #2f69f3; -webkit-text-stroke: 0px #2f69f3}
+    span.s6 {font: 9.4px 'Helvetica Neue'; font-kerning: none; color: #2f69f3; -webkit-text-stroke: 0px #2f69f3}
+    span.s7 {font: 10.8px 'Helvetica Neue'; font-kerning: none; background-color: rgba(255, 255, 255, 0.039)}
+    span.s8 {font: 10.8px Times; font-kerning: none; background-color: #0e0e0e}
+    span.s9 {font-kerning: none; background-color: rgba(255, 255, 255, 0.039)}
+    span.s10 {font: 9.4px 'Helvetica Neue'; font-kerning: none}
   </style>
 </head>
 <body>
-<div class="scroll-progress" id="scrollProgress"></div>
-
-
-<!-- Cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="spotlight" id="spotlight"></div>
-
-<!-- Cookie -->
-<div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-inner">
-    <p class="cookie-text">Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.</p>
-    <div class="cookie-actions">
-      <button class="cbtn cbtn-d" id="cookieDecline">Ablehnen</button>
-      <button class="cbtn cbtn-a" id="cookieAccept">Akzeptieren</button>
-    </div>
-  </div>
-</div>
-
-<canvas id="three-canvas"></canvas>
-
-<nav id="mainNav">
-  <a href="#" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
-  <div class="nav-right">
-    <a href="#about" class="nav-link">Über mich</a>
-    <a href="#projekte" class="nav-link">Projekte</a>
-    <a href="#contact" class="nav-link">Kontakt</a>
-    <a href="/ki-analyse.html" class="nav-cta">Gratis Analyse</a>
-  </div>
-</nav>
-
-<!-- 1 HERO DARK -->
-<section data-bg="#111111" data-color="#ffffff">
-  <div class="container">
-    <div class="eyebrow" id="heroEyebrow" style="opacity:0;transition:opacity 1s .2s">Webdesign · Apps · SEO · Odenwald & Rhein-Main</div>
-    <h1 id="heroH1" aria-label="Webdesign & Apps aus dem Odenwald.">
-      <span class="word"><span class="word-inner">Webdesign</span></span>
-      <span class="word"><span class="word-inner">&amp;</span></span>
-      <span class="word"><span class="word-inner">Apps</span></span>
-      <br>
-      <span class="word"><span class="word-inner">aus</span></span>
-      <span class="word"><span class="word-inner">dem</span></span>
-      <span class="word"><span class="word-inner" style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Odenwald.</span></span>
-    </h1>
-    <p class="lead reveal d3">Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.</p>
-    <div class="pills reveal d4">
-      <span class="pill accent">Webdesign</span>
-      <span class="pill">SEO-Optimierung</span>
-      <span class="pill">iOS & Android</span>
-      <span class="pill">Performance</span>
-      <span class="pill">Schema.org</span>
-    </div>
-  </div>
-  <div class="scroll-hint">
-      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-      <div class="scroll-chevrons">
-        <div class="scroll-chevron"></div>
-        <div class="scroll-chevron"></div>
-        <div class="scroll-chevron"></div>
-      </div>
-    </div>
-</section>
-
-<!-- 2 LIGHT LEISTUNGEN -->
-<section data-bg="#FAFAFA" data-color="#111111">
-  <div class="container">
-    <div class="split">
-      <div>
-        <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Was ich liefere</span>
-        <h2 class="reveal d2">Websites die <span class="grad-text">performen.</span></h2>
-        <p class="lead reveal d3">Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen die online gefunden werden wollen – und nicht einfach nur eine Webpräsenz haben wollen.</p>
-        <p class="body-text reveal d4">Von der ersten Idee über Design, Entwicklung und technische SEO-Optimierung bis zum Launch. Schema.org, Open Graph und lokales SEO-Targeting auf allen Seiten.</p>
-        <a href="/ki-analyse.html" class="cta-link reveal d5">Kostenlose Analyse anfragen →</a>
-      </div>
-      <div>
-        <div class="stats reveal d2">
-          <div class="stat"><div class="stat-val grad-text" data-count="24">0</div><div class="stat-lbl">Seiten Burghof</div></div>
-          <div class="stat"><div class="stat-val grad-text" data-count="9">0</div><div class="stat-lbl">SEO-Prüfpunkte</div></div>
-          <div class="stat"><div class="stat-val grad-text" data-suffix="h" data-count="48">0</div><div class="stat-lbl">Analyse-Rückmeldung</div></div>
-        </div>
-        <div class="creds reveal d3">
-          <div class="cred"><div class="cred-dot"></div><span>Individuelle Entwicklung – kein Baukasten, keine Templates</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Schema.org, Open Graph und KI-Sichtbarkeit auf allen Seiten</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Performance-Optimierung – schnelle Ladezeiten, bessere Rankings</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Lokales SEO-Targeting für Odenwald und Rhein-Main-Gebiet</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3 DARK ÜBER MICH -->
-<section data-bg="#111111" data-color="#ffffff" id="about">
-  <div class="container">
-    <div class="split">
-      <div>
-        <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Über mich</span>
-        <h2 class="reveal d2">Christian Hübbe –<br><span class="grad-text">aus dem Odenwald.</span></h2>
-        <p class="lead reveal d3">Ich bin seit 9 Jahren Unternehmensberater – mit einem MBA in Digitaler Transformation. Kein klassischer Webdesigner.</p>
-        <p class="body-text reveal d4">Das bedeutet: Ich verstehe nicht nur wie eine Website aussehen soll, sondern was sie für Ihr Unternehmen leisten muss. Von der strategischen Positionierung bis zur technischen Umsetzung. Persönlich, ohne Baukastensystem, mit Fokus auf Performance – auf Anfrage.</p>
-        <div class="creds reveal d5">
-          <div class="cred"><div class="cred-dot"></div><span>9 Jahre Unternehmensberater</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>MBA in Digitaler Transformation</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Native iOS & Android (Swift, Kotlin)</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Backend Infrastructure mit Firebase & Cloud Functions</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Projekte exklusiv und auf Anfrage</span></div>
-        </div>
-      </div>
-      <div>
-        <div class="stats reveal d3">
-          <div class="stat"><div class="stat-val grad-text" data-count="9">0</div><div class="stat-lbl">Jahre Beratung</div></div>
-          <div class="stat"><div class="stat-val grad-text">MBA</div><div class="stat-lbl">Dig. Transformation</div></div>
-          <div class="stat"><div class="stat-val grad-text" data-suffix="+">2</div><div class="stat-lbl">Plattformen</div></div>
-        </div>
-        <p class="body-text reveal d4" style="margin-top:2.5rem;">Mit Sitz im Odenwald arbeite ich für Kunden im Rhein-Main-Gebiet und deutschlandweit. 45 Minuten von Frankfurt.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 LIGHT PROJEKTE -->
-<section data-bg="#FAFAFA" data-color="#111111" id="projekte">
-  <div class="container">
-    <div class="divider reveal"></div>
-    <span class="kicker reveal d1">Ausgewählte Projekte</span>
-    <h2 class="reveal d2">Referenzen &amp; <span class="grad-text">Ergebnisse.</span></h2>
-    <p class="lead reveal d3">Jedes Projekt wird individuell entwickelt – mit Fokus auf Design, Performance und Auffindbarkeit.</p>
-    <div class="project-grid reveal d4">
-      <div class="pcard">
-        <span class="pnum">01</span>
-        <div class="pmeta">Website · Hotel & Events · Odenwald</div>
-        <div class="ptitle">Burghof Brombachtal</div>
-        <p class="pdesc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
-        <div class="ptags"><span class="ptag">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag">Reservierungssystem</span><span class="ptag">Lokales SEO</span></div>
-        <a href="https://burghof-odenwald.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
-      </div>
-      <div class="pcard">
-        <span class="pnum">02</span>
-        <div class="pmeta">App · Golf · iOS & Android</div>
-        <div class="ptitle">FairwayService App</div>
-        <p class="pdesc">Native Golf Club Management App für iOS und Android. Buchungssystem, Mitgliederverwaltung, Score-Tracking und Push-Benachrichtigungen. Backend mit Firebase.</p>
-        <div class="ptags"><span class="ptag">Swift</span><span class="ptag">Kotlin</span><span class="ptag">Firebase</span><span class="ptag">iOS & Android</span></div>
-      </div>
-      <div class="pcard">
-        <span class="pnum">03</span>
-        <div class="pmeta">Website · Handwerk · Aschaffenburg / Spessart</div>
-        <div class="ptitle">Spenglerei Wood</div>
-        <p class="pdesc">Unternehmenswebsite für Spenglereibetrieb aus Johannesberg. Leistungen, Team, Kontaktformular, Analytics mit Consent Mode v2, vollständig DSGVO-konform.</p>
-        <div class="ptags"><span class="ptag">Mobile-First</span><span class="ptag">DSGVO-konform</span><span class="ptag">Analytics</span><span class="ptag">Lokales SEO</span></div>
-        <a href="https://spenglerei-wood.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 DARK KONTAKT -->
-<section data-bg="#111111" data-color="#ffffff" id="contact">
-  <div class="container">
-    <div class="split">
-      <div>
-        <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Projekt anfragen</span>
-        <h2 class="reveal d2">Bereit für die<br><span class="grad-text">nächste Stufe?</span></h2>
-        <p class="lead reveal d3">Ich nehme Projekte exklusiv und auf Anfrage an. Erzählen Sie mir kurz worum es geht.</p>
-        <p class="body-text reveal d4">Ob neue Website, SEO-Analyse, App-Entwicklung oder komplette digitale Neuaufstellung – der erste Schritt ist ein kurzes Gespräch.</p>
-      </div>
-      <div class="reveal d2">
-        <form id="contactForm">
-          <input type="hidden" name="access_key" value="656fbe2b-995b-4933-bcee-13d7a7fcd15b">
-          <input type="hidden" name="subject" value="Neue Anfrage – HuebbeDigital">
-          <div class="form-grid">
-            <div class="fg"><label>Name *</label><input type="text" name="name" required placeholder="Max Mustermann"></div>
-            <div class="fg"><label>E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de"></div>
-          </div>
-          <div class="fg"><label>Worum geht es?</label>
-            <select name="anliegen">
-              <option value="">-- Bitte wählen --</option>
-              <option>Neue Website</option>
-              <option>SEO-Analyse</option>
-              <option>App-Entwicklung</option>
-              <option>Bestehendes Projekt verbessern</option>
-              <option>Sonstiges</option>
-            </select>
-          </div>
-          <div class="fg"><label>Nachricht *</label><textarea name="message" required placeholder="Erzählen Sie mir kurz von Ihrem Projekt..."></textarea></div>
-          <button type="submit" class="sbtn">Anfrage absenden →</button>
-          <div class="fsuccess" id="formSuccess">Vielen Dank! Ich melde mich persönlich bei Ihnen.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<footer>
-  <span>© 2026 HuebbeDigital · Christian Hübbe</span>
-  <div><a href="/imprint.html">Impressum</a><a href="/privacy.html">Datenschutz</a></div>
-</footer>
-
-<script>
-// ── CURSOR ──
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),spot=document.getElementById('spotlight');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cur.style.left=mx+'px';cur.style.top=my+'px';
-  spot.style.left=mx+'px';spot.style.top=my+'px';
-});
-function animRing(){
-  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-}animRing();
-document.querySelectorAll('a,button,.pill,.pcard').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover');});
-  el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover');});
-});
-
-// ── COOKIE ──
-(function(){
-  var KEY='hd_cookie_consent';
-  var banner=document.getElementById('cookieBanner');
-  function updateConsent(g){
-    if(typeof gtag!=='function') return;
-    gtag('consent','update',{'analytics_storage':g?'granted':'denied','ad_storage':g?'granted':'denied','ad_user_data':g?'granted':'denied','ad_personalization':g?'granted':'denied'});
-  }
-  var stored=localStorage.getItem(KEY);
-  if(stored==='granted') updateConsent(true);
-  else if(stored!=='denied') setTimeout(()=>banner.classList.add('visible'),800);
-  document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(KEY,'granted');updateConsent(true);banner.classList.remove('visible');});
-  document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(KEY,'denied');updateConsent(false);banner.classList.remove('visible');});
-})();
-
-// ── NAV ──
-const nav=document.getElementById('mainNav');
-const sects=Array.from(document.querySelectorAll('section[data-bg]'));
-function updateNav(){
-  const sy=window.scrollY;
-  let cur=sects[0];
-  sects.forEach(s=>{if(s.offsetTop<=sy+80)cur=s;});
-  nav.classList.remove('frosted','frosted-light');
-  if(sy>50){
-    nav.classList.add(cur.dataset.bg==='#FAFAFA'?'frosted-light':'frosted');
-  }
-}
-window.addEventListener('scroll',updateNav,{passive:true});
-updateNav();
-
-// ── THREE.JS 3D CRYSTAL ──
-const canvas3d=document.getElementById('three-canvas');
-const renderer=new THREE.WebGLRenderer({canvas:canvas3d,antialias:true,alpha:true});
-const isMob=window.innerWidth<768;
-renderer.setPixelRatio(isMob?1:Math.min(window.devicePixelRatio,2));
-renderer.setSize(window.innerWidth,window.innerHeight);
-renderer.setClearColor(0x111111,1);
-renderer.setClearAlpha(1);
-
-const threeScene=new THREE.Scene();
-const threeCamera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.1,100);
-threeCamera.position.set(0,1.5,6.5);
-threeCamera.lookAt(0,0,0);
-window.addEventListener('resize',()=>{
-  threeCamera.aspect=window.innerWidth/window.innerHeight;
-  threeCamera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
-});
-
-// BG color transition (same logic as before)
-function hexToRgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
-function lerp(a,b,t){return a+(b-a)*t;}
-function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
-function mixHex(h1,h2,t){
-  const[r1,g1,b1]=hexToRgb(h1),[r2,g2,b2]=hexToRgb(h2);
-  return`rgb(${Math.round(lerp(r1,r2,t))},${Math.round(lerp(g1,g2,t))},${Math.round(lerp(b1,b2,t))})`;
-}
-function getBrightness(hex){const[r,g,b]=hexToRgb(hex);return(r+g+b)/(255*3);}
-function getProgress(){
-  const sy=window.scrollY,wh=window.innerHeight;
-  for(let i=0;i<sects.length-1;i++){
-    const c=sects[i],n=sects[i+1];
-    const ts=n.offsetTop-wh*.65,te=n.offsetTop+wh*.1;
-    if(sy>=ts&&sy<te){
-      const t=clamp((sy-ts)/(te-ts),0,1);
-      const bg=mixHex(c.dataset.bg,n.dataset.bg,t);
-      return{bg,col:mixHex(c.dataset.color,n.dataset.color,t),t:(i+t)/(sects.length-1),brightness:lerp(getBrightness(c.dataset.bg),getBrightness(n.dataset.bg),t)};
-    }
-  }
-  for(let i=sects.length-1;i>=0;i--){
-    if(sy>=sects[i].offsetTop-wh*.4){
-      const bg=sects[i].dataset.bg;
-      return{bg,col:sects[i].dataset.color,t:i/(sects.length-1),brightness:getBrightness(bg)};
-    }
-  }
-  return{bg:'#111111',col:'#ffffff',t:0,brightness:0};
-}
-
-// Three.js colors
-const B3=new THREE.Color(0x3B82F6), P3=new THREE.Color(0x7C3AED);
-function lc(a,b,t){return new THREE.Color().lerpColors(a,b,t);}
-
-const crystal=new THREE.Group();
-threeScene.add(crystal);
-
-// ── DIAMOND GEOMETRY ──
-const N=6;
-// Key heights & radii (diamond proportions)
-const R_GIRDLE = 1.8;   // widest point
-const R_TABLE  = 0.75;  // flat top face
-const Y_TABLE  = 1.3;   // table height
-const Y_STAR   = 0.95;  // star facet level (between table and girdle)
-const Y_GIRDLE = 0.0;   // equator
-const Y_CULET  =-2.0;   // bottom point (deeper = pointier)
-
-// Helper: ring of N points
-function hexV(y, r, rot=0){
-  const v=[];
-  for(let i=0;i<N;i++){const a=rot+(i/N)*Math.PI*2;v.push(new THREE.Vector3(Math.cos(a)*r,y,Math.sin(a)*r));}
-  return v;
-}
-
-// Key rings
-const tableRing  = hexV(Y_TABLE,  R_TABLE,  0);          // table edge
-const starRing   = hexV(Y_STAR,   R_GIRDLE, Math.PI/N);  // star points (rotated)
-const girdleRing = hexV(Y_GIRDLE, R_GIRDLE, 0);          // girdle (widest)
-const culet      = new THREE.Vector3(0, Y_CULET, 0);     // bottom point
-
-function addEdge(a,b,ca,cb,op=1){
-  const geo=new THREE.BufferGeometry();
-  geo.setAttribute('position',new THREE.Float32BufferAttribute([a.x,a.y,a.z,b.x,b.y,b.z],3));
-  geo.setAttribute('color',new THREE.Float32BufferAttribute([ca.r,ca.g,ca.b,cb.r,cb.g,cb.b],3));
-  crystal.add(new THREE.LineSegments(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:op})));
-}
-function addFace(verts,color,op){
-  const pos=[];verts.forEach(v=>pos.push(v.x,v.y,v.z));
-  const geo=new THREE.BufferGeometry();
-  geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
-  geo.computeVertexNormals();
-  crystal.add(new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color,transparent:true,opacity:op,side:THREE.DoubleSide,depthWrite:false})));
-}
-
-// TABLE (flat top hexagon)
-for(let i=0;i<N;i++){
-  const next=(i+1)%N;
-  addEdge(tableRing[i],tableRing[next],lc(B3,P3,.05),lc(B3,P3,.15),.95);
-  addFace([new THREE.Vector3(0,Y_TABLE,0),tableRing[i],tableRing[next]],0x3B82F6,.08);
-}
-
-// CROWN: table corners → star ring (bezel facets, kite shape)
-for(let i=0;i<N;i++){
-  const next=(i+1)%N;
-  // Main crown facet: table[i] → star[i] → girdle[i] → star[i-1 mod N]
-  const prev=(i-1+N)%N;
-  addEdge(tableRing[i], starRing[i],    lc(B3,P3,.1), lc(B3,P3,.3), .9);
-  addEdge(starRing[i],  girdleRing[i],  lc(B3,P3,.3), lc(B3,P3,.5), .85);
-  addEdge(starRing[i],  girdleRing[next],lc(B3,P3,.3),lc(B3,P3,.5), .85);
-
-  // Bezel face (kite): table[i], star[i], girdle[i], star[prev]
-  addFace([tableRing[i], starRing[prev], girdleRing[i]], lc(B3,P3,.2).getHex(), .07);
-  addFace([tableRing[i], girdleRing[i],  starRing[i]],   lc(B3,P3,.25).getHex(),.07);
-
-  // Upper girdle facet (triangle): star[i], girdle[i], girdle[next]
-  addFace([starRing[i], girdleRing[i], girdleRing[next]], lc(B3,P3,.35).getHex(),.05);
-  addEdge(tableRing[i], girdleRing[i], lc(B3,P3,.1), lc(B3,P3,.5), .25);
-}
-
-// GIRDLE ring
-for(let i=0;i<N;i++){
-  const next=(i+1)%N;
-  addEdge(girdleRing[i],girdleRing[next],lc(B3,P3,i/N*.4+.4),lc(B3,P3,(i+1)/N*.4+.4),.95);
-}
-
-// PAVILION: girdle → culet (main pavilion facets)
-for(let i=0;i<N;i++){
-  const next=(i+1)%N;
-  addEdge(girdleRing[i], culet, lc(B3,P3,.5), lc(B3,P3,.9), .9);
-  addFace([girdleRing[i], girdleRing[next], culet], lc(B3,P3,i/N*.4+.55).getHex(), .07);
-}
-
-// Lower half-way ring for extra depth
-const halfRing=hexV((Y_GIRDLE+Y_CULET)*.4, R_GIRDLE*.55, Math.PI/N);
-for(let i=0;i<N;i++){
-  const next=(i+1)%N;
-  addEdge(halfRing[i], halfRing[next], lc(P3,B3,i/N*.5+.5),lc(P3,B3,(i+1)/N*.5+.5),.45);
-  addEdge(girdleRing[i], halfRing[i], lc(B3,P3,.6),lc(P3,B3,.7),.2);
-  addEdge(halfRing[i], culet, lc(P3,B3,.7),lc(P3,B3,.95),.2);
-}
-
-// Glow sphere
-const glowMesh=new THREE.Mesh(new THREE.SphereGeometry(2.6,16,16),new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.025,side:THREE.BackSide}));
-crystal.add(glowMesh);
-
-// Lights
-threeScene.add(new THREE.AmbientLight(0x3B82F6,.3));
-const tpl1=new THREE.PointLight(0x3B82F6,3,10);tpl1.position.set(3,3,3);threeScene.add(tpl1);
-const tpl2=new THREE.PointLight(0x7C3AED,2,10);tpl2.position.set(-3,-3,2);threeScene.add(tpl2);
-
-// Crystal opacity based on scroll / brightness
-// opacity handled in threeLoop directly
-
-// Mouse
-let tgCrysX=0, tgCrysY=0;
-document.addEventListener('mousemove',e=>{
-  tgCrysX=((e.clientY/window.innerHeight)-.5)*.8;
-  tgCrysY=((e.clientX/window.innerWidth)-.5)*1.0;
-});
-
-let threeTick=0;
-function threeLoop(){
-  requestAnimationFrame(threeLoop);
-  threeTick+=0.007;
-  const prog=getProgress();
-  // Update bg color
-  renderer.setClearColor(new THREE.Color(prog.bg),1);
-  document.body.style.color=prog.col;
-
-  // Crystal always visible — store base opacities once, recalculate each frame
-  const brightness=prog.brightness||0;
-  if(!crystal._baseOpacities){
-    crystal._baseOpacities=new Map();
-    crystal.traverse(obj=>{
-      if(obj.material && obj.material.opacity>0){
-        crystal._baseOpacities.set(obj.uuid, obj.material.opacity);
-      }
-    });
-  }
-  crystal.traverse(obj=>{
-    if(!obj.material) return;
-    const base=crystal._baseOpacities.get(obj.uuid);
-    if(!base) return;
-    // On dark sections: full opacity. On light sections: still clearly visible
-    const scale = obj.isMesh ? lerp(1, 0.65, brightness) : lerp(1, 0.45, brightness);
-    const minOp = obj.isMesh ? 0.03 : 0.15;
-    obj.material.opacity = Math.max(minOp, base * scale);
-  });
-
-  // Crystal position — shift right when in contact section (t≈1)
-  const scrollT = prog.t || 0;
-  crystal.position.x = lerp(0, 2.2, Math.pow(scrollT, 2));
-  crystal.position.y = lerp(0, -0.5, scrollT);
-
-  // Crystal rotation
-  crystal.rotation.y=threeTick*.5;
-  crystal.rotation.x=-.25+Math.sin(threeTick*.2)*.15;
-  crystal.rotation.x+=(tgCrysX-.25-crystal.rotation.x)*.04;
-  crystal.rotation.z=Math.sin(threeTick*.3)*.12;
-  renderer.render(threeScene,threeCamera);
-}
-threeLoop();
-
-// ── HERO WORD REVEAL ──
-setTimeout(()=>{
-  document.getElementById('heroEyebrow').style.opacity='1';
-  document.querySelectorAll('.word-inner').forEach((el,i)=>{
-    setTimeout(()=>el.classList.add('show'),300+i*90);
-  });
-},100);
-
-// ── REVEAL ON SCROLL ──
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
-  });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// ── STAT COUNTER ──
-const countObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    const el=e.target;
-    const target=parseInt(el.dataset.count);
-    const suffix=el.dataset.suffix||'';
-    if(isNaN(target)) return;
-    let start=0,dur=1200,startTime=null;
-    function step(ts){
-      if(!startTime) startTime=ts;
-      const p=Math.min((ts-startTime)/dur,1);
-      const ease=1-Math.pow(1-p,3);
-      el.textContent=Math.round(ease*target)+suffix;
-      if(p<1) requestAnimationFrame(step);
-      else el.textContent=target+suffix;
-    }
-    requestAnimationFrame(step);
-    countObs.unobserve(el);
-  });
-},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
-
-// ── SCROLL HINT HIDE ──
-const scrollHint=document.querySelector('.scroll-hint');
-window.addEventListener('scroll',()=>{
-  scrollHint.style.opacity=window.scrollY>80?'0':'1';
-},{passive:true});
-
-// ── CONTACT FORM ──
-document.getElementById('contactForm').addEventListener('submit',async function(e){
-  e.preventDefault();
-  const btn=this.querySelector('.sbtn');
-  btn.textContent='Wird gesendet...';btn.disabled=true;
-  try{
-    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});
-    if(res.ok){
-      this.reset();
-      document.getElementById('formSuccess').style.display='block';
-      btn.style.display='none';
-    }else{btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
-  }catch(err){btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
-});
-</script>
-
-<script>
-// Scroll progress bar
-(function(){
-  var bar = document.getElementById('scrollProgress');
-  if(!bar) return;
-  function updateBar(){
-    var h = document.documentElement;
-    var pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight);
-    bar.style.transform = 'scaleX(' + pct + ')';
-  }
-  window.addEventListener('scroll', updateBar, { passive: true });
-  updateBar();
-})();
-</script>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s2">Diese Website verwendet Google Analytics. Mehr in der <a href="file:///privacy.html"><span class="s3">Datenschutzerklärung</span></a>.</span></p>
+<p class="p3"><span class="s1">Ablehnen</span></p>
+<p class="p4"><span class="s2">Akzeptieren</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1">HuebbeDigital</span></p>
+<p class="p6"><span class="s1"><a href="file:///ki-analyse.html">Gratis Analyse<span class="s4"></span></a></span></p>
+<p class="p7"><span class="s1">Webdesign · Apps · SEO · Odenwald &amp; Rhein-Main</span></p>
+<h1 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 44.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 52.0px"><span class="s1"></span><br></h1>
+<p class="p9"><span class="s1">Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.</span></p>
+<p class="p10"><span class="s1">Webdesign</span></p>
+<p class="p10"><span class="s1">SEO-Optimierung</span></p>
+<p class="p10"><span class="s1">iOS &amp; Android</span></p>
+<p class="p10"><span class="s1">Performance</span></p>
+<p class="p11"><span class="s1">9+</span></p>
+<p class="p12"><span class="s1">JAHRE ERFAHRUNG</span></p>
+<p class="p11"><span class="s1">Einzigartige</span></p>
+<p class="p12"><span class="s1">PROJEKTE</span></p>
+<p class="p11"><span class="s1">100%</span></p>
+<p class="p12"><span class="s1">INDIVIDUELLE LÖSUNGEN</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p13"><span class="s1">WAS ICH LIEFERE</span></p>
+<h2 style="margin: 0.0px 0.0px 14.4px 0.0px; font: 40.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s1">Websites die performen.</span></h2>
+<p class="p9"><span class="s1">Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen die online gefunden werden wollen – und nicht einfach nur eine Webpräsenz haben wollen.</span></p>
+<p class="p15"><span class="s1">Von der ersten Idee über Design, Entwicklung und technische SEO-Optimierung bis zum Launch. Schema.org, Open Graph und lokales SEO-Targeting auf allen Seiten.</span></p>
+<p class="p16"><span class="s1"><a href="file:///ki-analyse.html">Kostenlose Analyse anfragen →<span class="s5"></span></a></span></p>
+<p class="p17"><span class="s1">0</span></p>
+<p class="p18"><span class="s1">Seiten Burghof</span></p>
+<p class="p17"><span class="s1">0</span></p>
+<p class="p18"><span class="s1">SEO-Prüfpunkte</span></p>
+<p class="p17"><span class="s1">0</span></p>
+<p class="p18"><span class="s1">Analyse-Rückmeldung</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Individuelle Entwicklung – kein Baukasten, keine Templates</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Schema.org, Open Graph und KI-Sichtbarkeit auf allen Seiten</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Performance-Optimierung – schnelle Ladezeiten, bessere Rankings</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Lokales SEO-Targeting für Odenwald und Rhein-Main-Gebiet</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p13"><span class="s1">ÜBER MICH</span></p>
+<h2 style="margin: 0.0px 0.0px 14.4px 0.0px; font: 40.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s1">Christian Hübbe –<br>
+aus dem Odenwald.</span></h2>
+<p class="p9"><span class="s1">Ich bin seit 9 Jahren Unternehmensberater – mit einem MBA in Digitaler Transformation. Kein klassischer Webdesigner.</span></p>
+<p class="p15"><span class="s1">Das bedeutet: Ich verstehe nicht nur wie eine Website aussehen soll, sondern was sie für Ihr Unternehmen leisten muss. Von der strategischen Positionierung bis zur technischen Umsetzung. Persönlich, ohne Baukastensystem, mit Fokus auf Performance – auf Anfrage.</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">9 Jahre Unternehmensberater</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">MBA in Digitaler Transformation</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Native iOS &amp; Android (Swift, Kotlin)</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Backend Infrastructure mit Firebase &amp; Cloud Functions</span></p>
+<p class="p19"><span class="s1"></span><br></p>
+<p class="p20"><span class="s1">Projekte exklusiv und auf Anfrage</span></p>
+<p class="p17"><span class="s1">0</span></p>
+<p class="p18"><span class="s1">Jahre Beratung</span></p>
+<p class="p17"><span class="s1">MBA</span></p>
+<p class="p18"><span class="s1">Dig. Transformation</span></p>
+<p class="p17"><span class="s1">2</span></p>
+<p class="p18"><span class="s1">Plattformen</span></p>
+<p class="p15"><span class="s1">Mit Sitz im Odenwald arbeite ich für Kunden im Rhein-Main-Gebiet und deutschlandweit. 45 Minuten von Frankfurt.</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p13"><span class="s1">AUSGEWÄHLTE PROJEKTE</span></p>
+<h2 style="margin: 0.0px 0.0px 14.4px 0.0px; font: 40.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s1">Referenzen &amp; Ergebnisse.</span></h2>
+<p class="p9"><span class="s1">Jedes Projekt wird individuell entwickelt – mit Fokus auf Design, Performance und Auffindbarkeit.</span></p>
+<p class="p21"><span class="s1">01</span></p>
+<p class="p22"><span class="s1">WEBSITE · HOTEL &amp; EVENTS · ODENWALD</span></p>
+<p class="p23"><span class="s1">Burghof Brombachtal</span></p>
+<p class="p24"><span class="s1">24-seitige Website für Hotel &amp; Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</span></p>
+<p class="p25"><span class="s1">24 Seiten</span></p>
+<p class="p25"><span class="s1">Schema.org</span></p>
+<p class="p25"><span class="s1">Reservierungssystem</span></p>
+<p class="p25"><span class="s1">Lokales SEO</span></p>
+<p class="p26"><span class="s1"><a href="https://burghof-odenwald.de/">Zum Projekt →<span class="s6"></span></a></span></p>
+<p class="p21"><span class="s1">02</span></p>
+<p class="p22"><span class="s1">APP · GOLF · IOS &amp; ANDROID</span></p>
+<p class="p23"><span class="s1">FairwayService App</span></p>
+<p class="p24"><span class="s1">Native Golf Club Management App für iOS und Android. Buchungssystem, Mitgliederverwaltung, Score-Tracking und Push-Benachrichtigungen. Backend mit Firebase.</span></p>
+<p class="p25"><span class="s1">Swift</span></p>
+<p class="p25"><span class="s1">Kotlin</span></p>
+<p class="p25"><span class="s1">Firebase</span></p>
+<p class="p25"><span class="s1">iOS &amp; Android</span></p>
+<p class="p21"><span class="s1">03</span></p>
+<p class="p22"><span class="s1">WEBSITE · HANDWERK · ASCHAFFENBURG / SPESSART</span></p>
+<p class="p23"><span class="s1">Spenglerei Wood</span></p>
+<p class="p24"><span class="s1">Unternehmenswebsite für Spenglereibetrieb aus Johannesberg. Leistungen, Team, Kontaktformular, Analytics mit Consent Mode v2, vollständig DSGVO-konform.</span></p>
+<p class="p25"><span class="s1">Mobile-First</span></p>
+<p class="p25"><span class="s1">DSGVO-konform</span></p>
+<p class="p25"><span class="s1">Analytics</span></p>
+<p class="p25"><span class="s1">Lokales SEO</span></p>
+<p class="p26"><span class="s1"><a href="https://spenglerei-wood.de/">Zum Projekt →<span class="s6"></span></a></span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p13"><span class="s1">PROJEKT ANFRAGEN</span></p>
+<h2 style="margin: 0.0px 0.0px 14.4px 0.0px; font: 40.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s1">Bereit für die<br>
+nächste Stufe?</span></h2>
+<p class="p9"><span class="s1">Ich nehme Projekte exklusiv und auf Anfrage an. Erzählen Sie mir kurz worum es geht.</span></p>
+<p class="p15"><span class="s1">Ob neue Website, SEO-Analyse, App-Entwicklung oder komplette digitale Neuaufstellung – der erste Schritt ist ein kurzes Gespräch.</span></p>
+<p class="p18"><span class="s1">NAME *</span></p>
+<p class="p18"><span class="s1">E-MAIL *</span></p>
+<p class="p18"><span class="s1">WORUM GEHT ES?</span></p>
+<p class="p27"><span class="s7"><span class="Apple-converted-space">              </span></span><span class="s1">-- Bitte wählen --</span></p>
+<p class="p28"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s8">Neue Website</span></p>
+<p class="p28"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s8">SEO-Analyse</span></p>
+<p class="p27"><span class="s7"><span class="Apple-converted-space">              </span></span><span class="s1">App-Entwicklung</span></p>
+<p class="p27"><span class="s7"><span class="Apple-converted-space">              </span></span><span class="s1">Bestehendes Projekt verbessern</span></p>
+<p class="p28"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s8">Sonstiges</span></p>
+<p class="p29"><span class="s9"><span class="Apple-converted-space">            </span></span></p>
+<p class="p18"><span class="s1">NACHRICHT *</span></p>
+<p class="p30"><span class="s1">Anfrage absenden →</span></p>
+<p class="p7"><span class="s1">© 2026 HuebbeDigital · Christian Hübbe</span></p>
+<p class="p7"><span class="s1"><a href="file:///imprint.html">Impressum</a><a href="file:///privacy.html"><span class="s10">Datenschutz</span></a></span></p>
 </body>
 </html>
