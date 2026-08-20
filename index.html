@@ -163,6 +163,9 @@
     .ptag { font-size: .65rem; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; border: 1px solid rgba(128,128,128,.18); opacity: .5; }
     .plink { display: inline-block; margin-top: 1.2rem; font-size: .78rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .7; transition: opacity .2s; }
     .plink:hover { opacity: 1; }
+    .pstatus { display: inline-flex; align-items: center; gap: .45rem; margin-top: 1.2rem; font-size: .78rem; font-weight: 600; opacity: .5; }
+    .pstatus-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pstatus-pulse 1.8s ease-in-out infinite; }
+    @keyframes pstatus-pulse { 0%,100%{ opacity: .4; } 50%{ opacity: 1; } }
 
     /* FORM */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -430,7 +433,7 @@
         <div class="ptitle">Burghof Brombachtal</div>
         <p class="pdesc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
         <div class="ptags"><span class="ptag">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag">Reservierungssystem</span><span class="ptag">Lokales SEO</span></div>
-        <a href="https://burghof-odenwald.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
+        <span class="pstatus"><span class="pstatus-dot"></span>Website in Erstellung</span>
       </div>
       <div class="pcard">
         <span class="pnum">02</span>
