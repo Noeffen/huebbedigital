@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Weiterleitung…</title>
+    <script>
+      // Single Page Apps for GitHub Pages — only handles paths under /app/,
+      // where the ClubConnect PWA lives. Everything else falls through to a
+      // plain "not found" message.
+      // Based on https://github.com/rafgraph/spa-github-pages
+      var l = window.location;
+      if (l.pathname.indexOf("/app/") === 0 || l.pathname === "/app") {
+        var segmentCount = 1; // "/app" is the one segment owned by the SPA
+        l.replace(
+          l.protocol +
+            "//" +
+            l.hostname +
+            (l.port ? ":" + l.port : "") +
+            l.pathname.split("/").slice(0, 1 + segmentCount).join("/") +
+            "/?p=/" +
+            l.pathname
+              .slice(1)
+              .split("/")
+              .slice(segmentCount)
+              .join("/")
+              .replace(/&/g, "~and~") +
+            (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+            l.hash
+        );
+      }
+    </script>
+    <style>
+      body { font-family: system-ui, sans-serif; background: #faf8f2; color: #1c1b18; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; padding: 2rem; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Seite nicht gefunden</h1>
+      <p><a href="/">Zurück zur Startseite</a></p>
+    </div>
+  </body>
+</html>

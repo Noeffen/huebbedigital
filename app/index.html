@@ -9,6 +9,23 @@
     <link rel="icon" type="image/png" href="/app/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/app/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/app/manifest.webmanifest" />
+    <script>
+      // Restores the real URL after the root 404.html redirected here with
+      // the original path encoded in the query string (GitHub Pages SPA fix,
+      // see https://github.com/rafgraph/spa-github-pages).
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, "", l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
     <script type="module" crossorigin src="/app/assets/index-CYAQ_chP.js"></script>
     <link rel="stylesheet" crossorigin href="/app/assets/index-I7Wqs3UC.css">
   <link rel="manifest" href="/app/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/app/registerSW.js"></script></head>
