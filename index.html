@@ -899,9 +899,11 @@ document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
 
 // ── SCROLL HINT HIDE ──
 const scrollHint=document.querySelector('.scroll-hint');
-window.addEventListener('scroll',()=>{
+function updateScrollHint(){
   scrollHint.style.opacity=window.scrollY>80?'0':'1';
-},{passive:true});
+}
+window.addEventListener('scroll',updateScrollHint,{passive:true});
+updateScrollHint();
 
 // ── CONTACT FORM ──
 document.getElementById('contactForm').addEventListener('submit',async function(e){
@@ -1026,13 +1028,19 @@ document.getElementById('contactForm').addEventListener('submit',async function(
 // Hide hero text when scrolling away from hero
 var heroContent = document.querySelector('.hero-content');
 if(heroContent){
-  window.addEventListener('scroll', function(){
+  function updateHeroFade(){
     var scrolled = window.scrollY;
     var heroH = document.querySelector('.hero-section').offsetHeight;
     var progress = Math.min(scrolled / (heroH * 0.8), 1);
     heroContent.style.opacity = 1 - progress;
     heroContent.style.transform = 'translateY(calc(-50% - ' + (progress * 30) + 'px))';
-  }, {passive: true});
+  }
+  window.addEventListener('scroll', updateHeroFade, {passive: true});
+  // Run once immediately: if the browser restores a scrolled position on
+  // reload (it does, by default), no 'scroll' event fires until the user
+  // actually scrolls — without this, the fixed hero text stays stuck
+  // on-screen, overlapping later sections, until the first scroll.
+  updateHeroFade();
 }</script>
 </body>
 </html>
