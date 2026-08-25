@@ -88,7 +88,7 @@
     .nav-cta:hover { opacity: .85 !important; }
 
     /* SECTIONS */
-    section { min-height: 100vh; display: flex; align-items: center; padding: 9rem 3rem; position: relative; }
+    section { min-height: 100vh; display: flex; align-items: center; padding: 6rem 3rem 3rem; position: relative; }
     /* Subtle radial vignette so diamond stays in periphery */
     section[data-bg="#111111"]::before {
       content: '';
@@ -163,6 +163,9 @@
     .ptag { font-size: .65rem; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; border: 1px solid rgba(128,128,128,.18); opacity: .5; }
     .plink { display: inline-block; margin-top: 1.2rem; font-size: .78rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .7; transition: opacity .2s; }
     .plink:hover { opacity: 1; }
+    .pstatus { display: inline-flex; align-items: center; gap: .45rem; margin-top: 1.2rem; font-size: .78rem; font-weight: 600; opacity: .5; }
+    .pstatus-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pstatus-pulse 1.8s ease-in-out infinite; }
+    @keyframes pstatus-pulse { 0%,100%{ opacity: .4; } 50%{ opacity: 1; } }
 
     /* FORM */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -271,6 +274,31 @@
         .word-inner { transition: none !important; transform: none !important; }
       }
     }
+      @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  
+    .hero-section { position: relative; height: 30vh; min-height: 300px; }
+    .hero-content { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); width: 44%; z-index: 100; }
+    #typeH1 { font-size: clamp(2.8rem,5.5vw,5rem); font-weight: 900; letter-spacing:-.05em; line-height: .97; color: white; margin: 0; min-height: 1em; }
+    #typeCursor { display: inline-block; width: 3px; height: .85em; background: white; vertical-align: middle; margin-left: 2px; animation: blink .7s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @media(max-width:768px){ .hero-content { left: 1.5rem; width: 90%; top: 45%; } }
+  
+    .hero-stats {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 3rem;
+      z-index: 5;
+      opacity: 0;
+      animation: fadeInStats 0.8s ease-out 1.8s forwards;
+    }
+    @keyframes fadeInStats { to { opacity: 1; } }
+    .hstat { text-align: center; }
+    .hstat-num { display: block; font-size: 1.8rem; font-weight: 800; letter-spacing: -.04em; background: linear-gradient(135deg,#3B82F6,#7C3AED); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hstat-label { display: block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; opacity: .35; margin-top: .2rem; }
+    @media(max-width:768px){ .hero-stats { gap: 1.5rem; } .hstat-num { font-size: 1.4rem; } }
   </style>
 </head>
 <body>
@@ -301,40 +329,35 @@
     <a href="#about" class="nav-link">Über mich</a>
     <a href="#projekte" class="nav-link">Projekte</a>
     <a href="#contact" class="nav-link">Kontakt</a>
-    <a href="/ki-analyse.html" class="nav-cta">Kostenlose Website-Analyse</a>
+    <a href="/ki-analyse.html" class="nav-cta">Gratis Analyse</a>
   </div>
 </nav>
 
 <!-- 1 HERO DARK -->
-<section data-bg="#111111" data-color="#ffffff">
-  <div class="container">
-    <div class="eyebrow" id="heroEyebrow" style="opacity:0;transition:opacity 1s .2s">Webdesign · Apps · SEO · Odenwald & Rhein-Main</div>
-    <h1 id="heroH1" aria-label="Webdesign & Apps aus dem Odenwald.">
-      <span class="word"><span class="word-inner">Webdesign</span></span>
-      <span class="word"><span class="word-inner">&amp;</span></span>
-      <span class="word"><span class="word-inner">Apps</span></span>
-      <br>
-      <span class="word"><span class="word-inner">aus</span></span>
-      <span class="word"><span class="word-inner">dem</span></span>
-      <span class="word"><span class="word-inner" style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Odenwald.</span></span>
-    </h1>
-    <p class="lead reveal d3">Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.</p>
-    <div class="pills reveal d4">
+<section data-bg="#111111" data-color="#ffffff" class="hero-section">
+  <div class="hero-content">
+    <div class="eyebrow" style="opacity:.4;margin-bottom:1rem;display:block;font-size:.78rem;letter-spacing:.08em;">Webdesign · Apps · SEO · Odenwald & Rhein-Main</div>
+    <h1 id="typeH1" aria-label="Webdesign & Apps aus dem Odenwald."><span id="typeCursor"></span></h1>
+    <p class="lead" style="opacity:.6;margin-top:1.5rem;max-width:420px;">Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.</p>
+    <div class="pills" style="margin-top:1.5rem;">
       <span class="pill accent">Webdesign</span>
       <span class="pill">SEO-Optimierung</span>
       <span class="pill">iOS & Android</span>
       <span class="pill">Performance</span>
-      <span class="pill">Schema.org</span>
     </div>
   </div>
-  <div class="scroll-hint">
-      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-      <div class="scroll-chevrons">
-        <div class="scroll-chevron"></div>
-        <div class="scroll-chevron"></div>
-        <div class="scroll-chevron"></div>
-      </div>
+  <!-- Floating stats in gap -->
+  <div class="hero-stats">
+    <div class="hstat"><span class="hstat-num">9+</span><span class="hstat-label">Jahre Erfahrung</span></div>
+    <div class="hstat"><span class="hstat-num">Einzigartige</span><span class="hstat-label">Projekte</span></div>
+    <div class="hstat"><span class="hstat-num">100%</span><span class="hstat-label">Individuelle Lösungen</span></div>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <div class="scroll-chevrons">
+      <div class="scroll-chevron"></div><div class="scroll-chevron"></div><div class="scroll-chevron"></div>
     </div>
+  </div>
 </section>
 
 <!-- 2 LIGHT LEISTUNGEN -->
@@ -410,14 +433,15 @@
         <div class="ptitle">Burghof Brombachtal</div>
         <p class="pdesc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
         <div class="ptags"><span class="ptag">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag">Reservierungssystem</span><span class="ptag">Lokales SEO</span></div>
-        <a href="https://burghof-odenwald.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
+        <span class="pstatus"><span class="pstatus-dot"></span>Website in Erstellung</span>
       </div>
       <div class="pcard">
         <span class="pnum">02</span>
-        <div class="pmeta">App · Golf · iOS & Android</div>
-        <div class="ptitle">FairwayService App</div>
-        <p class="pdesc">Native Golf Club Management App für iOS und Android. Buchungssystem, Mitgliederverwaltung, Score-Tracking und Push-Benachrichtigungen. Backend mit Firebase.</p>
-        <div class="ptags"><span class="ptag">Swift</span><span class="ptag">Kotlin</span><span class="ptag">Firebase</span><span class="ptag">iOS & Android</span></div>
+        <div class="pmeta">Web-App · Golf · PWA</div>
+        <div class="ptitle">ClubConnect</div>
+        <p class="pdesc">Progressive Web App für Golfclubs: Preise, News und Turniere auf einen Blick, Melde-Service für Platzprobleme mit Foto-Upload, und ein eigenes Admin-Dashboard zur Verwaltung. Installierbar auf jedem Smartphone, Backend mit Firebase.</p>
+        <div class="ptags"><span class="ptag">React</span><span class="ptag">Firebase</span><span class="ptag">PWA</span><span class="ptag">Installierbar</span></div>
+        <a href="https://huebbedigital.com/app/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
       </div>
       <div class="pcard">
         <span class="pnum">03</span>
@@ -713,7 +737,8 @@ function threeLoop(){
 
   // Crystal position — shift right when in contact section (t≈1)
   const scrollT = prog.t || 0;
-  crystal.position.x = lerp(0, 2.2, Math.pow(scrollT, 2));
+  var tgt = scrollT < 0.05 ? window._diamondTargetX||0 : lerp(1.8, 2.2, Math.pow(Math.max(0,scrollT-.05),2));
+  crystal.position.x = tgt;
   crystal.position.y = lerp(0, -0.5, scrollT);
 
   // Crystal rotation
@@ -726,12 +751,7 @@ function threeLoop(){
 threeLoop();
 
 // ── HERO WORD REVEAL ──
-setTimeout(()=>{
-  document.getElementById('heroEyebrow').style.opacity='1';
-  document.querySelectorAll('.word-inner').forEach((el,i)=>{
-    setTimeout(()=>el.classList.add('show'),300+i*90);
-  });
-},100);
+
 
 // ── REVEAL ON SCROLL ──
 const obs=new IntersectionObserver(entries=>{
@@ -800,5 +820,74 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   updateBar();
 })();
 </script>
+<script>
+(function(){
+  // Smooth diamond entrance: x goes 0 → 1.8 over 1.0s, linear then ease-out
+  window._diamondTargetX = 0;
+  var startT = null;
+  var DURATION = 1000;
+  function animDiamond(ts){
+    if(!startT) startT = ts;
+    var p = Math.min((ts - startT) / DURATION, 1.0);
+    // Ease out cubic
+    var e = 1 - Math.pow(1 - p, 3);
+    window._diamondTargetX = e * 1.8;
+    if(p < 1) requestAnimationFrame(animDiamond);
+    else window._diamondTargetX = 1.8;
+  }
+  setTimeout(function(){ requestAnimationFrame(animDiamond); }, 100);
+
+  // Typewriter for H1
+  var h1 = document.getElementById('typeH1');
+  var cur = document.getElementById('typeCursor');
+  if(!h1 || !cur) return;
+
+  var queue = [];
+  var l1 = 'Webdesign & Apps';
+  var l2 = 'aus dem ';
+  var l3 = 'Odenwald.';
+  var i;
+  for(i=0;i<l1.length;i++) queue.push({c:l1[i], g:false});
+  queue.push({br:true});
+  for(i=0;i<l2.length;i++) queue.push({c:l2[i], g:false});
+  for(i=0;i<l3.length;i++) queue.push({c:l3[i], g:true});
+
+  var idx = 0;
+  function tick(){
+    if(idx >= queue.length){
+      setTimeout(function(){ if(cur) cur.style.display='none'; }, 1000);
+      return;
+    }
+    var item = queue[idx++];
+    if(item.br){
+      h1.insertBefore(document.createElement('br'), cur);
+    } else {
+      var s = document.createElement('span');
+      s.textContent = item.c;
+      if(item.g){
+        s.style.cssText = 'background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;';
+      } else {
+        s.style.color = 'white';
+      }
+      h1.insertBefore(s, cur);
+    }
+    setTimeout(tick, 45 + Math.floor(Math.random() * 20));
+  }
+  // Start typewriter after diamond begins moving
+  setTimeout(tick, 400);
+})();
+</script>
+<script>
+// Hide hero text when scrolling away from hero
+var heroContent = document.querySelector('.hero-content');
+if(heroContent){
+  window.addEventListener('scroll', function(){
+    var scrolled = window.scrollY;
+    var heroH = document.querySelector('.hero-section').offsetHeight;
+    var progress = Math.min(scrolled / (heroH * 0.8), 1);
+    heroContent.style.opacity = 1 - progress;
+    heroContent.style.transform = 'translateY(calc(-50% - ' + (progress * 30) + 'px))';
+  }, {passive: true});
+}</script>
 </body>
 </html>
