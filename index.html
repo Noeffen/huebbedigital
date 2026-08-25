@@ -142,32 +142,29 @@
     /* STATS */
     .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(128,128,128,.12); }
 
-    /* About-section photo: duotone-tinted, glass-framed, offset border for depth */
-    .about-photo-wrap { position: relative; max-width: 300px; margin-bottom: 2.2rem; }
+    /* About-section photo: grayscale, softly masked (no hard box), floats
+       with a shape-following shadow and a subtle mouse-driven 3D tilt */
+    .about-photo-wrap { position: relative; max-width: 320px; margin-bottom: 1.4rem; perspective: 1000px; }
     .about-photo-glow {
-      position: absolute; inset: -30px; z-index: 0; border-radius: 24px; pointer-events: none;
+      position: absolute; inset: -40px; z-index: 0; pointer-events: none;
       background:
-        radial-gradient(circle at 25% 15%, rgba(59,130,246,.35), transparent 60%),
-        radial-gradient(circle at 85% 85%, rgba(124,58,237,.3), transparent 60%);
-      filter: blur(46px);
-    }
-    .about-photo-offset-border {
-      position: absolute; inset: 14px -14px -14px 14px; z-index: 0;
-      border: 1px solid rgba(255,255,255,.14); border-radius: 18px; pointer-events: none;
+        radial-gradient(circle at 30% 25%, rgba(59,130,246,.28), transparent 62%),
+        radial-gradient(circle at 75% 80%, rgba(124,58,237,.24), transparent 62%);
+      filter: blur(50px);
     }
     .about-photo-frame {
-      position: relative; z-index: 1; border-radius: 18px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,.12); aspect-ratio: 4 / 5; background: #0a0a0a;
+      position: relative; z-index: 1; aspect-ratio: 4 / 5;
+      transform-style: preserve-3d; transition: transform .2s ease-out;
+      will-change: transform;
+      filter: drop-shadow(0 24px 34px rgba(0,0,0,.55));
     }
     .about-photo {
       width: 100%; height: 100%; object-fit: cover; object-position: center 82%;
-      filter: grayscale(1) contrast(1.08) brightness(.92); display: block;
+      filter: grayscale(1) contrast(1.18) brightness(1.02); display: block;
+      -webkit-mask-image: radial-gradient(ellipse 76% 84% at 50% 44%, black 52%, transparent 100%);
+      mask-image: radial-gradient(ellipse 76% 84% at 50% 44%, black 52%, transparent 100%);
     }
-    .about-photo-tint {
-      position: absolute; inset: 0; mix-blend-mode: color; pointer-events: none;
-      background: linear-gradient(155deg, rgba(59,130,246,.62), rgba(124,58,237,.5));
-    }
-    .about-photo-caption { margin-top: 1rem; font-size: .78rem; opacity: .5; font-style: italic; max-width: 300px; }
+    .about-photo-caption { margin-top: .6rem; font-size: .78rem; opacity: .5; font-style: italic; max-width: 300px; }
     .stat-val { font-size: 2.2rem; font-weight: 900; letter-spacing: -.05em; line-height: 1; margin-bottom: .25rem; }
     .stat-lbl { font-size: .7rem; font-weight: 500; opacity: .35; letter-spacing: .05em; }
 
@@ -512,12 +509,10 @@
         </div>
       </div>
       <div>
-        <div class="about-photo-wrap reveal d2">
+        <div class="about-photo-wrap reveal d2" id="aboutPhotoWrap">
           <div class="about-photo-glow"></div>
-          <div class="about-photo-offset-border"></div>
-          <div class="about-photo-frame">
+          <div class="about-photo-frame" id="aboutPhotoFrame">
             <img class="about-photo" src="/golf.jpg" alt="Christian Hübbe auf dem Golfplatz" loading="lazy">
-            <div class="about-photo-tint"></div>
           </div>
         </div>
         <p class="about-photo-caption reveal d2">Wenn gerade kein Client-Call ansteht: meistens hier, irgendwo im Bunker.</p>
@@ -1022,6 +1017,23 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   }
   // Start typewriter after diamond begins moving
   setTimeout(tick, 400);
+})();
+</script>
+<script>
+// About-photo 3D tilt — follows the cursor within its wrapper, resets on leave
+(function(){
+  var wrap = document.getElementById('aboutPhotoWrap');
+  var frame = document.getElementById('aboutPhotoFrame');
+  if(!wrap || !frame) return;
+  wrap.addEventListener('mousemove', function(e){
+    var r = wrap.getBoundingClientRect();
+    var px = (e.clientX - r.left) / r.width - 0.5;
+    var py = (e.clientY - r.top) / r.height - 0.5;
+    frame.style.transform = 'rotateY(' + (px * 12).toFixed(2) + 'deg) rotateX(' + (-py * 12).toFixed(2) + 'deg)';
+  }, {passive: true});
+  wrap.addEventListener('mouseleave', function(){
+    frame.style.transform = 'rotateY(0deg) rotateX(0deg)';
+  });
 })();
 </script>
 <script>
