@@ -144,13 +144,13 @@
 
     /* About-section photo: grayscale, softly masked (no hard box), floats
        with a shape-following shadow and a subtle mouse-driven 3D tilt */
-    .about-photo-wrap { position: relative; max-width: 320px; margin-bottom: 1.4rem; perspective: 1000px; }
+    .about-photo-wrap { position: relative; max-width: 380px; margin-bottom: 1.4rem; perspective: 1000px; }
     .about-photo-glow {
-      position: absolute; inset: -40px; z-index: 0; pointer-events: none;
+      position: absolute; inset: -55px; z-index: 0; pointer-events: none;
       background:
-        radial-gradient(circle at 30% 25%, rgba(59,130,246,.28), transparent 62%),
-        radial-gradient(circle at 75% 80%, rgba(124,58,237,.24), transparent 62%);
-      filter: blur(50px);
+        radial-gradient(circle at 30% 25%, rgba(59,130,246,.24), transparent 62%),
+        radial-gradient(circle at 75% 80%, rgba(124,58,237,.2), transparent 62%);
+      filter: blur(55px);
     }
     .about-photo-frame {
       position: relative; z-index: 1; aspect-ratio: 4 / 5;
@@ -161,8 +161,8 @@
     .about-photo {
       width: 100%; height: 100%; object-fit: cover; object-position: center 82%;
       filter: grayscale(1) contrast(1.18) brightness(1.02); display: block;
-      -webkit-mask-image: radial-gradient(ellipse 76% 84% at 50% 44%, black 52%, transparent 100%);
-      mask-image: radial-gradient(ellipse 76% 84% at 50% 44%, black 52%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 66% at 50% 40%, black 0%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.55) 42%, rgba(0,0,0,.22) 65%, rgba(0,0,0,.06) 85%, transparent 100%);
+      mask-image: radial-gradient(ellipse 60% 66% at 50% 40%, black 0%, rgba(0,0,0,.9) 20%, rgba(0,0,0,.55) 42%, rgba(0,0,0,.22) 65%, rgba(0,0,0,.06) 85%, transparent 100%);
     }
     .about-photo-caption { margin-top: .6rem; font-size: .78rem; opacity: .5; font-style: italic; max-width: 300px; }
     .stat-val { font-size: 2.2rem; font-weight: 900; letter-spacing: -.05em; line-height: 1; margin-bottom: .25rem; }
