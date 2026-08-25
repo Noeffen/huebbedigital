@@ -906,11 +906,19 @@ document.getElementById('contactForm').addEventListener('submit',async function(
 
   btn.addEventListener('click', function(){
     if (audio.paused) {
-      audio.play().catch(function(){ /* ignore — e.g. file not reachable yet */ });
-      btn.classList.add('playing');
-      btn.setAttribute('aria-pressed', 'true');
-      btn.setAttribute('aria-label', 'Hintergrundmusik pausieren');
-      if (label) label.textContent = 'Musik pausieren';
+      var playPromise = audio.play();
+      if (playPromise && playPromise.then) {
+        playPromise.then(function(){
+          btn.classList.add('playing');
+          btn.setAttribute('aria-pressed', 'true');
+          btn.setAttribute('aria-label', 'Hintergrundmusik pausieren');
+          if (label) label.textContent = 'Musik pausieren';
+        }).catch(function(err){
+          // Playback genuinely failed (e.g. file missing/blocked) — don't lie about the state.
+          console.error('Musik konnte nicht abgespielt werden:', err);
+          if (label) label.textContent = 'Konnte nicht laden';
+        });
+      }
     } else {
       audio.pause();
       btn.classList.remove('playing');
