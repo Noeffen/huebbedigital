@@ -163,9 +163,6 @@
     .ptag { font-size: .65rem; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; border: 1px solid rgba(128,128,128,.18); opacity: .5; }
     .plink { display: inline-block; margin-top: 1.2rem; font-size: .78rem; font-weight: 700; color: var(--blue); text-decoration: none; opacity: .7; transition: opacity .2s; }
     .plink:hover { opacity: 1; }
-    .pstatus { display: inline-flex; align-items: center; gap: .45rem; margin-top: 1.2rem; font-size: .78rem; font-weight: 600; opacity: .5; }
-    .pstatus-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pstatus-pulse 1.8s ease-in-out infinite; }
-    @keyframes pstatus-pulse { 0%,100%{ opacity: .4; } 50%{ opacity: 1; } }
 
     /* FORM */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -329,7 +326,7 @@
     <a href="#about" class="nav-link">Über mich</a>
     <a href="#projekte" class="nav-link">Projekte</a>
     <a href="#contact" class="nav-link">Kontakt</a>
-    <a href="/ki-analyse.html" class="nav-cta">Gratis Analyse</a>
+    <a href="/ki-analyse.html" class="nav-cta">Kostenlose Website-Analyse</a>
   </div>
 </nav>
 
@@ -349,7 +346,7 @@
   <!-- Floating stats in gap -->
   <div class="hero-stats">
     <div class="hstat"><span class="hstat-num">9+</span><span class="hstat-label">Jahre Erfahrung</span></div>
-    <div class="hstat"><span class="hstat-num">Einzigartige</span><span class="hstat-label">Projekte</span></div>
+    <div class="hstat"><span class="hstat-num">50+</span><span class="hstat-label">Projekte</span></div>
     <div class="hstat"><span class="hstat-num">100%</span><span class="hstat-label">Individuelle Lösungen</span></div>
   </div>
   <div class="scroll-hint" id="scrollHint">
@@ -433,15 +430,14 @@
         <div class="ptitle">Burghof Brombachtal</div>
         <p class="pdesc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
         <div class="ptags"><span class="ptag">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag">Reservierungssystem</span><span class="ptag">Lokales SEO</span></div>
-        <span class="pstatus"><span class="pstatus-dot"></span>Website in Erstellung</span>
+        <a href="https://burghof-odenwald.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
       </div>
       <div class="pcard">
         <span class="pnum">02</span>
-        <div class="pmeta">Web-App · Golf · PWA</div>
-        <div class="ptitle">ClubConnect</div>
-        <p class="pdesc">Progressive Web App für Golfclubs: Preise, News und Turniere auf einen Blick, Melde-Service für Platzprobleme mit Foto-Upload, und ein eigenes Admin-Dashboard zur Verwaltung. Installierbar auf jedem Smartphone, Backend mit Firebase.</p>
-        <div class="ptags"><span class="ptag">React</span><span class="ptag">Firebase</span><span class="ptag">PWA</span><span class="ptag">Installierbar</span></div>
-        <a href="https://huebbedigital.com/app/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
+        <div class="pmeta">App · Golf · iOS & Android</div>
+        <div class="ptitle">FairwayService App</div>
+        <p class="pdesc">Native Golf Club Management App für iOS und Android. Buchungssystem, Mitgliederverwaltung, Score-Tracking und Push-Benachrichtigungen. Backend mit Firebase.</p>
+        <div class="ptags"><span class="ptag">Swift</span><span class="ptag">Kotlin</span><span class="ptag">Firebase</span><span class="ptag">iOS & Android</span></div>
       </div>
       <div class="pcard">
         <span class="pnum">03</span>
