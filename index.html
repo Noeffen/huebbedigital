@@ -386,6 +386,21 @@
     .hstat-num { display: block; font-size: 1.8rem; font-weight: 800; letter-spacing: -.04em; background: linear-gradient(135deg,#3B82F6,#7C3AED); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .hstat-label { display: block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; opacity: .35; margin-top: .2rem; }
     @media(max-width:768px){ .hero-stats { gap: 1.5rem; } .hstat-num { font-size: 1.4rem; } }
+  
+    /* PROCESS STEPS */
+    .process-steps { display: flex; align-items: flex-start; gap: 0; }
+    .pstep { flex: 1; }
+    .pstep-divider { width: 60px; flex-shrink: 0; display: flex; align-items: flex-start; padding-top: 1.4rem; }
+    .pstep-divider::after { content: ''; display: block; width: 100%; height: 1px; background: linear-gradient(90deg,var(--blue),var(--purple)); opacity: .3; }
+    .pstep-num { font-size: .62rem; font-weight: 800; letter-spacing: .18em; color: var(--blue); margin-bottom: 1rem; }
+    .pstep-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .6rem; }
+    .pstep-desc { font-size: .85rem; line-height: 1.75; opacity: .55; font-weight: 350; max-width: 280px; }
+    @media(max-width:768px){
+      .process-steps { flex-direction: column; gap: 2rem; }
+      .pstep-divider { display: none; }
+      .pstep-desc { max-width: 100%; }
+    }
+
   </style>
 </head>
 <body>
@@ -561,7 +576,43 @@
   </div>
 </section>
 
-<!-- 5 DARK KONTAKT -->
+
+<!-- 5 DARK WIE LÄUFT DAS AB -->
+<section data-bg="#111111" data-color="#ffffff">
+  <div class="container">
+    <div class="divider reveal"></div>
+    <span class="kicker reveal d1">Der Ablauf</span>
+    <h2 class="reveal d2">Wie läuft das <span class="grad-text">ab?</span></h2>
+    <p class="lead reveal d3" style="margin-bottom:3.5rem;">Kein komplizierter Prozess. Drei Schritte vom ersten Kontakt bis zur fertigen Website.</p>
+    <div class="process-steps reveal d4">
+      <div class="pstep">
+        <div class="pstep-num">01</div>
+        <div class="pstep-content">
+          <div class="pstep-title">Kostenlose Analyse</div>
+          <p class="pstep-desc">Ich schaue mir Ihre aktuelle Website an — oder Ihre Idee — und schicke Ihnen innerhalb von 48 Stunden eine ehrliche Einschätzung. Kostenlos, unverbindlich.</p>
+        </div>
+      </div>
+      <div class="pstep-divider"></div>
+      <div class="pstep">
+        <div class="pstep-num">02</div>
+        <div class="pstep-content">
+          <div class="pstep-title">Persönliches Gespräch</div>
+          <p class="pstep-desc">Wir sprechen kurz über Ihr Projekt, Ihre Ziele und was Sie wirklich brauchen. Kein Pitch, kein Verkaufsgespräch — einfach ein ehrliches Gespräch.</p>
+        </div>
+      </div>
+      <div class="pstep-divider"></div>
+      <div class="pstep">
+        <div class="pstep-num">03</div>
+        <div class="pstep-content">
+          <div class="pstep-title">Projekt & Umsetzung</div>
+          <p class="pstep-desc">Ich entwickle Ihre Website oder App individuell — von Design über Entwicklung bis SEO. Sie sehen jeden Schritt, kein Blackbox-Prozess.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 DARK KONTAKT -->
 <section data-bg="#111111" data-color="#ffffff" id="contact">
   <div class="container">
     <div class="split">
