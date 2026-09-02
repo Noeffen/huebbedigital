@@ -8,6 +8,8 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -89,16 +91,17 @@
     <p>Diese Datenschutzerklärung gilt für:</p>
     <ul>
       <li>Die Website <strong>huebbedigital.com</strong> und alle Unterseiten</li>
-      <li>Die Web-App <strong>ClubConnect</strong> (<a href="https://huebbedigital.com/app/">huebbedigital.com/app/</a>)</li>
+      <li>Die mobile App <strong>FairwayService</strong> (iOS & Android)</li>
+      <li>Die mobile App <strong>NotAlone</strong> (iOS & Android) – eingestellt, siehe Hinweis unten</li>
     </ul>
 
     <div class="highlight" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06);">
-      <strong style="color:#fca5a5;">Hinweis: FairwayService und NotAlone vorübergehend eingestellt</strong>
-      <p>Die mobilen Apps <strong>FairwayService</strong> und <strong>NotAlone</strong> sind aktuell nicht mehr im Google Play Store und App Store verfügbar. Alle im Rahmen dieser Apps erhobenen personenbezogenen Daten wurden aus unserem Backend gelöscht. Es findet derzeit keine Datenverarbeitung im Zusammenhang mit diesen Apps mehr statt. Bei Fragen zu zuvor erhobenen Daten wenden Sie sich gerne an <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a>.</p>
+      <strong style="color:#fca5a5;">Hinweis: NotAlone wurde eingestellt</strong>
+      <p>Die App <strong>NotAlone</strong> ist seit August 2026 nicht mehr im Google Play Store und App Store verfügbar und wurde vollständig aus den jeweiligen Konsolen gelöscht. Alle im Rahmen von NotAlone erhobenen personenbezogenen Daten wurden unwiderruflich aus unserem Backend gelöscht. Es findet keine weitere Datenverarbeitung im Zusammenhang mit NotAlone mehr statt.</p>
     </div>
 
     <h2>1. Verantwortlicher</h2>
-    <p>HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald<br>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a></p>
+    <p>HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald<br>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>Telefon: <a href="tel:01794251905">0179 4251905</a></p>
 
     <h2>2. Ihre Rechte</h2>
     <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO).</p>
@@ -143,43 +146,25 @@
     <p><strong>Daten:</strong> Name, E-Mail, Nachricht, ggf. Website-URL und Branche · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Nur für die Dauer der Bearbeitung</p>
     <p><a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
 
-    <h2>7. Firebase-Dienste (ClubConnect)</h2>
+    <h2>7. Firebase-Dienste (FairwayService & NotAlone Apps)</h2>
     <div class="highlight">
-      <strong>EU-Rechenzentrum</strong>
-      <p>Die Firebase-Daten von ClubConnect werden in einem <strong>EU-Rechenzentrum</strong> gespeichert.</p>
+      <strong>EU-Rechenzentren</strong>
+      <p>Alle Firebase-Daten werden in der <strong>EU (europe-west3)</strong> gespeichert.</p>
     </div>
-
     <h3>Firebase Authentication</h3>
-    <p>Für die Anmeldung in ClubConnect – sowohl als Nutzer als auch als Club-Administrator – wird Firebase Authentication eingesetzt. Nutzer können sich eigenständig mit E-Mail-Adresse und Passwort registrieren.</p>
-    <p><strong>Daten:</strong> E-Mail-Adresse, verschlüsseltes Passwort, Nutzer-ID (UID) · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Bis zur Account-Löschung</p>
-
-    <h3>Cloud Firestore</h3>
-    <p>In der Datenbank werden je nach Nutzung folgende Daten gespeichert:</p>
-    <ul>
-      <li>Club-Daten: Name, Adresse, Kontaktdaten, Preise, Standort-Koordinaten (vom Club-Betreiber hinterlegt)</li>
-      <li>News-Mitteilungen und Turniere je Club (vom Club-Betreiber hinterlegt)</li>
-      <li>Problem-Meldungen von Nutzern: Kategorie, Beschreibungstext, Bearbeitungsstatus, Zeitstempel sowie Name und Nutzer-ID des Erstellers</li>
-      <li>Liste der Administratoren (Nutzer-ID), ausschließlich zur Berechtigungsprüfung im Admin-Bereich</li>
-    </ul>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung/Nutzung der App) · <strong>Speicherdauer:</strong> Bis zur Löschung durch einen Administrator oder auf Anfrage der betroffenen Person</p>
-
-    <h3>Firebase Storage – Fotos zu Problem-Meldungen</h3>
-    <p>Beim Melden eines Problems können Nutzer optional ein Foto anhängen. Das Foto wird vor dem Hochladen direkt im Browser des Nutzers verkleinert und komprimiert und anschließend in Firebase Storage gespeichert.</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktive Foto-Auswahl) · <strong>Speicherdauer:</strong> Bis die zugehörige Meldung von einem Administrator gelöscht wird</p>
-
-    <h3>Standort (Geolocation) – Clubs in der Nähe</h3>
-    <div class="highlight">
-      <strong>Nur lokal im Browser – keine Übertragung an unsere Server</strong>
-      <p>Auf Wunsch kann ClubConnect Golfclubs in der Nähe anzeigen und nach Entfernung sortieren. Dafür fragt die App über die Standard-Standortfunktion des Browsers (Geolocation-API) den aktuellen Standort ab – ausschließlich nach aktiver Bestätigung durch den Nutzer über den Berechtigungsdialog des Geräts/Browsers.</p>
-    </div>
-    <p>Die ermittelten Koordinaten werden nur lokal im Browser verarbeitet, um die Entfernung zu den hinterlegten Club-Standorten zu berechnen. Es findet <strong>keine</strong> Übertragung oder Speicherung des Nutzer-Standorts auf unseren Servern statt. Nach Verlassen oder Neuladen der Seite sind die Standortdaten nicht mehr vorhanden. Die Funktion ist rein optional – ohne Freigabe funktioniert die normale Club-Suche unverändert weiter.</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung über die Berechtigungsabfrage des Geräts) · <strong>Speicherdauer:</strong> Nur für die Dauer der Browser-Sitzung, keine serverseitige Speicherung</p>
+    <p>Daten: E-Mail, verschlüsseltes Passwort, Nutzer-ID · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO · Speicherdauer: Bis zur Account-Löschung</p>
+    <h3>Cloud Firestore & Storage – FairwayService</h3>
+    <p>FairwayService speichert: Benutzerprofil, Bestellungen, Problem-Meldungen, Fotos (90 Tage nach Erledigung), Profilbilder (optional).</p>
+    <h3>Cloud Firestore & Storage – NotAlone (eingestellt)</h3>
+    <p>NotAlone speicherte: Benutzerprofil, Nachrichten und Gesprächsverläufe, Profilbilder, Matching-Präferenzen. <strong>Alle Daten wurden im August 2026 unwiderruflich gelöscht.</strong> Es findet keine weitere Datenverarbeitung statt.</p>
+    <h3>Firebase Cloud Messaging</h3>
+    <p>Daten: Device-Token, Benachrichtigungsinhalt · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO · Widerruf: In den jeweiligen App-Einstellungen</p>
 
     <h2>8. Weitergabe an Dritte</h2>
     <table>
       <thead><tr><th>Dienstleister</th><th>Zweck</th><th>Standort</th></tr></thead>
       <tbody>
-        <tr><td>Google LLC (Firebase)</td><td>App-Backend ClubConnect (Anmeldung, Datenbank, Fotospeicher)</td><td>EU-Rechenzentrum</td></tr>
+        <tr><td>Google LLC (Firebase)</td><td>App-Backend FairwayService · NotAlone eingestellt (Daten gelöscht 08/2026)</td><td>EU (europe-west3)</td></tr>
         <tr><td>Google LLC (Analytics)</td><td>Webanalyse (nur mit Einwilligung)</td><td>USA (SCC)</td></tr>
         <tr><td>Web3Forms</td><td>Kontaktformular</td><td>USA (E-Mail-Weiterleitung)</td></tr>
         <tr><td>GitHub, Inc.</td><td>Website-Hosting</td><td>USA (SCC)</td></tr>
@@ -191,6 +176,7 @@
 
     <h2>10. Kontakt zum Datenschutz</h2>
     <p><strong>E-Mail:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>
+    <strong>Telefon:</strong> <a href="tel:01794251905">0179 4251905</a><br>
     <strong>Post:</strong> Am See 1, 64739 Höchst im Odenwald</p>
     <p>Wir antworten innerhalb eines Monats. · <strong>Stand: August 2026</strong></p>
 
