@@ -401,6 +401,66 @@
       .pstep-desc { max-width: 100%; }
     }
 
+  
+    /* DEMO OVERLAY */
+    .demo-btn {
+      position: fixed; bottom: 2rem; left: 2rem; z-index: 500;
+      display: flex; align-items: center; gap: .5rem;
+      padding: .5rem 1rem; border-radius: 999px;
+      background: rgba(17,17,17,.8); backdrop-filter: blur(12px);
+      border: 1px solid rgba(59,130,246,.25); color: white;
+      font-family: inherit; font-size: .72rem; font-weight: 600;
+      letter-spacing: .04em; cursor: none;
+      transition: border-color .3s, background .3s;
+    }
+    .demo-btn:hover { border-color: rgba(59,130,246,.6); background: rgba(17,17,17,.95); }
+    .demo-btn-dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg,#3B82F6,#7C3AED); flex-shrink: 0; animation: pstatus-pulse 1.8s ease-in-out infinite; }
+
+    .demo-overlay {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(8,8,12,.97); backdrop-filter: blur(24px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .5s cubic-bezier(.16,1,.3,1);
+    }
+    .demo-overlay.open { opacity: 1; pointer-events: all; }
+
+    .demo-inner {
+      max-width: 680px; width: 90%;
+      transform: translateY(24px);
+      transition: transform .6s cubic-bezier(.16,1,.3,1);
+    }
+    .demo-overlay.open .demo-inner { transform: translateY(0); }
+
+    .demo-close {
+      position: absolute; top: 2rem; right: 2rem;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.5); border-radius: 999px;
+      padding: .35rem .9rem; font-size: .75rem; font-weight: 600;
+      cursor: none; font-family: inherit;
+      transition: color .2s, border-color .2s;
+    }
+    .demo-close:hover { color: white; border-color: rgba(255,255,255,.3); }
+
+    .demo-kicker { font-size: .62rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 1rem; }
+    .demo-title { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.02; margin-bottom: .6rem; }
+    .demo-sub { font-size: .88rem; opacity: .4; margin-bottom: 2rem; line-height: 1.6; }
+
+    .demo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(128,128,128,.1); border-radius: 16px; overflow: hidden; margin-bottom: 2rem; }
+    .demo-card { padding: 1.2rem; background: rgba(255,255,255,.02); }
+    .demo-card:hover { background: rgba(59,130,246,.06); }
+    .demo-card-title { font-size: .85rem; font-weight: 700; margin-bottom: .35rem; letter-spacing: -.01em; }
+    .demo-card-desc { font-size: .72rem; opacity: .38; line-height: 1.6; font-weight: 350; }
+
+    .demo-footer { font-size: .8rem; opacity: .3; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.06); line-height: 1.7; }
+
+    @media(max-width:768px){
+      .demo-grid { grid-template-columns: 1fr 1fr; }
+      .demo-btn { bottom: 1.2rem; right: 1.2rem; left: 1.2rem; justify-content: center; font-size: .68rem; }
+      .demo-btn .demo-btn-label { display: none; }
+      .demo-btn .demo-btn-short { display: inline; }
+    }
+
   </style>
 </head>
 <body>
@@ -1107,5 +1167,73 @@ if(heroContent){
   // on-screen, overlapping later sections, until the first scroll.
   updateHeroFade();
 }</script>
+
+<!-- DEMO BUTTON + OVERLAY -->
+<button class="demo-btn" id="demoBtn" onclick="openDemo()" aria-label="Technik hinter der Website">
+  <span class="demo-btn-dot"></span>
+  <span class="demo-btn-label">Diese Website ist die Demo</span>
+  <span class="demo-btn-short" style="display:none;">Demo ansehen</span>
+</button>
+
+<div class="demo-overlay" id="demoOverlay">
+  <button class="demo-close" onclick="closeDemo()">✕ schließen</button>
+  <div class="demo-inner">
+    <span class="demo-kicker">Was hinter dieser Website steckt</span>
+    <h2 class="demo-title">Keine Grenzen.<br><span class="grad-text">Alles ist möglich.</span></h2>
+    <p class="demo-sub">Diese Website ist kein Template. Sie ist eine Live-Demo — gebaut um zu zeigen was modernes Webdesign kann.</p>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="demo-card-title">3D Diamant</div>
+        <div class="demo-card-desc">Three.js — echtzeit im Browser gerendert. Keine App, kein Plugin.</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-title">Musik-Player</div>
+        <div class="demo-card-desc">Web Audio API — nativ. Läuft direkt im Browser ohne externe Dienste.</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-title">Custom Cursor</div>
+        <div class="demo-card-desc">Kein Standard-Browser-Cursor — komplett eigenes Verhalten und Design.</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-title">Farbübergänge</div>
+        <div class="demo-card-desc">Reagieren live auf Scrollposition — GPU-beschleunigt, flüssig auf jedem Gerät.</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-title">Typewriter-Effekt</div>
+        <div class="demo-card-desc">Hero-Animation beim Laden — kein Plugin, reines JavaScript.</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-title">KI-Analyse-Tool</div>
+        <div class="demo-card-desc">Rotierender 3D-Globus mit Live SEO-Check — alles im Browser.</div>
+      </div>
+    </div>
+    <p class="demo-footer">Das alles ist Ihre Website — keine App, kein Plugin, kein Baukastensystem.<br>Nur modernes Webdesign. Genau so individuell, wie Ihr Unternehmen es verdient.</p>
+  </div>
+</div>
+
+<script>
+function openDemo(){
+  document.getElementById('demoOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDemo(){
+  document.getElementById('demoOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('demoOverlay').addEventListener('click',function(e){
+  if(e.target===this) closeDemo();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeDemo();
+});
+// Add demo btn to cursor hover
+var demoBtn=document.getElementById('demoBtn');
+var demoClose=document.querySelector('.demo-close');
+[demoBtn,demoClose].forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.classList.add('hover');ring.classList.add('hover');});
+  el.addEventListener('mouseleave',function(){cur.classList.remove('hover');ring.classList.remove('hover');});
+});
+</script>
+
 </body>
 </html>
