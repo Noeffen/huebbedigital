@@ -414,6 +414,7 @@
       transition: border-color .3s, background .3s;
     }
     .demo-btn:hover { border-color: rgba(59,130,246,.6); background: rgba(17,17,17,.95); }
+    .demo-btn-short { display: none; }
     .demo-btn-dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg,#3B82F6,#7C3AED); flex-shrink: 0; animation: pstatus-pulse 1.8s ease-in-out infinite; }
 
     .demo-overlay {
@@ -433,12 +434,12 @@
     .demo-overlay.open .demo-inner { transform: translateY(0); }
 
     .demo-close {
-      position: absolute; top: 2rem; right: 2rem;
+      position: absolute; top: 1.5rem; right: 1.5rem;
       background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
       color: rgba(255,255,255,.5); border-radius: 999px;
-      padding: .35rem .9rem; font-size: .75rem; font-weight: 600;
-      cursor: none; font-family: inherit;
-      transition: color .2s, border-color .2s;
+      padding: .5rem 1rem; font-size: .8rem; font-weight: 600;
+      cursor: none; font-family: inherit; touch-action: manipulation;
+      transition: color .2s, border-color .2s; z-index: 9010;
     }
     .demo-close:hover { color: white; border-color: rgba(255,255,255,.3); }
 
@@ -456,9 +457,9 @@
 
     @media(max-width:768px){
       .demo-grid { grid-template-columns: 1fr 1fr; }
-      .demo-btn { bottom: 1.2rem; right: 1.2rem; left: 1.2rem; justify-content: center; font-size: .68rem; }
-      .demo-btn .demo-btn-label { display: none; }
-      .demo-btn .demo-btn-short { display: inline; }
+      .demo-btn { bottom: 1.2rem; left: 1.2rem; right: auto; font-size: .68rem; }
+      .demo-btn .demo-btn-label { display: none !important; }
+      .demo-btn .demo-btn-short { display: inline !important; }
     }
 
   </style>
@@ -1172,7 +1173,7 @@ if(heroContent){
 <button class="demo-btn" id="demoBtn" onclick="openDemo()" aria-label="Technik hinter der Website">
   <span class="demo-btn-dot"></span>
   <span class="demo-btn-label">Diese Website ist die Demo</span>
-  <span class="demo-btn-short" style="display:none;">Demo ansehen</span>
+  <span class="demo-btn-short">Demo ansehen</span>
 </button>
 
 <div class="demo-overlay" id="demoOverlay">
