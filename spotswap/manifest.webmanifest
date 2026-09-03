@@ -1,0 +1,21 @@
+{
+  "id": "/spotswap/",
+  "name": "SpotSwap",
+  "short_name": "SpotSwap",
+  "description": "Stellplätze tauschen, nicht bezahlen – Camper-Community mit Punktesystem.",
+  "start_url": "/spotswap/",
+  "scope": "/spotswap/",
+  "display": "standalone",
+  "background_color": "#fafaf9",
+  "theme_color": "#064e3b",
+  "icons": [
+    { "src": "/spotswap/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/spotswap/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    {
+      "src": "/spotswap/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
