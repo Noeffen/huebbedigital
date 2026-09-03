@@ -4,13 +4,21 @@
     <meta charset="utf-8" />
     <title>Weiterleitung…</title>
     <script>
-      // Single Page Apps for GitHub Pages — only handles paths under /app/,
-      // where the ClubConnect PWA lives. Everything else falls through to a
-      // plain "not found" message.
+      // Single Page Apps for GitHub Pages — only handles paths under one of
+      // the SPA_ROOTS below, each a self-contained app in its own subfolder
+      // (e.g. /app/ = ClubConnect). Everything else falls through to the
+      // plain "not found" message below.
       // Based on https://github.com/rafgraph/spa-github-pages
+      var SPA_ROOTS = [
+        "app", // ClubConnect (huebbedigital1/app/)
+        // "spotswap", // SpotSwap — enable once huebbedigital1/spotswap/index.html
+        // exists from a real build; enabling it earlier causes a redirect loop
+        // here, since there is nothing yet to redirect to. See spotswap/README.md.
+      ];
       var l = window.location;
-      if (l.pathname.indexOf("/app/") === 0 || l.pathname === "/app") {
-        var segmentCount = 1; // "/app" is the one segment owned by the SPA
+      var firstSegment = l.pathname.split("/")[1];
+      if (SPA_ROOTS.indexOf(firstSegment) !== -1) {
+        var segmentCount = 1; // the app's own path segment, e.g. "/app"
         l.replace(
           l.protocol +
             "//" +
