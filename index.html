@@ -98,7 +98,14 @@
 
     /* SECTIONS */
     /* HORIZONTAL SCROLL */
-    #scroller { display: flex; width: 100vw; height: 100vh; overflow-x: scroll; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; position: fixed; top: 0; left: 0; z-index: 2; }
+    /* #scrollerViewport clips at a fixed 100vw/100vh; #scroller (the flex
+       track inside it) is the thing that actually gets transformed. They
+       must be two different elements — overflow:hidden clips relative to
+       the box's OWN local coordinates, so transforming the clipping box
+       itself just slides the (unchanging) clip window around the screen
+       instead of revealing the next section. */
+    #scrollerViewport { width: 100vw; height: 100vh; overflow: hidden; position: fixed; top: 0; left: 0; z-index: 2; }
+    #scroller { display: flex; width: max-content; height: 100vh; will-change: transform; }
     #scroller::-webkit-scrollbar { display: none; }
     #scroller { scrollbar-width: none; -ms-overflow-style: none; }
     section { min-width: 100vw; width: 100vw; height: 100vh; flex-shrink: 0; scroll-snap-align: start; display: flex; align-items: center; padding: 6rem 3rem 3rem; position: relative; overflow: hidden; }
@@ -121,6 +128,9 @@
     }
     section .container { position: relative; z-index: 2; }
     .container { max-width: 1100px; margin: 0 auto; width: 100%; }
+    /* Scroll-linked cross-fade/blur/scale, driven by updateContentTransitions() */
+    .container, .hero-content { opacity: var(--tp-op,1); filter: blur(var(--tp-bl,0px)); will-change: transform, opacity, filter; }
+    .container { transform: translate(var(--tp-tx,0px),var(--tp-ty,0px)) scale(var(--tp-sc,1)); }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
@@ -254,6 +264,7 @@
   
     * { max-width: 100%; }
     #three-canvas { max-width: 100vw !important; }
+    #scroller { max-width: none; }
 
     @media(max-width:768px){
       body { overflow-y: auto; overflow-x: hidden; height: auto; }
@@ -380,7 +391,7 @@
       @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
   
     .hero-section { position: relative; min-width: 100vw; width: 100vw; height: 100vh; flex-shrink: 0; overflow: hidden; }
-    .hero-content { position: absolute; top: 50%; left: 3rem; transform: translateY(-50%); width: 44%; z-index: 100; }
+    .hero-content { position: absolute; top: 50%; left: 3rem; transform: translateY(-50%) translate(var(--tp-tx,0px),var(--tp-ty,0px)) scale(var(--tp-sc,1)); width: 44%; z-index: 100; }
     #typeH1 { font-size: clamp(2.8rem,5.5vw,5rem); font-weight: 900; letter-spacing:-.05em; line-height: .97; color: white; margin: 0; min-height: 1em; }
     #typeCursor { display: inline-block; width: 3px; height: .85em; background: white; vertical-align: middle; margin-left: 2px; animation: blink .7s step-end infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -477,7 +488,8 @@
     .demo-footer { font-size: .8rem; opacity: .3; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.06); line-height: 1.7; }
 
     @media(max-width:768px){
-      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scrollerViewport { position: static; width: 100%; height: auto; overflow: visible; }
+      #scroller { position: relative; width: 100%; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; }
       .demo-grid { grid-template-columns: 1fr 1fr; }
       .demo-btn { bottom: 1.2rem; left: 1.2rem; right: auto; font-size: .68rem; }
@@ -534,6 +546,7 @@
 </nav>
 
 <!-- 1 HERO DARK -->
+<div id="scrollerViewport">
 <div id="scroller">
 <section data-bg="#0A1628" data-color="#ffffff" class="hero-section">
   <div class="hero-content">
@@ -744,6 +757,7 @@
 
 
 </div><!-- /scroller -->
+</div><!-- /scrollerViewport -->
 
 <script>
 // ── CURSOR ──
@@ -788,25 +802,148 @@ const scroller=document.getElementById('scroller');
 function isScrollerColumn(){
   return scroller && getComputedStyle(scroller).flexDirection==='column';
 }
+
+// ── CUSTOM PAGINATED SCROLL ENGINE (desktop) ──
+// Native scroll-snap replaced with a hand-tuned tween: full control over
+// easing/duration so the section transition is a deliberate cut, not
+// whatever timing the browser's smooth-scroll happens to pick. Mobile
+// keeps native vertical touch-scrolling (isScrollerColumn() short-circuits
+// everything below there).
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let virtualScroll=0, activeIndex=0;
+let animFrom=0, animTo=0, animStart=0, animDuration=700, animating=false;
+function easeExpoOut(t){ return t>=1 ? 1 : 1-Math.pow(2,-10*t); }
+function goToIndex(i){
+  if(isScrollerColumn()) return;
+  i=Math.max(0,Math.min(sects.length-1,i));
+  const dist=Math.abs(i-activeIndex);
+  animFrom=virtualScroll;
+  animTo=i*window.innerWidth;
+  animDuration=reducedMotion?1:Math.min(1400,620+dist*180);
+  animStart=performance.now();
+  animating=true;
+  activeIndex=i;
+}
+function tickScrollAnim(now){
+  if(!animating||isScrollerColumn()) return;
+  const t=Math.min((now-animStart)/animDuration,1);
+  virtualScroll=animFrom+(animTo-animFrom)*easeExpoOut(t);
+  scroller.style.transform='translateX('+(-virtualScroll)+'px)';
+  if(t>=1) animating=false;
+}
+scroller.addEventListener('wheel',function(e){
+  if(isScrollerColumn()) return;
+  e.preventDefault();
+  if(animating) return;
+  const d=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX;
+  if(Math.abs(d)<4) return;
+  goToIndex(activeIndex+(d>0?1:-1));
+},{passive:false});
+(function(){
+  let tsx=0,tsy=0,tdown=false;
+  scroller.addEventListener('touchstart',function(e){
+    if(isScrollerColumn()) return;
+    tdown=true;tsx=e.touches[0].clientX;tsy=e.touches[0].clientY;
+  },{passive:true});
+  scroller.addEventListener('touchend',function(e){
+    if(isScrollerColumn()||!tdown) return;
+    tdown=false;
+    const dx=tsx-e.changedTouches[0].clientX,dy=tsy-e.changedTouches[0].clientY;
+    if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy)||animating) return;
+    goToIndex(activeIndex+(dx>0?1:-1));
+  },{passive:true});
+})();
+window.addEventListener('resize',function(){
+  if(isScrollerColumn()){
+    // Crossed into the mobile breakpoint — drop the desktop transform so
+    // it doesn't shift the now-vertical, natively-scrolling layout.
+    scroller.style.transform='';
+    animating=false;
+    return;
+  }
+  if(!animating){ virtualScroll=activeIndex*window.innerWidth; scroller.style.transform='translateX('+(-virtualScroll)+'px)'; }
+});
+
 // Unified scroll position/size across the horizontal-desktop / vertical-mobile layouts
 function getScrollMetrics(){
   if(isScrollerColumn()){
     return{ pos: window.scrollY, size: document.documentElement.scrollHeight - window.innerHeight, viewport: window.innerHeight };
   }
-  return{ pos: scroller?scroller.scrollLeft:0, size: scroller?scroller.scrollWidth-scroller.clientWidth:0, viewport: window.innerWidth };
+  return{ pos: virtualScroll, size: (sects.length-1)*window.innerWidth, viewport: window.innerWidth };
 }
 function updateNav(){
-  const{pos,viewport}=getScrollMetrics();
-  const idx=Math.round(pos/viewport);
-  const cur=sects[Math.min(idx,sects.length-1)]||sects[0];
+  const{pos}=getScrollMetrics();
   nav.classList.remove('frosted','frosted-light');
   if(pos>50){
     nav.classList.add('frosted');
   }
 }
-if(scroller) scroller.addEventListener('scroll',updateNav,{passive:true});
 window.addEventListener('scroll',updateNav,{passive:true});
 updateNav();
+
+// ── SCROLL-LINKED CONTENT CHOREOGRAPHY ──
+// Cross-fade + blur + scale each section's content in/out as it becomes
+// active, layered on top of the panel slide itself (classic parallax feel).
+// Also drives the .reveal fade-ups directly off this same progress value —
+// an IntersectionObserver would be the "normal" way to do that, but Chrome
+// doesn't reliably re-check intersections for elements whose ancestor only
+// moves via a JS-driven transform (no native scroll/layout event to key
+// off), so entries were silently never firing under the custom engine.
+const sectionContents=[], sectionReveals=[], sectionCounts=[];
+sects.forEach(sec=>{
+  const c=sec.querySelector(':scope > .container, :scope > .hero-content');
+  if(!c) return;
+  sectionContents.push(c);
+  sectionReveals.push(Array.from(sec.querySelectorAll('.reveal')));
+  sectionCounts.push(Array.from(sec.querySelectorAll('[data-count]')));
+});
+function smoothstep(t){ t=t<0?0:t>1?1:t; return t*t*(3-2*t); }
+function startCount(el){
+  if(el._counted) return;
+  el._counted=true;
+  const target=parseInt(el.dataset.count);
+  const suffix=el.dataset.suffix||'';
+  if(isNaN(target)) return;
+  let startTime=null;
+  const dur=1200;
+  function step(ts){
+    if(!startTime) startTime=ts;
+    const p=Math.min((ts-startTime)/dur,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=Math.round(ease*target)+suffix;
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent=target+suffix;
+  }
+  requestAnimationFrame(step);
+}
+function updateContentTransitions(){
+  if(reducedMotion){
+    sectionReveals.forEach(list=>list.forEach(el=>el.classList.add('visible')));
+    sectionCounts.forEach(list=>list.forEach(el=>startCount(el)));
+    return;
+  }
+  const vertical=isScrollerColumn();
+  const{pos}=getScrollMetrics();
+  const size=vertical?window.innerHeight:window.innerWidth;
+  sectionContents.forEach((el,idx)=>{
+    const sec=el.closest('section');
+    const start=vertical?sec.offsetTop:sec.offsetLeft;
+    const local=clamp((pos-start)/size,-1,1);
+    const p=smoothstep(1-Math.abs(local));
+    const shift=local*(vertical?24:32);
+    if(Math.abs(local)<0.85){
+      sectionReveals[idx].forEach(r=>{ if(!r.classList.contains('visible')) r.classList.add('visible'); });
+    }
+    if(Math.abs(local)<0.6){
+      sectionCounts[idx].forEach(c=>startCount(c));
+    }
+    el.style.setProperty('--tp-op',lerp(0.15,1,p).toFixed(3));
+    el.style.setProperty('--tp-bl',lerp(9,0,p).toFixed(2)+'px');
+    el.style.setProperty('--tp-sc',lerp(0.965,1,p).toFixed(3));
+    el.style.setProperty('--tp-tx',vertical?'0px':(-shift).toFixed(2)+'px');
+    el.style.setProperty('--tp-ty',vertical?(-shift).toFixed(2)+'px':'0px');
+  });
+}
 
 // ── THREE.JS 3D CRYSTAL ──
 const canvas3d=document.getElementById('three-canvas');
@@ -961,9 +1098,12 @@ document.addEventListener('mousemove',e=>{
 });
 
 let threeTick=0;
-function threeLoop(){
+function threeLoop(now){
   requestAnimationFrame(threeLoop);
   threeTick+=0.007;
+  tickScrollAnim(now||performance.now());
+  updateNav();
+  updateContentTransitions();
   const prog=getProgress();
   // Update bg color
   renderer.setClearColor(new THREE.Color(prog.bg),1);
@@ -1004,39 +1144,6 @@ function threeLoop(){
 }
 threeLoop();
 
-// ── HERO WORD REVEAL ──
-
-
-// ── REVEAL ON SCROLL ──
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
-  });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// ── STAT COUNTER ──
-const countObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    const el=e.target;
-    const target=parseInt(el.dataset.count);
-    const suffix=el.dataset.suffix||'';
-    if(isNaN(target)) return;
-    let start=0,dur=1200,startTime=null;
-    function step(ts){
-      if(!startTime) startTime=ts;
-      const p=Math.min((ts-startTime)/dur,1);
-      const ease=1-Math.pow(1-p,3);
-      el.textContent=Math.round(ease*target)+suffix;
-      if(p<1) requestAnimationFrame(step);
-      else el.textContent=target+suffix;
-    }
-    requestAnimationFrame(step);
-    countObs.unobserve(el);
-  });
-},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
 
 // ── SCROLL HINT HIDE ──
 const scrollHint=document.querySelector('.scroll-hint');
@@ -1072,9 +1179,8 @@ document.getElementById('contactForm').addEventListener('submit',async function(
     var m = getScrollMetrics();
     var pct = m.pos / m.size;
     bar.style.transform = 'scaleX(' + (isNaN(pct)||!isFinite(pct)?0:pct) + ')';
+    requestAnimationFrame(updateBar);
   }
-  sc.addEventListener('scroll', updateBar, { passive: true });
-  window.addEventListener('scroll', updateBar, { passive: true });
   updateBar();
 })();
 </script>
@@ -1184,24 +1290,6 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   });
 })();
 </script>
-<script>
-// Hide hero text when scrolling away from hero
-var heroContent = document.querySelector('.hero-content');
-if(heroContent){
-  function updateHeroFade(){
-    var scrolled = window.scrollY;
-    var heroH = document.querySelector('.hero-section').offsetHeight;
-    var progress = Math.min(scrolled / (heroH * 0.8), 1);
-    heroContent.style.opacity = 1 - progress;
-    heroContent.style.transform = 'translateY(calc(-50% - ' + (progress * 30) + 'px))';
-  }
-  window.addEventListener('scroll', updateHeroFade, {passive: true});
-  // Run once immediately: if the browser restores a scrolled position on
-  // reload (it does, by default), no 'scroll' event fires until the user
-  // actually scrolls — without this, the fixed hero text stays stuck
-  // on-screen, overlapping later sections, until the first scroll.
-  updateHeroFade();
-}</script>
 
 <!-- DEMO BUTTON + OVERLAY -->
 <button class="demo-btn" id="demoBtn" onclick="openDemo()" aria-label="Technik hinter der Website">
@@ -1276,15 +1364,13 @@ var demoClose=document.querySelector('.demo-close');
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click', function(e){
     var target = document.querySelector(this.getAttribute('href'));
-    var sc = document.getElementById('scroller');
-    if(target && sc){
-      e.preventDefault();
-      var isColumn = getComputedStyle(sc).flexDirection === 'column';
-      if(isColumn){
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        sc.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
-      }
+    if(!target) return;
+    e.preventDefault();
+    if(isScrollerColumn()){
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      var idx = sects.indexOf(target);
+      if(idx>=0) goToIndex(idx);
     }
   });
 });
@@ -1293,10 +1379,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
 <script>
 // Arrow key navigation
 document.addEventListener('keydown', function(e){
-  var sc = document.getElementById('scroller');
-  if(!sc) return;
-  if(e.key === 'ArrowRight') sc.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
-  if(e.key === 'ArrowLeft') sc.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+  var tag = (document.activeElement && document.activeElement.tagName) || '';
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT') return;
+  if(e.key === 'ArrowRight') goToIndex(activeIndex+1);
+  if(e.key === 'ArrowLeft') goToIndex(activeIndex-1);
 });
 </script>
 
