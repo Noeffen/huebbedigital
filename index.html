@@ -13,13 +13,23 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ"></script>
   <script>
     window.dataLayer=window.dataLayer||[];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date());
-    gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
-    gtag('config','G-P2MKZ1RDYQ');
+    // Consent Mode v2 — alles denied bis Nutzer aktiv zustimmt
+    gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':2000});
+    // GA erst nach expliziter Einwilligung dynamisch nachladen (W-01)
+    function loadGA(){
+      if(window._gaLoaded) return; window._gaLoaded=true;
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ';
+      document.head.appendChild(s);
+      s.onload=function(){
+        gtag('js',new Date());
+        gtag('config','G-P2MKZ1RDYQ');
+      };
+    }
   </script>
 
   <meta property="og:type" content="website">
@@ -41,15 +51,14 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- W-02: Google Fonts entfernt — Inter wird lokal gehostet (inter.woff2 im /fonts/ Ordner) -->
+  <style>@font-face{font-family:'Inter';src:local('Inter'),local('Inter-Regular'),url('/fonts/inter.woff2') format('woff2');font-display:swap;font-weight:100 900;}</style>
 
   <style>
     :root { --blue: #3B82F6; --purple: #7C3AED; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: auto; }
-    body { font-display: swap; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: #111; color: #fff; overflow-x: hidden; cursor: none; }
+    body { font-display: swap; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; background: #111; color: #fff; overflow-x: hidden; cursor: none; }
 
     /* Custom cursor */
     .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .1s, width .3s, height .3s, background .3s; mix-blend-mode: difference; }
@@ -174,7 +183,7 @@
     .cred-dot { width: 4px; height: 4px; border-radius: 50%; background: linear-gradient(135deg,var(--blue),var(--purple)); margin-top: .52rem; flex-shrink: 0; }
 
     /* PROJECT CARDS */
-    .project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; margin-top: 4rem; border: 1px solid rgba(128,128,128,.12); border-radius: 20px; overflow: hidden; }
+    .project-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 4rem; border: 1px solid rgba(128,128,128,.12); border-radius: 20px; overflow: hidden; }
     .pcard { padding: 2rem; transition: background .3s; position: relative; }
     .pcard::after { content: ''; position: absolute; right: 0; top: 10%; bottom: 10%; width: 1px; background: rgba(128,128,128,.1); }
     .pcard:last-child::after { display: none; }
@@ -348,8 +357,8 @@
       .music-toggle .mt-label { display: none; }
     }
 
-    /* Hide default cursor everywhere */
-    *, *::before, *::after { cursor: none !important; }
+    /* Hide default cursor — nicht bei prefers-reduced-motion */
+    @media not (prefers-reduced-motion: reduce) { *, *::before, *::after { cursor: none !important; } }
   
     @media(max-width:768px){
       /* Simpler animations on mobile */
@@ -633,14 +642,6 @@
         <div class="ptags"><span class="ptag">Mobile-First</span><span class="ptag">DSGVO-konform</span><span class="ptag">Analytics</span><span class="ptag">Lokales SEO</span></div>
         <a href="https://spenglerei-wood.de/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
       </div>
-      <div class="pcard">
-        <span class="pnum">04</span>
-        <div class="pmeta">Web-App · Community · PWA</div>
-        <div class="ptitle">SpotSwap</div>
-        <p class="pdesc">Community-Plattform für Camper und Wohnmobil-Besitzer: Stellplätze kostenlos anbieten und im Gegenzug kostenlos bei anderen Mitgliedern übernachten. Ein Punktesystem sorgt für Fairness statt Geld – mit Buchungsverwaltung, Chat, Bewertungen und Profil-Abzeichen. Installierbar auf jedem Smartphone, Backend mit Firebase.</p>
-        <div class="ptags"><span class="ptag">Next.js</span><span class="ptag">Firebase</span><span class="ptag">PWA</span><span class="ptag">Installierbar</span></div>
-        <a href="https://huebbedigital.com/spotswap/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
-      </div>
     </div>
   </div>
 </section>
@@ -699,6 +700,7 @@
       <div class="reveal d2">
         <form id="contactForm">
           <input type="hidden" name="access_key" value="656fbe2b-995b-4933-bcee-13d7a7fcd15b">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="subject" value="Neue Anfrage – HuebbeDigital">
           <div class="form-grid">
             <div class="fg"><label>Name *</label><input type="text" name="name" required placeholder="Max Mustermann"></div>
@@ -715,6 +717,7 @@
             </select>
           </div>
           <div class="fg"><label>Nachricht *</label><textarea name="message" required placeholder="Erzählen Sie mir kurz von Ihrem Projekt..."></textarea></div>
+          <p style="font-size:.75rem;opacity:.35;margin-bottom:.5rem;">Ihre Angaben werden über Web3Forms übermittelt. Mehr in unserer <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.</p>
           <button type="submit" class="sbtn">Anfrage absenden →</button>
           <div class="fsuccess" id="formSuccess">Vielen Dank! Ich melde mich persönlich bei Ihnen.</div>
         </form>
@@ -750,17 +753,19 @@ document.querySelectorAll('a,button,.pill,.pcard').forEach(el=>{
 
 // ── COOKIE ──
 (function(){
-  var KEY='hd_cookie_consent';
+  var KEY='hd_cookie_consent_v2'; // W-07: Versioniert — bei Änderung der DS-Erklärung auf v3 etc. erhöhen
   var banner=document.getElementById('cookieBanner');
   function updateConsent(g){
     if(typeof gtag!=='function') return;
     gtag('consent','update',{'analytics_storage':g?'granted':'denied','ad_storage':g?'granted':'denied','ad_user_data':g?'granted':'denied','ad_personalization':g?'granted':'denied'});
   }
-  var stored=localStorage.getItem(KEY);
-  if(stored==='granted') updateConsent(true);
+  var raw=localStorage.getItem(KEY);
+  var stored=null;
+  if(raw){try{var obj=JSON.parse(raw);if(obj.exp>Date.now())stored=obj.v;}catch(e){stored=null;}}
+  if(stored==='granted'){updateConsent(true);loadGA();}
   else if(stored!=='denied') setTimeout(()=>banner.classList.add('visible'),800);
-  document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(KEY,'granted');updateConsent(true);banner.classList.remove('visible');});
-  document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(KEY,'denied');updateConsent(false);banner.classList.remove('visible');});
+  document.getElementById('cookieAccept').addEventListener('click',()=>{var exp=Date.now()+(365*24*60*60*1000);localStorage.setItem(KEY,JSON.stringify({v:'granted',exp:exp}));updateConsent(true);loadGA();banner.classList.remove('visible');});
+  document.getElementById('cookieDecline').addEventListener('click',()=>{var exp=Date.now()+(30*24*60*60*1000);localStorage.setItem(KEY,JSON.stringify({v:'denied',exp:exp}));updateConsent(false);banner.classList.remove('visible');});
 })();
 
 // ── NAV ──
@@ -1197,7 +1202,7 @@ if(heroContent){
       </div>
       <div class="demo-card">
         <div class="demo-card-title">Musik-Player</div>
-        <div class="demo-card-desc">Web Audio API — nativ. Läuft direkt im Browser ohne externe Dienste.</div>
+        <div class="demo-card-desc">HTML Audio-Element mit eigenem Player-Interface — kein Plugin, keine externe Bibliothek.</div>
       </div>
       <div class="demo-card">
         <div class="demo-card-title">Custom Cursor</div>
@@ -1213,7 +1218,7 @@ if(heroContent){
       </div>
       <div class="demo-card">
         <div class="demo-card-title">KI-Analyse-Tool</div>
-        <div class="demo-card-desc">Rotierender 3D-Globus mit Live SEO-Check — alles im Browser.</div>
+        <div class="demo-card-desc">3D-Globus-Animation und SEO-Fragebogen — Analyse erfolgt manuell nach Eingang der Anfrage.</div>
       </div>
     </div>
     <p class="demo-footer">Das alles ist Ihre Website — keine App, kein Plugin, kein Baukastensystem.<br>Nur modernes Webdesign. Genau so individuell, wie Ihr Unternehmen es verdient.</p>

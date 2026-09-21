@@ -14,13 +14,17 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- GA Consent Mode v2 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ"></script>
   <script>
     window.dataLayer=window.dataLayer||[];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date());
-    gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
-    gtag('config','G-P2MKZ1RDYQ');
+    gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':2000});
+    function loadGA(){
+      if(window._gaLoaded) return; window._gaLoaded=true;
+      var s=document.createElement('script');s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-P2MKZ1RDYQ';
+      document.head.appendChild(s);
+      s.onload=function(){gtag('js',new Date());gtag('config','G-P2MKZ1RDYQ');};
+    }
   </script>
 
   <!-- Open Graph -->
@@ -56,9 +60,8 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Inter lokal gehostet — /fonts/inter.woff2 -->
+  <style>@font-face{font-family:'Inter';src:local('Inter'),url('/fonts/inter.woff2') format('woff2');font-display:swap;font-weight:100 900;}</style>
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -217,7 +220,7 @@
     }
   
     /* Hide default cursor everywhere */
-    *, *::before, *::after { cursor: none !important; }
+    @media not (prefers-reduced-motion: reduce) { *, *::before, *::after { cursor: none !important; } }
   
     @media(max-width:768px){
       /* Simpler animations on mobile */
@@ -345,13 +348,14 @@
       <div class="form-box reveal d4" id="formBox">
         <div id="formContent">
           <form id="analyseForm">
-            <input type="hidden" name="access_key" value="656fbe2b-995b-4933-bcee-13d7a7fcd15b">
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="access_key" value="656fbe2b-995b-4933-bcee-13d7a7fcd15b">
             <input type="hidden" name="subject" value="Neue KI-Analyse Anfrage – HuebbeDigital">
             <input type="hidden" name="redirect" value="false">
             <input type="hidden" name="from_name" value="HuebbeDigital Analyse-Tool">
 
             <div class="field">
-              <label>Website-URL *</label>
+              <label for="url">Website-URL *</label>
               <input type="url" name="website_url" placeholder="https://ihre-website.de" required>
             </div>
             <div class="field-row">
@@ -360,13 +364,13 @@
                 <input type="text" name="name" placeholder="Max Mustermann" required>
               </div>
               <div class="field">
-                <label>E-Mail *</label>
-                <input type="email" name="email" placeholder="max@mustermann.de" required>
+                <label for="email">E-Mail *</label>
+                <input type="email" name="email" id="email" placeholder="max@mustermann.de" required>
               </div>
             </div>
             <div class="field">
               <label>Branche (optional)</label>
-              <select name="branche">
+              <select name="branche" id="branche">
                 <option value="">Bitte wählen</option>
                 <option>Hotel / Gastronomie</option>
                 <option>Handwerk</option>
@@ -381,7 +385,8 @@
               <label>Was beschäftigt Sie? (optional)</label>
               <textarea name="message" placeholder="z.B. Wir werden bei Google kaum gefunden..." rows="3"></textarea>
             </div>
-            <button type="submit" class="submit-btn">Kostenlose Analyse anfordern →</button>
+            <p style="font-size:.75rem;opacity:.35;margin:.5rem 0;">Ihre Angaben werden über Web3Forms übermittelt. Mehr in unserer <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.</p>
+          <button type="submit" class="submit-btn">Kostenlose Analyse anfordern →</button>
             <p class="form-note">Kostenlos & unverbindlich · Keine Weitergabe Ihrer Daten · Antwort innerhalb 48h</p>
           </form>
         </div>
@@ -405,7 +410,7 @@
 <script>
 // COOKIE
 (function(){
-  var KEY='hd_cookie_consent';
+  var KEY='hd_cookie_consent_v2';
   var banner=document.getElementById('cookieBanner');
   var stored=localStorage.getItem(KEY);
   function updateConsent(g){
@@ -414,8 +419,8 @@
   }
   if(stored==='granted') updateConsent(true);
   else if(stored!=='denied') setTimeout(()=>banner.classList.add('visible'),600);
-  document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(KEY,'granted');updateConsent(true);banner.classList.remove('visible');});
-  document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(KEY,'denied');updateConsent(false);banner.classList.remove('visible');});
+  document.getElementById('cookieAccept').addEventListener('click',()=>{localStorage.setItem(KEY,JSON.stringify({v:'granted',exp:Date.now()+(365*24*60*60*1000)}));updateConsent(true);loadGA();banner.classList.remove('visible');});
+  document.getElementById('cookieDecline').addEventListener('click',()=>{localStorage.setItem(KEY,JSON.stringify({v:'denied',exp:Date.now()+(30*24*60*60*1000)}));updateConsent(false);banner.classList.remove('visible');});
 })();
 
 // ── THREE.JS GLOBE RADAR ──
