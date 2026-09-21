@@ -256,7 +256,8 @@
     #three-canvas { max-width: 100vw !important; }
 
     @media(max-width:768px){
-      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      body { overflow-y: auto; overflow-x: hidden; height: auto; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: visible; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; }
       section { padding: 7rem 1.2rem 4rem; }
       nav { padding: 1rem 1.2rem; }
@@ -784,17 +785,27 @@ document.querySelectorAll('a,button,.pill,.pcard').forEach(el=>{
 const nav=document.getElementById('mainNav');
 const sects=Array.from(document.querySelectorAll('section[data-bg]'));
 const scroller=document.getElementById('scroller');
+function isScrollerColumn(){
+  return scroller && getComputedStyle(scroller).flexDirection==='column';
+}
+// Unified scroll position/size across the horizontal-desktop / vertical-mobile layouts
+function getScrollMetrics(){
+  if(isScrollerColumn()){
+    return{ pos: window.scrollY, size: document.documentElement.scrollHeight - window.innerHeight, viewport: window.innerHeight };
+  }
+  return{ pos: scroller?scroller.scrollLeft:0, size: scroller?scroller.scrollWidth-scroller.clientWidth:0, viewport: window.innerWidth };
+}
 function updateNav(){
-  const sl=scroller?scroller.scrollLeft:0;
-  const vw=window.innerWidth;
-  const idx=Math.round(sl/vw);
+  const{pos,viewport}=getScrollMetrics();
+  const idx=Math.round(pos/viewport);
   const cur=sects[Math.min(idx,sects.length-1)]||sects[0];
   nav.classList.remove('frosted','frosted-light');
-  if(sl>50){
+  if(pos>50){
     nav.classList.add('frosted');
   }
 }
 if(scroller) scroller.addEventListener('scroll',updateNav,{passive:true});
+window.addEventListener('scroll',updateNav,{passive:true});
 updateNav();
 
 // ── THREE.JS 3D CRYSTAL ──
@@ -826,10 +837,8 @@ function mixHex(h1,h2,t){
 }
 function getBrightness(hex){const[r,g,b]=hexToRgb(hex);return(r+g+b)/(255*3);}
 function getProgress(){
-  const sc=document.getElementById('scroller');
-  const sl=sc?sc.scrollLeft:0;
-  const vw=window.innerWidth;
-  const rawIdx=sl/vw;
+  const{pos,viewport}=getScrollMetrics();
+  const rawIdx=pos/viewport;
   const i=Math.min(Math.floor(rawIdx),sects.length-2);
   const t=clamp(rawIdx-i,0,1);
   if(i>=0&&i<sects.length-1){
@@ -1060,10 +1069,12 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   var sc = document.getElementById('scroller');
   if(!bar || !sc) return;
   function updateBar(){
-    var pct = sc.scrollLeft / (sc.scrollWidth - sc.clientWidth);
-    bar.style.transform = 'scaleX(' + (isNaN(pct)?0:pct) + ')';
+    var m = getScrollMetrics();
+    var pct = m.pos / m.size;
+    bar.style.transform = 'scaleX(' + (isNaN(pct)||!isFinite(pct)?0:pct) + ')';
   }
   sc.addEventListener('scroll', updateBar, { passive: true });
+  window.addEventListener('scroll', updateBar, { passive: true });
   updateBar();
 })();
 </script>
@@ -1268,7 +1279,12 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     var sc = document.getElementById('scroller');
     if(target && sc){
       e.preventDefault();
-      sc.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+      var isColumn = getComputedStyle(sc).flexDirection === 'column';
+      if(isColumn){
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        sc.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+      }
     }
   });
 });
