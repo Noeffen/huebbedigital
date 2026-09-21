@@ -1292,15 +1292,28 @@ document.addEventListener('keydown', function(e){
 (function(){
   var sc=document.getElementById('scroller');
   if(!sc)return;
-  var sx=0,sy=0;
-  sc.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-  sc.addEventListener('touchmove',function(e){
-    var dx=sx-e.touches[0].clientX,dy=sy-e.touches[0].clientY;
-    if(Math.abs(dx)>Math.abs(dy)){e.preventDefault();sc.scrollLeft+=dx*0.8;sx=e.touches[0].clientX;}
+  var sx=0,sy=0,scrollStart=0,tracking=false;
+  document.addEventListener('touchstart',function(e){
+    sx=e.touches[0].clientX;
+    sy=e.touches[0].clientY;
+    scrollStart=sc.scrollLeft;
+    tracking=true;
+  },{passive:true});
+  document.addEventListener('touchmove',function(e){
+    if(!tracking)return;
+    var dx=sx-e.touches[0].clientX;
+    var dy=sy-e.touches[0].clientY;
+    if(Math.abs(dx)>Math.abs(dy)+5){
+      e.preventDefault();
+      sc.scrollLeft=scrollStart+dx;
+    }
   },{passive:false});
-  sc.addEventListener('touchend',function(){
-    var snap=Math.round(sc.scrollLeft/window.innerWidth)*window.innerWidth;
-    sc.scrollTo({left:snap,behavior:'smooth'});
+  document.addEventListener('touchend',function(e){
+    if(!tracking)return;
+    tracking=false;
+    var vw=window.innerWidth;
+    var idx=Math.round(sc.scrollLeft/vw);
+    sc.scrollTo({left:idx*vw,behavior:'smooth'});
   },{passive:true});
 })();
 </script>
