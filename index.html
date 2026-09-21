@@ -256,7 +256,7 @@
     #three-canvas { max-width: 100vw !important; }
 
     @media(max-width:768px){
-      #scroller { flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; }
       section { padding: 7rem 1.2rem 4rem; }
       nav { padding: 1rem 1.2rem; }
@@ -365,7 +365,7 @@
     @media not (prefers-reduced-motion: reduce) { *, *::before, *::after { cursor: none !important; } }
   
     @media(max-width:768px){
-      #scroller { flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; }
       /* Simpler animations on mobile */
       .reveal { transition-duration: 0.5s !important; transition-delay: 0s !important; }
@@ -384,7 +384,7 @@
     #typeCursor { display: inline-block; width: 3px; height: .85em; background: white; vertical-align: middle; margin-left: 2px; animation: blink .7s step-end infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
     @media(max-width:768px){
-      #scroller { flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; } .hero-content { left: 1.5rem; width: 90%; top: 45%; } }
   
     .hero-stats {
@@ -402,7 +402,7 @@
     .hstat-num { display: block; font-size: 1.8rem; font-weight: 800; letter-spacing: -.04em; background: linear-gradient(135deg,#3B82F6,#7C3AED); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .hstat-label { display: block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; opacity: .35; margin-top: .2rem; }
     @media(max-width:768px){
-      #scroller { flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; } .hero-stats { gap: 1.5rem; } .hstat-num { font-size: 1.4rem; } }
   
     /* PROCESS STEPS */
@@ -414,7 +414,7 @@
     .pstep-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .6rem; }
     .pstep-desc { font-size: .85rem; line-height: 1.75; opacity: .55; font-weight: 350; max-width: 280px; }
     @media(max-width:768px){
-      #scroller { flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; }
       .process-steps { flex-direction: column; gap: 2rem; }
       .pstep-divider { display: none; }
@@ -476,7 +476,7 @@
     .demo-footer { font-size: .8rem; opacity: .3; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.06); line-height: 1.7; }
 
     @media(max-width:768px){
-      #scroller { flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
+      #scroller { position: relative; flex-direction: column; overflow-x: hidden; overflow-y: scroll; height: auto; scroll-snap-type: y mandatory; }
       section { min-width: 100vw; width: 100%; height: auto; min-height: 100svh; }
       .demo-grid { grid-template-columns: 1fr 1fr; }
       .demo-btn { bottom: 1.2rem; left: 1.2rem; right: auto; font-size: .68rem; }
@@ -1288,34 +1288,5 @@ document.addEventListener('keydown', function(e){
   <span>© 2026 HuebbeDigital · Christian Hübbe</span>
   <div><a href="/imprint.html">Impressum</a><a href="/privacy.html">Datenschutz</a></div>
 </footer>
-<script>
-(function(){
-  var sc=document.getElementById('scroller');
-  if(!sc)return;
-  var sx=0,sy=0,scrollStart=0,tracking=false;
-  document.addEventListener('touchstart',function(e){
-    sx=e.touches[0].clientX;
-    sy=e.touches[0].clientY;
-    scrollStart=sc.scrollLeft;
-    tracking=true;
-  },{passive:true});
-  document.addEventListener('touchmove',function(e){
-    if(!tracking)return;
-    var dx=sx-e.touches[0].clientX;
-    var dy=sy-e.touches[0].clientY;
-    if(Math.abs(dx)>Math.abs(dy)+5){
-      e.preventDefault();
-      sc.scrollLeft=scrollStart+dx;
-    }
-  },{passive:false});
-  document.addEventListener('touchend',function(e){
-    if(!tracking)return;
-    tracking=false;
-    var vw=window.innerWidth;
-    var idx=Math.round(sc.scrollLeft/vw);
-    sc.scrollTo({left:idx*vw,behavior:'smooth'});
-  },{passive:true});
-})();
-</script>
 </body>
 </html>
