@@ -8,31 +8,33 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://Lokal auf unserem Server — keine externe Übermittlung">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://Lokal auf unserem Server — keine externe Übermittlung/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Inter lokal gehostet — /fonts/inter.woff2, wie auf der Startseite -->
+  <style>@font-face{font-family:'Inter';src:local('Inter'),local('Inter-Regular'),url('/fonts/inter.woff2') format('woff2');font-display:swap;font-weight:100 900;}</style>
   <style>
+    :root { --blue: #3B82F6; --purple: #7C3AED; }
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#111;color:#fff;min-height:100vh;overflow-x:hidden;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;background:#0F1923;color:#fff;min-height:100vh;overflow-x:hidden;}
     #scene{position:fixed;inset:0;z-index:0;pointer-events:none;}
     nav,main,footer{position:relative;z-index:1;}
-    nav{padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s;}
+    nav.frosted{background:rgba(15,25,35,.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);}
     .brand{font-size:1rem;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:inherit;}
-    .brand-grad{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-    .nav-back{font-size:.85rem;font-weight:500;color:inherit;text-decoration:none;opacity:.4;}
-    .nav-back:hover{opacity:.8;}
-    main{max-width:760px;margin:0 auto;padding:4rem 3rem 6rem;}
-    .page-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3B82F6;display:block;margin-bottom:1rem;}
-    h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:3rem;}
-    .grad-text{background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-    .content{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:2.5rem 3rem;backdrop-filter:blur(8px);}
-    h2{font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#3B82F6;margin:2rem 0 .6rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);}
+    .brand-grad{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav-link{font-size:.82rem;font-weight:500;color:inherit;text-decoration:none;opacity:.5;transition:opacity .2s;}
+    .nav-link:hover{opacity:1;}
+    main{max-width:760px;margin:0 auto;padding:8rem 3rem 8rem;}
+    .divider{width:32px;height:1.5px;background:linear-gradient(90deg,var(--blue),var(--purple));margin-bottom:1.4rem;border-radius:2px;}
+    .kicker{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:1.2rem;opacity:.9;}
+    h1{font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:900;letter-spacing:-.045em;line-height:1.02;margin-bottom:2.4rem;}
+    .grad-text{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .content{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2.5rem 3rem;backdrop-filter:blur(8px);}
+    h2{font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin:2rem 0 .6rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);}
     h2:first-child{margin-top:0;padding-top:0;border-top:none;}
     h3{font-size:.88rem;font-weight:700;opacity:.7;margin:1.2rem 0 .4rem;letter-spacing:.03em;}
-    p{font-size:.92rem;line-height:1.8;opacity:.6;margin-bottom:.5rem;}
+    p{font-size:.92rem;line-height:1.8;opacity:.6;margin-bottom:.5rem;font-weight:350;}
     ul{margin:.5rem 0 .5rem 1.2rem;}
-    ul li{font-size:.92rem;line-height:1.8;opacity:.6;margin-bottom:.2rem;}
-    a{color:#3B82F6;text-decoration:none;}
+    ul li{font-size:.92rem;line-height:1.8;opacity:.6;margin-bottom:.2rem;font-weight:350;}
+    a{color:var(--blue);text-decoration:none;}
     a:hover{opacity:.7;}
     code{font-family:monospace;font-size:.82rem;background:rgba(59,130,246,.1);padding:.1rem .4rem;border-radius:4px;color:#93c5fd;}
     .highlight{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;}
@@ -41,10 +43,10 @@
     table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem;}
     th{text-align:left;font-weight:700;opacity:.4;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem .8rem;border-bottom:1px solid rgba(255,255,255,.1);}
     td{padding:.6rem .8rem;border-bottom:1px solid rgba(255,255,255,.06);opacity:.6;line-height:1.6;vertical-align:top;}
-    footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem;opacity:.3;}
+    footer{position:fixed;bottom:0;left:0;right:0;padding:.8rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);font-size:.72rem;opacity:.3;z-index:200;background:rgba(15,25,35,.85);backdrop-filter:blur(8px);}
     footer a{color:inherit;text-decoration:none;margin-left:1.5rem;}
-    @media(max-width:600px){nav{padding:1.2rem 1.5rem;}main{padding:3rem 1.5rem;}footer{flex-direction:column;gap:.8rem;}.content{padding:1.5rem;}}
-  
+    @media(max-width:600px){nav{padding:1rem 1.2rem;}main{padding:7rem 1.2rem 6rem;}footer{flex-direction:column;gap:.6rem;text-align:center;padding:.8rem 1.2rem;}footer a{margin-left:0;margin-right:.8rem;}.content{padding:1.5rem;}}
+
     /* Custom cursor */
     .cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
     .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform .12s ease, width .3s, height .3s, border-color .3s; }
@@ -52,7 +54,7 @@
     .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(59,130,246,.6); }
     .spotlight { position: fixed; width: 500px; height: 500px; border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(59,130,246,.05) 0%, rgba(124,58,237,.02) 40%, transparent 70%); }
     @media(max-width:900px){body{cursor:auto}.cursor,.cursor-ring,.spotlight{display:none}}
-  
+
     /* Hide default scrollbar */
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
@@ -78,12 +80,13 @@
 <div class="spotlight" id="spotlight"></div>
 
 <canvas id="scene"></canvas>
-<nav>
+<nav id="mainNav">
   <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
-  <a href="/" class="nav-back">← Zurück</a>
+  <a href="/" class="nav-link">← Zurück zur Startseite</a>
 </nav>
 <main>
-  <span class="page-label">Rechtliches</span>
+  <div class="divider"></div>
+  <span class="kicker">Rechtliches</span>
   <h1>Daten<span class="grad-text">schutz.</span></h1>
   <div class="content">
 
@@ -91,7 +94,6 @@
     <p>Diese Datenschutzerklärung gilt für:</p>
     <ul>
       <li>Die Website <strong>huebbedigital.com</strong> und alle Unterseiten</li>
-      <li>Die mobile App <strong>FairwayService</strong> (iOS & Android)</li>
       <li>Die mobile App <strong>NotAlone</strong> (iOS & Android) – eingestellt, siehe Hinweis unten</li>
     </ul>
 
@@ -146,15 +148,13 @@
     <p><strong>Daten:</strong> Name, E-Mail, Nachricht, ggf. Website-URL und Branche · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Nur für die Dauer der Bearbeitung</p>
     <p><a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
 
-    <h2>7. Firebase-Dienste (FairwayService & NotAlone Apps)</h2>
+    <h2>7. Firebase-Dienste (NotAlone App)</h2>
     <div class="highlight">
       <strong>EU-Rechenzentren</strong>
       <p>Alle Firebase-Daten werden in der <strong>EU (europe-west3)</strong> gespeichert.</p>
     </div>
     <h3>Firebase Authentication</h3>
     <p>Daten: E-Mail, verschlüsseltes Passwort, Nutzer-ID · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO · Speicherdauer: Bis zur Account-Löschung</p>
-    <h3>Cloud Firestore & Storage – FairwayService</h3>
-    <p>FairwayService speichert: Benutzerprofil, Bestellungen, Problem-Meldungen, Fotos (90 Tage nach Erledigung), Profilbilder (optional).</p>
     <h3>Cloud Firestore & Storage – NotAlone (eingestellt)</h3>
     <p>NotAlone speicherte: Benutzerprofil, Nachrichten und Gesprächsverläufe, Profilbilder, Matching-Präferenzen. <strong>Alle Daten wurden im August 2026 unwiderruflich gelöscht.</strong> Es findet keine weitere Datenverarbeitung statt.</p>
     <h3>Firebase Cloud Messaging</h3>
@@ -164,7 +164,7 @@
     <table>
       <thead><tr><th>Dienstleister</th><th>Zweck</th><th>Standort</th></tr></thead>
       <tbody>
-        <tr><td>Google LLC (Firebase)</td><td>App-Backend FairwayService · NotAlone eingestellt (Daten gelöscht 08/2026)</td><td>EU (europe-west3)</td></tr>
+        <tr><td>Google LLC (Firebase)</td><td>App-Backend NotAlone – eingestellt (Daten gelöscht 08/2026)</td><td>EU (europe-west3)</td></tr>
         <tr><td>Google LLC (Analytics)</td><td>Webanalyse (nur mit Einwilligung)</td><td>USA (SCC)</td></tr>
         <tr><td>Web3Forms</td><td>Kontaktformular</td><td>USA (E-Mail-Weiterleitung)</td></tr>
         <tr><td>GitHub, Inc.</td><td>Website-Hosting</td><td>USA (SCC)</td></tr>
@@ -180,10 +180,10 @@
     <strong>Post:</strong> Am See 1, 64739 Höchst im Odenwald</p>
     <p>Wir antworten innerhalb eines Monats. · <strong>Stand: August 2026</strong></p>
 
-  </div>
-
-    <h2>Schriftarten</h2>
+    <h2>11. Schriftarten</h2>
     <p>Diese Website verwendet die Schriftart <strong>Inter</strong>, die lokal auf unserem Server gehostet wird. Es werden keine Daten an externe Schriftartanbieter übermittelt.</p>
+
+  </div>
   </main>
 <footer>
   <span>© 2026 HuebbeDigital</span>
@@ -212,7 +212,7 @@ for(let i=0;i<COUNT;i++){
 let tick=0;
 function draw(){
   const W=canvas.width,H=canvas.height;
-  ctx.fillStyle='#111111';
+  ctx.fillStyle='#0F1923';
   ctx.fillRect(0,0,W,H);
   const glow=ctx.createRadialGradient(W*.2,H*.8,0,W*.2,H*.8,W*.5);
   glow.addColorStop(0,'rgba(124,58,237,0.05)');
@@ -237,6 +237,15 @@ function draw(){
 }
 function loop(){draw();requestAnimationFrame(loop);}
 loop();
+
+// Nav frosted on scroll
+const mainNav=document.getElementById('mainNav');
+function updateNavFrost(){
+  if(window.scrollY>50) mainNav.classList.add('frosted');
+  else mainNav.classList.remove('frosted');
+}
+window.addEventListener('scroll',updateNavFrost,{passive:true});
+updateNavFrost();
 
 // Custom cursor
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing'),spot=document.getElementById('spotlight');
