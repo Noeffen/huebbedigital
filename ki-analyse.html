@@ -532,21 +532,38 @@ function updateContentTransitions(){
   }
   const vertical=isScrollerColumn();
   const{pos}=getScrollMetrics();
-  const size=vertical?window.innerHeight:window.innerWidth;
   sectionContents.forEach((el,idx)=>{
     const sec=el.closest('section');
-    const start=vertical?sec.offsetTop:sec.offsetLeft;
-    const local=clamp((pos-start)/size,-1,1);
+    if(vertical){
+      // Mobile sections are natural-height (can be taller than the
+      // viewport), so the desktop fade/blur math — driven by distance
+      // from a fixed 100vh slide — would fade text out mid-read while
+      // still scrolling through a single section. Keep mobile to a plain
+      // one-time reveal instead of a continuous scroll-linked fade.
+      const relTop = sec.offsetTop - pos;
+      const nearViewport = relTop < window.innerHeight*0.85 && (relTop+sec.offsetHeight) > -window.innerHeight*0.2;
+      if(nearViewport){
+        sectionReveals[idx].forEach(r=>{ if(!r.classList.contains('visible')) r.classList.add('visible'); });
+      }
+      el.style.setProperty('--tp-op','1');
+      el.style.setProperty('--tp-bl','0px');
+      el.style.setProperty('--tp-sc','1');
+      el.style.setProperty('--tp-tx','0px');
+      el.style.setProperty('--tp-ty','0px');
+      return;
+    }
+    const size=window.innerWidth;
+    const local=clamp((pos-sec.offsetLeft)/size,-1,1);
     const p=smoothstep(1-Math.abs(local));
-    const shift=local*(vertical?24:32);
+    const shift=local*32;
     if(Math.abs(local)<0.85){
       sectionReveals[idx].forEach(r=>{ if(!r.classList.contains('visible')) r.classList.add('visible'); });
     }
     el.style.setProperty('--tp-op',lerp(0.15,1,p).toFixed(3));
     el.style.setProperty('--tp-bl',lerp(9,0,p).toFixed(2)+'px');
     el.style.setProperty('--tp-sc',lerp(0.965,1,p).toFixed(3));
-    el.style.setProperty('--tp-tx',vertical?'0px':(-shift).toFixed(2)+'px');
-    el.style.setProperty('--tp-ty',vertical?(-shift).toFixed(2)+'px':'0px');
+    el.style.setProperty('--tp-tx',(-shift).toFixed(2)+'px');
+    el.style.setProperty('--tp-ty','0px');
   });
 }
 
