@@ -575,7 +575,7 @@
       transform: translateY(24px); transition: transform .6s cubic-bezier(.16,1,.3,1);
     }
     .bio-overlay.open .bio-inner { transform: translateY(0); }
-    .bio-photo-col { position: relative; min-height: 340px; background: url('ich.jpg') center 22%/cover; }
+    .bio-photo-col { position: relative; aspect-ratio: 9 / 16; min-height: 340px; background: url('ich.jpg') center/contain no-repeat, linear-gradient(160deg,#eef2ff,#e0e7ff); }
     .bio-text-col { padding: 2.6rem 2.4rem; color: #1a1a2e; position: relative; }
     .bio-kicker { font-size: .62rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 1rem; }
     .bio-title { font-size: clamp(1.6rem,3.2vw,2.2rem); font-weight: 900; letter-spacing: -.03em; margin-bottom: 1.1rem; color: #141428; }
@@ -592,8 +592,8 @@
     .bio-close:hover { background: rgba(20,20,30,.1); color: #141428; }
     @media(max-width:768px){
       .bio-overlay { padding: 1rem; }
-      .bio-inner { grid-template-columns: 1fr; max-height: 92vh; max-height: 92dvh; }
-      .bio-photo-col { min-height: 300px; }
+      .bio-inner { display: flex; flex-direction: column; max-height: 92vh; max-height: 92dvh; }
+      .bio-photo-col { min-height: 0; flex-shrink: 0; }
       .bio-text-col { padding: 2rem 1.5rem; }
     }
 
