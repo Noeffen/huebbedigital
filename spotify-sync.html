@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spotify Sync · HuebbeDigital</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --blue: #3B82F6; --purple: #7C3AED; }
+  html, body {
+    min-height: 100dvh; background: #0F1923; color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { padding: 2rem 1.2rem 4rem; max-width: 480px; margin: 0 auto; }
+  a { color: var(--blue); }
+
+  h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .3rem; }
+  .grad { background: linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .sub { font-size: .85rem; color: rgba(255,255,255,.5); margin-bottom: 1.8rem; line-height: 1.6; }
+
+  .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 1.2rem 1.3rem; margin-bottom: 1.1rem; }
+  .card h2 { font-size: .95rem; font-weight: 700; margin-bottom: .7rem; display: flex; align-items: center; gap: .5rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); flex-shrink: 0; }
+  .dot.on { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+
+  label { display: block; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem; margin-top: .9rem; }
+  label:first-of-type { margin-top: 0; }
+  input, select {
+    width: 100%; padding: .7rem .9rem; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05);
+    color: #fff; font-size: .88rem; font-family: inherit;
+  }
+  input::placeholder { color: rgba(255,255,255,.3); }
+  select option { background: #1a2836; }
+
+  button {
+    font-family: inherit; font-size: .85rem; font-weight: 700; cursor: pointer;
+    border: none; border-radius: 10px; padding: .75rem 1.2rem; margin-top: .9rem;
+    width: 100%; transition: opacity .2s, transform .1s;
+  }
+  button:active { transform: scale(.98); }
+  button:disabled { opacity: .35; cursor: not-allowed; }
+  .btn-primary { background: linear-gradient(135deg,var(--blue),var(--purple)); color: #fff; }
+  .btn-ghost { background: rgba(255,255,255,.06); color: #fff; border: 1px solid rgba(255,255,255,.12); }
+  .btn-play {
+    background: linear-gradient(135deg,#22c55e,#16a34a); color: #fff;
+    font-size: 1rem; padding: 1.05rem; margin-top: 1.4rem;
+  }
+
+  .track-result { display: flex; align-items: center; gap: .7rem; padding: .6rem; border-radius: 10px; cursor: pointer; transition: background .15s; }
+  .track-result:hover { background: rgba(255,255,255,.06); }
+  .track-result img { width: 42px; height: 42px; border-radius: 6px; flex-shrink: 0; }
+  .track-result .tt { font-size: .82rem; font-weight: 600; line-height: 1.3; }
+  .track-result .ta { font-size: .74rem; color: rgba(255,255,255,.45); }
+  .track-result.selected { background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.4); }
+
+  .now-playing { display: flex; align-items: center; gap: .7rem; margin-top: 1rem; padding: .8rem; background: rgba(255,255,255,.04); border-radius: 12px; }
+  .now-playing img { width: 44px; height: 44px; border-radius: 6px; }
+  .status-msg { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: .8rem; text-align: center; min-height: 1.2em; }
+  .status-msg.err { color: #f87171; }
+  .status-msg.ok { color: #4ade80; }
+
+  .setup-note { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.7; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1.4rem; }
+  .setup-note code { background: rgba(255,255,255,.08); padding: .1rem .4rem; border-radius: 4px; font-size: .74rem; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<h1>Spotify <span class="grad">Sync</span></h1>
+<p class="sub">Startet denselben Song auf zwei Handys mit zwei verschiedenen Spotify-Accounts nahezu gleichzeitig. Beide Spotify-Apps müssen dafür auf den Zielhandys offen/im Hintergrund aktiv sein.</p>
+
+<div class="setup-note" id="setupNote">
+  <strong>Einmalige Einrichtung:</strong><br>
+  Client ID von deiner App aus dem <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify Developer Dashboard</a> hier eintragen (Redirect URI dort muss exakt <code>https://huebbedigital.com/spotify-sync.html</code> sein).
+  <label>Client ID</label>
+  <input type="text" id="clientId" placeholder="z.B. a1b2c3d4e5f6...">
+  <button class="btn-ghost" id="saveClientId">Speichern</button>
+</div>
+
+<div class="card">
+  <h2><span class="dot" id="dotA"></span>Account A (Handy 1)</h2>
+  <button class="btn-primary" id="loginA">Mit Account A anmelden</button>
+  <select id="deviceA" class="hidden"><option value="">Gerät wählen…</option></select>
+  <button class="btn-ghost hidden" id="refreshDevicesA">Geräte aktualisieren</button>
+</div>
+
+<div class="card">
+  <h2><span class="dot" id="dotB"></span>Account B (Handy 2)</h2>
+  <button class="btn-primary" id="loginB">Mit Account B anmelden</button>
+  <select id="deviceB" class="hidden"><option value="">Gerät wählen…</option></select>
+  <button class="btn-ghost hidden" id="refreshDevicesB">Geräte aktualisieren</button>
+</div>
+
+<div class="card">
+  <h2>Song suchen</h2>
+  <input type="text" id="searchInput" placeholder="Songtitel oder Künstler…">
+  <div id="searchResults"></div>
+</div>
+
+<button class="btn-play" id="playBothBtn" disabled>▶ Auf beiden Handys starten</button>
+<button class="btn-ghost" id="pauseBothBtn" disabled>⏸ Beide pausieren</button>
+<button class="btn-ghost" id="resyncBtn" disabled>🔄 Resync (Handy 2 an Handy 1 angleichen)</button>
+
+<div class="status-msg" id="statusMsg"></div>
+
+<script>
+const REDIRECT_URI = 'https://huebbedigital.com/spotify-sync.html';
+const SCOPES = 'user-read-playback-state user-modify-playback-state user-read-email';
+
+function getClientId(){ return localStorage.getItem('sp_client_id') || ''; }
+
+document.getElementById('clientId').value = getClientId();
+document.getElementById('saveClientId').addEventListener('click', function(){
+  const v = document.getElementById('clientId').value.trim();
+  if (v) { localStorage.setItem('sp_client_id', v); setStatus('Client ID gespeichert.', 'ok'); updateSetupNoteVisibility(); }
+});
+function updateSetupNoteVisibility(){
+  document.getElementById('setupNote').classList.toggle('hidden', !!getClientId());
+}
+updateSetupNoteVisibility();
+
+function setStatus(msg, type){
+  const el = document.getElementById('statusMsg');
+  el.textContent = msg || '';
+  el.className = 'status-msg' + (type ? ' ' + type : '');
+}
+
+// ---------- PKCE helpers ----------
+function randomString(len){
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let out = '';
+  const arr = new Uint8Array(len);
+  crypto.getRandomValues(arr);
+  for (let i = 0; i < len; i++) out += chars[arr[i] % chars.length];
+  return out;
+}
+async function sha256base64url(str){
+  const enc = new TextEncoder().encode(str);
+  const digest = await crypto.subtle.digest('SHA-256', enc);
+  return btoa(String.fromCharCode(...new Uint8Array(digest)))
+    .replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+
+async function startLogin(slot){
+  const clientId = getClientId();
+  if (!clientId) { setStatus('Bitte zuerst die Client ID oben eintragen.', 'err'); return; }
+  const verifier = randomString(64);
+  const challenge = await sha256base64url(verifier);
+  localStorage.setItem('sp_verifier_' + slot, verifier);
+  const state = slot + ':' + randomString(12);
+  localStorage.setItem('sp_state_' + slot, state);
+  const params = new URLSearchParams({
+    client_id: clientId,
+    response_type: 'code',
+    redirect_uri: REDIRECT_URI,
+    code_challenge_method: 'S256',
+    code_challenge: challenge,
+    scope: SCOPES,
+    state: state
+  });
+  window.location.href = 'https://accounts.spotify.com/authorize?' + params.toString();
+}
+document.getElementById('loginA').addEventListener('click', () => startLogin('A'));
+document.getElementById('loginB').addEventListener('click', () => startLogin('B'));
+
+async function exchangeToken(slot, code){
+  const clientId = getClientId();
+  const verifier = localStorage.getItem('sp_verifier_' + slot);
+  const body = new URLSearchParams({
+    client_id: clientId,
+    grant_type: 'authorization_code',
+    code: code,
+    redirect_uri: REDIRECT_URI,
+    code_verifier: verifier
+  });
+  const res = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString()
+  });
+  if (!res.ok) throw new Error('Token-Austausch fehlgeschlagen (' + res.status + ')');
+  const data = await res.json();
+  saveTokens(slot, data);
+}
+
+function saveTokens(slot, data){
+  localStorage.setItem('sp_access_' + slot, data.access_token);
+  localStorage.setItem('sp_refresh_' + slot, data.refresh_token || localStorage.getItem('sp_refresh_' + slot) || '');
+  localStorage.setItem('sp_expires_' + slot, String(Date.now() + (data.expires_in - 30) * 1000));
+}
+
+async function refreshToken(slot){
+  const clientId = getClientId();
+  const refresh = localStorage.getItem('sp_refresh_' + slot);
+  if (!refresh) return false;
+  const body = new URLSearchParams({
+    client_id: clientId,
+    grant_type: 'refresh_token',
+    refresh_token: refresh
+  });
+  const res = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString()
+  });
+  if (!res.ok) return false;
+  const data = await res.json();
+  saveTokens(slot, data);
+  return true;
+}
+
+async function getValidToken(slot){
+  const expires = Number(localStorage.getItem('sp_expires_' + slot) || 0);
+  if (Date.now() > expires) {
+    const ok = await refreshToken(slot);
+    if (!ok) return null;
+  }
+  return localStorage.getItem('sp_access_' + slot);
+}
+
+function isConnected(slot){
+  return !!localStorage.getItem('sp_access_' + slot);
+}
+
+async function api(slot, path, options){
+  const token = await getValidToken(slot);
+  if (!token) throw new Error('Account ' + slot + ' nicht verbunden.');
+  options = options || {};
+  options.headers = Object.assign({ 'Authorization': 'Bearer ' + token }, options.headers || {});
+  const res = await fetch('https://api.spotify.com/v1' + path, options);
+  return res;
+}
+
+// ---------- OAuth callback ----------
+(async function handleCallback(){
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const state = params.get('state');
+  const err = params.get('error');
+  if (err) { setStatus('Spotify-Login abgebrochen: ' + err, 'err'); history.replaceState({}, '', REDIRECT_URI); return; }
+  if (!code || !state) return;
+  const slot = state.split(':')[0];
+  const expectedState = localStorage.getItem('sp_state_' + slot);
+  if (state !== expectedState) { setStatus('Sicherheitsprüfung fehlgeschlagen, bitte erneut versuchen.', 'err'); return; }
+  try {
+    await exchangeToken(slot, code);
+    setStatus('Account ' + slot + ' verbunden!', 'ok');
+  } catch (e) {
+    setStatus(e.message, 'err');
+  }
+  history.replaceState({}, '', REDIRECT_URI);
+  refreshUI();
+})();
+
+// ---------- Devices ----------
+async function loadDevices(slot){
+  const select = document.getElementById('device' + slot);
+  try {
+    const res = await api(slot, '/me/player/devices');
+    const data = await res.json();
+    select.innerHTML = '<option value="">Gerät wählen…</option>';
+    (data.devices || []).forEach(function(d){
+      const opt = document.createElement('option');
+      opt.value = d.id;
+      opt.textContent = d.name + (d.is_active ? ' (aktiv)' : '');
+      select.appendChild(opt);
+    });
+    if (!data.devices || !data.devices.length) {
+      setStatus('Keine Geräte für Account ' + slot + ' gefunden — Spotify-App auf dem Handy kurz öffnen und nochmal aktualisieren.', 'err');
+    }
+  } catch (e) {
+    setStatus(e.message, 'err');
+  }
+}
+document.getElementById('refreshDevicesA').addEventListener('click', () => loadDevices('A'));
+document.getElementById('refreshDevicesB').addEventListener('click', () => loadDevices('B'));
+
+function refreshUI(){
+  ['A','B'].forEach(function(slot){
+    const connected = isConnected(slot);
+    document.getElementById('dot' + slot).classList.toggle('on', connected);
+    document.getElementById('login' + slot).classList.toggle('hidden', connected);
+    document.getElementById('device' + slot).classList.toggle('hidden', !connected);
+    document.getElementById('refreshDevices' + slot).classList.toggle('hidden', !connected);
+    if (connected) loadDevices(slot);
+  });
+  updatePlayButtonState();
+}
+
+// ---------- Search ----------
+let selectedTrackUri = null;
+let searchTimer = null;
+document.getElementById('searchInput').addEventListener('input', function(e){
+  clearTimeout(searchTimer);
+  const q = e.target.value.trim();
+  if (!q) { document.getElementById('searchResults').innerHTML = ''; return; }
+  searchTimer = setTimeout(() => doSearch(q), 400);
+});
+async function doSearch(q){
+  const slot = isConnected('A') ? 'A' : (isConnected('B') ? 'B' : null);
+  if (!slot) { setStatus('Zuerst mindestens einen Account verbinden.', 'err'); return; }
+  try {
+    const res = await api(slot, '/search?type=track&limit=8&q=' + encodeURIComponent(q));
+    const data = await res.json();
+    const container = document.getElementById('searchResults');
+    container.innerHTML = '';
+    (data.tracks ? data.tracks.items : []).forEach(function(t){
+      const div = document.createElement('div');
+      div.className = 'track-result';
+      const img = t.album.images[t.album.images.length - 1] || {};
+      div.innerHTML = '<img src="' + (img.url || '') + '" alt=""><div><div class="tt">' + escapeHtml(t.name) + '</div><div class="ta">' + escapeHtml(t.artists.map(a=>a.name).join(', ')) + '</div></div>';
+      div.addEventListener('click', function(){
+        document.querySelectorAll('.track-result').forEach(el => el.classList.remove('selected'));
+        div.classList.add('selected');
+        selectedTrackUri = t.uri;
+        updatePlayButtonState();
+      });
+      container.appendChild(div);
+    });
+  } catch (e) {
+    setStatus(e.message, 'err');
+  }
+}
+function escapeHtml(s){
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ---------- Play / Pause / Resync ----------
+function updatePlayButtonState(){
+  const ready = isConnected('A') && isConnected('B') &&
+    document.getElementById('deviceA').value && document.getElementById('deviceB').value &&
+    selectedTrackUri;
+  document.getElementById('playBothBtn').disabled = !ready;
+  const bothConnected = isConnected('A') && isConnected('B') &&
+    document.getElementById('deviceA').value && document.getElementById('deviceB').value;
+  document.getElementById('pauseBothBtn').disabled = !bothConnected;
+  document.getElementById('resyncBtn').disabled = !bothConnected;
+}
+document.getElementById('deviceA').addEventListener('change', updatePlayButtonState);
+document.getElementById('deviceB').addEventListener('change', updatePlayButtonState);
+
+document.getElementById('playBothBtn').addEventListener('click', async function(){
+  const deviceA = document.getElementById('deviceA').value;
+  const deviceB = document.getElementById('deviceB').value;
+  setStatus('Starte auf beiden Geräten…');
+  try {
+    await Promise.all([
+      api('A', '/me/player/play?device_id=' + deviceA, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ uris: [selectedTrackUri] }) }),
+      api('B', '/me/player/play?device_id=' + deviceB, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ uris: [selectedTrackUri] }) })
+    ]);
+    setStatus('Läuft auf beiden Handys. Falls nötig: Resync-Button nutzen.', 'ok');
+  } catch (e) {
+    setStatus(e.message, 'err');
+  }
+});
+
+document.getElementById('pauseBothBtn').addEventListener('click', async function(){
+  const deviceA = document.getElementById('deviceA').value;
+  const deviceB = document.getElementById('deviceB').value;
+  try {
+    await Promise.all([
+      api('A', '/me/player/pause?device_id=' + deviceA, { method: 'PUT' }),
+      api('B', '/me/player/pause?device_id=' + deviceB, { method: 'PUT' })
+    ]);
+    setStatus('Pausiert.', 'ok');
+  } catch (e) {
+    setStatus(e.message, 'err');
+  }
+});
+
+document.getElementById('resyncBtn').addEventListener('click', async function(){
+  const deviceA = document.getElementById('deviceA').value;
+  const deviceB = document.getElementById('deviceB').value;
+  setStatus('Gleiche Handy 2 an Handy 1 an…');
+  try {
+    const res = await api('A', '/me/player');
+    const data = await res.json();
+    if (!data || !data.item) { setStatus('Handy 1 spielt gerade nichts.', 'err'); return; }
+    const positionMs = data.progress_ms || 0;
+    await api('B', '/me/player/seek?position_ms=' + positionMs + '&device_id=' + deviceB, { method: 'PUT' });
+    setStatus('Resync durchgeführt.', 'ok');
+  } catch (e) {
+    setStatus(e.message, 'err');
+  }
+});
+
+refreshUI();
+</script>
+
+</body>
+</html>
