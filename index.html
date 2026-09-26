@@ -97,6 +97,23 @@
     .nav-link:hover { opacity: 1; }
     .nav-cta { font-size: .8rem; font-weight: 700; color: white !important; opacity: 1 !important; text-decoration: none; padding: .5rem 1.1rem; border-radius: 999px; background: linear-gradient(135deg,var(--blue),var(--purple)); transition: opacity .2s; }
     .nav-cta:hover { opacity: .85 !important; }
+    .lang-toggle {
+      font-size: .78rem; font-weight: 700; font-family: inherit;
+      color: #fff; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14); border-radius: 999px;
+      padding: .5rem 1rem; cursor: none; white-space: nowrap;
+      transition: background .2s, border-color .2s, opacity .15s;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .lang-toggle:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+    .lang-toggle .lt-arrow { display: inline-block; transition: transform .2s; }
+    .lang-toggle:hover .lt-arrow { transform: translateX(2px); }
+    [data-i18n], #typeH1 {
+      transition: opacity .38s cubic-bezier(.4,0,.2,1), filter .38s cubic-bezier(.4,0,.2,1), transform .38s cubic-bezier(.4,0,.2,1);
+    }
+    html.i18n-swapping [data-i18n], html.i18n-swapping #typeH1 {
+      opacity: 0; filter: blur(6px); transform: translateY(6px);
+    }
 
     /* SECTIONS */
     /* HORIZONTAL SCROLL */
@@ -635,10 +652,10 @@
 <!-- Cookie -->
 <div class="cookie-banner" id="cookieBanner">
   <div class="cookie-inner">
-    <p class="cookie-text">Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.</p>
+    <p class="cookie-text" data-i18n="cookie.text">Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.</p>
     <div class="cookie-actions">
-      <button class="cbtn cbtn-d" id="cookieDecline">Ablehnen</button>
-      <button class="cbtn cbtn-a" id="cookieAccept">Akzeptieren</button>
+      <button class="cbtn cbtn-d" id="cookieDecline" data-i18n="cookie.decline">Ablehnen</button>
+      <button class="cbtn cbtn-a" id="cookieAccept" data-i18n="cookie.accept">Akzeptieren</button>
     </div>
   </div>
 </div>
@@ -648,10 +665,11 @@
 <nav id="mainNav">
   <a href="#" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
   <div class="nav-right">
-    <a href="#about" class="nav-link">Über mich</a>
-    <a href="#projekte" class="nav-link">Projekte</a>
-    <a href="#contact" class="nav-link">Kontakt</a>
-    <a href="/ki-analyse.html" class="nav-cta">Kostenlose Website-Analyse</a>
+    <a href="#about" class="nav-link" data-i18n="nav.about">Über mich</a>
+    <a href="#projekte" class="nav-link" data-i18n="nav.projects">Projekte</a>
+    <a href="#contact" class="nav-link" data-i18n="nav.contact">Kontakt</a>
+    <a href="/ki-analyse.html" class="nav-cta" data-i18n="nav.cta">Kostenlose Website-Analyse</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="nav.langToggle" data-i18n-aria="nav.langAria">I do English, too <span class="lt-arrow">→</span></button>
   </div>
 </nav>
 
@@ -660,24 +678,24 @@
 <div id="scroller">
 <section data-bg="#0A1628" data-color="#ffffff" class="hero-section">
   <div class="hero-content">
-    <div class="eyebrow" style="opacity:.4;margin-bottom:1rem;display:block;font-size:.78rem;letter-spacing:.08em;">Webdesign · Apps · SEO · Odenwald & Rhein-Main</div>
-    <h1 id="typeH1" aria-label="Webdesign & Apps aus dem Odenwald."><span id="typeCursor"></span></h1>
-    <p class="lead" style="opacity:.6;margin-top:1.5rem;max-width:420px;">Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.</p>
+    <div class="eyebrow" data-i18n="hero.eyebrow" style="opacity:.4;margin-bottom:1rem;display:block;font-size:.78rem;letter-spacing:.08em;">Webdesign · Apps · SEO · Odenwald & Rhein-Main</div>
+    <h1 id="typeH1" data-i18n="hero.h1" data-i18n-aria="hero.h1aria" aria-label="Webdesign & Apps aus dem Odenwald."><span id="typeCursor"></span></h1>
+    <p class="lead" data-i18n="hero.lead" style="opacity:.6;margin-top:1.5rem;max-width:420px;">Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.</p>
     <div class="pills" style="margin-top:1.5rem;">
-      <span class="pill accent">Webdesign</span>
-      <span class="pill">SEO-Optimierung</span>
-      <span class="pill">iOS & Android</span>
-      <span class="pill">Performance</span>
+      <span class="pill accent" data-i18n="hero.pill1">Webdesign</span>
+      <span class="pill" data-i18n="hero.pill2">SEO-Optimierung</span>
+      <span class="pill" data-i18n="hero.pill3">iOS & Android</span>
+      <span class="pill" data-i18n="hero.pill4">Performance</span>
     </div>
   </div>
   <!-- Floating stats in gap -->
   <div class="hero-stats">
-    <div class="hstat"><span class="hstat-num">9+</span><span class="hstat-label">Jahre Beratung</span></div>
-    <div class="hstat"><span class="hstat-num">Einzigartig</span><span class="hstat-label">Jedes Projekt</span></div>
-    <div class="hstat"><span class="hstat-num">100%</span><span class="hstat-label">Individuelle Lösungen</span></div>
+    <div class="hstat"><span class="hstat-num">9+</span><span class="hstat-label" data-i18n="hero.stat1">Jahre Beratung</span></div>
+    <div class="hstat"><span class="hstat-num" data-i18n="hero.stat2num">Einzigartig</span><span class="hstat-label" data-i18n="hero.stat2">Jedes Projekt</span></div>
+    <div class="hstat"><span class="hstat-num">100%</span><span class="hstat-label" data-i18n="hero.stat3">Individuelle Lösungen</span></div>
   </div>
   <div class="scroll-hint" id="scrollHint" style="bottom:2rem;flex-direction:row;gap:.8rem;">
-    <span style="font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.3;">Scrollen</span>
+    <span data-i18n="hero.scroll" style="font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.3;">Scrollen</span>
     <div class="scroll-chevrons" style="flex-direction:row;">
       <div class="scroll-chevron" style="transform:rotate(-45deg)"></div>
       <div class="scroll-chevron" style="transform:rotate(-45deg)"></div>
@@ -692,23 +710,23 @@
     <div class="split">
       <div>
         <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Was ich liefere</span>
-        <h2 class="reveal d2">Websites, die <span class="grad-text">performen.</span></h2>
-        <p class="lead reveal d3">Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen die online gefunden werden wollen – und nicht einfach nur eine Webpräsenz haben wollen.</p>
-        <p class="body-text reveal d4">Von der ersten Idee über Design, Entwicklung und technische SEO-Optimierung bis zum Launch. Schema.org, Open Graph und lokales SEO-Targeting auf allen Seiten.</p>
-        <a href="/ki-analyse.html" class="cta-link reveal d5">Kostenlose Analyse anfragen →</a>
+        <span class="kicker reveal d1" data-i18n="deliver.kicker">Was ich liefere</span>
+        <h2 class="reveal d2" data-i18n="deliver.h2">Websites, die <span class="grad-text">performen.</span></h2>
+        <p class="lead reveal d3" data-i18n="deliver.lead">Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen die online gefunden werden wollen – und nicht einfach nur eine Webpräsenz haben wollen.</p>
+        <p class="body-text reveal d4" data-i18n="deliver.body">Von der ersten Idee über Design, Entwicklung und technische SEO-Optimierung bis zum Launch. Schema.org, Open Graph und lokales SEO-Targeting auf allen Seiten.</p>
+        <a href="/ki-analyse.html" class="cta-link reveal d5" data-i18n="deliver.cta">Kostenlose Analyse anfragen →</a>
       </div>
       <div>
         <div class="stats reveal d2">
-          <div class="stat"><div class="stat-val grad-text" data-count="24">0</div><div class="stat-lbl">Seiten Burghof</div></div>
-          <div class="stat"><div class="stat-val grad-text" data-count="9">0</div><div class="stat-lbl">SEO-Prüfpunkte</div></div>
-          <div class="stat"><div class="stat-val grad-text" data-suffix="h" data-count="48">0</div><div class="stat-lbl">Analyse-Rückmeldung</div></div>
+          <div class="stat"><div class="stat-val grad-text" data-count="24">0</div><div class="stat-lbl" data-i18n="deliver.stat1">Seiten Burghof</div></div>
+          <div class="stat"><div class="stat-val grad-text" data-count="9">0</div><div class="stat-lbl" data-i18n="deliver.stat2">SEO-Prüfpunkte</div></div>
+          <div class="stat"><div class="stat-val grad-text" data-suffix="h" data-count="48">0</div><div class="stat-lbl" data-i18n="deliver.stat3">Analyse-Rückmeldung</div></div>
         </div>
         <div class="creds reveal d3">
-          <div class="cred"><div class="cred-dot"></div><span>Individuelle Entwicklung – kein Baukasten, keine Templates</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Schema.org, Open Graph und KI-Sichtbarkeit auf allen Seiten</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Performance-Optimierung – schnelle Ladezeiten, bessere Rankings</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Lokales SEO-Targeting für Odenwald und Rhein-Main-Gebiet</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="deliver.cred1">Individuelle Entwicklung – kein Baukasten, keine Templates</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="deliver.cred2">Schema.org, Open Graph und KI-Sichtbarkeit auf allen Seiten</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="deliver.cred3">Performance-Optimierung – schnelle Ladezeiten, bessere Rankings</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="deliver.cred4">Lokales SEO-Targeting für Odenwald und Rhein-Main-Gebiet</span></div>
         </div>
       </div>
     </div>
@@ -719,37 +737,37 @@
 <section data-bg="#111740" data-color="#ffffff" id="warum">
   <div class="container">
     <div class="divider reveal"></div>
-    <span class="kicker reveal d1">Warum es zählt</span>
-    <h2 class="reveal d2">Sichtbarkeit ist <span class="grad-text">kein Zufall.</span></h2>
-    <p class="lead reveal d3">Ob Unternehmen oder Privatperson: Wer online nicht gefunden wird, verliert Kunden, Aufträge und Vertrauen – oft schon bevor der erste Kontakt entsteht.</p>
+    <span class="kicker reveal d1" data-i18n="why.kicker">Warum es zählt</span>
+    <h2 class="reveal d2" data-i18n="why.h2">Sichtbarkeit ist <span class="grad-text">kein Zufall.</span></h2>
+    <p class="lead reveal d3" data-i18n="why.lead">Ob Unternehmen oder Privatperson: Wer online nicht gefunden wird, verliert Kunden, Aufträge und Vertrauen – oft schon bevor der erste Kontakt entsteht.</p>
 
     <div class="impact-grid reveal d4">
       <div class="impact-card">
         <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></div>
         <div class="impact-val grad-text" data-count="46" data-suffix="%">0</div>
-        <div class="impact-lbl">lokale Suchintention</div>
-        <p class="impact-desc">Fast jede zweite Google-Suche hat einen lokalen Bezug – Kunden suchen gezielt in ihrer Nähe.</p>
+        <div class="impact-lbl" data-i18n="why.lbl1">lokale Suchintention</div>
+        <p class="impact-desc" data-i18n="why.desc1">Fast jede zweite Google-Suche hat einen lokalen Bezug – Kunden suchen gezielt in ihrer Nähe.</p>
       </div>
       <div class="impact-card">
         <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M8 5H5a3 3 0 0 0 3 5"/><path d="M16 5h3a3 3 0 0 1-3 5"/><path d="M12 12v3"/><path d="M9 20h6"/><path d="M10 17h4v3h-4z"/></svg></div>
         <div class="impact-val grad-text" data-count="94" data-suffix="%">0</div>
-        <div class="impact-lbl">bleiben auf Seite 1</div>
-        <p class="impact-desc">94% der Nutzer verlassen die erste Google-Ergebnisseite nie. Wer dort nicht steht, bleibt unsichtbar.</p>
+        <div class="impact-lbl" data-i18n="why.lbl2">bleiben auf Seite 1</div>
+        <p class="impact-desc" data-i18n="why.desc2">94% der Nutzer verlassen die erste Google-Ergebnisseite nie. Wer dort nicht steht, bleibt unsichtbar.</p>
       </div>
       <div class="impact-card">
         <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
         <div class="impact-val grad-text" data-count="53" data-suffix="%">0</div>
-        <div class="impact-lbl">springen bei Ladezeit &gt;3s ab</div>
-        <p class="impact-desc">Über die Hälfte der mobilen Besucher verlässt eine Seite, wenn sie zu langsam lädt.</p>
+        <div class="impact-lbl" data-i18n="why.lbl3">springen bei Ladezeit &gt;3s ab</div>
+        <p class="impact-desc" data-i18n="why.desc3">Über die Hälfte der mobilen Besucher verlässt eine Seite, wenn sie zu langsam lädt.</p>
       </div>
       <div class="impact-card">
         <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <div class="impact-val grad-text" data-count="50" data-suffix="ms">0</div>
-        <div class="impact-lbl">entscheiden über Vertrauen</div>
-        <p class="impact-desc">In nur 50 Millisekunden entscheidet sich, ob eine Website glaubwürdig wirkt – Design zählt mehr als der Text.</p>
+        <div class="impact-lbl" data-i18n="why.lbl4">entscheiden über Vertrauen</div>
+        <p class="impact-desc" data-i18n="why.desc4">In nur 50 Millisekunden entscheidet sich, ob eine Website glaubwürdig wirkt – Design zählt mehr als der Text.</p>
       </div>
     </div>
-    <p class="impact-source reveal d5">Quellen: Google, BrightLocal, First Page Sage, Carleton University u. a.</p>
+    <p class="impact-source reveal d5" data-i18n="why.source">Quellen: Google, BrightLocal, First Page Sage, Carleton University u. a.</p>
   </div>
 </section>
 
@@ -759,28 +777,28 @@
     <div class="split">
       <div>
         <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Über mich</span>
-        <h2 class="reveal d2">Christian Hübbe –<br><span class="grad-text">aus dem Odenwald.</span></h2>
-        <p class="lead reveal d3">Ich bin seit 9 Jahren Unternehmensberater – mit einem MBA in Digitaler Transformation. Kein klassischer Webdesigner.</p>
-        <p class="body-text reveal d4">Das bedeutet: Ich verstehe nicht nur wie eine Website aussehen soll, sondern was sie für Ihr Unternehmen leisten muss. Von der strategischen Positionierung bis zur technischen Umsetzung. Persönlich, ohne Baukastensystem, mit Fokus auf Performance – auf Anfrage.</p>
+        <span class="kicker reveal d1" data-i18n="about.kicker">Über mich</span>
+        <h2 class="reveal d2" data-i18n="about.h2">Christian Hübbe –<br><span class="grad-text">aus dem Odenwald.</span></h2>
+        <p class="lead reveal d3" data-i18n="about.lead">Ich bin seit 9 Jahren Unternehmensberater – mit einem MBA in Digitaler Transformation. Kein klassischer Webdesigner.</p>
+        <p class="body-text reveal d4" data-i18n="about.body">Das bedeutet: Ich verstehe nicht nur wie eine Website aussehen soll, sondern was sie für Ihr Unternehmen leisten muss. Von der strategischen Positionierung bis zur technischen Umsetzung. Persönlich, ohne Baukastensystem, mit Fokus auf Performance – auf Anfrage.</p>
         <div class="creds reveal d5">
-          <div class="cred"><div class="cred-dot"></div><span>9 Jahre Unternehmensberater</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>MBA in Digitaler Transformation</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Native iOS & Android (Swift, Kotlin)</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Backend Infrastructure mit Firebase & Cloud Functions</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Projekte exklusiv und auf Anfrage</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="about.cred1">9 Jahre Unternehmensberater</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="about.cred2">MBA in Digitaler Transformation</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="about.cred3">Native iOS & Android (Swift, Kotlin)</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="about.cred4">Backend Infrastructure mit Firebase & Cloud Functions</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="about.cred5">Projekte exklusiv und auf Anfrage</span></div>
         </div>
       </div>
       <div class="about-side reveal d2">
         <div class="bio-invite">
           <div class="bio-invite-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
-          <p>Wer steckt hinter HuebbeDigital? Golf, Klavier, Wandern, Reisen – und ein Gespräch lieber persönlich als per E-Mail.</p>
-          <button type="button" class="bio-trigger" onclick="openBio()">Mehr über mich →</button>
+          <p data-i18n="about.invite">Wer steckt hinter HuebbeDigital? Golf, Klavier, Wandern, Reisen – und ein Gespräch lieber persönlich als per E-Mail.</p>
+          <button type="button" class="bio-trigger" onclick="openBio()" data-i18n="about.inviteBtn">Mehr über mich →</button>
         </div>
         <div class="stats">
-          <div class="stat"><div class="stat-val grad-text" data-count="9">0</div><div class="stat-lbl">Jahre Beratung</div></div>
-          <div class="stat"><div class="stat-val grad-text">MBA</div><div class="stat-lbl">Dig. Transformation</div></div>
-          <div class="stat"><div class="stat-val grad-text" data-suffix="+">2</div><div class="stat-lbl">Plattformen</div></div>
+          <div class="stat"><div class="stat-val grad-text" data-count="9">0</div><div class="stat-lbl" data-i18n="about.stat1">Jahre Beratung</div></div>
+          <div class="stat"><div class="stat-val grad-text">MBA</div><div class="stat-lbl" data-i18n="about.stat2">Dig. Transformation</div></div>
+          <div class="stat"><div class="stat-val grad-text" data-suffix="+">2</div><div class="stat-lbl" data-i18n="about.stat3">Plattformen</div></div>
         </div>
       </div>
     </div>
@@ -791,35 +809,35 @@
 <section data-bg="#1A1245" data-color="#ffffff" class-temp="light" id="projekte">
   <div class="container">
     <div class="divider reveal"></div>
-    <span class="kicker reveal d1">Ausgewählte Projekte</span>
-    <h2 class="reveal d2">Referenzen &amp; <span class="grad-text">Ergebnisse.</span></h2>
-    <p class="lead reveal d3">Jedes Projekt wird individuell entwickelt – mit Fokus auf Design, Performance und Auffindbarkeit.</p>
+    <span class="kicker reveal d1" data-i18n="projects.kicker">Ausgewählte Projekte</span>
+    <h2 class="reveal d2" data-i18n="projects.h2">Referenzen &amp; <span class="grad-text">Ergebnisse.</span></h2>
+    <p class="lead reveal d3" data-i18n="projects.lead">Jedes Projekt wird individuell entwickelt – mit Fokus auf Design, Performance und Auffindbarkeit.</p>
     <div class="project-grid reveal d4">
       <div class="pcard">
         <span class="pnum">01</span>
-        <div class="pmeta">Website · Hotel & Events · Odenwald</div>
+        <div class="pmeta" data-i18n="projects.p1meta">Website · Hotel & Events · Odenwald</div>
         <div class="ptitle">Burghof Brombachtal</div>
-        <p class="pdesc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
-        <div class="ptags"><span class="ptag">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag">Reservierungssystem</span><span class="ptag">Lokales SEO</span></div>
-        <span class="pstatus"><span class="pstatus-dot"></span>Website in Erstellung</span>
+        <p class="pdesc" data-i18n="projects.p1desc">24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.</p>
+        <div class="ptags"><span class="ptag" data-i18n="projects.p1tag1">24 Seiten</span><span class="ptag">Schema.org</span><span class="ptag" data-i18n="projects.p1tag3">Reservierungssystem</span><span class="ptag" data-i18n="projects.p1tag4">Lokales SEO</span></div>
+        <span class="pstatus"><span class="pstatus-dot"></span><span data-i18n="projects.p1status">Website in Erstellung</span></span>
       </div>
       <div class="pcard">
         <span class="pnum">02</span>
-        <div class="pmeta">Web-App · Golf · PWA</div>
+        <div class="pmeta" data-i18n="projects.p2meta">Web-App · Golf · PWA</div>
         <div class="ptitle">ClubConnect</div>
-        <p class="pdesc">Progressive Web App für Golfclubs: Preise, News und Turniere auf einen Blick, Melde-Service für Platzprobleme mit Foto-Upload, und ein eigenes Admin-Dashboard zur Verwaltung. Installierbar auf jedem Smartphone, Backend mit Firebase.</p>
-        <div class="ptags"><span class="ptag">React</span><span class="ptag">Firebase</span><span class="ptag">PWA</span><span class="ptag">Installierbar</span></div>
-        <a href="https://huebbedigital.com/app/" target="_blank" rel="noopener" class="plink">Zum Projekt →</a>
+        <p class="pdesc" data-i18n="projects.p2desc">Progressive Web App für Golfclubs: Preise, News und Turniere auf einen Blick, Melde-Service für Platzprobleme mit Foto-Upload, und ein eigenes Admin-Dashboard zur Verwaltung. Installierbar auf jedem Smartphone, Backend mit Firebase.</p>
+        <div class="ptags"><span class="ptag">React</span><span class="ptag">Firebase</span><span class="ptag">PWA</span><span class="ptag" data-i18n="projects.p2tag4">Installierbar</span></div>
+        <a href="https://huebbedigital.com/app/" target="_blank" rel="noopener" class="plink" data-i18n="projects.p2link">Zum Projekt →</a>
       </div>
       <div class="pcard">
         <span class="pnum">03</span>
-        <div class="pmeta">Website · Handwerk · Aschaffenburg / Spessart</div>
+        <div class="pmeta" data-i18n="projects.p3meta">Website · Handwerk · Aschaffenburg / Spessart</div>
         <div class="ptitle">Spenglerei Wood</div>
-        <p class="pdesc">Vorher online kaum auffindbar – außer man kannte den Betrieb bereits persönlich. Seit dem Launch wird er bei Google und Bing gefunden und bekommt spürbar mehr Anfragen, telefonisch wie über das Kontaktformular.</p>
-        <div class="ptags"><span class="ptag">Mobile-First</span><span class="ptag">DSGVO-konform</span><span class="ptag">Analytics</span><span class="ptag">Lokales SEO</span></div>
+        <p class="pdesc" data-i18n="projects.p3desc">Vorher online kaum auffindbar – außer man kannte den Betrieb bereits persönlich. Seit dem Launch wird er bei Google und Bing gefunden und bekommt spürbar mehr Anfragen, telefonisch wie über das Kontaktformular.</p>
+        <div class="ptags"><span class="ptag">Mobile-First</span><span class="ptag" data-i18n="projects.p3tag2">DSGVO-konform</span><span class="ptag">Analytics</span><span class="ptag" data-i18n="projects.p3tag4">Lokales SEO</span></div>
         <div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.2rem;">
-          <button type="button" class="plink" style="background:none;border:none;padding:0;font:inherit;cursor:none;margin-top:0;" onclick="openCaseStudy()">Case Study lesen →</button>
-          <a href="https://spenglerei-wood.de/" target="_blank" rel="noopener" class="plink" style="margin-top:0;">Zum Projekt →</a>
+          <button type="button" class="plink" style="background:none;border:none;padding:0;font:inherit;cursor:none;margin-top:0;" onclick="openCaseStudy()" data-i18n="projects.p3case">Case Study lesen →</button>
+          <a href="https://spenglerei-wood.de/" target="_blank" rel="noopener" class="plink" style="margin-top:0;" data-i18n="projects.p3link">Zum Projekt →</a>
         </div>
       </div>
     </div>
@@ -831,31 +849,31 @@
 <section data-bg="#220F48" data-color="#ffffff">
   <div class="container">
     <div class="divider reveal"></div>
-    <span class="kicker reveal d1">Der Ablauf</span>
-    <h2 class="reveal d2">Wie läuft das <span class="grad-text">ab?</span></h2>
-    <p class="lead reveal d3" style="margin-bottom:3.5rem;">Kein komplizierter Prozess. Drei Schritte vom ersten Kontakt bis zur fertigen Website.</p>
+    <span class="kicker reveal d1" data-i18n="process.kicker">Der Ablauf</span>
+    <h2 class="reveal d2" data-i18n="process.h2">Wie läuft das <span class="grad-text">ab?</span></h2>
+    <p class="lead reveal d3" data-i18n="process.lead" style="margin-bottom:3.5rem;">Kein komplizierter Prozess. Drei Schritte vom ersten Kontakt bis zur fertigen Website.</p>
     <div class="process-steps reveal d4">
       <div class="pstep">
         <div class="pstep-num">01</div>
         <div class="pstep-content">
-          <div class="pstep-title">Kostenlose Analyse</div>
-          <p class="pstep-desc">Ich schaue mir Ihre aktuelle Website an — oder Ihre Idee — und schicke Ihnen innerhalb von 48 Stunden eine ehrliche Einschätzung. Kostenlos, unverbindlich.</p>
+          <div class="pstep-title" data-i18n="process.step1title">Kostenlose Analyse</div>
+          <p class="pstep-desc" data-i18n="process.step1desc">Ich schaue mir Ihre aktuelle Website an — oder Ihre Idee — und schicke Ihnen innerhalb von 48 Stunden eine ehrliche Einschätzung. Kostenlos, unverbindlich.</p>
         </div>
       </div>
       <div class="pstep-divider"></div>
       <div class="pstep">
         <div class="pstep-num">02</div>
         <div class="pstep-content">
-          <div class="pstep-title">Persönliches Gespräch</div>
-          <p class="pstep-desc">Wir sprechen kurz über Ihr Projekt, Ihre Ziele und was Sie wirklich brauchen. Kein Pitch, kein Verkaufsgespräch — einfach ein ehrliches Gespräch.</p>
+          <div class="pstep-title" data-i18n="process.step2title">Persönliches Gespräch</div>
+          <p class="pstep-desc" data-i18n="process.step2desc">Wir sprechen kurz über Ihr Projekt, Ihre Ziele und was Sie wirklich brauchen. Kein Pitch, kein Verkaufsgespräch — einfach ein ehrliches Gespräch.</p>
         </div>
       </div>
       <div class="pstep-divider"></div>
       <div class="pstep">
         <div class="pstep-num">03</div>
         <div class="pstep-content">
-          <div class="pstep-title">Projekt & Umsetzung</div>
-          <p class="pstep-desc">Ich entwickle Ihre Website oder App individuell — von Design über Entwicklung bis SEO. Sie sehen jeden Schritt, kein Blackbox-Prozess.</p>
+          <div class="pstep-title" data-i18n="process.step3title">Projekt & Umsetzung</div>
+          <p class="pstep-desc" data-i18n="process.step3desc">Ich entwickle Ihre Website oder App individuell — von Design über Entwicklung bis SEO. Sie sehen jeden Schritt, kein Blackbox-Prozess.</p>
         </div>
       </div>
     </div>
@@ -868,13 +886,13 @@
     <div class="split">
       <div>
         <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Projekt anfragen</span>
-        <h2 class="reveal d2">Bereit für die<br><span class="grad-text">nächste Stufe?</span></h2>
-        <p class="lead reveal d3">Ich nehme Projekte exklusiv und auf Anfrage an. Erzählen Sie mir kurz worum es geht.</p>
-        <p class="body-text reveal d4">Ob neue Website, SEO-Analyse, App-Entwicklung oder komplette digitale Neuaufstellung – der erste Schritt ist ein kurzes Gespräch.</p>
+        <span class="kicker reveal d1" data-i18n="contact.kicker">Projekt anfragen</span>
+        <h2 class="reveal d2" data-i18n="contact.h2">Bereit für die<br><span class="grad-text">nächste Stufe?</span></h2>
+        <p class="lead reveal d3" data-i18n="contact.lead">Ich nehme Projekte exklusiv und auf Anfrage an. Erzählen Sie mir kurz worum es geht.</p>
+        <p class="body-text reveal d4" data-i18n="contact.body">Ob neue Website, SEO-Analyse, App-Entwicklung oder komplette digitale Neuaufstellung – der erste Schritt ist ein kurzes Gespräch.</p>
       <div class="reveal d5" style="margin-top:1.8rem;display:flex;flex-direction:column;gap:.7rem;">
         <a href="tel:01794251905" style="font-size:.9rem;font-weight:600;color:white;text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">0179 4251905</a>
-        <a href="https://wa.me/491794251905" target="_blank" rel="noopener" style="font-size:.9rem;font-weight:600;color:white;text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">WhatsApp · auch abends</a>
+        <a href="https://wa.me/491794251905" target="_blank" rel="noopener" data-i18n="contact.whatsapp" style="font-size:.9rem;font-weight:600;color:white;text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">WhatsApp · auch abends</a>
       </div>
       </div>
       <div class="reveal d2">
@@ -883,23 +901,23 @@
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="subject" value="Neue Anfrage – HuebbeDigital">
           <div class="form-grid">
-            <div class="fg"><label>Name *</label><input type="text" name="name" required placeholder="Max Mustermann"></div>
-            <div class="fg"><label>E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de"></div>
+            <div class="fg"><label data-i18n="contact.fname">Name *</label><input type="text" name="name" required placeholder="Max Mustermann" data-i18n-placeholder="contact.fnamePh"></div>
+            <div class="fg"><label data-i18n="contact.femail">E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de" data-i18n-placeholder="contact.femailPh"></div>
           </div>
-          <div class="fg"><label>Worum geht es?</label>
+          <div class="fg"><label data-i18n="contact.ftopic">Worum geht es?</label>
             <select name="anliegen">
-              <option value="">-- Bitte wählen --</option>
-              <option>Neue Website</option>
-              <option>SEO-Analyse</option>
-              <option>App-Entwicklung</option>
-              <option>Bestehendes Projekt verbessern</option>
-              <option>Sonstiges</option>
+              <option value="" data-i18n="contact.optChoose">-- Bitte wählen --</option>
+              <option data-i18n="contact.opt1">Neue Website</option>
+              <option data-i18n="contact.opt2">SEO-Analyse</option>
+              <option data-i18n="contact.opt3">App-Entwicklung</option>
+              <option data-i18n="contact.opt4">Bestehendes Projekt verbessern</option>
+              <option data-i18n="contact.opt5">Sonstiges</option>
             </select>
           </div>
-          <div class="fg"><label>Nachricht *</label><textarea name="message" required placeholder="Erzählen Sie mir kurz von Ihrem Projekt..."></textarea></div>
-          <p style="font-size:.75rem;opacity:.35;margin-bottom:.5rem;">Ihre Angaben werden über Web3Forms übermittelt. Mehr in meiner <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.</p>
-          <button type="submit" class="sbtn">Anfrage absenden →</button>
-          <div class="fsuccess" id="formSuccess">Vielen Dank! Ich melde mich persönlich bei Ihnen.</div>
+          <div class="fg"><label data-i18n="contact.fmsg">Nachricht *</label><textarea name="message" required placeholder="Erzählen Sie mir kurz von Ihrem Projekt..." data-i18n-placeholder="contact.fmsgPh"></textarea></div>
+          <p data-i18n="contact.privacy" style="font-size:.75rem;opacity:.35;margin-bottom:.5rem;">Ihre Angaben werden über Web3Forms übermittelt. Mehr in meiner <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.</p>
+          <button type="submit" class="sbtn" data-i18n="contact.submit">Anfrage absenden →</button>
+          <div class="fsuccess" id="formSuccess" data-i18n="contact.success">Vielen Dank! Ich melde mich persönlich bei Ihnen.</div>
         </form>
       </div>
     </div>
@@ -1360,6 +1378,11 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   var audio = document.getElementById('bgAudio');
   var label = document.getElementById('mtLabel');
   if (!btn || !audio) return;
+  var MT = {
+    de: { play:'Musik abspielen', pause:'Musik pausieren', ariaPlay:'Hintergrundmusik abspielen', ariaPause:'Hintergrundmusik pausieren', err:'Konnte nicht laden' },
+    en: { play:'Play music', pause:'Pause music', ariaPlay:'Play background music', ariaPause:'Pause background music', err:'Could not load' }
+  };
+  function L(){ return MT[window.HD_LANG||'de']; }
 
   btn.addEventListener('click', function(){
     if (audio.paused) {
@@ -1368,22 +1391,26 @@ document.getElementById('contactForm').addEventListener('submit',async function(
         playPromise.then(function(){
           btn.classList.add('playing');
           btn.setAttribute('aria-pressed', 'true');
-          btn.setAttribute('aria-label', 'Hintergrundmusik pausieren');
-          if (label) label.textContent = 'Musik pausieren';
+          btn.setAttribute('aria-label', L().ariaPause);
+          if (label) label.textContent = L().pause;
         }).catch(function(err){
           // Playback genuinely failed (e.g. file missing/blocked) — don't lie about the state.
           console.error('Musik konnte nicht abgespielt werden:', err);
-          if (label) label.textContent = 'Konnte nicht laden';
+          if (label) label.textContent = L().err;
         });
       }
     } else {
       audio.pause();
       btn.classList.remove('playing');
       btn.setAttribute('aria-pressed', 'false');
-      btn.setAttribute('aria-label', 'Hintergrundmusik abspielen');
-      if (label) label.textContent = 'Musik abspielen';
+      btn.setAttribute('aria-label', L().ariaPlay);
+      if (label) label.textContent = L().play;
     }
   });
+  window._updateMusicLabel = function(){
+    if (label) label.textContent = audio.paused ? L().play : L().pause;
+    btn.setAttribute('aria-label', audio.paused ? L().ariaPlay : L().ariaPause);
+  };
 })();
 </script>
 <script>
@@ -1409,9 +1436,14 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   if(!h1 || !cur) return;
 
   var queue = [];
-  var l1 = 'Webdesign & Apps';
-  var l2 = 'aus dem ';
-  var l3 = 'Odenwald.';
+  var TW_LANG = (localStorage.getItem('hd_lang') === 'en') ? 'en' : 'de';
+  var TW_WORDS = {
+    de: { l1: 'Webdesign & Apps', l2: 'aus dem ', l3: 'Odenwald.' },
+    en: { l1: 'Webdesign & Apps', l2: 'from the ', l3: 'Odenwald.' }
+  };
+  var l1 = TW_WORDS[TW_LANG].l1;
+  var l2 = TW_WORDS[TW_LANG].l2;
+  var l3 = TW_WORDS[TW_LANG].l3;
   var i;
   for(i=0;i<l1.length;i++) queue.push({c:l1[i], g:false});
   queue.push({br:true});
@@ -1462,91 +1494,91 @@ document.getElementById('contactForm').addEventListener('submit',async function(
 </script>
 
 <!-- DEMO BUTTON + OVERLAY -->
-<button class="demo-btn" id="demoBtn" onclick="openDemo()" aria-label="Technik hinter der Website">
+<button class="demo-btn" id="demoBtn" onclick="openDemo()" data-i18n-aria="demo.ariaLabel" aria-label="Technik hinter der Website">
   <span class="demo-btn-dot"></span>
-  <span class="demo-btn-label">Diese Website ist die Demo</span>
-  <span class="demo-btn-short">Demo ansehen</span>
+  <span class="demo-btn-label" data-i18n="demo.btnLabel">Diese Website ist die Demo</span>
+  <span class="demo-btn-short" data-i18n="demo.btnShort">Demo ansehen</span>
 </button>
 
 <div class="demo-overlay" id="demoOverlay">
-  <button class="demo-close" onclick="closeDemo()">✕ schließen</button>
+  <button class="demo-close" onclick="closeDemo()" data-i18n="demo.close">✕ schließen</button>
   <div class="demo-inner">
-    <span class="demo-kicker">Was hinter dieser Website steckt</span>
-    <h2 class="demo-title">Keine Grenzen.<br><span class="grad-text">Alles ist möglich.</span></h2>
-    <p class="demo-sub">Diese Website ist kein Template. Sie ist eine Live-Demo — gebaut um zu zeigen was modernes Webdesign kann.</p>
+    <span class="demo-kicker" data-i18n="demo.kicker">Was hinter dieser Website steckt</span>
+    <h2 class="demo-title" data-i18n="demo.title">Keine Grenzen.<br><span class="grad-text">Alles ist möglich.</span></h2>
+    <p class="demo-sub" data-i18n="demo.sub">Diese Website ist kein Template. Sie ist eine Live-Demo — gebaut um zu zeigen was modernes Webdesign kann.</p>
     <div class="demo-grid">
       <div class="demo-card">
-        <div class="demo-card-title">3D Diamant</div>
-        <div class="demo-card-desc">Three.js — echtzeit im Browser gerendert. Keine App, kein Plugin.</div>
+        <div class="demo-card-title" data-i18n="demo.c1t">3D Diamant</div>
+        <div class="demo-card-desc" data-i18n="demo.c1d">Three.js — echtzeit im Browser gerendert. Keine App, kein Plugin.</div>
       </div>
       <div class="demo-card">
-        <div class="demo-card-title">Musik-Player</div>
-        <div class="demo-card-desc">HTML Audio-Element mit eigenem Player-Interface — kein Plugin, keine externe Bibliothek.</div>
+        <div class="demo-card-title" data-i18n="demo.c2t">Musik-Player</div>
+        <div class="demo-card-desc" data-i18n="demo.c2d">HTML Audio-Element mit eigenem Player-Interface — kein Plugin, keine externe Bibliothek.</div>
       </div>
       <div class="demo-card">
-        <div class="demo-card-title">Custom Cursor</div>
-        <div class="demo-card-desc">Kein Standard-Browser-Cursor — komplett eigenes Verhalten und Design.</div>
+        <div class="demo-card-title" data-i18n="demo.c3t">Custom Cursor</div>
+        <div class="demo-card-desc" data-i18n="demo.c3d">Kein Standard-Browser-Cursor — komplett eigenes Verhalten und Design.</div>
       </div>
       <div class="demo-card">
-        <div class="demo-card-title">Farbübergänge</div>
-        <div class="demo-card-desc">Reagieren live auf Scrollposition — GPU-beschleunigt, flüssig auf jedem Gerät.</div>
+        <div class="demo-card-title" data-i18n="demo.c4t">Farbübergänge</div>
+        <div class="demo-card-desc" data-i18n="demo.c4d">Reagieren live auf Scrollposition — GPU-beschleunigt, flüssig auf jedem Gerät.</div>
       </div>
       <div class="demo-card">
-        <div class="demo-card-title">Typewriter-Effekt</div>
-        <div class="demo-card-desc">Hero-Animation beim Laden — kein Plugin, reines JavaScript.</div>
+        <div class="demo-card-title" data-i18n="demo.c5t">Typewriter-Effekt</div>
+        <div class="demo-card-desc" data-i18n="demo.c5d">Hero-Animation beim Laden — kein Plugin, reines JavaScript.</div>
       </div>
       <div class="demo-card">
-        <div class="demo-card-title">3D-Globus</div>
-        <div class="demo-card-desc">Interaktive Animation für den SEO-Fragebogen — die eigentliche Analyse mache ich danach persönlich, nicht automatisiert.</div>
+        <div class="demo-card-title" data-i18n="demo.c6t">3D-Globus</div>
+        <div class="demo-card-desc" data-i18n="demo.c6d">Interaktive Animation für den SEO-Fragebogen — die eigentliche Analyse mache ich danach persönlich, nicht automatisiert.</div>
       </div>
     </div>
-    <p class="demo-footer">Das alles ist Ihre Website — keine App, kein Plugin, kein Baukastensystem.<br>Nur modernes Webdesign. Genau so individuell, wie Ihr Unternehmen es verdient.</p>
+    <p class="demo-footer" data-i18n="demo.footer">Das alles ist Ihre Website — keine App, kein Plugin, kein Baukastensystem.<br>Nur modernes Webdesign. Genau so individuell, wie Ihr Unternehmen es verdient.</p>
   </div>
 </div>
 
 <div class="case-overlay" id="caseOverlay">
-  <button class="case-close" onclick="closeCaseStudy()">✕ schließen</button>
+  <button class="case-close" onclick="closeCaseStudy()" data-i18n="case.close">✕ schließen</button>
   <div class="case-inner">
     <span class="case-kicker">Case Study · Spenglerei Wood</span>
-    <h2 class="case-title">Von unsichtbar zu <span class="grad-text">gefunden.</span></h2>
-    <p class="case-sub">Wie eine Handwerksbetrieb-Website aus dem Nichts heraus mehr Anfragen bringt – ohne Werbebudget, nur durch Auffindbarkeit.</p>
+    <h2 class="case-title" data-i18n="case.title">Von unsichtbar zu <span class="grad-text">gefunden.</span></h2>
+    <p class="case-sub" data-i18n="case.sub">Wie eine Handwerksbetrieb-Website aus dem Nichts heraus mehr Anfragen bringt – ohne Werbebudget, nur durch Auffindbarkeit.</p>
     <div class="case-grid">
       <div class="case-card">
-        <span class="case-card-label">Ausgangslage</span>
-        <p class="case-card-desc">Spenglerei Wood hatte keine eigene Website. Neue Kunden kamen fast ausschließlich über Mundpropaganda und bestehende Kontakte – wer den Betrieb nicht bereits kannte, fand ihn nicht.</p>
+        <span class="case-card-label" data-i18n="case.l1">Ausgangslage</span>
+        <p class="case-card-desc" data-i18n="case.d1">Spenglerei Wood hatte keine eigene Website. Neue Kunden kamen fast ausschließlich über Mundpropaganda und bestehende Kontakte – wer den Betrieb nicht bereits kannte, fand ihn nicht.</p>
       </div>
       <div class="case-card">
-        <span class="case-card-label">Problem</span>
-        <p class="case-card-desc">Bei Google und Bing tauchte der Betrieb schlicht nicht auf. Potenzielle Kunden aus Aschaffenburg und dem Spessart landeten stattdessen bei der Konkurrenz, obwohl Spenglerei Wood näher oder besser gewesen wäre.</p>
+        <span class="case-card-label" data-i18n="case.l2">Problem</span>
+        <p class="case-card-desc" data-i18n="case.d2">Bei Google und Bing tauchte der Betrieb schlicht nicht auf. Potenzielle Kunden aus Aschaffenburg und dem Spessart landeten stattdessen bei der Konkurrenz, obwohl Spenglerei Wood näher oder besser gewesen wäre.</p>
       </div>
       <div class="case-card">
-        <span class="case-card-label">Lösung</span>
-        <p class="case-card-desc">Eine individuell entwickelte Website mit lokalem SEO-Targeting, sauberen Meta-Angaben und Schema.org-Daten – damit Google und Bing den Betrieb im Raum Aschaffenburg/Spessart zuverlässig erfassen und anzeigen.</p>
+        <span class="case-card-label" data-i18n="case.l3">Lösung</span>
+        <p class="case-card-desc" data-i18n="case.d3">Eine individuell entwickelte Website mit lokalem SEO-Targeting, sauberen Meta-Angaben und Schema.org-Daten – damit Google und Bing den Betrieb im Raum Aschaffenburg/Spessart zuverlässig erfassen und anzeigen.</p>
       </div>
       <div class="case-card">
-        <span class="case-card-label">Ergebnis</span>
-        <p class="case-card-desc">Seit die Website live ist, wird Spenglerei Wood bei Google und Microsoft gefunden. Die Zahl der Anfragen ist seitdem spürbar gestiegen – sowohl telefonisch als auch über das Kontaktformular.</p>
+        <span class="case-card-label" data-i18n="case.l4">Ergebnis</span>
+        <p class="case-card-desc" data-i18n="case.d4">Seit die Website live ist, wird Spenglerei Wood bei Google und Microsoft gefunden. Die Zahl der Anfragen ist seitdem spürbar gestiegen – sowohl telefonisch als auch über das Kontaktformular.</p>
       </div>
     </div>
-    <p class="case-footer">Genau darum geht es bei einer Website: nicht nur gut aussehen, sondern <strong>gefunden werden</strong> – und daraus echte Anfragen machen.</p>
+    <p class="case-footer" data-i18n="case.footer">Genau darum geht es bei einer Website: nicht nur gut aussehen, sondern <strong>gefunden werden</strong> – und daraus echte Anfragen machen.</p>
   </div>
 </div>
 
 <div class="bio-overlay" id="bioOverlay">
   <div class="bio-inner">
-    <button class="bio-close" onclick="closeBio()">✕ schließen</button>
+    <button class="bio-close" onclick="closeBio()" data-i18n="bio.close">✕ schließen</button>
     <div class="bio-photo-col"></div>
     <div class="bio-text-col">
-      <span class="bio-kicker">Persönlich kennenlernen</span>
-      <h2 class="bio-title">Hallo, ich bin Christian.</h2>
-      <p>Hinter HuebbeDigital steckt keine Agentur, sondern ich persönlich. Wenn ich nicht gerade an einer Website oder App arbeite, bin ich beim Golfen oder am Klavier, unternehme etwas mit Freunden oder bin wandern.</p>
-      <p>Ich reise gerne und bin offen für Neues – und genauso arbeite ich auch: unkompliziert und direkt. Mir ist persönlicher Kontakt wichtig, deshalb lieber ein kurzes Gespräch oder ein Anruf als nur E-Mails hin und her.</p>
+      <span class="bio-kicker" data-i18n="bio.kicker">Persönlich kennenlernen</span>
+      <h2 class="bio-title" data-i18n="bio.title">Hallo, ich bin Christian.</h2>
+      <p data-i18n="bio.p1">Hinter HuebbeDigital steckt keine Agentur, sondern ich persönlich. Wenn ich nicht gerade an einer Website oder App arbeite, bin ich beim Golfen oder am Klavier, unternehme etwas mit Freunden oder bin wandern.</p>
+      <p data-i18n="bio.p2">Ich reise gerne und bin offen für Neues – und genauso arbeite ich auch: unkompliziert und direkt. Mir ist persönlicher Kontakt wichtig, deshalb lieber ein kurzes Gespräch oder ein Anruf als nur E-Mails hin und her.</p>
       <ul class="bio-list">
-        <li>Golf</li>
-        <li>Klavier</li>
-        <li>Wandern</li>
-        <li>Reisen</li>
-        <li>Persönlicher Kontakt</li>
+        <li data-i18n="bio.tag1">Golf</li>
+        <li data-i18n="bio.tag2">Klavier</li>
+        <li data-i18n="bio.tag3">Wandern</li>
+        <li data-i18n="bio.tag4">Reisen</li>
+        <li data-i18n="bio.tag5">Persönlicher Kontakt</li>
       </ul>
     </div>
   </div>
@@ -1652,7 +1684,255 @@ document.addEventListener('keydown', function(e){
 
 <footer>
   <span>© 2026 HuebbeDigital · Christian Hübbe</span>
-  <div><a href="/imprint.html">Impressum</a><a href="/privacy.html">Datenschutz</a></div>
+  <div><a href="/imprint.html" data-i18n="footer.imprint">Impressum</a><a href="/privacy.html" data-i18n="footer.privacy">Datenschutz</a></div>
 </footer>
+
+<script src="/i18n.js"></script>
+<script>
+(function(){
+  var I18N = {
+    de: {
+      'nav.about':'Über mich','nav.projects':'Projekte','nav.contact':'Kontakt',
+      'nav.cta':'Kostenlose Website-Analyse',
+      'nav.langToggle':'I do English, too <span class="lt-arrow">→</span>',
+      'nav.langAria':'Switch to English',
+
+      'hero.eyebrow':'Webdesign · Apps · SEO · Odenwald & Rhein-Main',
+      'hero.h1':'Webdesign & Apps<br>aus dem <span style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Odenwald.</span>',
+      'hero.h1aria':'Webdesign & Apps aus dem Odenwald.',
+      'hero.lead':'Individuelle Websites, Apps und SEO-Strategien für Unternehmen im Odenwald und Rhein-Main-Gebiet. Kein Baukasten, kein Template.',
+      'hero.pill1':'Webdesign','hero.pill2':'SEO-Optimierung','hero.pill3':'iOS & Android','hero.pill4':'Performance',
+      'hero.stat1':'Jahre Beratung','hero.stat2num':'Einzigartig','hero.stat2':'Jedes Projekt','hero.stat3':'Individuelle Lösungen',
+      'hero.scroll':'Scrollen',
+
+      'deliver.kicker':'Was ich liefere',
+      'deliver.h2':'Websites, die <span class="grad-text">performen.</span>',
+      'deliver.lead':'Ich entwickle Websites, Apps und SEO-Strategien für Unternehmen die online gefunden werden wollen – und nicht einfach nur eine Webpräsenz haben wollen.',
+      'deliver.body':'Von der ersten Idee über Design, Entwicklung und technische SEO-Optimierung bis zum Launch. Schema.org, Open Graph und lokales SEO-Targeting auf allen Seiten.',
+      'deliver.cta':'Kostenlose Analyse anfragen →',
+      'deliver.stat1':'Seiten Burghof','deliver.stat2':'SEO-Prüfpunkte','deliver.stat3':'Analyse-Rückmeldung',
+      'deliver.cred1':'Individuelle Entwicklung – kein Baukasten, keine Templates',
+      'deliver.cred2':'Schema.org, Open Graph und KI-Sichtbarkeit auf allen Seiten',
+      'deliver.cred3':'Performance-Optimierung – schnelle Ladezeiten, bessere Rankings',
+      'deliver.cred4':'Lokales SEO-Targeting für Odenwald und Rhein-Main-Gebiet',
+
+      'why.kicker':'Warum es zählt',
+      'why.h2':'Sichtbarkeit ist <span class="grad-text">kein Zufall.</span>',
+      'why.lead':'Ob Unternehmen oder Privatperson: Wer online nicht gefunden wird, verliert Kunden, Aufträge und Vertrauen – oft schon bevor der erste Kontakt entsteht.',
+      'why.lbl1':'lokale Suchintention','why.desc1':'Fast jede zweite Google-Suche hat einen lokalen Bezug – Kunden suchen gezielt in ihrer Nähe.',
+      'why.lbl2':'bleiben auf Seite 1','why.desc2':'94% der Nutzer verlassen die erste Google-Ergebnisseite nie. Wer dort nicht steht, bleibt unsichtbar.',
+      'why.lbl3':'springen bei Ladezeit &gt;3s ab','why.desc3':'Über die Hälfte der mobilen Besucher verlässt eine Seite, wenn sie zu langsam lädt.',
+      'why.lbl4':'entscheiden über Vertrauen','why.desc4':'In nur 50 Millisekunden entscheidet sich, ob eine Website glaubwürdig wirkt – Design zählt mehr als der Text.',
+      'why.source':'Quellen: Google, BrightLocal, First Page Sage, Carleton University u. a.',
+
+      'about.kicker':'Über mich',
+      'about.h2':'Christian Hübbe –<br><span class="grad-text">aus dem Odenwald.</span>',
+      'about.lead':'Ich bin seit 9 Jahren Unternehmensberater – mit einem MBA in Digitaler Transformation. Kein klassischer Webdesigner.',
+      'about.body':'Das bedeutet: Ich verstehe nicht nur wie eine Website aussehen soll, sondern was sie für Ihr Unternehmen leisten muss. Von der strategischen Positionierung bis zur technischen Umsetzung. Persönlich, ohne Baukastensystem, mit Fokus auf Performance – auf Anfrage.',
+      'about.cred1':'9 Jahre Unternehmensberater','about.cred2':'MBA in Digitaler Transformation',
+      'about.cred3':'Native iOS & Android (Swift, Kotlin)','about.cred4':'Backend Infrastructure mit Firebase & Cloud Functions',
+      'about.cred5':'Projekte exklusiv und auf Anfrage',
+      'about.invite':'Wer steckt hinter HuebbeDigital? Golf, Klavier, Wandern, Reisen – und ein Gespräch lieber persönlich als per E-Mail.',
+      'about.inviteBtn':'Mehr über mich →',
+      'about.stat1':'Jahre Beratung','about.stat2':'Dig. Transformation','about.stat3':'Plattformen',
+
+      'projects.kicker':'Ausgewählte Projekte',
+      'projects.h2':'Referenzen &amp; <span class="grad-text">Ergebnisse.</span>',
+      'projects.lead':'Jedes Projekt wird individuell entwickelt – mit Fokus auf Design, Performance und Auffindbarkeit.',
+      'projects.p1meta':'Website · Hotel & Events · Odenwald',
+      'projects.p1desc':'24-seitige Website für Hotel & Eventlocation. Restaurant-Reservierungssystem, 7 Eventlocations, 8 Zimmerdetailseiten, Radfahren, Wandern, Golf und vollständiges Team.',
+      'projects.p1tag1':'24 Seiten','projects.p1tag3':'Reservierungssystem','projects.p1tag4':'Lokales SEO',
+      'projects.p1status':'Website in Erstellung',
+      'projects.p2meta':'Web-App · Golf · PWA',
+      'projects.p2desc':'Progressive Web App für Golfclubs: Preise, News und Turniere auf einen Blick, Melde-Service für Platzprobleme mit Foto-Upload, und ein eigenes Admin-Dashboard zur Verwaltung. Installierbar auf jedem Smartphone, Backend mit Firebase.',
+      'projects.p2tag4':'Installierbar','projects.p2link':'Zum Projekt →',
+      'projects.p3meta':'Website · Handwerk · Aschaffenburg / Spessart',
+      'projects.p3desc':'Vorher online kaum auffindbar – außer man kannte den Betrieb bereits persönlich. Seit dem Launch wird er bei Google und Bing gefunden und bekommt spürbar mehr Anfragen, telefonisch wie über das Kontaktformular.',
+      'projects.p3tag2':'DSGVO-konform','projects.p3tag4':'Lokales SEO',
+      'projects.p3case':'Case Study lesen →','projects.p3link':'Zum Projekt →',
+
+      'process.kicker':'Der Ablauf',
+      'process.h2':'Wie läuft das <span class="grad-text">ab?</span>',
+      'process.lead':'Kein komplizierter Prozess. Drei Schritte vom ersten Kontakt bis zur fertigen Website.',
+      'process.step1title':'Kostenlose Analyse',
+      'process.step1desc':'Ich schaue mir Ihre aktuelle Website an — oder Ihre Idee — und schicke Ihnen innerhalb von 48 Stunden eine ehrliche Einschätzung. Kostenlos, unverbindlich.',
+      'process.step2title':'Persönliches Gespräch',
+      'process.step2desc':'Wir sprechen kurz über Ihr Projekt, Ihre Ziele und was Sie wirklich brauchen. Kein Pitch, kein Verkaufsgespräch — einfach ein ehrliches Gespräch.',
+      'process.step3title':'Projekt & Umsetzung',
+      'process.step3desc':'Ich entwickle Ihre Website oder App individuell — von Design über Entwicklung bis SEO. Sie sehen jeden Schritt, kein Blackbox-Prozess.',
+
+      'contact.kicker':'Projekt anfragen',
+      'contact.h2':'Bereit für die<br><span class="grad-text">nächste Stufe?</span>',
+      'contact.lead':'Ich nehme Projekte exklusiv und auf Anfrage an. Erzählen Sie mir kurz worum es geht.',
+      'contact.body':'Ob neue Website, SEO-Analyse, App-Entwicklung oder komplette digitale Neuaufstellung – der erste Schritt ist ein kurzes Gespräch.',
+      'contact.whatsapp':'WhatsApp · auch abends',
+      'contact.fname':'Name *','contact.fnamePh':'Max Mustermann',
+      'contact.femail':'E-Mail *','contact.femailPh':'max@beispiel.de',
+      'contact.ftopic':'Worum geht es?','contact.optChoose':'-- Bitte wählen --',
+      'contact.opt1':'Neue Website','contact.opt2':'SEO-Analyse','contact.opt3':'App-Entwicklung',
+      'contact.opt4':'Bestehendes Projekt verbessern','contact.opt5':'Sonstiges',
+      'contact.fmsg':'Nachricht *','contact.fmsgPh':'Erzählen Sie mir kurz von Ihrem Projekt...',
+      'contact.privacy':'Ihre Angaben werden über Web3Forms übermittelt. Mehr in meiner <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.',
+      'contact.submit':'Anfrage absenden →',
+      'contact.success':'Vielen Dank! Ich melde mich persönlich bei Ihnen.',
+
+      'demo.btnLabel':'Diese Website ist die Demo','demo.btnShort':'Demo ansehen',
+      'demo.close':'✕ schließen','demo.ariaLabel':'Technik hinter der Website',
+      'demo.kicker':'Was hinter dieser Website steckt',
+      'demo.title':'Keine Grenzen.<br><span class="grad-text">Alles ist möglich.</span>',
+      'demo.sub':'Diese Website ist kein Template. Sie ist eine Live-Demo — gebaut um zu zeigen was modernes Webdesign kann.',
+      'demo.c1t':'3D Diamant','demo.c1d':'Three.js — echtzeit im Browser gerendert. Keine App, kein Plugin.',
+      'demo.c2t':'Musik-Player','demo.c2d':'HTML Audio-Element mit eigenem Player-Interface — kein Plugin, keine externe Bibliothek.',
+      'demo.c3t':'Custom Cursor','demo.c3d':'Kein Standard-Browser-Cursor — komplett eigenes Verhalten und Design.',
+      'demo.c4t':'Farbübergänge','demo.c4d':'Reagieren live auf Scrollposition — GPU-beschleunigt, flüssig auf jedem Gerät.',
+      'demo.c5t':'Typewriter-Effekt','demo.c5d':'Hero-Animation beim Laden — kein Plugin, reines JavaScript.',
+      'demo.c6t':'3D-Globus','demo.c6d':'Interaktive Animation für den SEO-Fragebogen — die eigentliche Analyse mache ich danach persönlich, nicht automatisiert.',
+      'demo.footer':'Das alles ist Ihre Website — keine App, kein Plugin, kein Baukastensystem.<br>Nur modernes Webdesign. Genau so individuell, wie Ihr Unternehmen es verdient.',
+
+      'case.close':'✕ schließen',
+      'case.title':'Von unsichtbar zu <span class="grad-text">gefunden.</span>',
+      'case.sub':'Wie eine Handwerksbetrieb-Website aus dem Nichts heraus mehr Anfragen bringt – ohne Werbebudget, nur durch Auffindbarkeit.',
+      'case.l1':'Ausgangslage','case.d1':'Spenglerei Wood hatte keine eigene Website. Neue Kunden kamen fast ausschließlich über Mundpropaganda und bestehende Kontakte – wer den Betrieb nicht bereits kannte, fand ihn nicht.',
+      'case.l2':'Problem','case.d2':'Bei Google und Bing tauchte der Betrieb schlicht nicht auf. Potenzielle Kunden aus Aschaffenburg und dem Spessart landeten stattdessen bei der Konkurrenz, obwohl Spenglerei Wood näher oder besser gewesen wäre.',
+      'case.l3':'Lösung','case.d3':'Eine individuell entwickelte Website mit lokalem SEO-Targeting, sauberen Meta-Angaben und Schema.org-Daten – damit Google und Bing den Betrieb im Raum Aschaffenburg/Spessart zuverlässig erfassen und anzeigen.',
+      'case.l4':'Ergebnis','case.d4':'Seit die Website live ist, wird Spenglerei Wood bei Google und Microsoft gefunden. Die Zahl der Anfragen ist seitdem spürbar gestiegen – sowohl telefonisch als auch über das Kontaktformular.',
+      'case.footer':'Genau darum geht es bei einer Website: nicht nur gut aussehen, sondern <strong>gefunden werden</strong> – und daraus echte Anfragen machen.',
+
+      'bio.close':'✕ schließen','bio.kicker':'Persönlich kennenlernen','bio.title':'Hallo, ich bin Christian.',
+      'bio.p1':'Hinter HuebbeDigital steckt keine Agentur, sondern ich persönlich. Wenn ich nicht gerade an einer Website oder App arbeite, bin ich beim Golfen oder am Klavier, unternehme etwas mit Freunden oder bin wandern.',
+      'bio.p2':'Ich reise gerne und bin offen für Neues – und genauso arbeite ich auch: unkompliziert und direkt. Mir ist persönlicher Kontakt wichtig, deshalb lieber ein kurzes Gespräch oder ein Anruf als nur E-Mails hin und her.',
+      'bio.tag1':'Golf','bio.tag2':'Klavier','bio.tag3':'Wandern','bio.tag4':'Reisen','bio.tag5':'Persönlicher Kontakt',
+
+      'footer.imprint':'Impressum','footer.privacy':'Datenschutz',
+      'cookie.text':'Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.',
+      'cookie.decline':'Ablehnen','cookie.accept':'Akzeptieren'
+    },
+    en: {
+      'nav.about':'About me','nav.projects':'Projects','nav.contact':'Contact',
+      'nav.cta':'Free Website Analysis',
+      'nav.langToggle':'Ich kann auch Deutsch <span class="lt-arrow">→</span>',
+      'nav.langAria':'Auf Deutsch wechseln',
+
+      'hero.eyebrow':'Web Design · Apps · SEO · Odenwald & Rhine-Main',
+      'hero.h1':'Webdesign & Apps<br>from the <span style="background:linear-gradient(135deg,#3B82F6,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Odenwald.</span>',
+      'hero.h1aria':'Web design & apps from the Odenwald.',
+      'hero.lead':'Custom websites, apps and SEO strategies for businesses in the Odenwald and Rhine-Main area. No page builder, no template.',
+      'hero.pill1':'Web Design','hero.pill2':'SEO Optimization','hero.pill3':'iOS & Android','hero.pill4':'Performance',
+      'hero.stat1':'Years of Consulting','hero.stat2num':'Unique','hero.stat2':'Every Project','hero.stat3':'Custom Solutions',
+      'hero.scroll':'Scroll',
+
+      'deliver.kicker':'What I deliver',
+      'deliver.h2':'Websites that <span class="grad-text">perform.</span>',
+      'deliver.lead':'I build websites, apps and SEO strategies for businesses that want to be found online — not just have a web presence.',
+      'deliver.body':'From the first idea through design, development and technical SEO to launch. Schema.org, Open Graph and local SEO targeting on every page.',
+      'deliver.cta':'Request a free analysis →',
+      'deliver.stat1':'Burghof Pages','deliver.stat2':'SEO Checkpoints','deliver.stat3':'Analysis Response',
+      'deliver.cred1':'Custom development – no page builder, no templates',
+      'deliver.cred2':'Schema.org, Open Graph and AI visibility on every page',
+      'deliver.cred3':'Performance optimization – faster load times, better rankings',
+      'deliver.cred4':'Local SEO targeting for the Odenwald and Rhine-Main region',
+
+      'why.kicker':'Why it matters',
+      'why.h2':'Visibility is <span class="grad-text">no accident.</span>',
+      'why.lead':'Whether a business or an individual: if you can\'t be found online, you lose customers, orders and trust — often before the first contact even happens.',
+      'why.lbl1':'local search intent','why.desc1':'Nearly every second Google search has local intent — customers are searching specifically nearby.',
+      'why.lbl2':'never leave page 1','why.desc2':'94% of users never leave the first page of Google results. If you\'re not there, you\'re invisible.',
+      'why.lbl3':'leave if load time &gt;3s','why.desc3':'More than half of mobile visitors leave a site if it loads too slowly.',
+      'why.lbl4':'decide on trust','why.desc4':'It takes just 50 milliseconds to decide whether a website feels credible — design matters more than the text.',
+      'why.source':'Sources: Google, BrightLocal, First Page Sage, Carleton University, and others.',
+
+      'about.kicker':'About me',
+      'about.h2':'Christian Hübbe –<br><span class="grad-text">from the Odenwald.</span>',
+      'about.lead':'I\'ve been a management consultant for 9 years — with an MBA in Digital Transformation. Not a classic web designer.',
+      'about.body':'That means: I don\'t just understand how a website should look, but what it needs to do for your business. From strategic positioning to technical execution. Personal, without page-builder systems, with a focus on performance — by request.',
+      'about.cred1':'9 years as a management consultant','about.cred2':'MBA in Digital Transformation',
+      'about.cred3':'Native iOS & Android (Swift, Kotlin)','about.cred4':'Backend infrastructure with Firebase & Cloud Functions',
+      'about.cred5':'Projects exclusively by request',
+      'about.invite':'Who\'s behind HuebbeDigital? Golf, piano, hiking, travel — and a conversation in person rather than by email.',
+      'about.inviteBtn':'More about me →',
+      'about.stat1':'Years of Consulting','about.stat2':'Digital Transformation','about.stat3':'Platforms',
+
+      'projects.kicker':'Selected Projects',
+      'projects.h2':'References &amp; <span class="grad-text">Results.</span>',
+      'projects.lead':'Every project is built individually — with a focus on design, performance and findability.',
+      'projects.p1meta':'Website · Hotel & Events · Odenwald',
+      'projects.p1desc':'24-page website for a hotel & event venue. Restaurant reservation system, 7 event locations, 8 room detail pages, cycling, hiking, golf, and a full team page.',
+      'projects.p1tag1':'24 Pages','projects.p1tag3':'Reservation System','projects.p1tag4':'Local SEO',
+      'projects.p1status':'Website in progress',
+      'projects.p2meta':'Web App · Golf · PWA',
+      'projects.p2desc':'Progressive web app for golf clubs: prices, news and tournaments at a glance, a course-issue reporting service with photo upload, and its own admin dashboard. Installable on any smartphone, backend on Firebase.',
+      'projects.p2tag4':'Installable','projects.p2link':'View project →',
+      'projects.p3meta':'Website · Trades · Aschaffenburg / Spessart',
+      'projects.p3desc':'Previously barely findable online — unless you already knew the business personally. Since launch, it\'s found on Google and Bing and gets noticeably more inquiries, both by phone and via the contact form.',
+      'projects.p3tag2':'GDPR-compliant','projects.p3tag4':'Local SEO',
+      'projects.p3case':'Read case study →','projects.p3link':'View project →',
+
+      'process.kicker':'The Process',
+      'process.h2':'How does it <span class="grad-text">work?</span>',
+      'process.lead':'No complicated process. Three steps from first contact to finished website.',
+      'process.step1title':'Free Analysis',
+      'process.step1desc':'I take a look at your current website — or your idea — and send you an honest assessment within 48 hours. Free, no obligation.',
+      'process.step2title':'Personal Conversation',
+      'process.step2desc':'We talk briefly about your project, your goals, and what you actually need. No pitch, no sales talk — just an honest conversation.',
+      'process.step3title':'Project & Delivery',
+      'process.step3desc':'I build your website or app individually — from design through development to SEO. You see every step, no black-box process.',
+
+      'contact.kicker':'Request a Project',
+      'contact.h2':'Ready for the<br><span class="grad-text">next step?</span>',
+      'contact.lead':'I take on projects exclusively and by request. Tell me briefly what it\'s about.',
+      'contact.body':'Whether a new website, SEO analysis, app development, or a complete digital overhaul — the first step is a short conversation.',
+      'contact.whatsapp':'WhatsApp · evenings too',
+      'contact.fname':'Name *','contact.fnamePh':'John Doe',
+      'contact.femail':'Email *','contact.femailPh':'john@example.com',
+      'contact.ftopic':'What\'s this about?','contact.optChoose':'-- Please choose --',
+      'contact.opt1':'New website','contact.opt2':'SEO analysis','contact.opt3':'App development',
+      'contact.opt4':'Improve an existing project','contact.opt5':'Something else',
+      'contact.fmsg':'Message *','contact.fmsgPh':'Tell me briefly about your project...',
+      'contact.privacy':'Your details are submitted via Web3Forms. More in my <a href="/privacy.html" style="color:var(--blue);">privacy policy</a>.',
+      'contact.submit':'Send request →',
+      'contact.success':'Thank you! I\'ll get back to you personally.',
+
+      'demo.btnLabel':'This website is the demo','demo.btnShort':'See demo',
+      'demo.close':'✕ close','demo.ariaLabel':'The technology behind this website',
+      'demo.kicker':'What\'s behind this website',
+      'demo.title':'No limits.<br><span class="grad-text">Anything is possible.</span>',
+      'demo.sub':'This website isn\'t a template. It\'s a live demo — built to show what modern web design can do.',
+      'demo.c1t':'3D Diamond','demo.c1d':'Three.js — rendered in real time in the browser. No app, no plugin.',
+      'demo.c2t':'Music Player','demo.c2d':'HTML audio element with a custom player interface — no plugin, no external library.',
+      'demo.c3t':'Custom Cursor','demo.c3d':'No standard browser cursor — completely custom behavior and design.',
+      'demo.c4t':'Color Transitions','demo.c4d':'React live to scroll position — GPU-accelerated, smooth on every device.',
+      'demo.c5t':'Typewriter Effect','demo.c5d':'Hero animation on load — no plugin, pure JavaScript.',
+      'demo.c6t':'3D Globe','demo.c6d':'Interactive animation for the SEO questionnaire — I do the actual analysis personally afterward, not automated.',
+      'demo.footer':'All of this is your website — no app, no plugin, no page-builder system.<br>Just modern web design. Every bit as unique as your business deserves.',
+
+      'case.close':'✕ close',
+      'case.title':'From invisible to <span class="grad-text">found.</span>',
+      'case.sub':'How a trades-business website went from nothing to more inquiries — with no ad budget, just findability.',
+      'case.l1':'Starting point','case.d1':'Spenglerei Wood had no website of its own. New customers came almost exclusively through word of mouth and existing contacts — if you didn\'t already know the business, you couldn\'t find it.',
+      'case.l2':'Problem','case.d2':'The business simply didn\'t show up on Google or Bing. Potential customers from Aschaffenburg and the Spessart region ended up with competitors instead, even though Spenglerei Wood would have been closer or better.',
+      'case.l3':'Solution','case.d3':'A custom-built website with local SEO targeting, clean meta data and Schema.org markup — so Google and Bing reliably index and display the business in the Aschaffenburg/Spessart area.',
+      'case.l4':'Result','case.d4':'Since the website went live, Spenglerei Wood is found on Google and Microsoft. Inquiries have noticeably increased since then — both by phone and via the contact form.',
+      'case.footer':'That\'s exactly what a website is for: not just looking good, but <strong>getting found</strong> — and turning that into real inquiries.',
+
+      'bio.close':'✕ close','bio.kicker':'Get to know me','bio.title':'Hi, I\'m Christian.',
+      'bio.p1':'HuebbeDigital isn\'t an agency — it\'s just me. When I\'m not working on a website or app, I\'m out golfing, playing piano, out with friends, or hiking.',
+      'bio.p2':'I love to travel and I\'m open to new things — and that\'s how I work too: straightforward and direct. Personal contact matters to me, so I\'d rather have a quick chat or call than go back and forth over email.',
+      'bio.tag1':'Golf','bio.tag2':'Piano','bio.tag3':'Hiking','bio.tag4':'Travel','bio.tag5':'Personal Contact',
+
+      'footer.imprint':'Imprint','footer.privacy':'Privacy',
+      'cookie.text':'This website uses Google Analytics. More in the <a href="/privacy.html">privacy policy</a>.',
+      'cookie.decline':'Decline','cookie.accept':'Accept'
+    }
+  };
+
+  HDI18N.init(I18N.de, I18N.en, {
+    skipIds: ['typeH1'], // typewriter already sets the right language on load
+    onApply: function () {
+      if (typeof window._updateMusicLabel === 'function') window._updateMusicLabel();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

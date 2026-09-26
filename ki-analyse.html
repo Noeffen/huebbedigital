@@ -108,6 +108,11 @@
     .brand-grad { background: linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .nav-link { font-size: .82rem; font-weight: 500; color: inherit; text-decoration: none; opacity: .5; transition: opacity .2s; }
     .nav-link:hover { opacity: 1; }
+    .nav-right { display: flex; align-items: center; gap: 1.6rem; }
+    .lang-toggle { font-size: .78rem; font-weight: 700; font-family: inherit; color: #fff; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: .5rem 1rem; cursor: none; white-space: nowrap; transition: background .2s, border-color .2s; display: inline-flex; align-items: center; gap: .4rem; }
+    .lang-toggle:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+    [data-i18n] { transition: opacity .38s cubic-bezier(.4,0,.2,1), filter .38s cubic-bezier(.4,0,.2,1), transform .38s cubic-bezier(.4,0,.2,1); }
+    html.i18n-swapping [data-i18n] { opacity: 0; filter: blur(6px); transform: translateY(6px); }
 
     /* SECTIONS */
     /* HORIZONTAL SCROLL */
@@ -275,10 +280,10 @@
 <!-- Cookie -->
 <div class="cookie-banner" id="cookieBanner">
   <div class="cookie-inner">
-    <p class="cookie-text">Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.</p>
+    <p class="cookie-text" data-i18n="cookie.text">Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.</p>
     <div class="cookie-actions">
-      <button class="cbtn cbtn-d" id="cookieDecline">Ablehnen</button>
-      <button class="cbtn cbtn-a" id="cookieAccept">Akzeptieren</button>
+      <button class="cbtn cbtn-d" id="cookieDecline" data-i18n="cookie.decline">Ablehnen</button>
+      <button class="cbtn cbtn-a" id="cookieAccept" data-i18n="cookie.accept">Akzeptieren</button>
     </div>
   </div>
 </div>
@@ -287,7 +292,10 @@
 
 <nav id="mainNav">
   <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
-  <a href="/" class="nav-link">← Zur Startseite</a>
+  <div class="nav-right">
+    <a href="/" class="nav-link" data-i18n="nav.back">← Zur Startseite</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="nav.langToggle" data-i18n-aria="nav.langAria">I do English, too <span class="lt-arrow">→</span></button>
+  </div>
 </nav>
 
 <div id="scrollerViewport">
@@ -296,20 +304,20 @@
 <!-- 1 HERO -->
 <section data-bg="#0A1628" data-color="#ffffff">
   <div class="container">
-    <span class="eyebrow reveal">Kostenlos · Persönlich · Innerhalb 48 Stunden</span>
-    <h1 class="reveal d1">Website-Analyse<br><span class="grad-text">kostenlos.</span></h1>
-    <p class="lead reveal d2">9 Prüfpunkte – von Google-Sichtbarkeit über KI-Sichtbarkeit bis DSGVO. Ich analysiere Ihre Website mit professionellen Tools und schicke Ihnen einen verständlichen Bericht. Kein Anruf, keine Verpflichtung.</p>
+    <span class="eyebrow reveal" data-i18n="hero.eyebrow">Kostenlos · Persönlich · Innerhalb 48 Stunden</span>
+    <h1 class="reveal d1" data-i18n="hero.h1">Website-Analyse<br><span class="grad-text">kostenlos.</span></h1>
+    <p class="lead reveal d2" data-i18n="hero.lead">9 Prüfpunkte – von Google-Sichtbarkeit über KI-Sichtbarkeit bis DSGVO. Ich analysiere Ihre Website mit professionellen Tools und schicke Ihnen einen verständlichen Bericht. Kein Anruf, keine Verpflichtung.</p>
     <div class="pills reveal d3">
-      <span class="pill accent">Kostenlos & unverbindlich</span>
-      <span class="pill">SEO-Analyse</span>
-      <span class="pill">KI-Sichtbarkeit</span>
-      <span class="pill">Schema.org</span>
-      <span class="pill">Performance</span>
-      <span class="pill">DSGVO-Check</span>
+      <span class="pill accent" data-i18n="hero.pill1">Kostenlos & unverbindlich</span>
+      <span class="pill" data-i18n="hero.pill2">SEO-Analyse</span>
+      <span class="pill" data-i18n="hero.pill3">KI-Sichtbarkeit</span>
+      <span class="pill" data-i18n="hero.pill4">Schema.org</span>
+      <span class="pill" data-i18n="hero.pill5">Performance</span>
+      <span class="pill" data-i18n="hero.pill6">DSGVO-Check</span>
     </div>
   </div>
   <div class="scroll-hint">
-    <span>Scrollen</span>
+    <span data-i18n="hero.scroll">Scrollen</span>
     <div class="scroll-chevrons" style="flex-direction:row;">
       <div class="scroll-chevron" style="transform:rotate(-45deg)"></div>
       <div class="scroll-chevron" style="transform:rotate(-45deg)"></div>
@@ -322,20 +330,20 @@
 <section data-bg="#1A1245" data-color="#ffffff" id="pruefpunkte">
   <div class="container">
     <div class="divider reveal"></div>
-    <span class="kicker reveal d1">Was wird geprüft</span>
-    <h2 class="reveal d2">9 Prüfpunkte – <span class="grad-text">kein Detail ausgelassen.</span></h2>
-    <p class="lead reveal d3">Jede Analyse deckt technische und inhaltliche Schwachstellen auf. Sie erhalten einen klaren Bericht mit konkreten Handlungsempfehlungen.</p>
+    <span class="kicker reveal d1" data-i18n="checks.kicker">Was wird geprüft</span>
+    <h2 class="reveal d2" data-i18n="checks.h2">9 Prüfpunkte – <span class="grad-text">kein Detail ausgelassen.</span></h2>
+    <p class="lead reveal d3" data-i18n="checks.lead">Jede Analyse deckt technische und inhaltliche Schwachstellen auf. Sie erhalten einen klaren Bericht mit konkreten Handlungsempfehlungen.</p>
 
     <div class="checks-grid reveal d4">
-      <div class="check-card"><span class="cnum">01</span><h4>Google-Sichtbarkeit</h4><p>Title-Tag, Meta-Description, H1, Canonical – alles was Google für das Ranking braucht.</p></div>
-      <div class="check-card"><span class="cnum">02</span><h4>KI-Sichtbarkeit</h4><p>Ist Ihre Website so aufgebaut, dass KI-Systeme sie verstehen und empfehlen können?</p></div>
-      <div class="check-card"><span class="cnum">03</span><h4>Schema.org</h4><p>Strukturierte Daten für Google – Hotel, Restaurant, LocalBusiness, FAQPage und mehr.</p></div>
-      <div class="check-card"><span class="cnum">04</span><h4>Open Graph & Teilen</h4><p>Sieht Ihr Link beim Teilen via WhatsApp oder Instagram gut aus – oder nur ein blauer Link?</p></div>
-      <div class="check-card"><span class="cnum">05</span><h4>Ladezeit & Performance</h4><p>Wie schnell lädt die Seite? Google bestraft langsame Websites im Ranking. Bilder, Code, Hosting.</p></div>
-      <div class="check-card"><span class="cnum">06</span><h4>Lokales SEO</h4><p>Ortsbezug in Titeln, H1s und Meta-Descriptions – entscheidend für regionale Suchanfragen.</p></div>
-      <div class="check-card"><span class="cnum">07</span><h4>Impressum & Datenschutz</h4><p>§ 5 DDG statt TMG? Datenschutzerklärung aktuell? Cookie-Banner korrekt? DSGVO-Basics.</p></div>
-      <div class="check-card"><span class="cnum">08</span><h4>Barrierefreiheit</h4><p>Alt-Texte, Skip-Links, BFSG-Konformität – seit Juni 2025 gesetzlich relevant.</p></div>
-      <div class="check-card"><span class="cnum">09</span><h4>Sitemap & Indexierung</h4><p>Hat Google überhaupt Zugang zu allen Seiten? Sitemap vorhanden und korrekt eingereicht?</p></div>
+      <div class="check-card"><span class="cnum">01</span><h4 data-i18n="checks.c1t">Google-Sichtbarkeit</h4><p data-i18n="checks.c1d">Title-Tag, Meta-Description, H1, Canonical – alles was Google für das Ranking braucht.</p></div>
+      <div class="check-card"><span class="cnum">02</span><h4 data-i18n="checks.c2t">KI-Sichtbarkeit</h4><p data-i18n="checks.c2d">Ist Ihre Website so aufgebaut, dass KI-Systeme sie verstehen und empfehlen können?</p></div>
+      <div class="check-card"><span class="cnum">03</span><h4 data-i18n="checks.c3t">Schema.org</h4><p data-i18n="checks.c3d">Strukturierte Daten für Google – Hotel, Restaurant, LocalBusiness, FAQPage und mehr.</p></div>
+      <div class="check-card"><span class="cnum">04</span><h4 data-i18n="checks.c4t">Open Graph & Teilen</h4><p data-i18n="checks.c4d">Sieht Ihr Link beim Teilen via WhatsApp oder Instagram gut aus – oder nur ein blauer Link?</p></div>
+      <div class="check-card"><span class="cnum">05</span><h4 data-i18n="checks.c5t">Ladezeit & Performance</h4><p data-i18n="checks.c5d">Wie schnell lädt die Seite? Google bestraft langsame Websites im Ranking. Bilder, Code, Hosting.</p></div>
+      <div class="check-card"><span class="cnum">06</span><h4 data-i18n="checks.c6t">Lokales SEO</h4><p data-i18n="checks.c6d">Ortsbezug in Titeln, H1s und Meta-Descriptions – entscheidend für regionale Suchanfragen.</p></div>
+      <div class="check-card"><span class="cnum">07</span><h4 data-i18n="checks.c7t">Impressum & Datenschutz</h4><p data-i18n="checks.c7d">§ 5 DDG statt TMG? Datenschutzerklärung aktuell? Cookie-Banner korrekt? DSGVO-Basics.</p></div>
+      <div class="check-card"><span class="cnum">08</span><h4 data-i18n="checks.c8t">Barrierefreiheit</h4><p data-i18n="checks.c8d">Alt-Texte, Skip-Links, BFSG-Konformität – seit Juni 2025 gesetzlich relevant.</p></div>
+      <div class="check-card"><span class="cnum">09</span><h4 data-i18n="checks.c9t">Sitemap & Indexierung</h4><p data-i18n="checks.c9d">Hat Google überhaupt Zugang zu allen Seiten? Sitemap vorhanden und korrekt eingereicht?</p></div>
     </div>
   </div>
 </section>
@@ -346,17 +354,17 @@
     <div class="split">
       <div>
         <div class="divider reveal"></div>
-        <span class="kicker reveal d1">Jetzt anfragen</span>
-        <h2 class="reveal d2">Ihre kostenlose<br><span class="grad-text">Analyse anfordern.</span></h2>
-        <p class="lead reveal d3">Tragen Sie Ihre Website-URL ein – ich analysiere sie mit professionellen Tools und schicke Ihnen innerhalb von 48 Stunden einen verständlichen Bericht.</p>
+        <span class="kicker reveal d1" data-i18n="form.kicker">Jetzt anfragen</span>
+        <h2 class="reveal d2" data-i18n="form.h2">Ihre kostenlose<br><span class="grad-text">Analyse anfordern.</span></h2>
+        <p class="lead reveal d3" data-i18n="form.lead">Tragen Sie Ihre Website-URL ein – ich analysiere sie mit professionellen Tools und schicke Ihnen innerhalb von 48 Stunden einen verständlichen Bericht.</p>
         <div class="creds reveal d4">
-          <div class="cred"><div class="cred-dot"></div><span>Antwort innerhalb von 48 Stunden</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Kostenlos & unverbindlich</span></div>
-          <div class="cred"><div class="cred-dot"></div><span>Keine Weitergabe Ihrer Daten an Dritte</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="form.cred1">Antwort innerhalb von 48 Stunden</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="form.cred2">Kostenlos & unverbindlich</span></div>
+          <div class="cred"><div class="cred-dot"></div><span data-i18n="form.cred3">Keine Weitergabe Ihrer Daten an Dritte</span></div>
         </div>
         <div class="reveal d5" style="margin-top:1.8rem;display:flex;flex-direction:column;gap:.7rem;">
           <a href="tel:01794251905" style="font-size:.9rem;font-weight:600;color:white;text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">0179 4251905</a>
-          <a href="https://wa.me/491794251905" target="_blank" rel="noopener" style="font-size:.9rem;font-weight:600;color:white;text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">WhatsApp · auch abends</a>
+          <a href="https://wa.me/491794251905" target="_blank" rel="noopener" data-i18n="form.whatsapp" style="font-size:.9rem;font-weight:600;color:white;text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">WhatsApp · auch abends</a>
         </div>
       </div>
       <div class="reveal d2">
@@ -366,30 +374,30 @@
           <input type="hidden" name="subject" value="Neue KI-Analyse Anfrage – HuebbeDigital">
           <input type="hidden" name="redirect" value="false">
           <input type="hidden" name="from_name" value="HuebbeDigital Analyse-Tool">
-          <div class="fg"><label>Website-URL *</label><input type="url" name="website_url" required placeholder="https://ihre-website.de"></div>
+          <div class="fg"><label data-i18n="form.fUrl">Website-URL *</label><input type="url" name="website_url" required placeholder="https://ihre-website.de"></div>
           <div class="form-grid">
-            <div class="fg"><label>Ihr Name *</label><input type="text" name="name" required placeholder="Max Mustermann"></div>
-            <div class="fg"><label>E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de"></div>
+            <div class="fg"><label data-i18n="form.fName">Ihr Name *</label><input type="text" name="name" required placeholder="Max Mustermann" data-i18n-placeholder="form.fNamePh"></div>
+            <div class="fg"><label data-i18n="form.fEmail">E-Mail *</label><input type="email" name="email" required placeholder="max@beispiel.de" data-i18n-placeholder="form.fEmailPh"></div>
           </div>
-          <div class="fg"><label>Branche (optional)</label>
+          <div class="fg"><label data-i18n="form.fBranche">Branche (optional)</label>
             <select name="branche">
-              <option value="">-- Bitte wählen --</option>
-              <option>Hotel / Gastronomie</option>
-              <option>Handwerk</option>
-              <option>Einzelhandel</option>
-              <option>Praxis / Gesundheit</option>
-              <option>Dienstleistung</option>
-              <option>Verein / Non-Profit</option>
-              <option>Sonstiges</option>
+              <option value="" data-i18n="form.optChoose">-- Bitte wählen --</option>
+              <option data-i18n="form.opt1">Hotel / Gastronomie</option>
+              <option data-i18n="form.opt2">Handwerk</option>
+              <option data-i18n="form.opt3">Einzelhandel</option>
+              <option data-i18n="form.opt4">Praxis / Gesundheit</option>
+              <option data-i18n="form.opt5">Dienstleistung</option>
+              <option data-i18n="form.opt6">Verein / Non-Profit</option>
+              <option data-i18n="form.opt7">Sonstiges</option>
             </select>
           </div>
-          <div class="fg"><label>Was beschäftigt Sie? (optional)</label><textarea name="message" placeholder="z.B. Wir werden bei Google kaum gefunden..."></textarea></div>
-          <p style="font-size:.75rem;opacity:.35;margin-bottom:.5rem;">Ihre Angaben werden über Web3Forms übermittelt. Mehr in meiner <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.</p>
-          <button type="submit" class="sbtn">Kostenlose Analyse anfordern →</button>
+          <div class="fg"><label data-i18n="form.fMsg">Was beschäftigt Sie? (optional)</label><textarea name="message" placeholder="z.B. Wir werden bei Google kaum gefunden..." data-i18n-placeholder="form.fMsgPh"></textarea></div>
+          <p data-i18n="form.privacy" style="font-size:.75rem;opacity:.35;margin-bottom:.5rem;">Ihre Angaben werden über Web3Forms übermittelt. Mehr in meiner <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.</p>
+          <button type="submit" class="sbtn" data-i18n="form.submit">Kostenlose Analyse anfordern →</button>
         </form>
         <div class="fsuccess" id="formSuccess">
-          <strong>Vielen Dank!</strong>
-          <p>Ich habe Ihre Anfrage erhalten und analysiere Ihre Website persönlich. Sie erhalten innerhalb von 48 Stunden Ihren Bericht.</p>
+          <strong data-i18n="form.successTitle">Vielen Dank!</strong>
+          <p data-i18n="form.successBody">Ich habe Ihre Anfrage erhalten und analysiere Ihre Website persönlich. Sie erhalten innerhalb von 48 Stunden Ihren Bericht.</p>
         </div>
       </div>
     </div>
@@ -401,7 +409,7 @@
 
 <footer>
   <span>© 2026 HuebbeDigital · Christian Hübbe</span>
-  <div><a href="/imprint.html">Impressum</a><a href="/privacy.html">Datenschutz</a></div>
+  <div><a href="/imprint.html" data-i18n="footer.imprint">Impressum</a><a href="/privacy.html" data-i18n="footer.privacy">Datenschutz</a></div>
 </footer>
 
 <script>
@@ -812,17 +820,22 @@ function radarTick(ts){
 requestAnimationFrame(radarTick);
 
 // ── FORM ──
+var FORM_MSG = {
+  de: { sending:'Wird gesendet...', error:'Fehler – erneut versuchen' },
+  en: { sending:'Sending...', error:'Error – please try again' }
+};
 document.getElementById('analyseForm').addEventListener('submit',async function(e){
   e.preventDefault();
+  var L = FORM_MSG[window.HD_LANG] || FORM_MSG.de;
   const btn=this.querySelector('.sbtn');
-  btn.textContent='Wird gesendet...';btn.disabled=true;
+  btn.textContent=L.sending;btn.disabled=true;
   try{
     const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});
     if(res.ok){
       this.style.display='none';
       document.getElementById('formSuccess').style.display='block';
-    }else{btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
-  }catch(err){btn.textContent='Fehler – erneut versuchen';btn.disabled=false;}
+    }else{btn.textContent=L.error;btn.disabled=false;}
+  }catch(err){btn.textContent=L.error;btn.disabled=false;}
 });
 
 // ── ARROW KEY NAVIGATION ──
@@ -846,6 +859,106 @@ document.addEventListener('keydown', function(e){
     requestAnimationFrame(updateBar);
   }
   updateBar();
+})();
+</script>
+<script src="/i18n.js"></script>
+<script>
+(function(){
+  var I18N = {
+    de: {
+      'nav.back':'← Zur Startseite',
+      'nav.langToggle':'I do English, too <span class="lt-arrow">→</span>',
+      'nav.langAria':'Switch to English',
+      'cookie.text':'Diese Website verwendet Google Analytics. Mehr in der <a href="/privacy.html">Datenschutzerklärung</a>.',
+      'cookie.decline':'Ablehnen','cookie.accept':'Akzeptieren',
+
+      'hero.eyebrow':'Kostenlos · Persönlich · Innerhalb 48 Stunden',
+      'hero.h1':'Website-Analyse<br><span class="grad-text">kostenlos.</span>',
+      'hero.lead':'9 Prüfpunkte – von Google-Sichtbarkeit über KI-Sichtbarkeit bis DSGVO. Ich analysiere Ihre Website mit professionellen Tools und schicke Ihnen einen verständlichen Bericht. Kein Anruf, keine Verpflichtung.',
+      'hero.pill1':'Kostenlos & unverbindlich','hero.pill2':'SEO-Analyse','hero.pill3':'KI-Sichtbarkeit',
+      'hero.pill4':'Schema.org','hero.pill5':'Performance','hero.pill6':'DSGVO-Check',
+      'hero.scroll':'Scrollen',
+
+      'checks.kicker':'Was wird geprüft',
+      'checks.h2':'9 Prüfpunkte – <span class="grad-text">kein Detail ausgelassen.</span>',
+      'checks.lead':'Jede Analyse deckt technische und inhaltliche Schwachstellen auf. Sie erhalten einen klaren Bericht mit konkreten Handlungsempfehlungen.',
+      'checks.c1t':'Google-Sichtbarkeit','checks.c1d':'Title-Tag, Meta-Description, H1, Canonical – alles was Google für das Ranking braucht.',
+      'checks.c2t':'KI-Sichtbarkeit','checks.c2d':'Ist Ihre Website so aufgebaut, dass KI-Systeme sie verstehen und empfehlen können?',
+      'checks.c3t':'Schema.org','checks.c3d':'Strukturierte Daten für Google – Hotel, Restaurant, LocalBusiness, FAQPage und mehr.',
+      'checks.c4t':'Open Graph & Teilen','checks.c4d':'Sieht Ihr Link beim Teilen via WhatsApp oder Instagram gut aus – oder nur ein blauer Link?',
+      'checks.c5t':'Ladezeit & Performance','checks.c5d':'Wie schnell lädt die Seite? Google bestraft langsame Websites im Ranking. Bilder, Code, Hosting.',
+      'checks.c6t':'Lokales SEO','checks.c6d':'Ortsbezug in Titeln, H1s und Meta-Descriptions – entscheidend für regionale Suchanfragen.',
+      'checks.c7t':'Impressum & Datenschutz','checks.c7d':'§ 5 DDG statt TMG? Datenschutzerklärung aktuell? Cookie-Banner korrekt? DSGVO-Basics.',
+      'checks.c8t':'Barrierefreiheit','checks.c8d':'Alt-Texte, Skip-Links, BFSG-Konformität – seit Juni 2025 gesetzlich relevant.',
+      'checks.c9t':'Sitemap & Indexierung','checks.c9d':'Hat Google überhaupt Zugang zu allen Seiten? Sitemap vorhanden und korrekt eingereicht?',
+
+      'form.kicker':'Jetzt anfragen',
+      'form.h2':'Ihre kostenlose<br><span class="grad-text">Analyse anfordern.</span>',
+      'form.lead':'Tragen Sie Ihre Website-URL ein – ich analysiere sie mit professionellen Tools und schicke Ihnen innerhalb von 48 Stunden einen verständlichen Bericht.',
+      'form.cred1':'Antwort innerhalb von 48 Stunden','form.cred2':'Kostenlos & unverbindlich','form.cred3':'Keine Weitergabe Ihrer Daten an Dritte',
+      'form.whatsapp':'WhatsApp · auch abends',
+      'form.fUrl':'Website-URL *',
+      'form.fName':'Ihr Name *','form.fNamePh':'Max Mustermann',
+      'form.fEmail':'E-Mail *','form.fEmailPh':'max@beispiel.de',
+      'form.fBranche':'Branche (optional)','form.optChoose':'-- Bitte wählen --',
+      'form.opt1':'Hotel / Gastronomie','form.opt2':'Handwerk','form.opt3':'Einzelhandel',
+      'form.opt4':'Praxis / Gesundheit','form.opt5':'Dienstleistung','form.opt6':'Verein / Non-Profit','form.opt7':'Sonstiges',
+      'form.fMsg':'Was beschäftigt Sie? (optional)','form.fMsgPh':'z.B. Wir werden bei Google kaum gefunden...',
+      'form.privacy':'Ihre Angaben werden über Web3Forms übermittelt. Mehr in meiner <a href="/privacy.html" style="color:var(--blue);">Datenschutzerklärung</a>.',
+      'form.submit':'Kostenlose Analyse anfordern →',
+      'form.successTitle':'Vielen Dank!',
+      'form.successBody':'Ich habe Ihre Anfrage erhalten und analysiere Ihre Website persönlich. Sie erhalten innerhalb von 48 Stunden Ihren Bericht.',
+
+      'footer.imprint':'Impressum','footer.privacy':'Datenschutz'
+    },
+    en: {
+      'nav.back':'← Back to homepage',
+      'nav.langToggle':'Ich kann auch Deutsch <span class="lt-arrow">→</span>',
+      'nav.langAria':'Auf Deutsch wechseln',
+      'cookie.text':'This website uses Google Analytics. More in the <a href="/privacy.html">privacy policy</a>.',
+      'cookie.decline':'Decline','cookie.accept':'Accept',
+
+      'hero.eyebrow':'Free · Personal · Within 48 Hours',
+      'hero.h1':'Website Analysis<br><span class="grad-text">for free.</span>',
+      'hero.lead':'9 checkpoints – from Google visibility to AI visibility to GDPR. I analyze your website with professional tools and send you an easy-to-understand report. No call, no obligation.',
+      'hero.pill1':'Free & no obligation','hero.pill2':'SEO Analysis','hero.pill3':'AI Visibility',
+      'hero.pill4':'Schema.org','hero.pill5':'Performance','hero.pill6':'GDPR Check',
+      'hero.scroll':'Scroll',
+
+      'checks.kicker':'What gets checked',
+      'checks.h2':'9 checkpoints – <span class="grad-text">no detail left out.</span>',
+      'checks.lead':'Every analysis uncovers technical and content-related weaknesses. You get a clear report with concrete recommendations.',
+      'checks.c1t':'Google Visibility','checks.c1d':'Title tag, meta description, H1, canonical – everything Google needs for ranking.',
+      'checks.c2t':'AI Visibility','checks.c2d':'Is your website structured so AI systems can understand and recommend it?',
+      'checks.c3t':'Schema.org','checks.c3d':'Structured data for Google – hotel, restaurant, LocalBusiness, FAQPage, and more.',
+      'checks.c4t':'Open Graph & Sharing','checks.c4d':'Does your link look good when shared via WhatsApp or Instagram – or just a plain blue link?',
+      'checks.c5t':'Load Time & Performance','checks.c5d':'How fast does the page load? Google penalizes slow websites in ranking. Images, code, hosting.',
+      'checks.c6t':'Local SEO','checks.c6d':'Location references in titles, H1s, and meta descriptions – crucial for regional search queries.',
+      'checks.c7t':'Imprint & Privacy Policy','checks.c7d':'§ 5 DDG instead of TMG? Privacy policy up to date? Cookie banner correct? GDPR basics.',
+      'checks.c8t':'Accessibility','checks.c8d':'Alt texts, skip links, BFSG compliance – legally relevant in Germany since June 2025.',
+      'checks.c9t':'Sitemap & Indexing','checks.c9d':'Does Google even have access to all pages? Sitemap present and correctly submitted?',
+
+      'form.kicker':'Request now',
+      'form.h2':'Request your<br><span class="grad-text">free analysis.</span>',
+      'form.lead':'Enter your website URL – I\'ll analyze it with professional tools and send you an easy-to-understand report within 48 hours.',
+      'form.cred1':'Response within 48 hours','form.cred2':'Free & no obligation','form.cred3':'Your data is never shared with third parties',
+      'form.whatsapp':'WhatsApp · evenings too',
+      'form.fUrl':'Website URL *',
+      'form.fName':'Your Name *','form.fNamePh':'John Doe',
+      'form.fEmail':'Email *','form.fEmailPh':'john@example.com',
+      'form.fBranche':'Industry (optional)','form.optChoose':'-- Please choose --',
+      'form.opt1':'Hotel / Restaurant','form.opt2':'Trades / Craftsmanship','form.opt3':'Retail',
+      'form.opt4':'Practice / Healthcare','form.opt5':'Services','form.opt6':'Association / Non-Profit','form.opt7':'Other',
+      'form.fMsg':'What\'s on your mind? (optional)','form.fMsgPh':'e.g. We\'re barely found on Google...',
+      'form.privacy':'Your details are submitted via Web3Forms. More in my <a href="/privacy.html" style="color:var(--blue);">privacy policy</a>.',
+      'form.submit':'Request free analysis →',
+      'form.successTitle':'Thank you!',
+      'form.successBody':'I\'ve received your request and am analyzing your website personally. You\'ll receive your report within 48 hours.',
+
+      'footer.imprint':'Imprint','footer.privacy':'Privacy'
+    }
+  };
+  HDI18N.init(I18N.de, I18N.en);
 })();
 </script>
 </body>

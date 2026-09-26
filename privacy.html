@@ -22,6 +22,11 @@
     .brand-grad{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
     .nav-link{font-size:.82rem;font-weight:500;color:inherit;text-decoration:none;opacity:.5;transition:opacity .2s;}
     .nav-link:hover{opacity:1;}
+    nav .nav-right{display:flex;align-items:center;gap:1.6rem;}
+    .lang-toggle{font-size:.78rem;font-weight:700;font-family:inherit;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:.5rem 1rem;cursor:pointer;white-space:nowrap;transition:background .2s,border-color .2s;display:inline-flex;align-items:center;gap:.4rem;}
+    .lang-toggle:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);}
+    [data-i18n]{transition:opacity .38s cubic-bezier(.4,0,.2,1),filter .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);}
+    html.i18n-swapping [data-i18n]{opacity:0;filter:blur(6px);transform:translateY(6px);}
     main{max-width:760px;margin:0 auto;padding:8rem 3rem 8rem;}
     .divider{width:32px;height:1.5px;background:linear-gradient(90deg,var(--blue),var(--purple));margin-bottom:1.4rem;border-radius:2px;}
     .kicker{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:1.2rem;opacity:.9;}
@@ -82,114 +87,117 @@
 <canvas id="scene"></canvas>
 <nav id="mainNav">
   <a href="/" class="brand">Huebbe<span class="brand-grad">Digital</span></a>
-  <a href="/" class="nav-link">← Zurück zur Startseite</a>
+  <div class="nav-right">
+    <a href="/" class="nav-link" data-i18n="back">← Zurück zur Startseite</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="langToggle" data-i18n-aria="langAria">I do English, too <span class="lt-arrow">→</span></button>
+  </div>
 </nav>
 <main>
   <div class="divider"></div>
-  <span class="kicker">Rechtliches</span>
-  <h1>Daten<span class="grad-text">schutz.</span></h1>
+  <span class="kicker" data-i18n="kicker">Rechtliches</span>
+  <h1 data-i18n="h1">Daten<span class="grad-text">schutz.</span></h1>
   <div class="content">
 
-    <h2>Geltungsbereich</h2>
-    <p>Diese Datenschutzerklärung gilt für:</p>
+    <h2 data-i18n="scope.h2">Geltungsbereich</h2>
+    <p data-i18n="scope.p">Diese Datenschutzerklärung gilt für:</p>
     <ul>
-      <li>Die Website <strong>huebbedigital.com</strong> und alle Unterseiten</li>
-      <li>Die mobile App <strong>NotAlone</strong> (iOS & Android) – eingestellt, siehe Hinweis unten</li>
+      <li data-i18n="scope.li1">Die Website <strong>huebbedigital.com</strong> und alle Unterseiten</li>
+      <li data-i18n="scope.li2">Die mobile App <strong>NotAlone</strong> (iOS & Android) – eingestellt, siehe Hinweis unten</li>
     </ul>
 
     <div class="highlight" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06);">
-      <strong style="color:#fca5a5;">Hinweis: NotAlone wurde eingestellt</strong>
-      <p>Die App <strong>NotAlone</strong> ist seit August 2026 nicht mehr im Google Play Store und App Store verfügbar und wurde vollständig aus den jeweiligen Konsolen gelöscht. Alle im Rahmen von NotAlone erhobenen personenbezogenen Daten wurden unwiderruflich aus unserem Backend gelöscht. Es findet keine weitere Datenverarbeitung im Zusammenhang mit NotAlone mehr statt.</p>
+      <strong style="color:#fca5a5;" data-i18n="notice.title">Hinweis: NotAlone wurde eingestellt</strong>
+      <p data-i18n="notice.p">Die App <strong>NotAlone</strong> ist seit August 2026 nicht mehr im Google Play Store und App Store verfügbar und wurde vollständig aus den jeweiligen Konsolen gelöscht. Alle im Rahmen von NotAlone erhobenen personenbezogenen Daten wurden unwiderruflich aus unserem Backend gelöscht. Es findet keine weitere Datenverarbeitung im Zusammenhang mit NotAlone mehr statt.</p>
     </div>
 
-    <h2>1. Verantwortlicher</h2>
-    <p>HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald<br>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>Telefon: <a href="tel:01794251905">0179 4251905</a></p>
+    <h2 data-i18n="s1.h2">1. Verantwortlicher</h2>
+    <p data-i18n="s1.p">HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald<br>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>Telefon: <a href="tel:01794251905">0179 4251905</a></p>
 
-    <h2>2. Ihre Rechte</h2>
-    <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO).</p>
-    <p><strong>Aufsichtsbehörde:</strong> Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI), Wilhelmstraße 7, 65185 Wiesbaden · <a href="mailto:poststelle@datenschutz.hessen.de">poststelle@datenschutz.hessen.de</a></p>
+    <h2 data-i18n="s2.h2">2. Ihre Rechte</h2>
+    <p data-i18n="s2.p">Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO).</p>
+    <p data-i18n="s2.authority"><strong>Aufsichtsbehörde:</strong> Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI), Wilhelmstraße 7, 65185 Wiesbaden · <a href="mailto:poststelle@datenschutz.hessen.de">poststelle@datenschutz.hessen.de</a></p>
 
-    <h2>3. Allgemeines zur Datenverarbeitung</h2>
-    <p>Wir verarbeiten personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website und unserer Leistungen erforderlich ist.</p>
-    <h3>Rechtsgrundlagen</h3>
-    <p>Einwilligung: Art. 6 Abs. 1 lit. a DSGVO · Vertragserfüllung: Art. 6 Abs. 1 lit. b DSGVO · Berechtigtes Interesse: Art. 6 Abs. 1 lit. f DSGVO</p>
+    <h2 data-i18n="s3.h2">3. Allgemeines zur Datenverarbeitung</h2>
+    <p data-i18n="s3.p">Wir verarbeiten personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website und unserer Leistungen erforderlich ist.</p>
+    <h3 data-i18n="s3.h3">Rechtsgrundlagen</h3>
+    <p data-i18n="s3.p2">Einwilligung: Art. 6 Abs. 1 lit. a DSGVO · Vertragserfüllung: Art. 6 Abs. 1 lit. b DSGVO · Berechtigtes Interesse: Art. 6 Abs. 1 lit. f DSGVO</p>
 
-    <h2>4. Hosting (GitHub Pages)</h2>
-    <p>Unsere Website wird über <strong>GitHub Pages</strong> gehostet (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
-    <p><strong>Daten:</strong> IP-Adresse, Datum/Uhrzeit, Browserinformationen, angeforderte Seiten · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO · <strong>Speicherdauer:</strong> Max. 7 Tage</p>
+    <h2 data-i18n="s4.h2">4. Hosting (GitHub Pages)</h2>
+    <p data-i18n="s4.p1">Unsere Website wird über <strong>GitHub Pages</strong> gehostet (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
+    <p data-i18n="s4.p2"><strong>Daten:</strong> IP-Adresse, Datum/Uhrzeit, Browserinformationen, angeforderte Seiten · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO · <strong>Speicherdauer:</strong> Max. 7 Tage</p>
 
-    <h2>5. Google Analytics</h2>
+    <h2 data-i18n="s5.h2">5. Google Analytics</h2>
     <div class="highlight">
-      <strong>Nur mit Ihrer Einwilligung</strong>
-      <p>Google Analytics wird erst aktiv, nachdem Sie im Cookie-Banner zugestimmt haben. Ohne Einwilligung keine Cookies, keine Datenübertragung.</p>
+      <strong data-i18n="s5.highlightTitle">Nur mit Ihrer Einwilligung</strong>
+      <p data-i18n="s5.highlightP">Google Analytics wird erst aktiv, nachdem Sie im Cookie-Banner zugestimmt haben. Ohne Einwilligung keine Cookies, keine Datenübertragung.</p>
     </div>
-    <p>Google Analytics 4 · Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
-    <h3>Verarbeitete Daten</h3>
+    <p data-i18n="s5.p">Google Analytics 4 · Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
+    <h3 data-i18n="s5.h3a">Verarbeitete Daten</h3>
     <ul>
-      <li>Pseudonymisierte IP-Adresse</li>
-      <li>Aufgerufene Seiten und Verweildauer</li>
-      <li>Geräte-, Browser- und Betriebssystem-Informationen</li>
-      <li>Ungefährer Standort (Stadt-/Regionsebene)</li>
+      <li data-i18n="s5.li1">Pseudonymisierte IP-Adresse</li>
+      <li data-i18n="s5.li2">Aufgerufene Seiten und Verweildauer</li>
+      <li data-i18n="s5.li3">Geräte-, Browser- und Betriebssystem-Informationen</li>
+      <li data-i18n="s5.li4">Ungefährer Standort (Stadt-/Regionsebene)</li>
     </ul>
-    <h3>Cookies</h3>
+    <h3 data-i18n="s5.h3b">Cookies</h3>
     <table>
-      <thead><tr><th>Cookie</th><th>Zweck</th><th>Dauer</th></tr></thead>
+      <thead><tr><th data-i18n="s5.th1">Cookie</th><th data-i18n="s5.th2">Zweck</th><th data-i18n="s5.th3">Dauer</th></tr></thead>
       <tbody>
-        <tr><td><code>_ga</code></td><td>Unterscheidung von Besuchern</td><td>ca. 2 Jahre</td></tr>
-        <tr><td><code>_ga_*</code></td><td>Sitzungsstatus (GA4)</td><td>ca. 2 Jahre</td></tr>
+        <tr><td><code>_ga</code></td><td data-i18n="s5.row1purpose">Unterscheidung von Besuchern</td><td data-i18n="s5.row1dur">ca. 2 Jahre</td></tr>
+        <tr><td><code>_ga_*</code></td><td data-i18n="s5.row2purpose">Sitzungsstatus (GA4)</td><td data-i18n="s5.row2dur">ca. 2 Jahre</td></tr>
       </tbody>
     </table>
-    <h3>Consent Mode v2</h3>
-    <p>Wir setzen Google Consent Mode ein. Ohne Einwilligung ist die Datenerhebung deaktiviert. Widerruf jederzeit durch Löschen der Website-Daten in den Browser-Einstellungen.</p>
-    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung Google</a></p>
+    <h3 data-i18n="s5.h3c">Consent Mode v2</h3>
+    <p data-i18n="s5.p2">Wir setzen Google Consent Mode ein. Ohne Einwilligung ist die Datenerhebung deaktiviert. Widerruf jederzeit durch Löschen der Website-Daten in den Browser-Einstellungen.</p>
+    <p data-i18n="s5.p3"><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung Google</a></p>
 
-    <h2>6. Kontaktformular (Web3Forms)</h2>
-    <p>Kontaktanfragen werden über <strong>Web3Forms</strong> (web3forms.com) verarbeitet und per E-Mail weitergeleitet. Mit Web3Forms besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Weitere Infos: <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
-    <p><strong>Daten:</strong> Name, E-Mail, Nachricht, ggf. Website-URL und Branche · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Nur für die Dauer der Bearbeitung</p>
+    <h2 data-i18n="s6.h2">6. Kontaktformular (Web3Forms)</h2>
+    <p data-i18n="s6.p1">Kontaktanfragen werden über <strong>Web3Forms</strong> (web3forms.com) verarbeitet und per E-Mail weitergeleitet. Mit Web3Forms besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Weitere Infos: <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
+    <p data-i18n="s6.p2"><strong>Daten:</strong> Name, E-Mail, Nachricht, ggf. Website-URL und Branche · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Nur für die Dauer der Bearbeitung</p>
     <p><a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a></p>
 
-    <h2>7. Firebase-Dienste (NotAlone App)</h2>
+    <h2 data-i18n="s7.h2">7. Firebase-Dienste (NotAlone App)</h2>
     <div class="highlight">
-      <strong>EU-Rechenzentren</strong>
-      <p>Alle Firebase-Daten werden in der <strong>EU (europe-west3)</strong> gespeichert.</p>
+      <strong data-i18n="s7.highlightTitle">EU-Rechenzentren</strong>
+      <p data-i18n="s7.highlightP">Alle Firebase-Daten werden in der <strong>EU (europe-west3)</strong> gespeichert.</p>
     </div>
-    <h3>Firebase Authentication</h3>
-    <p>Daten: E-Mail, verschlüsseltes Passwort, Nutzer-ID · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO · Speicherdauer: Bis zur Account-Löschung</p>
-    <h3>Cloud Firestore & Storage – NotAlone (eingestellt)</h3>
-    <p>NotAlone speicherte: Benutzerprofil, Nachrichten und Gesprächsverläufe, Profilbilder, Matching-Präferenzen. <strong>Alle Daten wurden im August 2026 unwiderruflich gelöscht.</strong> Es findet keine weitere Datenverarbeitung statt.</p>
-    <h3>Firebase Cloud Messaging</h3>
-    <p>Daten: Device-Token, Benachrichtigungsinhalt · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO · Widerruf: In den jeweiligen App-Einstellungen</p>
+    <h3 data-i18n="s7.h3a">Firebase Authentication</h3>
+    <p data-i18n="s7.pAuth">Daten: E-Mail, verschlüsseltes Passwort, Nutzer-ID · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO · Speicherdauer: Bis zur Account-Löschung</p>
+    <h3 data-i18n="s7.h3b">Cloud Firestore & Storage – NotAlone (eingestellt)</h3>
+    <p data-i18n="s7.pFirestore">NotAlone speicherte: Benutzerprofil, Nachrichten und Gesprächsverläufe, Profilbilder, Matching-Präferenzen. <strong>Alle Daten wurden im August 2026 unwiderruflich gelöscht.</strong> Es findet keine weitere Datenverarbeitung statt.</p>
+    <h3 data-i18n="s7.h3c">Firebase Cloud Messaging</h3>
+    <p data-i18n="s7.pFcm">Daten: Device-Token, Benachrichtigungsinhalt · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO · Widerruf: In den jeweiligen App-Einstellungen</p>
 
-    <h2>8. Weitergabe an Dritte</h2>
+    <h2 data-i18n="s8.h2">8. Weitergabe an Dritte</h2>
     <table>
-      <thead><tr><th>Dienstleister</th><th>Zweck</th><th>Standort</th></tr></thead>
+      <thead><tr><th data-i18n="s8.th1">Dienstleister</th><th data-i18n="s8.th2">Zweck</th><th data-i18n="s8.th3">Standort</th></tr></thead>
       <tbody>
-        <tr><td>Google LLC (Firebase)</td><td>App-Backend NotAlone – eingestellt (Daten gelöscht 08/2026)</td><td>EU (europe-west3)</td></tr>
-        <tr><td>Google LLC (Analytics)</td><td>Webanalyse (nur mit Einwilligung)</td><td>USA (SCC)</td></tr>
-        <tr><td>Web3Forms</td><td>Kontaktformular</td><td>USA (E-Mail-Weiterleitung)</td></tr>
-        <tr><td>GitHub, Inc.</td><td>Website-Hosting</td><td>USA (SCC)</td></tr>
+        <tr><td>Google LLC (Firebase)</td><td data-i18n="s8.row1">App-Backend NotAlone – eingestellt (Daten gelöscht 08/2026)</td><td>EU (europe-west3)</td></tr>
+        <tr><td>Google LLC (Analytics)</td><td data-i18n="s8.row2">Webanalyse (nur mit Einwilligung)</td><td>USA (SCC)</td></tr>
+        <tr><td>Web3Forms</td><td data-i18n="s8.row3">Kontaktformular</td><td data-i18n="s8.row3loc">USA (E-Mail-Weiterleitung)</td></tr>
+        <tr><td>GitHub, Inc.</td><td data-i18n="s8.row4">Website-Hosting</td><td>USA (SCC)</td></tr>
       </tbody>
     </table>
 
-    <h2>9. SSL/TLS & Cookies</h2>
-    <p>Diese Website nutzt SSL/TLS-Verschlüsselung. Eigene technische Cookies werden nicht gesetzt. Die Cookie-Einstellung wird lokal im Browser gespeichert (<code>localStorage</code>).</p>
+    <h2 data-i18n="s9.h2">9. SSL/TLS & Cookies</h2>
+    <p data-i18n="s9.p">Diese Website nutzt SSL/TLS-Verschlüsselung. Eigene technische Cookies werden nicht gesetzt. Die Cookie-Einstellung wird lokal im Browser gespeichert (<code>localStorage</code>).</p>
 
-    <h2>10. Kontakt zum Datenschutz</h2>
-    <p><strong>E-Mail:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>
+    <h2 data-i18n="s10.h2">10. Kontakt zum Datenschutz</h2>
+    <p data-i18n="s10.p1"><strong>E-Mail:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>
     <strong>Telefon:</strong> <a href="tel:01794251905">0179 4251905</a><br>
     <strong>Post:</strong> Am See 1, 64739 Höchst im Odenwald</p>
-    <p>Wir antworten innerhalb eines Monats. · <strong>Stand: August 2026</strong></p>
+    <p data-i18n="s10.p2">Wir antworten innerhalb eines Monats. · <strong>Stand: August 2026</strong></p>
 
-    <h2>11. Schriftarten</h2>
-    <p>Diese Website verwendet die Schriftart <strong>Inter</strong>, die lokal auf unserem Server gehostet wird. Es werden keine Daten an externe Schriftartanbieter übermittelt.</p>
+    <h2 data-i18n="s11.h2">11. Schriftarten</h2>
+    <p data-i18n="s11.p">Diese Website verwendet die Schriftart <strong>Inter</strong>, die lokal auf unserem Server gehostet wird. Es werden keine Daten an externe Schriftartanbieter übermittelt.</p>
 
   </div>
   </main>
 <footer>
   <span>© 2026 HuebbeDigital</span>
   <div>
-    <a href="/imprint.html">Impressum</a>
-    <a href="/privacy.html">Datenschutz</a>
+    <a href="/imprint.html" data-i18n="fImprint">Impressum</a>
+    <a href="/privacy.html" data-i18n="fPrivacy">Datenschutz</a>
   </div>
 </footer>
 <script>
@@ -275,6 +283,142 @@ if(cur){
     var pct = (h.scrollTop || document.body.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
     bar.style.width = pct + '%';
   }, { passive: true });
+})();
+</script>
+<script src="/i18n.js"></script>
+<script>
+(function(){
+  var I18N = {
+    de: {
+      back:'← Zurück zur Startseite',
+      langToggle:'I do English, too <span class="lt-arrow">→</span>',
+      langAria:'Switch to English',
+      kicker:'Rechtliches',
+      h1:'Daten<span class="grad-text">schutz.</span>',
+      'scope.h2':'Geltungsbereich',
+      'scope.p':'Diese Datenschutzerklärung gilt für:',
+      'scope.li1':'Die Website <strong>huebbedigital.com</strong> und alle Unterseiten',
+      'scope.li2':'Die mobile App <strong>NotAlone</strong> (iOS & Android) – eingestellt, siehe Hinweis unten',
+      'notice.title':'Hinweis: NotAlone wurde eingestellt',
+      'notice.p':'Die App <strong>NotAlone</strong> ist seit August 2026 nicht mehr im Google Play Store und App Store verfügbar und wurde vollständig aus den jeweiligen Konsolen gelöscht. Alle im Rahmen von NotAlone erhobenen personenbezogenen Daten wurden unwiderruflich aus unserem Backend gelöscht. Es findet keine weitere Datenverarbeitung im Zusammenhang mit NotAlone mehr statt.',
+      's1.h2':'1. Verantwortlicher',
+      's1.p':'HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald<br>E-Mail: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>Telefon: <a href="tel:01794251905">0179 4251905</a>',
+      's2.h2':'2. Ihre Rechte',
+      's2.p':'Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO).',
+      's2.authority':'<strong>Aufsichtsbehörde:</strong> Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI), Wilhelmstraße 7, 65185 Wiesbaden · <a href="mailto:poststelle@datenschutz.hessen.de">poststelle@datenschutz.hessen.de</a>',
+      's3.h2':'3. Allgemeines zur Datenverarbeitung',
+      's3.p':'Wir verarbeiten personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website und unserer Leistungen erforderlich ist.',
+      's3.h3':'Rechtsgrundlagen',
+      's3.p2':'Einwilligung: Art. 6 Abs. 1 lit. a DSGVO · Vertragserfüllung: Art. 6 Abs. 1 lit. b DSGVO · Berechtigtes Interesse: Art. 6 Abs. 1 lit. f DSGVO',
+      's4.h2':'4. Hosting (GitHub Pages)',
+      's4.p1':'Unsere Website wird über <strong>GitHub Pages</strong> gehostet (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).',
+      's4.p2':'<strong>Daten:</strong> IP-Adresse, Datum/Uhrzeit, Browserinformationen, angeforderte Seiten · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO · <strong>Speicherdauer:</strong> Max. 7 Tage',
+      's5.h2':'5. Google Analytics',
+      's5.highlightTitle':'Nur mit Ihrer Einwilligung',
+      's5.highlightP':'Google Analytics wird erst aktiv, nachdem Sie im Cookie-Banner zugestimmt haben. Ohne Einwilligung keine Cookies, keine Datenübertragung.',
+      's5.p':'Google Analytics 4 · Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.',
+      's5.h3a':'Verarbeitete Daten',
+      's5.li1':'Pseudonymisierte IP-Adresse','s5.li2':'Aufgerufene Seiten und Verweildauer',
+      's5.li3':'Geräte-, Browser- und Betriebssystem-Informationen','s5.li4':'Ungefährer Standort (Stadt-/Regionsebene)',
+      's5.h3b':'Cookies','s5.th1':'Cookie','s5.th2':'Zweck','s5.th3':'Dauer',
+      's5.row1purpose':'Unterscheidung von Besuchern','s5.row1dur':'ca. 2 Jahre',
+      's5.row2purpose':'Sitzungsstatus (GA4)','s5.row2dur':'ca. 2 Jahre',
+      's5.h3c':'Consent Mode v2',
+      's5.p2':'Wir setzen Google Consent Mode ein. Ohne Einwilligung ist die Datenerhebung deaktiviert. Widerruf jederzeit durch Löschen der Website-Daten in den Browser-Einstellungen.',
+      's5.p3':'<strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung Google</a>',
+      's6.h2':'6. Kontaktformular (Web3Forms)',
+      's6.p1':'Kontaktanfragen werden über <strong>Web3Forms</strong> (web3forms.com) verarbeitet und per E-Mail weitergeleitet. Mit Web3Forms besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Weitere Infos: <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a>',
+      's6.p2':'<strong>Daten:</strong> Name, E-Mail, Nachricht, ggf. Website-URL und Branche · <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO · <strong>Speicherdauer:</strong> Nur für die Dauer der Bearbeitung',
+      's7.h2':'7. Firebase-Dienste (NotAlone App)',
+      's7.highlightTitle':'EU-Rechenzentren',
+      's7.highlightP':'Alle Firebase-Daten werden in der <strong>EU (europe-west3)</strong> gespeichert.',
+      's7.h3a':'Firebase Authentication',
+      's7.pAuth':'Daten: E-Mail, verschlüsseltes Passwort, Nutzer-ID · Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO · Speicherdauer: Bis zur Account-Löschung',
+      's7.h3b':'Cloud Firestore & Storage – NotAlone (eingestellt)',
+      's7.pFirestore':'NotAlone speicherte: Benutzerprofil, Nachrichten und Gesprächsverläufe, Profilbilder, Matching-Präferenzen. <strong>Alle Daten wurden im August 2026 unwiderruflich gelöscht.</strong> Es findet keine weitere Datenverarbeitung statt.',
+      's7.h3c':'Firebase Cloud Messaging',
+      's7.pFcm':'Daten: Device-Token, Benachrichtigungsinhalt · Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO · Widerruf: In den jeweiligen App-Einstellungen',
+      's8.h2':'8. Weitergabe an Dritte',
+      's8.th1':'Dienstleister','s8.th2':'Zweck','s8.th3':'Standort',
+      's8.row1':'App-Backend NotAlone – eingestellt (Daten gelöscht 08/2026)',
+      's8.row2':'Webanalyse (nur mit Einwilligung)',
+      's8.row3':'Kontaktformular','s8.row3loc':'USA (E-Mail-Weiterleitung)',
+      's8.row4':'Website-Hosting',
+      's9.h2':'9. SSL/TLS & Cookies',
+      's9.p':'Diese Website nutzt SSL/TLS-Verschlüsselung. Eigene technische Cookies werden nicht gesetzt. Die Cookie-Einstellung wird lokal im Browser gespeichert (<code>localStorage</code>).',
+      's10.h2':'10. Kontakt zum Datenschutz',
+      's10.p1':'<strong>E-Mail:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br><strong>Telefon:</strong> <a href="tel:01794251905">0179 4251905</a><br><strong>Post:</strong> Am See 1, 64739 Höchst im Odenwald',
+      's10.p2':'Wir antworten innerhalb eines Monats. · <strong>Stand: August 2026</strong>',
+      's11.h2':'11. Schriftarten',
+      's11.p':'Diese Website verwendet die Schriftart <strong>Inter</strong>, die lokal auf unserem Server gehostet wird. Es werden keine Daten an externe Schriftartanbieter übermittelt.',
+      fImprint:'Impressum', fPrivacy:'Datenschutz'
+    },
+    en: {
+      back:'← Back to homepage',
+      langToggle:'Ich kann auch Deutsch <span class="lt-arrow">→</span>',
+      langAria:'Auf Deutsch wechseln',
+      kicker:'Legal',
+      h1:'Privacy <span class="grad-text">Policy.</span>',
+      'scope.h2':'Scope',
+      'scope.p':'This privacy policy applies to:',
+      'scope.li1':'The website <strong>huebbedigital.com</strong> and all subpages',
+      'scope.li2':'The mobile app <strong>NotAlone</strong> (iOS & Android) – discontinued, see notice below',
+      'notice.title':'Notice: NotAlone has been discontinued',
+      'notice.p':'The app <strong>NotAlone</strong> has no longer been available on the Google Play Store and App Store since August 2026 and has been fully removed from the respective consoles. All personal data collected as part of NotAlone has been irrevocably deleted from our backend. No further data processing takes place in connection with NotAlone.',
+      's1.h2':'1. Controller',
+      's1.p':'HuebbeDigital · Christian Hübbe<br>Am See 1, 64739 Höchst im Odenwald, Germany<br>Email: <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br>Phone: <a href="tel:01794251905">0179 4251905</a>',
+      's2.h2':'2. Your Rights',
+      's2.p':'You have the right to access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction (Art. 18), data portability (Art. 20), and objection (Art. 21 GDPR).',
+      's2.authority':'<strong>Supervisory authority:</strong> The Hessian Commissioner for Data Protection and Freedom of Information (HBDI), Wilhelmstraße 7, 65185 Wiesbaden · <a href="mailto:poststelle@datenschutz.hessen.de">poststelle@datenschutz.hessen.de</a>',
+      's3.h2':'3. General Information on Data Processing',
+      's3.p':'We generally only process personal data to the extent necessary to provide a functional website and our services.',
+      's3.h3':'Legal bases',
+      's3.p2':'Consent: Art. 6(1)(a) GDPR · Contract performance: Art. 6(1)(b) GDPR · Legitimate interest: Art. 6(1)(f) GDPR',
+      's4.h2':'4. Hosting (GitHub Pages)',
+      's4.p1':'Our website is hosted via <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).',
+      's4.p2':'<strong>Data:</strong> IP address, date/time, browser information, requested pages · <strong>Legal basis:</strong> Art. 6(1)(f) GDPR · <strong>Retention period:</strong> Max. 7 days',
+      's5.h2':'5. Google Analytics',
+      's5.highlightTitle':'Only with your consent',
+      's5.highlightP':'Google Analytics is only activated after you have agreed to it in the cookie banner. Without consent, no cookies, no data transfer.',
+      's5.p':'Google Analytics 4 · Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland.',
+      's5.h3a':'Data processed',
+      's5.li1':'Pseudonymized IP address','s5.li2':'Pages visited and time spent',
+      's5.li3':'Device, browser, and operating system information','s5.li4':'Approximate location (city/region level)',
+      's5.h3b':'Cookies','s5.th1':'Cookie','s5.th2':'Purpose','s5.th3':'Duration',
+      's5.row1purpose':'Distinguishing visitors','s5.row1dur':'approx. 2 years',
+      's5.row2purpose':'Session state (GA4)','s5.row2dur':'approx. 2 years',
+      's5.h3c':'Consent Mode v2',
+      's5.p2':'We use Google Consent Mode. Without consent, data collection is disabled. You can withdraw consent at any time by deleting website data in your browser settings.',
+      's5.p3':'<strong>Legal basis:</strong> Art. 6(1)(a) GDPR · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>',
+      's6.h2':'6. Contact Form (Web3Forms)',
+      's6.p1':'Contact requests are processed via <strong>Web3Forms</strong> (web3forms.com) and forwarded by email. A data processing agreement pursuant to Art. 28 GDPR is in place with Web3Forms. More information: <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a>',
+      's6.p2':'<strong>Data:</strong> Name, email, message, possibly website URL and industry · <strong>Legal basis:</strong> Art. 6(1)(b) GDPR · <strong>Retention period:</strong> Only for the duration of processing',
+      's7.h2':'7. Firebase Services (NotAlone App)',
+      's7.highlightTitle':'EU data centers',
+      's7.highlightP':'All Firebase data is stored in the <strong>EU (europe-west3)</strong>.',
+      's7.h3a':'Firebase Authentication',
+      's7.pAuth':'Data: email, encrypted password, user ID · Legal basis: Art. 6(1)(b) GDPR · Retention period: Until account deletion',
+      's7.h3b':'Cloud Firestore & Storage – NotAlone (discontinued)',
+      's7.pFirestore':'NotAlone stored: user profile, messages and conversation history, profile pictures, matching preferences. <strong>All data was irrevocably deleted in August 2026.</strong> No further data processing takes place.',
+      's7.h3c':'Firebase Cloud Messaging',
+      's7.pFcm':'Data: device token, notification content · Legal basis: Art. 6(1)(a) GDPR · Withdrawal: In the respective app settings',
+      's8.h2':'8. Disclosure to Third Parties',
+      's8.th1':'Service provider','s8.th2':'Purpose','s8.th3':'Location',
+      's8.row1':'App backend NotAlone – discontinued (data deleted 08/2026)',
+      's8.row2':'Web analytics (only with consent)',
+      's8.row3':'Contact form','s8.row3loc':'USA (email forwarding)',
+      's8.row4':'Website hosting',
+      's9.h2':'9. SSL/TLS & Cookies',
+      's9.p':'This website uses SSL/TLS encryption. We do not set our own technical cookies. The cookie setting is stored locally in your browser (<code>localStorage</code>).',
+      's10.h2':'10. Data Protection Contact',
+      's10.p1':'<strong>Email:</strong> <a href="mailto:contact@huebbedigital.com">contact@huebbedigital.com</a><br><strong>Phone:</strong> <a href="tel:01794251905">0179 4251905</a><br><strong>Mail:</strong> Am See 1, 64739 Höchst im Odenwald, Germany',
+      's10.p2':'We respond within one month. · <strong>Last updated: August 2026</strong>',
+      's11.h2':'11. Fonts',
+      's11.p':'This website uses the font <strong>Inter</strong>, which is hosted locally on our server. No data is transmitted to external font providers.',
+      fImprint:'Imprint', fPrivacy:'Privacy'
+    }
+  };
+  HDI18N.init(I18N.de, I18N.en);
 })();
 </script>
 </body>
